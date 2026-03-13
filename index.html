@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+   <!-- WEB NAV OVERLAY -->
+  <nav class="web-nav" id="webNav" aria-label="Spider Web Navigation">
+    <svg class="web-svg" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Radial spokes -->
       <line x1="500" y1="500" x2="500" y2="0"   class="spoke"/>
       <line x1="500" y1="500" x2="854" y2="146" class="spoke"/>
@@ -28,8 +32,17 @@
     </svg>
 
     <!-- Nav links placed at spoke endpoints -->
-   <a href="#home"     class="web-link" style="--tx:500px;--ty:60px"   >HOME</a>
-   <a href="#archive"  class="web-link" style="--tx:500px;--ty:980px"  >ARCHIVE</a>
+    <a href="#home"     class="web-link" style="--tx:500px;--ty:60px"   >HOME</a>
+    <a href="#books"     class="web-link" style="--tx:890px;--ty:110px" >BOOKS</a>
+    <a href="#culture"  class="web-link" style="--tx:990px;--ty:500px"  >CULTURE</a>
+    <a href="#movies"  class="web-link" style="--tx:900px;--ty:880px"   >MOVIES</a>
+    <a href="#archive"  class="web-link" style="--tx:500px;--ty:980px"  >ARCHIVE</a>
+    <a href="#opinion"  class="web-link" style="--tx:10px; --ty:500px"  >OPINION</a>
+    <a href="#subscribe" class="web-link" style="--tx:90px;--ty:110px"  >SUBSCRIBE</a>
+
+    <button class="web-close" id="webClose" aria-label="Close navigation">✕</button>
+  </nav>
+    
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
