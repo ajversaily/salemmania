@@ -1,7 +1,5 @@
-# 🕸 The Daily Dispatch — Spider Web Newsletter Theme
+# Salem Mania!
 
-A self-contained HTML/CSS/JS newsletter blog template with **Spider-Man-inspired web navigation**.  
-Zero dependencies. Drop-in ready. Pure semantic HTML + vanilla JS.
 
 ---
 
