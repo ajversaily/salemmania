@@ -3,47 +3,258 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Salem Mania </title>
+  <title>Salem Mania</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    .kickoff-section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 3rem 1.5rem 1rem;
+    }
+    .kickoff-label {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      color: var(--web);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .kickoff-card {
+      background: var(--ink);
+      border-radius: 4px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      min-height: 420px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.18);
+    }
+    @media (max-width: 720px) {
+      .kickoff-card { grid-template-columns: 1fr; }
+      .kickoff-web-col { display: none; }
+    }
+    .kickoff-web-col {
+      position: relative;
+      background: #0f0804;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-right: 1px solid rgba(200,0,42,.2);
+    }
+    .kickoff-web-col svg { width: 88%; height: 88%; opacity: .55; }
+    .kickoff-web-col::after {
+      content: 'No.1';
+      position: absolute;
+      bottom: 1.2rem; right: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      color: rgba(200,0,42,.55);
+    }
+    .kickoff-content {
+      padding: 3rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .kickoff-tag {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--web);
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .kickoff-tag::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1.5px;
+      background: var(--web);
+    }
+    .kickoff-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--paper);
+      margin-bottom: 1.4rem;
+    }
+    .kickoff-body {
+      font-family: var(--font-body);
+      font-size: .97rem;
+      line-height: 1.85;
+      color: #b8a898;
+      margin-bottom: 1.8rem;
+      flex: 1;
+    }
+    .kickoff-body p { margin-bottom: 1rem; }
+    .kickoff-sign {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--silver);
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 1.2rem;
+    }
+    .kickoff-sign strong {
+      display: block;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: var(--web);
+      margin-top: .25rem;
+      letter-spacing: .04em;
+    }
+    .hero-web {
+      display: block; width: 100%; height: 60px;
+      opacity: .3; margin: 1rem 0;
+    }
+    .hw  { fill: none; stroke: var(--web); stroke-width: 1.5; }
+    .hw2 { fill: none; stroke: var(--thread); stroke-width: .8; }
+    .cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 600px) { .cards-row { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
+
+  <!-- STICKY TASKBAR -->
+  <nav class="taskbar" aria-label="Site navigation">
+    <div class="taskbar-inner">
+      <a href="index.html" class="taskbar-brand">
+        <svg viewBox="0 0 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="14" y1="14" x2="14" y2="1"  stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="25" y2="5"  stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="27" y2="14" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="25" y2="23" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="14" y2="27" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="3"  y2="23" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="1"  y2="14" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <line x1="14" y1="14" x2="3"  y2="5"  stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <polygon points="14,3 22,5 25,13 22,21 14,23 6,21 3,13 6,5" fill="none" stroke="currentColor" stroke-width=".9"/>
+          <polygon points="14,7 19,9 21,14 19,19 14,21 9,19 7,14 9,9" fill="none" stroke="currentColor" stroke-width=".6"/>
+          <circle cx="14" cy="14" r="3" fill="currentColor"/>
+        </svg>
+        Salem Mania
+      </a>
+      <div class="taskbar-links">
+        <a href="index.html"           class="tb-btn tb-btn-active">Home</a>
+        <a href="index.html#articles"  class="tb-btn">Articles</a>
+        <a href="get-involved.html"    class="tb-btn">Get Involved</a>
+        <a href="index.html#subscribe" class="tb-btn tb-btn-cta">Subscribe</a>
+      </div>
+      <button class="taskbar-hamburger" id="tbHamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="taskbar-mobile" id="tbMobile" aria-hidden="true">
+      <a href="index.html"           class="tb-mobile-link tb-btn-active">Home</a>
+      <a href="index.html#articles"  class="tb-mobile-link">Articles</a>
+      <a href="get-involved.html"    class="tb-mobile-link">Get Involved</a>
+      <a href="index.html#subscribe" class="tb-mobile-link tb-mobile-cta">Subscribe</a>
+    </div>
+  </nav>
+
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <div class="header-meta">
-        <span class="date-tag">EST. March 12, 2026</span>
+        <span class="issue-tag">Est. March 12, 2026</span>
+        <span class="date-tag">Independent · Open · Yours</span>
       </div>
       <h1 class="masthead">Salem Mania</h1>
-      <p class="tagline">Made by Yours, truly. </p>
-  <!-- HERO STRIP -->
-  <section class="hero-strip" id="home">
-    <div class="hero-label">THE MANIA!</div>
-    <div class="hero-grid">
-      <article class="hero-main card" tabindex="0">
-        <div class="card-tag">NEW</div>
-        <h2 class="card-title">KICK OFF!</h2>
-    <div class="hero-grid">
-      <article class="hero-main card" tabindex="0">
-        <div class="card-tag">GET INVOLVED</div>
-        <h2 class="card-title">The Mania is going crazy for community!</h2>
-        <a href="articlesalemmania.html" class="card-link">Read full story →</a>
-        <a href="get-involved.html" class="web-link web-link-active" style="--tx:10px;--ty:500px">GET INVOLVED</a>
-         <div class="card-tag">THE WEB</div>
-          <h3 class="card-title">"GET INVOLVED!"</h3>
-          <p class="card-excerpt">MORE INFORMATION ON HOW TO GET INVOLVED!</p>
-          <a href="get-involved.html" class="card-link"> LEARN MORE! →</a>
-        </article>
-        
-    <!-- decorative web thread across hero -->
+      <p class="tagline">Made by yours, truly.</p>
+    </div>
+    <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="80"  class="cw"/><line x1="0" y1="0" x2="40"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="40"  class="cw"/><path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/></svg>
+    <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="0" x2="0"  y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="80"  class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="40"  class="cw"/><path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/></svg>
+  </header>
+
+  <main>
+
+    <!-- KICKOFF CARD -->
+    <section class="kickoff-section" id="home">
+      <div class="kickoff-label">✦ Website Kick Off — Issue No. 1</div>
+      <div class="kickoff-card">
+        <!-- Decorative web -->
+        <div class="kickoff-web-col" aria-hidden="true">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <line x1="200" y1="200" x2="200" y2="10"  stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="370" y2="93"  stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="390" y2="200" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="370" y2="307" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="200" y2="390" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="30"  y2="307" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="10"  y2="200" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <line x1="200" y1="200" x2="30"  y2="93"  stroke="var(--thread)" stroke-width="1.2" fill="none"/>
+            <polygon points="200,35 330,68 368,182 318,300 200,338 82,300 32,182 70,68"   fill="none" stroke="var(--thread)" stroke-width=".9"/>
+            <polygon points="200,75 300,100 330,182 292,272 200,300 108,272 70,182 100,100" fill="none" stroke="var(--thread)" stroke-width=".7"/>
+            <polygon points="200,115 272,134 295,182 265,240 200,260 135,240 105,182 128,134" fill="none" stroke="var(--thread)" stroke-width=".6"/>
+            <polygon points="200,148 248,162 264,182 245,208 200,220 155,208 136,182 152,162" fill="none" stroke="var(--thread)" stroke-width=".5"/>
+            <circle cx="200" cy="200" r="16" fill="none" stroke="var(--web)" stroke-width="2"/>
+            <circle cx="200" cy="200" r="5"  fill="var(--web)"/>
+          </svg>
+        </div>
+        <!-- Article text -->
+        <div class="kickoff-content">
+          <div>
+            <div class="kickoff-tag">Kick Off</div>
+            <h2 class="kickoff-title">Welcome to Salem Mania — the Mania begins.</h2>
+            <div class="kickoff-body">
+              <p>website kick off. so exciting anyways — this is aj rasaily! this website is a blog i'll be using to write articles (duh). about anything and everything…</p>
+              <p>although for right now i want the main focus to be on media analysis, review, critique — but seriously anything goes on here. and ofc my favorite thing — all my friends will have a chance to contribute to this blog with an article, update on their life, anything they want really!</p>
+              <p>this blog is open to anyone who wants to contribute, with review ofc. please dont be a butt.</p>
+              <p>anyways thank you for ur time this has been a great time typing this out, hope to see u back here on salem mania soon!</p>
+            </div>
+          </div>
+          <div class="kickoff-sign">
+            Cordially,
+            <strong>— arasaily</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEB THREAD -->
     <svg class="hero-web" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 40 Q150 5 300 40 Q450 75 600 40 Q750 5 900 40 Q1050 75 1200 40" class="hw"/>
       <path d="M0 20 Q200 55 400 20 Q600 -15 800 20 Q1000 55 1200 20" class="hw hw2"/>
     </svg>
-  </section>
-    <!-- SUBSCRIBE BAND -->
-    <section class="subscribe-band" id="subscribe">
+
+    <!-- ARTICLES -->
+    <section class="site-main" id="articles">
+      <div class="section-header">
+        <span class="section-rule"></span>
+        <h2 class="section-title">On The Mania</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="cards-row">
+        <article class="card" tabindex="0">
+          <div class="card-tag">ISSUE NO. 1</div>
+          <h3 class="card-title">Kick Off!</h3>
+          <p class="card-excerpt">The first Salem Mania article — a mission statement, an introduction, and a warm welcome from the founder.</p>
+          <a href="articlesalemmania.html" class="card-link">Read the full piece →</a>
+        </article>
+        <article class="card card-accent" tabindex="0">
+          <div class="card-tag">Community</div>
+          <h3 class="card-title">The Mania is open — and going crazy for community.</h3>
+          <p class="card-excerpt">Salem Mania is a place by independents, for independents. Want to write, contribute, or just be part of it? The web is open.</p>
+          <a href="get-involved.html" class="card-link">Get Involved →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE -->
+    <section class="subscribe-band" id="subscribe" style="max-width:var(--max-w);margin:2.5rem auto 0;border-radius:4px;">
       <div class="sub-web" aria-hidden="true">
         <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
           <line x1="200" y1="100" x2="200" y2="0"   class="sw"/>
@@ -61,6 +272,8 @@
         </svg>
       </div>
       <div class="sub-content">
+        <h2 class="sub-title">Stay in the web.</h2>
+        <p class="sub-body">New articles, new voices, no algorithm. Drop your email and we'll find you when something good goes up.</p>
         <form class="sub-form" onsubmit="return false;">
           <input type="email" placeholder="your@email.com" class="sub-input" aria-label="Email address" />
           <button type="submit" class="sub-btn">SUBSCRIBE</button>
@@ -70,7 +283,7 @@
 
   </main>
 
-  <!-- FOOTER WEB -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="600" y1="120" x2="600" y2="0"    class="fw"/>
@@ -85,11 +298,13 @@
       <path d="M0 25 Q300  0 600 15 Q900 30 1200  5"  class="fa"/>
     </svg>
     <div class="footer-inner">
-      <span class="footer-title">SALEM MANIA</span>
+      <span class="footer-title">Salem Mania</span>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#archive">Archive</a>       
+        <a href="index.html#articles">Articles</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="index.html#subscribe">Subscribe</a>
       </nav>
-      <span class="footer-copy">© 2026 SALEM MANIA All RIGHTS reserved. salemmania.blog@gmail.com </span>
+      <span class="footer-copy">© 2026 Salem Mania. All rights reserved. · salemmania.blog@gmail.com</span>
     </div>
   </footer>
 
