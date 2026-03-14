@@ -3,144 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salem Mania</title>
+  <title>Get Involved — Salem Mania</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="get-involved.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    .kickoff-section {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 3rem 1.5rem 1rem;
-    }
-    .kickoff-label {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      font-weight: 600;
-      letter-spacing: .22em;
-      color: var(--web);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .kickoff-card {
-      background: var(--ink);
-      border-radius: 4px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      min-height: 420px;
-      box-shadow: 0 8px 40px rgba(0,0,0,.18);
-    }
-    @media (max-width: 720px) {
-      .kickoff-card { grid-template-columns: 1fr; }
-      .kickoff-web-col { display: none; }
-    }
-    .kickoff-web-col {
-      position: relative;
-      background: #0f0804;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-right: 1px solid rgba(200,0,42,.2);
-    }
-    .kickoff-web-col svg { width: 88%; height: 88%; opacity: .55; }
-    .kickoff-web-col::after {
-      content: 'No.1';
-      position: absolute;
-      bottom: 1.2rem; right: 1.5rem;
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      letter-spacing: .2em;
-      color: rgba(200,0,42,.55);
-    }
-    .kickoff-content {
-      padding: 3rem 2.5rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .kickoff-tag {
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--web);
-      margin-bottom: .8rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-    .kickoff-tag::before {
-      content: '';
-      display: inline-block;
-      width: 20px; height: 1.5px;
-      background: var(--web);
-    }
-    .kickoff-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
-      font-weight: 900;
-      line-height: 1.15;
-      color: var(--paper);
-      margin-bottom: 1.4rem;
-    }
-    .kickoff-body {
-      font-family: var(--font-body);
-      font-size: .97rem;
-      line-height: 1.85;
-      color: #b8a898;
-      margin-bottom: 1.8rem;
-      flex: 1;
-    }
-    .kickoff-body p { margin-bottom: 1rem; }
-    .kickoff-sign {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: .95rem;
-      color: var(--silver);
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 1.2rem;
-    }
-    .kickoff-sign strong {
-      display: block;
-      font-style: normal;
-      font-weight: 900;
-      font-size: 1.15rem;
-      color: var(--web);
-      margin-top: .25rem;
-      letter-spacing: .04em;
-    }
-    .hero-web {
-      display: block; width: 100%; height: 60px;
-      opacity: .3; margin: 1rem 0;
-    }
-    .hw  { fill: none; stroke: var(--web); stroke-width: 1.5; }
-    .hw2 { fill: none; stroke: var(--thread); stroke-width: .8; }
-    .cards-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    @media (max-width: 600px) { .cards-row { grid-template-columns: 1fr; } }
-  </style>
 </head>
-<body>
+<body class="gi-body">
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <div class="header-meta">
-        <span class="issue-tag">Est. March 12, 2026</span>
-        <span class="date-tag">Independent · Open · Yours</span>
+        <a href="index.html" class="back-link">← Salem Mania</a>
+        <span class="date-tag">March 13, 2026</span>
       </div>
       <h1 class="masthead">Salem Mania</h1>
-      <p class="tagline">Made by yours, truly.</p>
+      <p class="tagline">Independent. Open. By writers, for writers.</p>
 
       <!-- INLINE WEB NAV -->
       <nav class="web-inline-nav" aria-label="Site navigation">
-        <a href="index.html" class="win-link win-active">Home</a>
+        <a href="index.html" class="win-link">Home</a>
         <span class="win-web" aria-hidden="true">
           <svg viewBox="0 0 36 18" width="36" height="18" xmlns="http://www.w3.org/2000/svg">
             <line x1="18" y1="9" x2="18" y2="0"  stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
@@ -156,113 +38,339 @@
             <circle  cx="18" cy="9" r="2"   fill="rgba(200,0,42,.8)"/>
           </svg>
         </span>
-        <a href="get-involved.html" class="win-link">Get Involved</a>
+        <a href="get-involved.html" class="win-link win-active">Get Involved</a>
       </nav>
 
     </div>
-    <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="80"  class="cw"/><line x1="0" y1="0" x2="40"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="40"  class="cw"/><path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/></svg>
-    <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="0" x2="0"  y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="80"  class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="40"  class="cw"/><path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/></svg>
+    <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80" y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="80" class="cw"/><line x1="0" y1="0" x2="40" y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="40" class="cw"/><path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/></svg>
+    <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="0" x2="0" y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/><line x1="120" y1="0" x2="0" y2="80" class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/><line x1="120" y1="0" x2="0" y2="40" class="cw"/><path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/></svg>
   </header>
 
-  <main>
+  <!-- PAGE HERO -->
+  <section class="gi-hero">
+    <div class="gi-hero-web" aria-hidden="true">
+      <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+        <line x1="300" y1="300" x2="300" y2="0"   class="gh-spoke"/>
+        <line x1="300" y1="300" x2="600" y2="80"  class="gh-spoke"/>
+        <line x1="300" y1="300" x2="600" y2="300" class="gh-spoke"/>
+        <line x1="300" y1="300" x2="0"   y2="80"  class="gh-spoke"/>
+        <line x1="300" y1="300" x2="0"   y2="300" class="gh-spoke"/>
+        <line x1="300" y1="300" x2="150" y2="0"   class="gh-spoke"/>
+        <line x1="300" y1="300" x2="450" y2="0"   class="gh-spoke"/>
+        <polygon points="300,30 500,55 565,200 480,280 300,295 120,280 35,200 100,55"  class="gh-ring"/>
+        <polygon points="300,80 455,98 510,195 440,265 300,278 160,265 90,195 145,98"  class="gh-ring"/>
+        <polygon points="300,130 410,143 455,195 400,248 300,258 200,248 145,195 190,143" class="gh-ring"/>
+        <circle cx="300" cy="300" r="18" class="gh-hub"/>
+      </svg>
+    </div>
+    <div class="gi-hero-content">
+      <div class="card-tag">JOIN THE WEB</div>
+      <h2 class="gi-hero-title">Get Involved</h2>
+      <p class="gi-hero-sub">Salem Mania is open source and built on independent voices.<br>The web is open — come weave your thread.</p>
+    </div>
+  </section>
 
-    <!-- KICKOFF CARD -->
-    <section class="kickoff-section" id="home">
-      <div class="kickoff-label">✦ Website Kick Off — Issue No. 1</div>
-      <div class="kickoff-card">
-        <!-- Decorative web -->
-        <div class="kickoff-web-col" aria-hidden="true">
-          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-            <line x1="200" y1="200" x2="200" y2="10"  stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="370" y2="93"  stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="390" y2="200" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="370" y2="307" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="200" y2="390" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="30"  y2="307" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="10"  y2="200" stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <line x1="200" y1="200" x2="30"  y2="93"  stroke="var(--thread)" stroke-width="1.2" fill="none"/>
-            <polygon points="200,35 330,68 368,182 318,300 200,338 82,300 32,182 70,68"   fill="none" stroke="var(--thread)" stroke-width=".9"/>
-            <polygon points="200,75 300,100 330,182 292,272 200,300 108,272 70,182 100,100" fill="none" stroke="var(--thread)" stroke-width=".7"/>
-            <polygon points="200,115 272,134 295,182 265,240 200,260 135,240 105,182 128,134" fill="none" stroke="var(--thread)" stroke-width=".6"/>
-            <polygon points="200,148 248,162 264,182 245,208 200,220 155,208 136,182 152,162" fill="none" stroke="var(--thread)" stroke-width=".5"/>
-            <circle cx="200" cy="200" r="16" fill="none" stroke="var(--web)" stroke-width="2"/>
-            <circle cx="200" cy="200" r="5"  fill="var(--web)"/>
-          </svg>
-        </div>
-        <!-- Article text -->
-        <div class="kickoff-content">
-          <div>
-            <div class="kickoff-tag">Kick Off</div>
-            <h2 class="kickoff-title">Welcome to Salem Mania — the Mania begins.</h2>
-            <div class="kickoff-body">
-              <p>website kick off. so exciting anyways — this is aj rasaily! this website is a blog i'll be using to write articles (duh). about anything and everything…</p>
-              <p>although for right now i want the main focus to be on media analysis, review, critique — but seriously anything goes on here. and ofc my favorite thing — all my friends will have a chance to contribute to this blog with an article, update on their life, anything they want really!</p>
-              <p>this blog is open to anyone who wants to contribute, with review ofc. please dont be a butt.</p>
-              <p>anyways thank you for ur time this has been a great time typing this out, hope to see u back here on salem mania soon!</p>
-            </div>
-          </div>
-          <div class="kickoff-sign">
-            Cordially,
-            <strong>— arasaily</strong>
-          </div>
-        </div>
+  <!-- MAIN -->
+  <main class="gi-main">
+
+    <!-- MISSION STATEMENT STRIP -->
+    <section class="gi-mission">
+      <div class="gi-mission-inner">
+        <p>Salem Mania does not profit. It does not answer to advertisers, algorithms, or platforms. It exists because writing matters and independent voices deserve a home. If you have something worth saying — about film, music, culture, literature, or anything else — this is the place.</p>
       </div>
     </section>
 
-    <!-- WEB THREAD -->
-    <svg class="hero-web" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 40 Q150 5 300 40 Q450 75 600 40 Q750 5 900 40 Q1050 75 1200 40" class="hw"/>
-      <path d="M0 20 Q200 55 400 20 Q600 -15 800 20 Q1000 55 1200 20" class="hw hw2"/>
-    </svg>
-
-    <!-- ARTICLES -->
-    <section class="site-main" id="articles">
+    <!-- WAYS TO CONTRIBUTE -->
+    <section class="gi-section">
       <div class="section-header">
         <span class="section-rule"></span>
-        <h2 class="section-title">On The Mania</h2>
+        <h2 class="section-title">Ways to Contribute</h2>
         <span class="section-rule"></span>
       </div>
-      <div class="cards-row">
-        <article class="card" tabindex="0">
-          <div class="card-tag">ISSUE NO. 1</div>
-          <h3 class="card-title">Kick Off!</h3>
-          <p class="card-excerpt">The first Salem Mania article — a mission statement, an introduction, and a warm welcome from the founder.</p>
-          <a href="articlesalemmania.html" class="card-link">Read the full piece →</a>
-        </article>
-        <article class="card card-accent" tabindex="0">
-          <div class="card-tag">Community</div>
-          <h3 class="card-title">The Mania is open — and going crazy for community.</h3>
-          <p class="card-excerpt">Salem Mania is a place by independents, for independents. Want to write, contribute, or just be part of it? The web is open.</p>
-          <a href="get-involved.html" class="card-link">Get Involved →</a>
-        </article>
+
+      <div class="gi-ways">
+
+        <div class="gi-way card" tabindex="0">
+          <div class="gi-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <line x1="30" y1="30" x2="30" y2="5"  stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="30" y1="30" x2="52" y2="18" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="30" y1="30" x2="52" y2="42" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="30" y1="30" x2="30" y2="55" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="30" y1="30" x2="8"  y2="42" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="30" y1="30" x2="8"  y2="18" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <polygon points="30,10 48,17 52,36 42,50 18,50 8,36 12,17" fill="none" stroke="currentColor" stroke-width="1"/>
+              <polygon points="30,19 42,24 46,35 38,44 22,44 14,35 18,24" fill="none" stroke="currentColor" stroke-width=".7"/>
+              <circle cx="30" cy="30" r="5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-tag">WRITE</div>
+          <h3 class="card-title">Submit an Article</h3>
+          <p class="card-excerpt">Film analysis, music reviews, essays, poems, cultural takes — if it's worth writing, Salem Mania wants to publish it. No credentials required. Just something real to say.</p>
+          <a href="#pitch-form" class="card-link">Submit a pitch →</a>
+        </div>
+
+        <div class="gi-way card" tabindex="0">
+          <div class="gi-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="45" r="7"  fill="none" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="48" cy="45" r="7"  fill="none" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="22" y1="28" x2="15" y2="38" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="38" y1="28" x2="45" y2="38" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="19" y1="45" x2="41" y2="45" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+          </div>
+          <div class="card-tag">COMMUNITY</div>
+          <h3 class="card-title">Join the Network</h3>
+          <p class="card-excerpt">Connect with other Salem Mania writers and readers. Share ideas, give feedback on drafts, and help shape what this publication becomes.</p>
+          <a href="#join-form" class="card-link">Request access →</a>
+        </div>
+
+        <div class="gi-way card" tabindex="0">
+          <div class="gi-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="10,20 10,50 50,50 50,20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <polyline points="5,22 30,8 55,22" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="24" y1="50" x2="24" y2="35" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="36" y1="50" x2="36" y2="35" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="24" y="35" width="12" height="15" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="card-tag">CODE</div>
+          <h3 class="card-title">Contribute to the Code</h3>
+          <p class="card-excerpt">Salem Mania is open source. If you can code, design, or spot bugs — the repository is open and contributions are welcomed by the founder.</p>
+          <a href="#" class="card-link">View on GitHub →</a>
+        </div>
+
+        <div class="gi-way card" tabindex="0">
+          <div class="gi-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="30,5 36,22 54,22 40,33 45,50 30,39 15,50 20,33 6,22 24,22" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="card-tag">SUPPORT</div>
+          <h3 class="card-title">Support the Mania</h3>
+          <p class="card-excerpt">Salem Mania runs without ads or profit motives. Donations go directly toward keeping the publication independent and the web alive.</p>
+          <a href="#support-band" class="card-link">Support us →</a>
+        </div>
+
       </div>
     </section>
 
-    <!-- SUBSCRIBE -->
-    <section class="subscribe-band" id="subscribe" style="max-width:var(--max-w);margin:2.5rem auto 0;border-radius:4px;">
-      <div class="sub-web" aria-hidden="true">
-        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <line x1="200" y1="100" x2="200" y2="0"   class="sw"/>
-          <line x1="200" y1="100" x2="400" y2="0"   class="sw"/>
-          <line x1="200" y1="100" x2="400" y2="100" class="sw"/>
-          <line x1="200" y1="100" x2="400" y2="200" class="sw"/>
-          <line x1="200" y1="100" x2="200" y2="200" class="sw"/>
-          <line x1="200" y1="100" x2="0"   y2="200" class="sw"/>
-          <line x1="200" y1="100" x2="0"   y2="100" class="sw"/>
-          <line x1="200" y1="100" x2="0"   y2="0"   class="sw"/>
-          <polygon points="200,20  340,25  375,100 340,175 200,180 60,175 25,100 60,25"   class="sr"/>
-          <polygon points="200,50  305,55  335,100 305,145 200,150 95,145 65,100 95,55"   class="sr"/>
-          <polygon points="200,75  268,78  285,100 268,122 200,125 132,122 115,100 132,78" class="sr"/>
-          <circle cx="200" cy="100" r="12" class="sh"/>
+    <!-- WEB DIVIDER -->
+    <div class="web-divider" aria-hidden="true">
+      <svg viewBox="0 0 1200 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="25" x2="1200" y2="25" class="wd-line"/>
+        <line x1="600" y1="0" x2="600" y2="50"  class="wd-spoke"/>
+        <line x1="600" y1="25" x2="200" y2="0"  class="wd-spoke"/>
+        <line x1="600" y1="25" x2="1000" y2="0" class="wd-spoke"/>
+        <line x1="600" y1="25" x2="200" y2="50" class="wd-spoke"/>
+        <line x1="600" y1="25" x2="1000" y2="50" class="wd-spoke"/>
+        <ellipse cx="600" cy="25" rx="180" ry="20" class="wd-ring"/>
+        <ellipse cx="600" cy="25" rx="90"  ry="12" class="wd-ring"/>
+        <circle  cx="600" cy="25" r="6"            class="wd-hub"/>
+        <line x1="0"    y1="0" x2="0"    y2="50" class="wd-edge"/>
+        <line x1="1200" y1="0" x2="1200" y2="50" class="wd-edge"/>
+      </svg>
+    </div>
+
+    <!-- PITCH FORM -->
+    <section class="gi-section" id="pitch-form">
+      <div class="section-header">
+        <span class="section-rule"></span>
+        <h2 class="section-title">Submit a Pitch</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="gi-form-layout">
+        <div class="gi-form-info">
+          <p>Salem Mania publishes writing from anyone with something genuine to say. We don't care about credentials — we care about voice, perspective, and sincerity.</p>
+          <ul class="gi-checklist">
+            <li><span class="check">✓</span> Any length, any format</li>
+            <li><span class="check">✓</span> Film, music, culture, opinion, poetry</li>
+            <li><span class="check">✓</span> Original, unpublished work</li>
+            <li><span class="check">✓</span> All submissions peer reviewed</li>
+          </ul>
+          <div class="gi-note">
+            <div class="card-tag">FROM THE FOUNDER</div>
+            <p>"The Mania is a place by independents for independents. If you have something worth writing about — write it. The web is open." — ARAS</p>
+          </div>
+        </div>
+
+        <!-- PITCH FORM — posts to Formspree -->
+        <form class="gi-form card" id="pitchForm"
+              action="https://formspree.io/f/xqeylljj"
+              method="POST">
+
+          <!-- Formspree: label the email in inbox -->
+          <input type="hidden" name="_subject" value="New Salem Mania Pitch" />
+
+          <div class="gi-field">
+            <label class="gi-label" for="pitch-name">Full Name</label>
+            <input type="text" id="pitch-name" name="name" class="gi-input" placeholder="Your name" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="pitch-email">Email</label>
+            <input type="email" id="pitch-email" name="email" class="gi-input" placeholder="your@email.com" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="pitch-section">Section</label>
+            <select id="pitch-section" name="section" class="gi-input gi-select" required>
+              <option value="">Select a section…</option>
+              <option>Film</option>
+              <option>Music</option>
+              <option>Culture</option>
+              <option>Literature</option>
+              <option>Opinion</option>
+              <option>Poetry</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="pitch-headline">Proposed Title</label>
+            <input type="text" id="pitch-headline" name="title" class="gi-input" placeholder="Working title for your piece" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="pitch-summary">Your Pitch <span class="gi-hint">(tell us what it's about and why it matters)</span></label>
+            <textarea id="pitch-summary" name="pitch" class="gi-input gi-textarea" placeholder="What's the piece about? What's your angle? Why Salem Mania?" rows="5" required></textarea>
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="pitch-clips">Portfolio or Previous Work <span class="gi-hint">(optional)</span></label>
+            <input type="url" id="pitch-clips" name="portfolio" class="gi-input" placeholder="https://" />
+          </div>
+          <button type="submit" class="gi-submit">SEND PITCH</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- WEB DIVIDER -->
+    <div class="web-divider web-divider-flip" aria-hidden="true">
+      <svg viewBox="0 0 1200 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="25" x2="1200" y2="25" class="wd-line"/>
+        <line x1="300" y1="0" x2="300" y2="50" class="wd-spoke"/>
+        <line x1="900" y1="0" x2="900" y2="50" class="wd-spoke"/>
+        <line x1="300" y1="25" x2="0"   y2="5"  class="wd-spoke"/>
+        <line x1="300" y1="25" x2="600" y2="5"  class="wd-spoke"/>
+        <line x1="300" y1="25" x2="0"   y2="45" class="wd-spoke"/>
+        <line x1="300" y1="25" x2="600" y2="45" class="wd-spoke"/>
+        <line x1="900" y1="25" x2="600" y2="5"  class="wd-spoke"/>
+        <line x1="900" y1="25" x2="1200" y2="5" class="wd-spoke"/>
+        <line x1="900" y1="25" x2="600" y2="45" class="wd-spoke"/>
+        <line x1="900" y1="25" x2="1200" y2="45" class="wd-spoke"/>
+        <ellipse cx="300" cy="25" rx="110" ry="16" class="wd-ring"/>
+        <ellipse cx="900" cy="25" rx="110" ry="16" class="wd-ring"/>
+        <circle  cx="300" cy="25" r="5" class="wd-hub"/>
+        <circle  cx="900" cy="25" r="5" class="wd-hub"/>
+      </svg>
+    </div>
+
+    <!-- JOIN NETWORK + CONTACT side by side -->
+    <section class="gi-section gi-two-col">
+
+      <!-- JOIN NETWORK -->
+      <div id="join-form">
+        <div class="section-header">
+          <span class="section-rule"></span>
+          <h2 class="section-title">Join the Network</h2>
+          <span class="section-rule"></span>
+        </div>
+        <form class="gi-form card" id="joinForm"
+              action="https://formspree.io/f/xqeylljj"
+              method="POST">
+          <input type="hidden" name="_subject" value="Salem Mania — Join the Network Request" />
+          <p class="gi-form-intro">Tell us a bit about yourself and we'll be in touch.</p>
+          <div class="gi-field">
+            <label class="gi-label" for="join-name">Name</label>
+            <input type="text" id="join-name" name="name" class="gi-input" placeholder="Your name" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="join-email">Email</label>
+            <input type="email" id="join-email" name="email" class="gi-input" placeholder="your@email.com" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label" for="join-why">What would you bring? <span class="gi-hint">(2–3 sentences)</span></label>
+            <textarea id="join-why" name="message" class="gi-input gi-textarea" rows="4" placeholder="What do you write about? What draws you to Salem Mania?" required></textarea>
+          </div>
+          <button type="submit" class="gi-submit">REQUEST ACCESS</button>
+        </form>
+      </div>
+
+      <!-- GENERAL CONTACT -->
+      <div id="contact-form">
+        <div class="section-header">
+          <span class="section-rule"></span>
+          <h2 class="section-title">Say Hello</h2>
+          <span class="section-rule"></span>
+        </div>
+        <form class="gi-form card gi-form-dark" id="contactForm"
+              action="https://formspree.io/f/xqeylljj"
+              method="POST">
+          <input type="hidden" name="_subject" value="Salem Mania — General Message" />
+          <p class="gi-form-intro" style="color:var(--silver)">Questions, ideas, feedback — all welcome.</p>
+          <div class="gi-field">
+            <label class="gi-label gi-label-light" for="contact-name">Name <span class="gi-hint">(optional)</span></label>
+            <input type="text" id="contact-name" name="name" class="gi-input gi-input-dark" placeholder="Your name" />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label gi-label-light" for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email" class="gi-input gi-input-dark" placeholder="your@email.com" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label gi-label-light" for="contact-subject">Subject</label>
+            <input type="text" id="contact-subject" name="subject" class="gi-input gi-input-dark" placeholder="What's on your mind?" required />
+          </div>
+          <div class="gi-field">
+            <label class="gi-label gi-label-light" for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" class="gi-input gi-input-dark gi-textarea" rows="5" placeholder="Say anything." required></textarea>
+          </div>
+          <button type="submit" class="gi-submit gi-submit-red">SEND MESSAGE</button>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- SUPPORT BAND -->
+    <section class="gi-patron-band" id="support-band">
+      <div class="gi-patron-web" aria-hidden="true">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <line x1="150" y1="150" x2="150" y2="10"  class="pw"/>
+          <line x1="150" y1="150" x2="280" y2="75"  class="pw"/>
+          <line x1="150" y1="150" x2="280" y2="225" class="pw"/>
+          <line x1="150" y1="150" x2="150" y2="290" class="pw"/>
+          <line x1="150" y1="150" x2="20"  y2="225" class="pw"/>
+          <line x1="150" y1="150" x2="20"  y2="75"  class="pw"/>
+          <polygon points="150,30 248,68 272,178 210,258 90,258 28,178 52,68" fill="none" stroke="rgba(200,0,42,.4)" stroke-width=".8"/>
+          <polygon points="150,65 224,95 244,168 196,228 104,228 56,168 76,95" fill="none" stroke="rgba(200,0,42,.3)" stroke-width=".7"/>
+          <polygon points="150,100 200,122 216,158 182,198 118,198 84,158 100,122" fill="none" stroke="rgba(200,0,42,.2)" stroke-width=".6"/>
+          <circle cx="150" cy="150" r="16" fill="var(--web)" opacity=".8"/>
         </svg>
       </div>
-      <div class="sub-content">
-        <h2 class="sub-title">Stay in the web.</h2>
-        <p class="sub-body">New articles, new voices, no algorithm. Drop your email and we'll find you when something good goes up.</p>
-        <form class="sub-form" onsubmit="return false;">
-          <input type="email" placeholder="your@email.com" class="sub-input" aria-label="Email address" />
-          <button type="submit" class="sub-btn">SUBSCRIBE</button>
-        </form>
+      <div class="gi-patron-content">
+        <div class="card-tag" style="color:var(--gold)">KEEP IT INDEPENDENT</div>
+        <h2 class="gi-patron-title">Support Salem Mania</h2>
+        <p class="gi-patron-sub">No ads. No profit motive. No platform pulling strings. Salem Mania stays free because people who believe in independent writing choose to support it. Even a small contribution keeps the web alive.</p>
+        <div class="gi-tiers">
+          <div class="gi-tier">
+            <div class="gi-tier-name">Thread</div>
+            <div class="gi-tier-price">$3<span>/mo</span></div>
+            <div class="gi-tier-desc">You're part of the web. Genuinely appreciated.</div>
+            <a href="#" class="gi-tier-btn">Support</a>
+          </div>
+          <div class="gi-tier gi-tier-featured">
+            <div class="gi-tier-badge">MOST POPULAR</div>
+            <div class="gi-tier-name">Spinner</div>
+            <div class="gi-tier-price">$8<span>/mo</span></div>
+            <div class="gi-tier-desc">Name in every issue + early access to new pieces.</div>
+            <a href="#" class="gi-tier-btn gi-tier-btn-red">Support</a>
+          </div>
+          <div class="gi-tier">
+            <div class="gi-tier-name">Weaver</div>
+            <div class="gi-tier-price">$20<span>/mo</span></div>
+            <div class="gi-tier-desc">Everything above + direct line to the founder + input on future topics.</div>
+            <a href="#" class="gi-tier-btn">Support</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -271,13 +379,13 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="600" y1="120" x2="600" y2="0"    class="fw"/>
-      <line x1="600" y1="120" x2="0"   y2="30"   class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="30"  class="fw"/>
-      <line x1="600" y1="120" x2="0"   y2="0"    class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="300" y2="0"    class="fw"/>
-      <line x1="600" y1="120" x2="900" y2="0"    class="fw"/>
+      <line x1="600" y1="120" x2="600" y2="0"   class="fw"/>
+      <line x1="600" y1="120" x2="0"   y2="30"  class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="0"   y2="0"   class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="300" y2="0"   class="fw"/>
+      <line x1="600" y1="120" x2="900" y2="0"   class="fw"/>
       <path d="M0 80 Q300 50 600 70 Q900 90 1200 55"  class="fa"/>
       <path d="M0 50 Q300 20 600 40 Q900 60 1200 25"  class="fa"/>
       <path d="M0 25 Q300  0 600 15 Q900 30 1200  5"  class="fa"/>
@@ -285,8 +393,16 @@
     <div class="footer-inner">
       <span class="footer-title">Salem Mania</span>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html#articles">Articles</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#culture">Culture</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="index.html#subscribe">Subscribe</a>
       </nav>
-      <span class="footer-copy">© 2026 Salem Mania. All rights reserved. · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="691a08050c040408070008470b05060e29
+      <span class="footer-copy">© 2026 Salem Mania. Open source. Independent forever.</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="get-involved.js"></script>
+</body>
+</html>
