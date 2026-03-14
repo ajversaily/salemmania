@@ -1,6 +1,4 @@
 /* ================================================
-   THE DAILY DISPATCH — Spider Web Newsletter Theme
-   style.css
    ================================================ */
 
 /* ── Custom Properties ──────────────────────────── */
@@ -42,112 +40,48 @@ a { color: var(--web); text-decoration: none; }
 a:hover { text-decoration: underline; }
 img { max-width: 100%; display: block; }
 
-/* ── Web Nav Overlay ────────────────────────────── */
-.web-nav {
-  position: fixed; inset: 0;
-  background: rgba(18,8,4,.94);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .4s ease;
-}
-.web-nav.open {
-  opacity: 1;
-  pointer-events: all;
+/* ── Inline Web Navigation ───────────────────────── */
+.web-inline-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.4rem;
 }
 
-.web-svg {
-  position: absolute;
-  width: min(90vw, 90vh);
-  height: min(90vw, 90vh);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+.win-link {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
 }
-.web-svg .spoke {
-  stroke: var(--thread);
-  stroke-width: 1.2;
-  animation: drawLine 1.2s ease forwards;
-  stroke-dasharray: 1500; stroke-dashoffset: 1500;
+.win-link:hover {
+  color: #fff;
+  border-bottom-color: rgba(200,0,42,.5);
+  text-decoration: none;
 }
-.web-nav.open .spoke {
-  animation: drawLine .8s ease forwards;
+.win-active {
+  color: #fff;
+  border-bottom: 1px solid var(--web);
 }
-.web-svg .spoke:nth-child(1) { animation-delay: .05s }
-.web-svg .spoke:nth-child(2) { animation-delay: .10s }
-.web-svg .spoke:nth-child(3) { animation-delay: .15s }
-.web-svg .spoke:nth-child(4) { animation-delay: .20s }
-.web-svg .spoke:nth-child(5) { animation-delay: .25s }
-.web-svg .spoke:nth-child(6) { animation-delay: .30s }
-.web-svg .spoke:nth-child(7) { animation-delay: .35s }
-.web-svg .spoke:nth-child(8) { animation-delay: .40s }
 
-.web-svg .ring {
-  fill: none;
-  stroke: var(--thread);
-  stroke-width: .9;
-  animation: drawLine 1s ease forwards;
-  stroke-dasharray: 3000; stroke-dashoffset: 3000;
+.win-web {
+  display: flex;
+  align-items: center;
+  opacity: .75;
+  transition: opacity .2s;
 }
-.web-nav.open .ring { animation: drawLine 1s ease forwards; }
-.web-svg .ring-1 { animation-delay: .48s }
-.web-svg .ring-2 { animation-delay: .60s }
-.web-svg .ring-3 { animation-delay: .72s }
-.web-svg .ring-4 { animation-delay: .84s }
-
-.web-svg .hub {
-  fill: none;
-  stroke: var(--web);
-  stroke-width: 2;
-  filter: drop-shadow(0 0 8px var(--web-glow));
-}
+.win-web:hover { opacity: 1; }
 
 @keyframes drawLine {
   to { stroke-dashoffset: 0; }
 }
-
-.web-link {
-  position: absolute;
-  left: calc(var(--tx) / 1000 * min(90vw,90vh) + 50% - min(45vw,45vh));
-  top:  calc(var(--ty) / 1000 * min(90vw,90vh) + 50% - min(45vw,45vh));
-  transform: translate(-50%, -50%);
-  font-family: var(--font-mono);
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .2em;
-  color: #fff;
-  background: rgba(200,0,42,.9);
-  padding: .35em .7em;
-  border-radius: 2px;
-  border: 1px solid rgba(255,255,255,.2);
-  transition: background .2s, transform .2s var(--ease-web), opacity .3s;
-  opacity: 0;
-  cursor: pointer;
-}
-.web-nav.open .web-link {
-  opacity: 1;
-  transition: background .2s, transform .2s var(--ease-web),
-              opacity .4s .9s ease;
-}
-.web-link:hover {
-  background: #fff;
-  color: var(--web);
-  transform: translate(-50%,-50%) scale(1.1);
-  text-decoration: none;
-}
-
-.web-close {
-  position: absolute;
-  top: 1.5rem; right: 2rem;
-  background: none; border: 1px solid rgba(255,255,255,.3);
-  color: #fff; font-size: 1.1rem;
-  width: 2.4rem; height: 2.4rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background .2s, color .2s;
-}
-.web-close:hover { background: var(--web); border-color: var(--web); }
 
 /* ── Header ─────────────────────────────────────── */
 .site-header {
@@ -192,30 +126,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 1.8rem;
 }
 
-/* Web trigger button */
-.web-trigger {
-  display: inline-flex; align-items: center; gap: .6rem;
-  background: var(--web);
-  border: none; border-radius: 3px;
-  color: #fff;
-  font-family: var(--font-mono);
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .2em;
-  padding: .55em 1.1em .55em .8em;
-  cursor: pointer;
-  transition: background .2s, transform .2s var(--ease-web), box-shadow .2s;
-  box-shadow: 0 0 20px var(--web-glow);
-}
-.web-trigger:hover {
-  background: #e8001f;
-  transform: scale(1.05);
-  box-shadow: 0 0 32px var(--web-glow);
-}
-.web-trigger svg { flex-shrink: 0; }
-.t-spoke { stroke: #fff; stroke-width: 1.5; }
-.t-ring  { fill: none; stroke: rgba(255,255,255,.6); stroke-width: 1; }
-.t-hub   { fill: #fff; }
+
 
 /* Corner webs */
 .corner-web {
@@ -554,5 +465,7 @@ img { max-width: 100%; display: block; }
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--web); border-radius: 3px; }
 
+/* ── Selection ──────────────────────────────────── */
+::selection { background: var(--web); color: #fff; }
 /* ── Selection ──────────────────────────────────── */
 ::selection { background: var(--web); color: #fff; }
