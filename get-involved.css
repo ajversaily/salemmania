@@ -3,6 +3,11 @@
    get-involved.css
    ================================================ */
 
+/* ================================================
+   GET INVOLVED — Page-specific styles
+   get-involved.css
+   ================================================ */
+
 /* ── Page background variation ──────────────────── */
 .gi-body { background: var(--paper); }
 
@@ -391,3 +396,21 @@
 .gi-way:nth-child(4) { animation-delay: .21s; }
 .gi-tier:nth-child(2) { animation-delay: .08s; }
 .gi-tier:nth-child(3) { animation-delay: .16s; }
+
+/* ── Mission strip ───────────────────────────────── */
+.gi-mission {
+  padding: 2.5rem 0 0;
+}
+.gi-mission-inner {
+  background: var(--ink);
+  border-left: 4px solid var(--web);
+  border-radius: 0 3px 3px 0;
+  padding: 1.6rem 2rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--silver);
+  line-height: 1.75;
+  position: relative;
+  box-shadow: 0 0 30px rgba(200,0,42,.08);
+}
