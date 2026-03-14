@@ -212,6 +212,8 @@
 
   <!-- TASKBAR -->
   <nav class="taskbar" aria-label="Site navigation">
+    <div class="taskbar-inner">
+      <a href="index.html" class="taskbar-brand">
         <svg viewBox="0 0 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <line x1="14" y1="14" x2="14" y2="1"  stroke="currentColor" stroke-width="1.4" fill="none"/>
           <line x1="14" y1="14" x2="25" y2="5"  stroke="currentColor" stroke-width="1.4" fill="none"/>
@@ -224,8 +226,36 @@
           <polygon points="14,3 22,5 25,13 22,21 14,23 6,21 3,13 6,5" fill="none" stroke="currentColor" stroke-width=".9"/>
           <polygon points="14,7 19,9 21,14 19,19 14,21 9,19 7,14 9,9" fill="none" stroke="currentColor" stroke-width=".6"/>
           <circle cx="14" cy="14" r="3" fill="currentColor"/>
+        </svg>
+        Salem Mania
+      </a>
+      <div class="taskbar-links">
+        <a href="index.html"           class="tb-btn">Home</a>
+        <a href="index.html#tech"      class="tb-btn">News</a>
+        <a href="index.html#culture"   class="tb-btn">The Culture</a>
+        <a href="index.html#science"   class="tb-btn">Opinions</a>
+        <a href="get-involved.html"    class="tb-btn">Get Involved</a>
+        <a href="index.html#subscribe" class="tb-btn tb-btn-cta">Subscribe</a>
+      </div>
+      <button class="taskbar-hamburger" id="tbHamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="taskbar-mobile" id="tbMobile" aria-hidden="true">
+      <a href="index.html"           class="tb-mobile-link">Home</a>
+      <a href="index.html#tech"      class="tb-mobile-link">News</a>
+      <a href="index.html#culture"   class="tb-mobile-link">The Culture</a>
+      <a href="index.html#science"   class="tb-mobile-link">Opinions</a>
+      <a href="get-involved.html"    class="tb-mobile-link">Get Involved</a>
+      <a href="index.html#subscribe" class="tb-mobile-link tb-mobile-cta">Subscribe</a>
+    </div>
+  </nav>
+
   <!-- ARTICLE -->
   <main class="article-wrap">
+
+    <a href="index.html" class="article-back">← Back to Salem Mania</a>
+
     <!-- Eyebrow -->
     <div class="article-eyebrow">
       <span class="article-tag">Founding Note</span>
@@ -236,7 +266,7 @@
 
     <!-- Title -->
     <h1 class="article-title">The Web is Open — And I Weave My First Thread</h1>
-    <p class="article-subtitle">A mission statement from the founder of Salem Mania.</p>
+    <p class="article-subtitle">A mission statement, a manifesto, and a welcome from the founder of Salem Mania.</p>
 
     <!-- Byline -->
     <div class="article-byline">
@@ -321,10 +351,12 @@
     </svg>
     <div class="footer-inner">
       <span class="footer-title">Salem Mania</span>
+      <nav class="footer-nav" aria-label="Footer navigation">
         <a href="index.html">Home</a>
         <a href="get-involved.html">Get Involved</a>
+        <a href="index.html#subscribe">Subscribe</a>
       </nav>
-      <span class="footer-copy">© 2026 Salem Mania. Open source. Independent forever.</span>
+      <span class="footer-copy">© 2026 Salem Mania.</span>
     </div>
   </footer>
 
