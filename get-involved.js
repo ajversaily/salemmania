@@ -1,74 +1,15 @@
 /* ================================================
-   GET INVOLVED — Form handling JS
-   get-involved.js
+   SALEM MANIA — get-involved.js
+   Scroll reveal only. Forms submit natively via Formspree.
    ================================================ */
 
 (function () {
   'use strict';
 
-  /* Generic form submit handler */
-  function handleForm(formId, btnId, successText, successColor) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-
-    const btn = btnId
-      ? document.getElementById(btnId)
-      : form.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // Basic validation — check all required visible inputs
-      const inputs = form.querySelectorAll('input:not([type="hidden"]), textarea, select');
-      let valid = true;
-
-      inputs.forEach(function (el) {
-        // Skip optional fields (those whose label contains "(optional)")
-        const label = form.querySelector('label[for="' + el.id + '"]');
-        const isOptional = label && label.textContent.includes('optional');
-        if (!isOptional && !el.value.trim()) {
-          el.style.borderColor = 'var(--web)';
-          el.style.boxShadow = '0 0 0 3px rgba(200,0,42,.2)';
-          valid = false;
-          el.focus();
-        }
-      });
-
-      if (!valid) return;
-
-      // Success state
-      if (btn) {
-        btn.textContent = successText || 'SENT ✓';
-        btn.style.background = successColor || '#1a7a3a';
-        btn.style.boxShadow = '0 0 18px rgba(26,122,58,.4)';
-        btn.disabled = true;
-      }
-
-      // Disable all inputs
-      inputs.forEach(function (el) {
-        el.disabled = true;
-        el.style.borderColor = '';
-        el.style.boxShadow = '';
-      });
-    });
-
-    // Clear error styling on input
-    form.querySelectorAll('input, textarea, select').forEach(function (el) {
-      el.addEventListener('input', function () {
-        el.style.borderColor = '';
-        el.style.boxShadow = '';
-      });
-    });
-  }
-
-  handleForm('pitchForm',  'pitchSubmit', 'PITCH SENT ✓',    '#1a6a3a');
-  handleForm('joinForm',   null,          'REQUEST SENT ✓',  '#1a6a3a');
-  handleForm('tipForm',    null,          'SUBMITTED ✓',     '#1a6a3a');
-
-  /* Scroll-triggered reveal for gi-way, gi-tier, gi-form */
+  /* Scroll-triggered reveal */
   if ('IntersectionObserver' in window) {
     const targets = document.querySelectorAll(
-      '.gi-way, .gi-form, .gi-tier, .gi-form-info, .gi-patron-title, .gi-patron-sub'
+      '.gi-way, .gi-form, .gi-tier, .gi-form-info, .gi-mission-inner, .gi-patron-title, .gi-patron-sub'
     );
 
     targets.forEach(function (el) {
