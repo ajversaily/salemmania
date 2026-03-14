@@ -128,23 +128,6 @@
 </head>
 <body>
 
-  <!-- STICKY TASKBAR -->
-  <nav class="taskbar" aria-label="Site navigation">
-    <div class="taskbar-inner">
-      <a href="index.html" class="taskbar-brand">
-        <svg viewBox="0 0 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="14" y1="14" x2="14" y2="1"  stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="25" y2="5"  stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="27" y2="14" stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="25" y2="23" stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="14" y2="27" stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="3"  y2="23" stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="1"  y2="14" stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <line x1="14" y1="14" x2="3"  y2="5"  stroke="currentColor" stroke-width="1.4" fill="none"/>
-          <polygon points="14,3 22,5 25,13 22,21 14,23 6,21 3,13 6,5" fill="none" stroke="currentColor" stroke-width=".9"/>
-          <polygon points="14,7 19,9 21,14 19,19 14,21 9,19 7,14 9,9" fill="none" stroke="currentColor" stroke-width=".6"/>
-          <circle cx="14" cy="14" r="3" fill="currentColor"/>
-
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
@@ -154,6 +137,28 @@
       </div>
       <h1 class="masthead">Salem Mania</h1>
       <p class="tagline">Made by yours, truly.</p>
+
+      <!-- INLINE WEB NAV -->
+      <nav class="web-inline-nav" aria-label="Site navigation">
+        <a href="index.html" class="win-link win-active">Home</a>
+        <span class="win-web" aria-hidden="true">
+          <svg viewBox="0 0 36 18" width="36" height="18" xmlns="http://www.w3.org/2000/svg">
+            <line x1="18" y1="9" x2="18" y2="0"  stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="36" y2="0"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="36" y2="9"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="36" y2="18" stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="18" y2="18" stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="0"  y2="18" stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="0"  y2="9"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="0"  y2="0"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <ellipse cx="18" cy="9" rx="10" ry="5" fill="none" stroke="rgba(200,0,42,.4)" stroke-width=".7"/>
+            <ellipse cx="18" cy="9" rx="5"  ry="3" fill="none" stroke="rgba(200,0,42,.35)" stroke-width=".6"/>
+            <circle  cx="18" cy="9" r="2"   fill="rgba(200,0,42,.8)"/>
+          </svg>
+        </span>
+        <a href="get-involved.html" class="win-link">Get Involved</a>
+      </nav>
+
     </div>
     <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="80"  class="cw"/><line x1="0" y1="0" x2="40"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="40"  class="cw"/><path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/></svg>
     <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="0" x2="0"  y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="80"  class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="40"  class="cw"/><path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/></svg>
@@ -284,10 +289,4 @@
         <a href="get-involved.html">Get Involved</a>
         <a href="index.html#subscribe">Subscribe</a>
       </nav>
-      <span class="footer-copy">© 2026 Salem Mania. All rights reserved. · salemmania.blog@gmail.com</span>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
-</body>
-</html>
+      <span class="footer-copy">© 2026 Salem Mania. All rights reserved. · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="691a08050c040408070008470b05060e29
