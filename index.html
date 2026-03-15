@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,116 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    .kickoff-section {
+    .articles-section {
       max-width: var(--max-w);
       margin: 0 auto;
       padding: 3rem 1.5rem 1rem;
     }
-    .kickoff-label {
-      font-family: var(--font-mono);
-      font-size: .68rem;
-      font-weight: 600;
-      letter-spacing: .22em;
-      color: var(--web);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .kickoff-card {
-      background: var(--ink);
-      border-radius: 4px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      min-height: 420px;
-      box-shadow: 0 8px 40px rgba(0,0,0,.18);
-    }
-    @media (max-width: 720px) {
-      .kickoff-card { grid-template-columns: 1fr; }
-      .kickoff-web-col { display: none; }
-    }
-    .kickoff-web-col {
-      position: relative;
-      background: #0f0804;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-right: 1px solid rgba(200,0,42,.2);
-    }
-    .kickoff-web-col svg { width: 88%; height: 88%; opacity: .55; }
-    .kickoff-web-col::after {
-      content: 'No.1';
-      position: absolute;
-      bottom: 1.2rem; right: 1.5rem;
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      letter-spacing: .2em;
-      color: rgba(200,0,42,.55);
-    }
-    .kickoff-content {
-      padding: 3rem 2.5rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .kickoff-tag {
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--web);
-      margin-bottom: .8rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-    .kickoff-tag::before {
-      content: '';
-      display: inline-block;
-      width: 20px; height: 1.5px;
-      background: var(--web);
-    }
-    .kickoff-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
-      font-weight: 900;
-      line-height: 1.15;
-      color: var(--paper);
-      margin-bottom: 1.4rem;
-    }
-    .kickoff-body {
-      font-family: var(--font-body);
-      font-size: .97rem;
-      line-height: 1.85;
-      color: #b8a898;
-      margin-bottom: 1.8rem;
-      flex: 1;
-    }
-    .kickoff-body p { margin-bottom: 1rem; }
-    .kickoff-sign {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: .95rem;
-      color: var(--silver);
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 1.2rem;
-    }
-    .kickoff-sign strong {
-      display: block;
-      font-style: normal;
-      font-weight: 900;
-      font-size: 1.15rem;
-      color: var(--web);
-      margin-top: .25rem;
-      letter-spacing: .04em;
-    }
-    .hero-web {
-      display: block; width: 100%; height: 60px;
-      opacity: .3; margin: 1rem 0;
-    }
-    .hw  { fill: none; stroke: var(--web); stroke-width: 1.5; }
-    .hw2 { fill: none; stroke: var(--thread); stroke-width: .8; }
     .cards-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -129,15 +25,14 @@
 <body>
 
   <!-- HEADER -->
+
   <header class="site-header">
     <div class="header-inner">
       <div class="header-meta">
         <span class="issue-tag">Est. March 12, 2026</span>
+        <span class="date-tag">Made by yours, truly.</span>
       </div>
       <h1 class="masthead">Salem Mania</h1>
-      <p class="tagline">Made by yours, truly.</p>
-
-      <!-- INLINE WEB NAV -->
       <nav class="web-inline-nav" aria-label="Site navigation">
         <a href="index.html" class="win-link win-active">Home</a>
         <span class="win-web" aria-hidden="true">
@@ -157,141 +52,73 @@
         </span>
         <a href="get-involved.html" class="win-link">Get Involved</a>
       </nav>
-
     </div>
     <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="80"  class="cw"/><line x1="0" y1="0" x2="40"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="40"  class="cw"/><path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/></svg>
     <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="0" x2="0"  y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="80"  class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="40"  class="cw"/><path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/></svg>
   </header>
 
   <main>
-        <!-- Right: publication specs -->
-        <div class="pub-identity-right">
-          <div class="pub-spec-row">
-            <span class="pub-spec-label">Founded</span>
-            <span class="pub-spec-value"><strong>March 12, 2026</strong></span>
-          </div>
-          <div class="pub-spec-row">
-            <span class="pub-spec-label">Model</span>
-            <span class="pub-spec-value">Non-profit · Open source · Peer reviewed</span>
-          </div>
-          <div class="pub-spec-row">
-            <span class="pub-spec-label">Submissions</span>
-            <span class="pub-spec-value">Seasonal pitch windows.</span>
-          
-      </div>
-    </section>
 
-    <!-- WEB THREAD -->
-    <svg class="hero-web" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 40 Q150 5 300 40 Q450 75 600 40 Q750 5 900 40 Q1050 75 1200 40" class="hw"/>
-      <path d="M0 20 Q200 55 400 20 Q600 -15 800 20 Q1000 55 1200 20" class="hw hw2"/>
+```
+<!-- ARTICLES -->
+<section class="articles-section" id="articles">
+  <div class="section-header">
+    <span class="section-rule"></span>
+    <h2 class="section-title">On The Mania</h2>
+    <span class="section-rule"></span>
+  </div>
+  <div class="cards-row">
+    <article class="card" tabindex="0">
+      <div class="card-tag">ISSUE NO. 1 · FOUNDER'S NOTE</div>
+      <h3 class="card-title">The Mania Begins.</h3>
+      <p class="card-excerpt">The first issue. A warm welcome from the founder and The Mania's mission. </p>
+      <a href="articlesalemmania.html" class="card-link">Read the full piece →</a>
+    </article>
+    <article class="card card-accent" tabindex="0">
+      <div class="card-tag">Get Involved</div>
+      <h3 class="card-title">The web is peer reviewed. Pitches open seasonally.</h3>
+      <p class="card-excerpt">Every submission is peer reviewed and personally chosen.</p>
+      <a href="get-involved.html" class="card-link">Get Involved →</a>
+    </article>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe-band" id="subscribe" style="max-width:var(--max-w);margin:2.5rem auto 0;border-radius:4px;">
+  <div class="sub-web" aria-hidden="true">
+    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+      <line x1="200" y1="100" x2="200" y2="0"   class="sw"/>
+      <line x1="200" y1="100" x2="400" y2="0"   class="sw"/>
+      <line x1="200" y1="100" x2="400" y2="100" class="sw"/>
+      <line x1="200" y1="100" x2="400" y2="200" class="sw"/>
+      <line x1="200" y1="100" x2="200" y2="200" class="sw"/>
+      <line x1="200" y1="100" x2="0"   y2="200" class="sw"/>
+      <line x1="200" y1="100" x2="0"   y2="100" class="sw"/>
+      <line x1="200" y1="100" x2="0"   y2="0"   class="sw"/>
+      <polygon points="200,20  340,25  375,100 340,175 200,180 60,175 25,100 60,25"   class="sr"/>
+      <polygon points="200,50  305,55  335,100 305,145 200,150 95,145 65,100 95,55"   class="sr"/>
+      <polygon points="200,75  268,78  285,100 268,122 200,125 132,122 115,100 132,78" class="sr"/>
+      <circle cx="200" cy="100" r="12" class="sh"/>
     </svg>
-
-    <!-- FOUNDER'S NOTE -->
-    <section class="founders-section" id="home">
-      <div class="founders-label">✦ Founder's Note · Issue No. 1 · March 2026</div>
-      <div class="founders-card">
-
-        <!-- Decorative web -->
-        <div class="founders-web-col" aria-hidden="true">
-          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-            <line x1="150" y1="150" x2="150" y2="10"  stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="277" y2="70"  stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="293" y2="150" stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="277" y2="230" stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="150" y2="290" stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="23"  y2="230" stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="7"   y2="150" stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <line x1="150" y1="150" x2="23"  y2="70"  stroke="var(--thread)" stroke-width="1" fill="none"/>
-            <polygon points="150,28 247,54 276,148 238,232 150,258 62,232 24,148 53,54"  fill="none" stroke="var(--thread)" stroke-width=".8"/>
-            <polygon points="150,60 220,80 244,148 218,210 150,230 82,210 56,148 80,80"  fill="none" stroke="var(--thread)" stroke-width=".65"/>
-            <polygon points="150,90 196,107 212,148 195,188 150,204 105,188 88,148 104,107" fill="none" stroke="var(--thread)" stroke-width=".5"/>
-            <circle cx="150" cy="150" r="10" fill="none" stroke="var(--web)" stroke-width="1.5"/>
-            <circle cx="150" cy="150" r="3.5" fill="var(--web)"/>
-          </svg>
-        </div>
-
-        <!-- Note content -->
-        <div class="founders-content">
-          <div>
-            <div class="founders-eyebrow">Founder's Note</div>
-            <h2 class="founders-title">Salem Mania is an independent peer reviewed literary and cultural publication.</h2>
-            <div class="founders-note">
-              <p>Salem Mania covers film, music, culture, literature, opinion, and poetry — and more. Each submission will be peer reviewed and chosen to be published. Pitches are open seasonally.</p>
-            </div>
-          </div>
-          <div class="founders-sign">
-            <span>Cordially, <strong>— arasaily</strong></span>
-            <a href="articlesalemmania.html" class="founders-read-link">Read full note →</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- WEB THREAD -->
-    <svg class="hero-web" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 40 Q150 5 300 40 Q450 75 600 40 Q750 5 900 40 Q1050 75 1200 40" class="hw"/>
-      <path d="M0 20 Q200 55 400 20 Q600 -15 800 20 Q1000 55 1200 20" class="hw hw2"/>
-    </svg>
-
-    <!-- ARTICLES -->
-    <section class="articles-section" id="articles">
-      <div class="section-header">
-        <span class="section-rule"></span>
-        <h2 class="section-title">On The Mania</h2>
-        <span class="section-rule"></span>
-      </div>
-      <div class="cards-row">
-        <article class="card" tabindex="0">
-          <div class="card-tag">ISSUE NO. 1 · FOUNDER'S NOTE</div>
-          <h3 class="card-title">The Mania Begins.</h3>
-          <p class="card-excerpt">The first Salem Mania issue. A note from the founder and a warm welcome.</p>
-          <a href="articlesalemmania.html" class="card-link">Read the full piece →</a>
-        </article>
-        <article class="card card-accent" tabindex="0">
-          <div class="card-tag">Get Involved</div>
-          <h3 class="card-title"> Pitches open seasonally.</h3>
-          <p class="card-excerpt">Every submission is peer reviewed and personally chosen.</p>
-          <a href="get-involved.html" class="card-link">Get Involved →</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- SUBSCRIBE -->
-    <section class="subscribe-band" id="subscribe" style="max-width:var(--max-w);margin:2.5rem auto 0;border-radius:4px;">
-      <div class="sub-web" aria-hidden="true">
-        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <line x1="200" y1="100" x2="200" y2="0"   class="sw"/>
-          <line x1="200" y1="100" x2="400" y2="0"   class="sw"/>
-          <line x1="200" y1="100" x2="400" y2="100" class="sw"/>
-          <line x1="200" y1="100" x2="400" y2="200" class="sw"/>
-          <line x1="200" y1="100" x2="200" y2="200" class="sw"/>
-          <line x1="200" y1="100" x2="0"   y2="200" class="sw"/>
-          <line x1="200" y1="100" x2="0"   y2="100" class="sw"/>
-          <line x1="200" y1="100" x2="0"   y2="0"   class="sw"/>
-          <polygon points="200,20  340,25  375,100 340,175 200,180 60,175 25,100 60,25"   class="sr"/>
-          <polygon points="200,50  305,55  335,100 305,145 200,150 95,145 65,100 95,55"   class="sr"/>
-          <polygon points="200,75  268,78  285,100 268,122 200,125 132,122 115,100 132,78" class="sr"/>
-          <circle cx="200" cy="100" r="12" class="sh"/>
-        </svg>
-      </div>
-      <div class="sub-content">
-        <h2 class="sub-title">Stay connected!</h2>
-        <p class="sub-body">Subscribe with your email for new drops!</p>
-        <form class="sub-form"
-              action="https://formspree.io/f/xqeylljj"
-              method="POST">
-          <input type="hidden" name="_subject" value="Salem Mania — New Subscriber" />
-          <input type="email" name="email" placeholder="your@email.com" class="sub-input" aria-label="Email address" required />
-          <button type="submit" class="sub-btn">SUBSCRIBE</button>
-        </form>
-      </div>
-    </section>
+  </div>
+  <div class="sub-content">
+    <h2 class="sub-title">Stay in the web.</h2>
+    <p class="sub-body">Pitches open seasonally. Subscribe to keep up with The Mania.</p>
+    <form class="sub-form"
+          action="https://formspree.io/f/xqeylljj"
+          method="POST">
+      <input type="hidden" name="_subject" value="Salem Mania — New Subscriber" />
+      <input type="email" name="email" placeholder="your@email.com" class="sub-input" aria-label="Email address" required />
+      <button type="submit" class="sub-btn">SUBSCRIBE</button>
+    </form>
+  </div>
+</section>
+```
 
   </main>
 
   <!-- FOOTER -->
+
   <footer class="site-footer">
     <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="600" y1="120" x2="600" y2="0"    class="fw"/>
@@ -310,7 +137,15 @@
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="index.html#articles">Articles</a>
         <a href="get-involved.html">Get Involved</a>
+        <a href="those-involved.html">Those Involved (Underway)</a>
         <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
       </nav>
-      <span class="footer-copy">© 2026 Salem Mania. <a href="/cdn-cgi/l/email-protect
+      <span class="footer-copy">© 2026 Salem Mania. 
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
