@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submission Terms — Salem Mania</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+
+    .terms-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 6rem;
+    }
+
+    /* ── Page header ─────────────────────────────── */
+    .terms-eyebrow {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--web);
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .terms-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--web);
+    }
+
+    .terms-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: .6rem;
+    }
+
+    .terms-subtitle {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #6b5a45;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .terms-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: .9rem 0;
+      border-top: 1px solid var(--cream);
+      border-bottom: 1px solid var(--cream);
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .terms-meta-item {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      color: var(--silver);
+      text-transform: uppercase;
+    }
+    .terms-meta-item strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── Important banner ────────────────────────── */
+    .terms-banner {
+      background: var(--ink);
+      border-left: 4px solid var(--web);
+      border-radius: 0 3px 3px 0;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .terms-banner-label {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--web);
+      margin-bottom: .5rem;
+    }
+    .terms-banner-text {
+      font-family: var(--font-body);
+      font-size: .97rem;
+      color: #d4c4b0;
+      line-height: 1.7;
+    }
+    .terms-banner-text strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ── Section headings ────────────────────────── */
+    .terms-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .terms-section-number {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      color: var(--web);
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+
+    .terms-section-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid rgba(200,0,42,.15);
+    }
+
+    .terms-body {
+      font-family: var(--font-body);
+      font-size: .97rem;
+      line-height: 1.82;
+      color: #2e2416;
+    }
+    .terms-body p {
+      margin-bottom: 1rem;
+    }
+    .terms-body p:last-child {
+      margin-bottom: 0;
+    }
+    .terms-body strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* ── Key rights box ──────────────────────────── */
+    .terms-rights-box {
+      background: #fff;
+      border: 1px solid var(--cream);
+      border-radius: 3px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.5rem 0;
+    }
+    .terms-rights-box-title {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 1rem;
+    }
+    .terms-rights-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .6rem 1rem;
+      align-items: start;
+      margin-bottom: .6rem;
+    }
+    .terms-rights-row:last-child { margin-bottom: 0; }
+    .terms-rights-mark {
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      font-weight: 700;
+      margin-top: .1rem;
+    }
+    .terms-rights-mark.yes { color: #1a7a3a; }
+    .terms-rights-mark.no  { color: var(--web); }
+    .terms-rights-text {
+      font-family: var(--font-body);
+      font-size: .92rem;
+      color: #2e2416;
+      line-height: 1.6;
+    }
+
+    /* ── Acknowledgement box ─────────────────────── */
+    .terms-ack {
+      background: var(--ink);
+      border-radius: 4px;
+      padding: 2rem 2rem;
+      margin-top: 3rem;
+    }
+    .terms-ack-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: .8rem;
+    }
+    .terms-ack-body {
+      font-family: var(--font-body);
+      font-size: .92rem;
+      color: #a89880;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+    .terms-ack-body strong { color: var(--paper); }
+    .terms-ack-note {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .08em;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1rem;
+    }
+
+    /* ── Divider ─────────────────────────────────── */
+    .terms-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+      opacity: .4;
+    }
+    .terms-divider::before,
+    .terms-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--web);
+      opacity: .3;
+    }
+    .terms-divider svg { flex-shrink: 0; }
+
+    /* ── Back link ───────────────────────────────── */
+    .terms-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 2.5rem;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .terms-back:hover { color: var(--web); text-decoration: none; }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-meta">
+        <a href="index.html" class="back-link">← Salem Mania</a>
+        <span class="date-tag">Est. March 12, 2026</span>
+      </div>
+      <h1 class="masthead">Salem Mania</h1>
+      <nav class="web-inline-nav" aria-label="Site navigation">
+        <a href="index.html" class="win-link">Home</a>
+        <span class="win-web" aria-hidden="true">
+          <svg viewBox="0 0 36 18" width="36" height="18" xmlns="http://www.w3.org/2000/svg">
+            <line x1="18" y1="9" x2="18" y2="0"  stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="36" y2="0"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="36" y2="9"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="36" y2="18" stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="18" y2="18" stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="0"  y2="18" stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="0"  y2="9"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <line x1="18" y1="9" x2="0"  y2="0"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
+            <ellipse cx="18" cy="9" rx="10" ry="5" fill="none" stroke="rgba(200,0,42,.4)" stroke-width=".7"/>
+            <ellipse cx="18" cy="9" rx="5"  ry="3" fill="none" stroke="rgba(200,0,42,.35)" stroke-width=".6"/>
+            <circle  cx="18" cy="9" r="2"   fill="rgba(200,0,42,.8)"/>
+          </svg>
+        </span>
+        <a href="get-involved.html" class="win-link">Get Involved</a>
+      </nav>
+    </div>
+    <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="80"  class="cw"/><line x1="0" y1="0" x2="40"  y2="120" class="cw"/><line x1="0" y1="0" x2="120" y2="40"  class="cw"/><path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/></svg>
+    <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="0" x2="0"  y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="80"  class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/><line x1="120" y1="0" x2="0"  y2="40"  class="cw"/><path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/></svg>
+  </header>
+
+  <main class="terms-wrap">
+
+    <a href="get-involved.html" class="terms-back">← Back to Get Involved</a>
+
+    <!-- Page title -->
+    <div class="terms-eyebrow">Submission Terms &amp; Disclaimer</div>
+    <h1 class="terms-title">Before You Pitch</h1>
+    <p class="terms-subtitle">Read this before submitting a pitch to Salem Mania. By submitting, you confirm that you have read and understood the terms below.</p>
+
+    <div class="terms-meta">
+      <span class="terms-meta-item">Effective: <strong>March 12, 2026</strong></span>
+      <span class="terms-meta-item">Publication: <strong>Salem Mania</strong></span>
+      <span class="terms-meta-item">Contact: <strong>salemmania.blog@gmail.com</strong></span>
+    </div>
+    
+    <!-- Web divider -->
+    <div class="terms-divider" aria-hidden="true">
+      <svg viewBox="0 0 32 16" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
+        <line x1="16" y1="8" x2="16" y2="0"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="30" y2="0"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="30" y2="8"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="30" y2="16" stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="16" y2="16" stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="2"  y2="16" stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="2"  y2="8"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="2"  y2="0"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <ellipse cx="16" cy="8" rx="8" ry="4" fill="none" stroke="var(--web)" stroke-width=".6"/>
+        <circle cx="16" cy="8" r="2.5" fill="var(--web)"/>
+      </svg>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="terms-section">
+      <div class="terms-section-number">01</div>
+      <div class="terms-section-title">Ownership and Copyright</div>
+      <div class="terms-body">
+        <p>The writer retains full copyright of all submitted and published work. Submitting a pitch to Salem Mania does not transfer ownership of the work to Salem Mania or to any member of the Salem Mania web under any circumstances.</p>
+        <p>By submitting a pitch, the writer grants Salem Mania a non-exclusive, royalty-free license to publish and display the accepted work on the Salem Mania website for as long as the piece remains live. This license is limited to publication and display only. It does not include the right to sell, license, sublicense, transfer, adapt, or use the work for any commercial purpose.</p>
+        <p>Salem Mania's right to publish a piece does not diminish or transfer any rights the writer holds in that work. The writer remains the sole copyright holder and may exercise all rights granted by copyright law including the right to republish, adapt, sell, or otherwise use the work as they see fit.</p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="terms-section">
+      <div class="terms-section-number">02</div>
+      <div class="terms-section-title">Submission Disclaimer</div>
+      <div class="terms-body">
+        <p>By submitting a pitch to Salem Mania, the writer confirms the following:</p>
+        <p><strong>The work is original.</strong> The submitted piece is the writer's own original work and has not been substantially copied from any other source.</p>
+        <p><strong>The work is unpublished.</strong> The submitted piece has not been previously published in substantially the same form in any other publication, website, or platform. Prior publication on a personal blog or social media account should be disclosed at the time of submission.</p>
+        <p><strong>The writer has the right to submit it.</strong> The writer owns the copyright to the submitted work and has not transferred or exclusively licensed it to another party in a way that would prevent publication on Salem Mania.</p>
+        <p><strong>The work does not infringe on third party rights.</strong> The submitted piece does not reproduce copyrighted material without appropriate authorization, does not defame any individual or entity, and does not violate any applicable law.</p>
+        <p>Salem Mania is not liable for any claims arising from a writer's failure to meet these conditions. Responsibility for the accuracy and legality of submitted work rests entirely with the writer.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="terms-section">
+      <div class="terms-section-number">03</div>
+      <div class="terms-section-title">Editorial Process and Decisions</div>
+      <div class="terms-body">
+        <p>Every pitch submitted to Salem Mania is read and reviewed by the editorial team through a peer review process. Submission does not guarantee publication.</p>
+        <p>Accepted writers may receive editorial notes before publication. Editorial feedback is provided in good faith to improve the work. The writer retains the right to decline editorial changes, though Salem Mania retains the right to decline publication of a piece if the writer and editorial team cannot reach agreement on revisions.</p>
+        <p>Salem Mania submissions are open seasonally. </p>
+        <p>All decisions are final.</p>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="terms-section">
+      <div class="terms-section-number">04</div>
+      <div class="terms-section-title">Credit and Attribution</div>
+      <div class="terms-body">
+        <p>Every piece published on Salem Mania is credited by the writer's name as provided at the time of submission. Salem Mania does not publish work anonymously unless specifically agreed in writing between the writer and the publication prior to publication.</p>
+        <p>Published pieces are permanently credited on the Salem Mania website. The writer's name, the piece title, the section, and the date of publication are maintained as part of the publication's permanent record.</p>
+        <p>If a writer wishes to update their credit — for example due to a name change — they may contact Salem Mania at salemmania.blog@gmail.com and the credit will be updated within a reasonable time.</p>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="terms-section">
+      <div class="terms-section-number">05</div>
+      <div class="terms-section-title">Republication and Future Use by the Writer</div>
+      <div class="terms-body">
+        <p>Writers who are published on Salem Mania are free to republish their work elsewhere at any time. Salem Mania asks only that the original publication on Salem Mania be credited in any subsequent republication — for example by noting "First published in Salem Mania, [date]."</p>
+        <p>This credit requirement is a courtesy, not a legal obligation. The writer's copyright is unaffected and the writer is under no contractual restriction on how they use their own work after publication on Salem Mania.</p>
+      </div>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="terms-section">
+      <div class="terms-section-number">06</div>
+      <div class="terms-section-title">Removal of Published Work</div>
+      <div class="terms-body">
+        <p>Writers may request removal of their published work from Salem Mania at any time by contacting salemmania.blog@gmail.com. Salem Mania will process removal requests within a reasonable period. Upon removal the piece will no longer be publicly accessible on the website, though archival references to the piece's existence in the publication's history may be retained.</p>
+        <p>Salem Mania may also remove published work at its discretion if the editorial team determines the piece violates these terms or if circumstances arise that make continued publication inappropriate. The writer will be informed of any such removal.</p>
+      </div>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="terms-section">
+      <div class="terms-section-number">07</div>
+      <div class="terms-section-title">No Commercial Use by Salem Mania</div>
+      <div class="terms-body">
+        <p>Salem Mania is a non-profit independent publication. It does not generate revenue from advertising, subscriptions, or the sale of content. Salem Mania will not use any published work for commercial purposes, will not license published work to third parties, and will not sell or transfer any rights in published work to any other entity.</p>
+        <p>This commitment reflects the foundational values of Salem Mania. The publication exists to publish writing that is worth reading and to support the writers who produce it. Not to profit from their work.</p>
+      </div>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="terms-section">
+      <div class="terms-section-number">08</div>
+      <div class="terms-section-title">Privacy and Submission Data</div>
+      <div class="terms-body">
+        <p>Information submitted through the Salem Mania pitch form — including name, email address, and the pitch itself — is used solely for the purpose of reviewing and responding to the submission. Salem Mania does not sell, share, or transfer submission data to any third party.</p>
+        <p>Salem Mania does not track website visitors, does not use advertising cookies, and does not use any analytics platform that collects personal data. The website is designed to respect the privacy of its readers and contributors.</p>
+        <p>Submission data is retained only as long as necessary for editorial correspondence. Writers may request deletion of their submission data at any time by contacting the Salem Mania team.</p>
+      </div>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="terms-section">
+      <div class="terms-section-number">09</div>
+      <div class="terms-section-title">Changes to These Terms</div>
+      <div class="terms-body">
+        <p>Salem Mania may update these terms from time to time. Updated terms will be published on this page with a revised effective date. Writers who have previously submitted work are not retroactively bound by changes to these terms, the terms in effect at the time of submission govern the relationship for that piece.</p>
+        <p>Questions about these terms may be directed to salemmania.blog@gmail.com.</p>
+      </div>
+    </div>
+
+    <!-- Web divider -->
+    <div class="terms-divider" aria-hidden="true">
+      <svg viewBox="0 0 32 16" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
+        <line x1="16" y1="8" x2="16" y2="0"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="30" y2="0"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="30" y2="8"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="30" y2="16" stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="16" y2="16" stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="2"  y2="16" stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="2"  y2="8"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <line x1="16" y1="8" x2="2"  y2="0"  stroke="var(--web)" stroke-width="1" fill="none"/>
+        <ellipse cx="16" cy="8" rx="8" ry="4" fill="none" stroke="var(--web)" stroke-width=".6"/>
+        <circle cx="16" cy="8" r="2.5" fill="var(--web)"/>
+      </svg>
+    </div>
+
+    <!-- Acknowledgement block -->
+    <div class="terms-ack">
+      <div class="terms-ack-title">By submitting a pitch, you acknowledge:</div>
+      <div class="terms-ack-body">
+        <p>You have read these submission terms in full. You confirm that your submission is original, unpublished in substantially the same form, and that you hold the copyright to the work. You understand that <strong>Salem Mania does not acquire ownership of your work</strong> and that your copyright is unaffected by submission or publication. You understand that submission does not guarantee publication and all decisions from the editorial team are final.</p>
+      </div>
+      <div class="terms-ack-note">
+        These terms do not constitute a legal contract and are not a substitute for independent legal advice. Salem Mania is an independent non-profit student publication. For questions contact salemmania.blog@gmail.com. Last updated March 12, 2026.
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="600" y1="120" x2="600" y2="0"    class="fw"/>
+      <line x1="600" y1="120" x2="0"   y2="30"   class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="30"  class="fw"/>
+      <line x1="600" y1="120" x2="0"   y2="0"    class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="0"   class="fw"/>
+      <line x1="600" y1="120" x2="300" y2="0"    class="fw"/>
+      <line x1="600" y1="120" x2="900" y2="0"    class="fw"/>
+      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55"  class="fa"/>
+      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25"  class="fa"/>
+      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5"  class="fa"/>
+    </svg>
+    <div class="footer-inner">
+      <span class="footer-title">Salem Mania</span>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="those-involved.html">Those Involved</a>
+        <a href="submission-terms.html">Submission Terms</a>
+        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.instagram.com/salemmaniablog/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <span class="footer-copy">© 2026 Salem Mania.</span>
+    </div>
+  </footer>
