@@ -417,6 +417,19 @@
       </div>
     </div>
 
+  <!-- Section 10 -->
+    <div class="terms-section">
+      <div class="terms-section-number">10</div>
+      <div class="terms-section-title"> Open Source License</div>
+      <div class="terms-body"> The Salem Mania code including its HTML, CSS, and JavaScript is publicly available on GitHub at github.com/ajversaily/salemmania under an open source license. This means the underlying code may be viewed, studied, and used for personal or educational purposes.
+
+What the open source license covers: The technical implementation of the site, its structure, styling, and scripting all freely available for learning and non-commercial personal use.
+
+What the open source license does not cover: The Salem Mania name, visual identity, editorial content, web motif, branding, and publication identity are explicitly excluded from the open source license. These elements are the proprietary intellectual property of Salem Mania and are protected separately under copyright and common law trademark. The open source license grants no rights to these elements under any circumstances.
+
+You may learn from the code. You may not use it to impersonate, replicate, or misrepresent Salem Mania.
+
+
     <!-- Web divider -->
     <div class="terms-divider" aria-hidden="true">
       <svg viewBox="0 0 32 16" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
@@ -433,6 +446,7 @@
       </svg>
     </div>
 
+
     <!-- Acknowledgement block -->
     <div class="terms-ack">
       <div class="terms-ack-title">By submitting a pitch, you acknowledge:</div>
@@ -443,6 +457,7 @@
         These terms do not constitute a legal contract and are not a substitute for independent legal advice. Salem Mania is an independent non-profit student publication. For questions contact salemmania.blog@gmail.com. Last updated March 12, 2026.
       </div>
     </div>
+
 
   </main>
 
