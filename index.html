@@ -8,149 +8,235 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
   <style>
 
-    /* ── WEB NAV HERO ─────────────────────────────── */
+    body { margin: 0; overflow-x: hidden; }
+
+    /* ── FULL SCREEN WEB ─────────────────────────── */
     .web-hero {
       position: relative;
-      background: var(--ink);
-      min-height: 100vh;
+      background: #0a0908;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      border-bottom: 2px solid #c8002a;
+    }
+
+    #webCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── MASTHEAD — top left corner ──────────────── */
+    .web-brand {
+      position: absolute;
+      top: 2rem;
+      left: 2.2rem;
+      z-index: 20;
+      pointer-events: none;
+      opacity: 0;
+      animation: brandIn .8s ease .4s both;
+    }
+
+    .web-brand-eyebrow {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #c8002a;
+      margin-bottom: .3rem;
+    }
+
+    .web-brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1;
+      color: #f5f0e8;
+    }
+
+    @keyframes brandIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SEASON TAG — top right ───────────────────── */
+    .web-season {
+      position: absolute;
+      top: 2.2rem;
+      right: 2.2rem;
+      z-index: 20;
+      pointer-events: none;
+      text-align: right;
+      opacity: 0;
+      animation: brandIn .8s ease .5s both;
+    }
+
+    .web-season-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #c8002a;
+      display: block;
+      margin-bottom: .15rem;
+    }
+
+    .web-season-sub {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .55rem;
+      letter-spacing: .1em;
+      color: rgba(155,164,174,.5);
+    }
+
+    /* ── SCROLL CTA — bottom center ─────────────── */
+    .web-scroll {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-bottom: 3px solid var(--web);
+      gap: .4rem;
+      opacity: 0;
+      animation: brandIn .6s ease 1.8s both;
+      text-decoration: none;
     }
 
-    /* animated grain texture */
-    .web-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: .03;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ── CANVAS SPIDERWEB ────────────────────────── */
-    #webCanvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 2;
-    }
-
-    /* ── MASTHEAD OVERLAY ────────────────────────── */
-    .web-masthead {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .web-masthead-eyebrow {
-      font-family: var(--font-mono);
-      font-size: .62rem;
-      font-weight: 600;
-      letter-spacing: .28em;
+    .web-scroll-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .55rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--web);
-      margin-bottom: .8rem;
-      opacity: 0;
-      animation: fadeUp .6s ease .2s both;
+      color: rgba(155,164,174,.35);
     }
 
-    .web-masthead-title {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 900;
-      letter-spacing: -.03em;
-      line-height: .95;
-      color: var(--paper);
-      text-shadow: 0 0 60px rgba(200,0,42,.25);
-      opacity: 0;
-      animation: fadeUp .7s ease .35s both;
+    .web-scroll-line {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, rgba(200,0,42,.5), transparent);
+      animation: scrollBob 2s ease-in-out infinite;
     }
 
-    .web-masthead-rule {
-      width: 40px;
-      height: 2px;
-      background: var(--web);
-      margin: 1.2rem auto;
-      opacity: 0;
-      animation: fadeUp .5s ease .5s both;
+    @keyframes scrollBob {
+      0%, 100% { opacity: .4; transform: scaleY(1); }
+      50% { opacity: .9; transform: scaleY(1.15); }
     }
 
-    .web-masthead-tagline {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: clamp(.85rem, 2vw, 1.05rem);
-      color: var(--silver);
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeUp .5s ease .6s both;
-    }
-
-    .web-masthead-hint {
-      font-family: var(--font-mono);
-      font-size: .58rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(155,164,174,.4);
-      margin-top: 2.5rem;
-      opacity: 0;
-      animation: fadeUp .5s ease 1.2s both;
-    }
-
-    /* ── NODE LABELS ─────────────────────────────── */
-    .web-node-label {
+    /* ── NODE TOOLTIP ────────────────────────────── */
+    .web-tooltip {
       position: absolute;
-      z-index: 12;
+      z-index: 30;
       pointer-events: none;
-      text-align: center;
-      transform: translate(-50%, -50%);
       opacity: 0;
-      transition: opacity .3s ease;
+      transform: translateY(4px);
+      transition: opacity .18s ease, transform .18s ease;
+      background: rgba(10,9,8,.92);
+      border: 1px solid rgba(200,0,42,.35);
+      border-radius: 2px;
+      padding: .6rem .9rem;
+      white-space: nowrap;
     }
 
-    .web-node-label.visible { opacity: 1; }
+    .web-tooltip.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    .wnl-tag {
-      font-family: var(--font-mono);
+    .wtt-tag {
+      font-family: 'Source Code Pro', monospace;
       font-size: .55rem;
       font-weight: 600;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--web);
+      color: #c8002a;
       margin-bottom: .2rem;
-      white-space: nowrap;
     }
 
-    .wnl-title {
-      font-family: var(--font-display);
-      font-size: clamp(.75rem, 1.5vw, .95rem);
+    .wtt-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: .95rem;
       font-weight: 700;
-      color: var(--paper);
-      white-space: nowrap;
+      color: #f5f0e8;
       line-height: 1.2;
     }
 
-    .wnl-sub {
-      font-family: var(--font-mono);
+    .wtt-sub {
+      font-family: 'Source Code Pro', monospace;
       font-size: .55rem;
       letter-spacing: .08em;
-      color: var(--silver);
+      color: rgba(155,164,174,.7);
       margin-top: .15rem;
-      white-space: nowrap;
     }
 
-    /* ── SCROLL SECTION ──────────────────────────── */
-    .sm-below {
-      background: var(--paper);
+    /* ── MOBILE NAV ──────────────────────────────── */
+    .mobile-nav {
+      display: none;
+      background: #0a0908;
+      border-bottom: 2px solid #c8002a;
+      padding: 2rem 1.5rem;
     }
 
-    /* ── ARTICLES SECTION ────────────────────────── */
+    @media (max-width: 640px) {
+      .web-hero { height: 60vh; }
+      .mobile-nav { display: block; }
+    }
+
+    .mobile-nav-title {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #c8002a;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-nav-links { display: flex; flex-direction: column; gap: .6rem; }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .8rem 1rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(200,0,42,.2);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+    }
+
+    .mobile-nav-link:hover {
+      background: rgba(200,0,42,.08);
+      border-color: rgba(200,0,42,.5);
+      text-decoration: none;
+    }
+
+    .mnl-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #f5f0e8;
+    }
+
+    .mnl-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #c8002a;
+    }
+
+    /* ── BELOW FOLD ──────────────────────────────── */
+    .sm-below { background: var(--paper); }
+
     .articles-section {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -167,7 +253,6 @@
       .cards-row { grid-template-columns: 1fr; }
     }
 
-    /* ── SEASON BAND ─────────────────────────────── */
     .season-band {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -204,179 +289,42 @@
       flex-wrap: wrap;
     }
 
-    /* ── KEYFRAMES ───────────────────────────────── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* ── SCROLL CTA ──────────────────────────────── */
-    .scroll-cta {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      opacity: 0;
-      animation: fadeIn .6s ease 1.6s both;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .scroll-cta-label {
-      font-family: var(--font-mono);
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(155,164,174,.5);
-    }
-
-    .scroll-arrow {
-      width: 1px;
-      height: 32px;
-      background: linear-gradient(to bottom, rgba(200,0,42,.5), transparent);
-      animation: scrollPulse 1.8s ease infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: .4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.2); }
-    }
-
-    /* ── MOBILE WEB NAV ──────────────────────────── */
-    .mobile-nav {
-      display: none;
-      background: var(--ink);
-      border-bottom: 3px solid var(--web);
-      padding: 2rem 1.5rem;
-    }
-
-    @media (max-width: 640px) {
-      .web-hero { min-height: 70vh; }
-      .mobile-nav { display: block; }
-    }
-
-    .mobile-nav-title {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--web);
-      margin-bottom: 1rem;
-    }
-
-    .mobile-nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-    }
-
-    .mobile-nav-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .8rem 1rem;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(200,0,42,.2);
-      border-radius: 2px;
-      text-decoration: none;
-      transition: background .2s, border-color .2s;
-    }
-
-    .mobile-nav-link:hover {
-      background: rgba(200,0,42,.08);
-      border-color: rgba(200,0,42,.5);
-      text-decoration: none;
-    }
-
-    .mnl-title {
-      font-family: var(--font-display);
-      font-size: .95rem;
-      font-weight: 700;
-      color: var(--paper);
-    }
-
-    .mnl-tag {
-      font-family: var(--font-mono);
-      font-size: .58rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--web);
     }
 
   </style>
 </head>
 <body>
 
-  <!-- ── WEB HERO ──────────────────────────────────── -->
+  <!-- ── SPIDERWEB HERO ─────────────────────────── -->
   <section class="web-hero" id="webHero">
-
     <canvas id="webCanvas"></canvas>
 
-    <!-- Node labels — positioned by JS -->
-    <div class="web-node-label" id="label-articles">
-      <div class="wnl-tag">Read</div>
-      <div class="wnl-title">Articles</div>
-      <div class="wnl-sub">Issue No. 1</div>
+    <div class="web-brand">
+      <div class="web-brand-eyebrow">Est. Ohio · March 12, 2026</div>
+      <div class="web-brand-title">Salem<br>Mania</div>
     </div>
 
-    <div class="web-node-label" id="label-issue1">
-      <div class="wnl-tag">Spring–Summer 2026</div>
-      <div class="wnl-title">The Mania Begins.</div>
-      <div class="wnl-sub">Founder's Note</div>
+    <div class="web-season">
+      <span class="web-season-label">Spring–Summer 2026</span>
+      <span class="web-season-sub">Issue No. 1 · Pitch Season Open</span>
     </div>
 
-    <div class="web-node-label" id="label-getinvolved">
-      <div class="wnl-tag">Pitch Season Open</div>
-      <div class="wnl-title">Get Involved</div>
-      <div class="wnl-sub">Submit a pitch</div>
+    <div class="web-tooltip" id="webTooltip">
+      <div class="wtt-tag" id="ttTag"></div>
+      <div class="wtt-title" id="ttTitle"></div>
+      <div class="wtt-sub" id="ttSub"></div>
     </div>
 
-    <div class="web-node-label" id="label-network">
-      <div class="wnl-tag">Invite Only</div>
-      <div class="wnl-title">The Network</div>
-      <div class="wnl-sub">Those Involved</div>
-    </div>
-
-    <div class="web-node-label" id="label-github">
-      <div class="wnl-tag">Open Source</div>
-      <div class="wnl-title">GitHub</div>
-      <div class="wnl-sub">ajversaily/salemmania</div>
-    </div>
-
-    <div class="web-node-label" id="label-instagram">
-      <div class="wnl-tag">Follow</div>
-      <div class="wnl-title">Instagram</div>
-      <div class="wnl-sub">@salemmaniapublication</div>
-    </div>
-
-    <!-- Masthead -->
-    <div class="web-masthead">
-      <div class="web-masthead-eyebrow">Est. Ohio &nbsp;·&nbsp; March 12, 2026</div>
-      <div class="web-masthead-rule"></div>
-  
-    </div>
-
-    <!-- Scroll CTA -->
-    <a class="scroll-cta" href="#below">
-      <span class="scroll-cta-label">Scroll</span>
-      <span class="scroll-arrow"></span>
+    <a class="web-scroll" href="#below">
+      <span class="web-scroll-label">Scroll</span>
+      <span class="web-scroll-line"></span>
     </a>
-
   </section>
 
-  <!-- Mobile nav fallback -->
+  <!-- Mobile fallback -->
   <nav class="mobile-nav">
     <div class="mobile-nav-title">Navigate The Mania</div>
     <div class="mobile-nav-links">
@@ -399,13 +347,12 @@
     </div>
   </nav>
 
-  <!-- ── BELOW FOLD ─────────────────────────────────── -->
+  <!-- ── BELOW FOLD ─────────────────────────────── -->
   <div class="sm-below" id="below">
 
-    <!-- SEASON BAND -->
     <div class="season-band" style="padding-top:2.5rem;">
       <div class="season-inner">
-        <span class="season-label">Spring–Summer 2026 Season &nbsp;·&nbsp; Issue No. 1</span>
+        <span class="season-label">Spring–Summer 2026 Season · Issue No. 1</span>
         <div class="season-meta">
           <span>Pitch Season Open</span>
           <span>15 Article Cap</span>
@@ -415,7 +362,6 @@
       </div>
     </div>
 
-    <!-- ARTICLES -->
     <section class="articles-section" id="articles">
       <div class="section-header">
         <span class="section-rule"></span>
@@ -424,7 +370,7 @@
       </div>
       <div class="cards-row">
         <article class="card" tabindex="0">
-          <div class="card-tag">Issue No. 1 &nbsp;·&nbsp; Founder's Note</div>
+          <div class="card-tag">Issue No. 1 · Founder's Note</div>
           <h3 class="card-title">The Mania Begins.</h3>
           <p class="card-excerpt">Every documented cultural shift has occurred after a change has come. Salem Mania is here to document the next one.</p>
           <a href="articlesalemmania.html" class="card-link">Read the full piece →</a>
@@ -438,7 +384,6 @@
       </div>
     </section>
 
-    <!-- SUBSCRIBE -->
     <section class="subscribe-band" id="subscribe" style="max-width:var(--max-w);margin:2.5rem auto 0;border-radius:4px;">
       <div class="sub-web" aria-hidden="true">
         <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
@@ -450,9 +395,9 @@
           <line x1="200" y1="100" x2="0"   y2="200" class="sw"/>
           <line x1="200" y1="100" x2="0"   y2="100" class="sw"/>
           <line x1="200" y1="100" x2="0"   y2="0"   class="sw"/>
-          <polygon points="200,20  340,25  375,100 340,175 200,180 60,175 25,100 60,25"   class="sr"/>
-          <polygon points="200,50  305,55  335,100 305,145 200,150 95,145 65,100 95,55"   class="sr"/>
-          <polygon points="200,75  268,78  285,100 268,122 200,125 132,122 115,100 132,78" class="sr"/>
+          <polygon points="200,20 340,25 375,100 340,175 200,180 60,175 25,100 60,25" class="sr"/>
+          <polygon points="200,50 305,55 335,100 305,145 200,150 95,145 65,100 95,55" class="sr"/>
+          <polygon points="200,75 268,78 285,100 268,122 200,125 132,122 115,100 132,78" class="sr"/>
           <circle cx="200" cy="100" r="12" class="sh"/>
         </svg>
       </div>
@@ -467,24 +412,21 @@
       </div>
     </section>
 
-    <!-- padding at bottom -->
     <div style="height:4rem;"></div>
-
   </div>
 
-  <!-- ── FOOTER ──────────────────────────────────────── -->
   <footer class="site-footer">
     <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="600" y1="120" x2="600"  y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="30"  class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="30"  class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="300"  y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="900"  y2="0"   class="fw"/>
-      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55"  class="fa"/>
-      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25"  class="fa"/>
-      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5"  class="fa"/>
+      <line x1="600" y1="120" x2="600"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="300"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="900"  y2="0"  class="fw"/>
+      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55" class="fa"/>
+      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25" class="fa"/>
+      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5" class="fa"/>
     </svg>
     <div class="footer-inner">
       <span class="footer-title">Salem Mania</span>
@@ -507,65 +449,92 @@
     const canvas  = document.getElementById('webCanvas');
     const ctx     = canvas.getContext('2d');
     const hero    = document.getElementById('webHero');
+    const tooltip = document.getElementById('webTooltip');
 
-    /* ── NAV NODES ───────────────────────────────── */
+    /* ── NODES ───────────────────────────────────── */
     const NODES = [
       {
         id: 'articles',
-        label: 'label-articles',
+        tag: 'Read',
+        title: 'Articles',
+        sub: 'Issue No. 1',
         href: 'articles.html',
-        angle: -90,   /* top */
-        radiusFactor: .38,
-        pulse: true
+        angleDeg: -90,
+        dist: .72,
+        pulse: true,
+        size: 7
       },
       {
         id: 'issue1',
-        label: 'label-issue1',
+        tag: 'Spring–Summer 2026',
+        title: 'The Mania Begins.',
+        sub: "Founder's Note",
         href: 'articlesalemmania.html',
-        angle: -30,
-        radiusFactor: .32,
-        pulse: false
+        angleDeg: -30,
+        dist: .58,
+        pulse: false,
+        size: 5.5
       },
       {
         id: 'getinvolved',
-        label: 'label-getinvolved',
+        tag: 'Pitch Season Open',
+        title: 'Get Involved',
+        sub: 'Submit a pitch',
         href: 'get-involved.html',
-        angle: 30,
-        radiusFactor: .38,
-        pulse: true
+        angleDeg: 30,
+        dist: .72,
+        pulse: true,
+        size: 7
       },
       {
         id: 'network',
-        label: 'label-network',
+        tag: 'Invite Only',
+        title: 'The Network',
+        sub: 'Those Involved',
         href: 'those-involved.html',
-        angle: 90,   /* bottom */
-        radiusFactor: .32,
-        pulse: false
+        angleDeg: 90,
+        dist: .62,
+        pulse: false,
+        size: 5.5
       },
       {
         id: 'instagram',
-        label: 'label-instagram',
+        tag: 'Follow',
+        title: 'Instagram',
+        sub: '@salemmaniapublication',
         href: 'https://www.instagram.com/salemmaniapublication/',
-        angle: 150,
-        radiusFactor: .36,
-        pulse: false
+        angleDeg: 150,
+        dist: .66,
+        pulse: false,
+        size: 5
       },
       {
         id: 'github',
-        label: 'label-github',
+        tag: 'Open Source',
+        title: 'GitHub',
+        sub: 'ajversaily/salemmania',
         href: 'https://github.com/ajversaily/salemmania',
-        angle: -150,
-        radiusFactor: .36,
-        pulse: false
+        angleDeg: -150,
+        dist: .66,
+        pulse: false,
+        size: 5
       }
     ];
 
-    let W, H, cx, cy, maxRadius;
+    /* secondary decorative nodes — no links, just web structure */
+    const GHOST_NODES = [
+      { angleDeg: -60, dist: .42 },
+      { angleDeg:   0, dist: .38 },
+      { angleDeg:  60, dist: .44 },
+      { angleDeg: 120, dist: .42 },
+      { angleDeg: 180, dist: .40 },
+      { angleDeg: -120, dist: .44 }
+    ];
+
+    let W, H, cx, cy, R;
     let mouse = { x: -9999, y: -9999 };
     let hoveredNode = null;
-    let animFrame;
     let t = 0;
-    let labelsFaded = false;
 
     /* ── RESIZE ──────────────────────────────────── */
     function resize() {
@@ -573,231 +542,258 @@
       H = canvas.height = hero.offsetHeight;
       cx = W / 2;
       cy = H / 2;
-      maxRadius = Math.min(W, H) * .44;
-      computeNodePositions();
+      R  = Math.min(W, H) * .46;
+      placeNodes();
     }
 
-    function computeNodePositions() {
+    function toRad(deg) { return (deg - 90) * Math.PI / 180; }
+
+    function placeNodes() {
       NODES.forEach(function (n) {
-        const rad = (n.angle - 90) * Math.PI / 180;
-        const r   = maxRadius * n.radiusFactor / .44 * .44;
-        n.x = cx + Math.cos(rad) * maxRadius * n.radiusFactor / .38 * .38;
-        n.y = cy + Math.sin(rad) * maxRadius * n.radiusFactor / .38 * .38;
+        const a = toRad(n.angleDeg);
+        n.x = cx + Math.cos(a) * R * n.dist;
+        n.y = cy + Math.sin(a) * R * n.dist;
       });
+      GHOST_NODES.forEach(function (g) {
+        const a = toRad(g.angleDeg);
+        g.x = cx + Math.cos(a) * R * g.dist;
+        g.y = cy + Math.sin(a) * R * g.dist;
+      });
+    }
+
+    /* ── ALL NODES (real + ghost) for ring intersections */
+    function allNodesAt(ringR) {
+      const pts = [];
+      const combined = NODES.concat(GHOST_NODES);
+      combined.forEach(function (n) {
+        const spokeLen = Math.sqrt((n.x-cx)*(n.x-cx)+(n.y-cy)*(n.y-cy));
+        if (ringR <= spokeLen) {
+          const f = ringR / spokeLen;
+          pts.push({
+            x: cx + (n.x-cx)*f,
+            y: cy + (n.y-cy)*f,
+            angle: Math.atan2(n.y-cy, n.x-cx)
+          });
+        }
+      });
+      /* sort by angle */
+      pts.sort(function(a,b) { return a.angle - b.angle; });
+      return pts;
     }
 
     /* ── DRAW ────────────────────────────────────── */
     function draw() {
       ctx.clearRect(0, 0, W, H);
+      t += 0.009;
 
-      t += 0.012;
-
-      /* determine hovered node */
+      /* mouse proximity to any real node */
       hoveredNode = null;
       NODES.forEach(function (n) {
-        const dx = mouse.x - n.x;
-        const dy = mouse.y - n.y;
-        if (Math.sqrt(dx*dx + dy*dy) < 52) {
-          hoveredNode = n;
-        }
+        const d = Math.hypot(mouse.x-n.x, mouse.y-n.y);
+        if (d < 48) hoveredNode = n;
       });
 
-      /* ── CONCENTRIC RINGS ── */
-      const rings = 5;
-      for (let i = 1; i <= rings; i++) {
-        const r = maxRadius * (i / rings);
-        const alpha = .06 + (i / rings) * .04;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(200,0,42,' + alpha + ')';
-        ctx.lineWidth = .6;
-        ctx.stroke();
-      }
+      /* ── 1. SPOKES — all nodes including ghosts ── */
+      const combined = NODES.concat(GHOST_NODES);
+      combined.forEach(function (n) {
+        const isReal  = NODES.indexOf(n) >= 0;
+        const isHov   = hoveredNode === n;
+        const proxN   = Math.max(0, 1 - Math.hypot(mouse.x-n.x, mouse.y-n.y) / (R * .7));
+        const proxHub = Math.max(0, 1 - Math.hypot(mouse.x-cx, mouse.y-cy) / (R * .5));
+        const prox    = Math.max(proxN, proxHub * .4);
 
-      /* ── SPOKES to each node ── */
-      NODES.forEach(function (n) {
-        const isHov = hoveredNode === n;
-        const dist  = Math.sqrt((mouse.x-cx)*(mouse.x-cx) + (mouse.y-cy)*(mouse.y-cy));
-        const proximity = Math.max(0, 1 - Math.sqrt((mouse.x-n.x)*(mouse.x-n.x)+(mouse.y-n.y)*(mouse.y-n.y)) / (maxRadius * .6));
+        /* extend spoke past node to edge for authentic web look */
+        const ang     = Math.atan2(n.y-cy, n.x-cx);
+        const spokeLen = Math.max(W, H);
+        const ex      = cx + Math.cos(ang) * spokeLen;
+        const ey      = cy + Math.sin(ang) * spokeLen;
 
-        /* spoke */
         ctx.beginPath();
         ctx.moveTo(cx, cy);
-        ctx.lineTo(n.x, n.y);
+        ctx.lineTo(ex, ey);
         ctx.strokeStyle = isHov
-          ? 'rgba(200,0,42,' + (.6 + proximity * .4) + ')'
-          : 'rgba(200,0,42,' + (.1 + proximity * .25) + ')';
-        ctx.lineWidth = isHov ? 1.5 : .8;
+          ? 'rgba(200,0,42,' + (.55 + prox * .45) + ')'
+          : isReal
+            ? 'rgba(200,0,42,' + (.08 + prox * .28) + ')'
+            : 'rgba(200,0,42,' + (.04 + prox * .1) + ')';
+        ctx.lineWidth = isHov ? 1.2 : isReal ? .7 : .4;
         ctx.stroke();
-
-        /* thread segments (web rings intersecting spokes) */
-        for (let ri = 1; ri <= rings; ri++) {
-          const segR = maxRadius * (ri / rings);
-          const spokeLen = Math.sqrt((n.x-cx)*(n.x-cx)+(n.y-cy)*(n.y-cy));
-          if (segR >= spokeLen) break;
-
-          const frac = segR / spokeLen;
-          const sx = cx + (n.x-cx) * frac;
-          const sy = cy + (n.y-cy) * frac;
-
-          /* connect ring points between adjacent nodes */
-        }
       });
 
-      /* ── CROSS-THREAD SEGMENTS (ring arcs between nodes) ── */
-      for (let ri = 1; ri <= rings; ri++) {
-        const segR = maxRadius * (ri / rings);
-        for (let ni = 0; ni < NODES.length; ni++) {
-          const a = NODES[ni];
-          const b = NODES[(ni + 1) % NODES.length];
-          const aLen = Math.sqrt((a.x-cx)*(a.x-cx)+(a.y-cy)*(a.y-cy));
-          const bLen = Math.sqrt((b.x-cx)*(b.x-cx)+(b.y-cy)*(b.y-cy));
-          if (segR > aLen || segR > bLen) continue;
+      /* ── 2. RING THREADS ──────────────────────── */
+      const RINGS = 8;
+      for (let ri = 1; ri <= RINGS; ri++) {
+        const ringR = R * (ri / RINGS) * 1.05;
+        const pts   = allNodesAt(ringR);
+        if (pts.length < 2) continue;
 
-          const afrac = segR / aLen;
-          const bfrac = segR / bLen;
+        for (let pi = 0; pi < pts.length; pi++) {
+          const a  = pts[pi];
+          const b  = pts[(pi+1) % pts.length];
 
-          const ax2 = cx + (a.x-cx) * afrac;
-          const ay2 = cy + (a.y-cy) * afrac;
-          const bx2 = cx + (b.x-cx) * bfrac;
-          const by2 = cy + (b.y-cy) * bfrac;
-
-          const proxA = Math.max(0, 1 - Math.sqrt((mouse.x-a.x)*(mouse.x-a.x)+(mouse.y-a.y)*(mouse.y-a.y)) / (maxRadius * .5));
-          const proxB = Math.max(0, 1 - Math.sqrt((mouse.x-b.x)*(mouse.x-b.x)+(mouse.y-b.y)*(mouse.y-b.y)) / (maxRadius * .5));
+          const proxA = Math.max(0, 1 - Math.hypot(mouse.x-a.x, mouse.y-a.y) / (R * .55));
+          const proxB = Math.max(0, 1 - Math.hypot(mouse.x-b.x, mouse.y-b.y) / (R * .55));
           const seg   = Math.max(proxA, proxB);
 
+          /* slight curve inward — authentic web sag */
+          const mx    = (a.x + b.x) / 2;
+          const my    = (a.y + b.y) / 2;
+          const toHub = Math.hypot(mx-cx, my-cy);
+          const sag   = .94 - (ri / RINGS) * .04;
+          const cpx   = cx + (mx-cx) * sag;
+          const cpy   = cy + (my-cy) * sag;
+
           ctx.beginPath();
-          ctx.moveTo(ax2, ay2);
-          ctx.lineTo(bx2, by2);
-          ctx.strokeStyle = 'rgba(200,0,42,' + (.06 + seg * .18) + ')';
+          ctx.moveTo(a.x, a.y);
+          ctx.quadraticCurveTo(cpx, cpy, b.x, b.y);
+          ctx.strokeStyle = 'rgba(200,0,42,' + (.055 + seg * .2 + (ri/RINGS)*.025) + ')';
+          ctx.lineWidth   = .5 + seg * .4;
+          ctx.stroke();
+        }
+      }
+
+      /* ── 3. CURSOR THREADS — web reacts to mouse ── */
+      if (mouse.x > 0 && mouse.x < W) {
+        NODES.forEach(function (n) {
+          const d = Math.hypot(mouse.x-n.x, mouse.y-n.y);
+          if (d < R * .6) {
+            const a = (1 - d/(R*.6)) * .14;
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+            ctx.lineTo(n.x, n.y);
+            ctx.strokeStyle = 'rgba(200,0,42,' + a + ')';
+            ctx.lineWidth = .6;
+            ctx.stroke();
+          }
+        });
+        /* hub thread */
+        const dh = Math.hypot(mouse.x-cx, mouse.y-cy);
+        if (dh < R * .8) {
+          const a = (1 - dh/(R*.8)) * .08;
+          ctx.beginPath();
+          ctx.moveTo(mouse.x, mouse.y);
+          ctx.lineTo(cx, cy);
+          ctx.strokeStyle = 'rgba(200,0,42,' + a + ')';
           ctx.lineWidth = .5;
           ctx.stroke();
         }
       }
 
-      /* ── MOUSE PROXIMITY GLOW THREADS ── */
-      if (mouse.x > 0 && mouse.x < W) {
-        NODES.forEach(function (n) {
-          const d = Math.sqrt((mouse.x-n.x)*(mouse.x-n.x)+(mouse.y-n.y)*(mouse.y-n.y));
-          if (d < maxRadius * .55) {
-            const alpha = (1 - d / (maxRadius * .55)) * .18;
-            ctx.beginPath();
-            ctx.moveTo(mouse.x, mouse.y);
-            ctx.lineTo(n.x, n.y);
-            ctx.strokeStyle = 'rgba(200,0,42,' + alpha + ')';
-            ctx.lineWidth = .8;
-            ctx.stroke();
-          }
-        });
-      }
-
-      /* ── NODE DOTS ── */
+      /* ── 4. NODE DOTS ────────────────────────── */
       NODES.forEach(function (n) {
         const isHov  = hoveredNode === n;
-        const pulse  = n.pulse ? Math.sin(t * 1.8 + NODES.indexOf(n)) * .3 + .7 : 1;
-        const radius = isHov ? 10 : 6 * pulse;
+        const pulseMult = n.pulse ? (.85 + Math.sin(t * 1.6 + NODES.indexOf(n) * 1.1) * .15) : 1;
+        const r      = (isHov ? n.size * 1.6 : n.size) * pulseMult;
 
-        /* outer glow */
         if (isHov) {
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, 22, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(200,0,42,.1)';
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, 14, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(200,0,42,.2)';
-          ctx.fill();
+          /* outer pulse rings */
+          [28, 20, 13].forEach(function (gr, gi) {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, gr, 0, Math.PI*2);
+            ctx.fillStyle = 'rgba(200,0,42,' + (.04 + gi * .04) + ')';
+            ctx.fill();
+          });
         }
 
-        /* ring */
+        /* outer ring */
         ctx.beginPath();
-        ctx.arc(n.x, n.y, radius + 3, 0, Math.PI * 2);
-        ctx.strokeStyle = isHov ? 'rgba(200,0,42,.8)' : 'rgba(200,0,42,.3)';
-        ctx.lineWidth = .8;
+        ctx.arc(n.x, n.y, r + 3.5, 0, Math.PI*2);
+        ctx.strokeStyle = isHov ? 'rgba(200,0,42,.9)' : 'rgba(200,0,42,.22)';
+        ctx.lineWidth = isHov ? 1 : .6;
         ctx.stroke();
 
-        /* dot */
+        /* inner dot */
         ctx.beginPath();
-        ctx.arc(n.x, n.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = isHov ? '#c8002a' : 'rgba(200,0,42,.7)';
+        ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+        ctx.fillStyle = isHov ? '#c8002a' : 'rgba(200,0,42,.65)';
         ctx.fill();
       });
 
-      /* ── HUB DOT ── */
-      const hubR = 8 + Math.sin(t * 1.2) * 1.5;
+      /* ghost node dots — tiny, dim */
+      GHOST_NODES.forEach(function (g) {
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, 2.5, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(200,0,42,.18)';
+        ctx.fill();
+      });
+
+      /* ── 5. HUB ──────────────────────────────── */
+      const hubMouse = Math.max(0, 1 - Math.hypot(mouse.x-cx,mouse.y-cy)/(R*.4));
+      const hubR = 7 + Math.sin(t) * 1.2 + hubMouse * 3;
+
       ctx.beginPath();
-      ctx.arc(cx, cy, hubR + 6, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,0,42,.08)';
+      ctx.arc(cx, cy, hubR + 8, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(200,0,42,' + (.06 + hubMouse * .06) + ')';
       ctx.fill();
+
       ctx.beginPath();
-      ctx.arc(cx, cy, hubR, 0, Math.PI * 2);
+      ctx.arc(cx, cy, hubR + 4, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(200,0,42,' + (.1 + hubMouse * .1) + ')';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, hubR, 0, Math.PI*2);
       ctx.fillStyle = '#c8002a';
       ctx.fill();
 
-      /* ── UPDATE LABELS ── */
-      NODES.forEach(function (n) {
-        const el = document.getElementById(n.label);
-        if (!el) return;
+      /* ── TOOLTIP ─────────────────────────────── */
+      updateTooltip();
 
-        /* position label offset from node */
-        const angle   = Math.atan2(n.y - cy, n.x - cx);
-        const offset  = 60;
-        const lx      = n.x + Math.cos(angle) * offset;
-        const ly      = n.y + Math.sin(angle) * offset;
-
-        el.style.left = lx + 'px';
-        el.style.top  = ly + 'px';
-
-        if (!labelsFaded) {
-          el.classList.add('visible');
-        }
-
-        /* highlight on hover */
-        el.style.opacity = (hoveredNode === n) ? '1' : '.55';
-        el.style.transform = (hoveredNode === n)
-          ? 'translate(-50%,-50%) scale(1.08)'
-          : 'translate(-50%,-50%) scale(1)';
-        el.style.transition = 'opacity .25s ease, transform .25s var(--ease-web)';
-      });
-
-      if (!labelsFaded) labelsFaded = true;
-
-      /* cursor */
-      canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
-
-      animFrame = requestAnimationFrame(draw);
+      requestAnimationFrame(draw);
     }
 
-    /* ── MOUSE ───────────────────────────────────── */
+    /* ── TOOLTIP POSITIONING ─────────────────────── */
+    function updateTooltip() {
+      if (!hoveredNode) {
+        tooltip.classList.remove('show');
+        return;
+      }
+
+      document.getElementById('ttTag').textContent   = hoveredNode.tag;
+      document.getElementById('ttTitle').textContent = hoveredNode.title;
+      document.getElementById('ttSub').textContent   = hoveredNode.sub;
+
+      tooltip.classList.add('show');
+
+      /* position above node by default, flip if near top */
+      const ttW  = tooltip.offsetWidth;
+      const ttH  = tooltip.offsetHeight;
+      let tx     = hoveredNode.x - ttW / 2;
+      let ty     = hoveredNode.y - ttH - 28;
+
+      if (ty < 10)          ty = hoveredNode.y + 28;
+      if (tx < 8)           tx = 8;
+      if (tx + ttW > W - 8) tx = W - ttW - 8;
+
+      tooltip.style.left = tx + 'px';
+      tooltip.style.top  = ty + 'px';
+    }
+
+    /* ── EVENTS ──────────────────────────────────── */
     canvas.addEventListener('mousemove', function (e) {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
     });
 
     canvas.addEventListener('mouseleave', function () {
-      mouse.x = -9999;
-      mouse.y = -9999;
+      mouse.x = mouse.y = -9999;
     });
 
-    canvas.addEventListener('click', function (e) {
-      if (hoveredNode) {
-        if (hoveredNode.href.startsWith('http')) {
-          window.open(hoveredNode.href, '_blank', 'noopener');
-        } else {
-          window.location.href = hoveredNode.href;
-        }
+    canvas.addEventListener('click', function () {
+      if (!hoveredNode) return;
+      if (hoveredNode.href.startsWith('http')) {
+        window.open(hoveredNode.href, '_blank', 'noopener');
+      } else {
+        window.location.href = hoveredNode.href;
       }
     });
 
-    /* touch support */
     canvas.addEventListener('touchstart', function (e) {
       e.preventDefault();
-      const touch = e.touches[0];
-      const rect  = canvas.getBoundingClientRect();
-      mouse.x = touch.clientX - rect.left;
-      mouse.y = touch.clientY - rect.top;
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - r.left;
+      mouse.y = e.touches[0].clientY - r.top;
     }, { passive: false });
 
     canvas.addEventListener('touchend', function (e) {
@@ -809,50 +805,21 @@
           window.location.href = hoveredNode.href;
         }
       }
-      mouse.x = -9999;
-      mouse.y = -9999;
+      mouse.x = mouse.y = -9999;
     }, { passive: false });
 
-    /* ── INIT ────────────────────────────────────── */
-    window.addEventListener('resize', function () {
-      resize();
-    });
+    window.addEventListener('resize', resize);
 
+    /* ── START ───────────────────────────────────── */
     resize();
-    setTimeout(function () { draw(); }, 800);
+    requestAnimationFrame(draw);
 
-    /* ── SUBSCRIBE FORM FEEDBACK ── */
-    const form  = document.querySelector('.sub-form');
-    const input = document.querySelector('.sub-input');
-    const btn   = document.querySelector('.sub-btn');
-
-    if (form && input && btn) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const val = input.value.trim();
-        if (!val || !val.includes('@')) {
-          input.style.borderColor = '#e8001f';
-          input.focus();
-          return;
-        }
-        btn.textContent = 'CAUGHT! ✓';
-        btn.style.background = '#1a7a3a';
-        btn.style.boxShadow = '0 0 18px rgba(26,122,58,.5)';
-        input.value = '';
-        input.disabled = true;
-        btn.disabled = true;
-      });
-      input.addEventListener('input', function () {
-        input.style.borderColor = '';
-      });
-    }
-
-    /* ── SCROLL CARD ANIMATION ── */
+    /* ── BELOW FOLD SCROLL REVEAL ────────────────── */
     if ('IntersectionObserver' in window) {
       const items = document.querySelectorAll('.card, .section-title, .subscribe-band, .season-inner');
       items.forEach(function (el) {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
+        el.style.transform = 'translateY(22px)';
         el.style.transition = 'opacity .5s ease, transform .5s ease';
       });
       const io = new IntersectionObserver(function (entries) {
@@ -865,6 +832,26 @@
         });
       }, { threshold: 0.1 });
       items.forEach(function (el) { io.observe(el); });
+    }
+
+    /* subscribe form */
+    const form  = document.querySelector('.sub-form');
+    const input = document.querySelector('.sub-input');
+    const btn   = document.querySelector('.sub-btn');
+    if (form && input && btn) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!input.value.trim().includes('@')) {
+          input.style.borderColor = '#e8001f';
+          input.focus();
+          return;
+        }
+        btn.textContent = 'CAUGHT! ✓';
+        btn.style.background = '#1a7a3a';
+        input.value = '';
+        input.disabled = btn.disabled = true;
+      });
+      input.addEventListener('input', function () { input.style.borderColor = ''; });
     }
 
   })();
