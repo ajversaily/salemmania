@@ -5,219 +5,816 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Get Involved — Salem Mania</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="get-involved.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --ink:       #1a1008;
+      --ink-soft:  #2e2010;
+      --paper:     #f5f0e8;
+      --cream:     #ede7d5;
+      --web:       #c8002a;
+      --web-dim:   rgba(200,0,42,.12);
+      --web-glow:  rgba(200,0,42,.3);
+      --silver:    #9ba4ae;
+      --dust:      #7a6e5a;
+      --foxed:     #d4c4a0;
+      --vellum:    #e8dcc4;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-fell:    'IM Fell English', Georgia, serif;
+      --font-body:    'Libre Baskerville', Georgia, serif;
+      --font-mono:    'Source Code Pro', monospace;
+      --max-w: 1100px;
+      --ease-web: cubic-bezier(.34,1.56,.64,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    a { color: var(--web); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    .sm-nav {
+      background: #0e0c0a;
+      border-bottom: 2px solid #c8002a;
+      padding: .7rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .sm-nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .sm-nav-brand {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 900;
+      color: #f0e8d5;
+      text-decoration: none;
+      letter-spacing: -.01em;
+      flex-shrink: 0;
+      margin-right: .4rem;
+    }
+    .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
+    .sm-nav-links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .sm-nav-link {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(240,232,213,.4);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+    .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
+    .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .gi-hero {
+      position: relative;
+      background: var(--ink);
+      border-bottom: 3px solid var(--web);
+      overflow: hidden;
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .gi-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        92deg, transparent, transparent 4px,
+        rgba(255,255,255,.007) 4px, rgba(255,255,255,.007) 8px
+      );
+      pointer-events: none;
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .gi-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .gi-eyebrow {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--web);
+      margin-bottom: .8rem;
+      display: block;
+      opacity: 0;
+      animation: riseIn .6s ease .1s both;
+    }
+
+    .gi-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 900;
+      color: #f0e8d5;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      text-shadow: 0 2px 30px rgba(200,0,42,.2);
+      opacity: 0;
+      animation: riseIn .7s ease .25s both;
+    }
+
+    .gi-hero-rule {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin: 1rem auto;
+      max-width: 260px;
+      opacity: 0;
+      animation: riseIn .4s ease .4s both;
+    }
+
+    .gi-hero-rule-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(200,0,42,.5), transparent);
+    }
+
+    .gi-hero-rule-glyph {
+      font-family: var(--font-display);
+      font-size: .9rem;
+      color: var(--web);
+      opacity: .8;
+    }
+
+    .gi-sub {
+      font-family: var(--font-fell);
+      font-style: italic;
+      font-size: .98rem;
+      color: rgba(240,232,213,.5);
+      line-height: 1.65;
+      opacity: 0;
+      animation: riseIn .5s ease .5s both;
+    }
+
+    /* ── MAIN ─────────────────────────────────────── */
+    .gi-main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* ── MISSION ──────────────────────────────────── */
+    .gi-mission { padding: 3rem 0 0; }
+
+    .gi-mission-inner {
+      background: var(--ink);
+      border-left: 4px solid var(--web);
+      border-radius: 0 3px 3px 0;
+      padding: 1.6rem 2.2rem;
+      font-family: var(--font-fell);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(240,232,213,.7);
+      line-height: 1.75;
+      box-shadow: 0 0 30px rgba(200,0,42,.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gi-mission-inner::after {
+      content: '🕸';
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      opacity: .1;
+    }
+
+    /* ── SECTION HEADER ───────────────────────────── */
+    .gi-section { padding: 3.5rem 0 0; }
+
+    .gi-sec-hdr {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .gi-sec-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--foxed), transparent);
+    }
+
+    .gi-sec-line.rev { background: linear-gradient(to left, var(--foxed), transparent); }
+
+    .gi-sec-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* ── NODE CARDS ───────────────────────────────── */
+    .gi-nodes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 860px) { .gi-nodes { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .gi-nodes { grid-template-columns: 1fr; } }
+
+    .gi-node {
+      background: #fff;
+      border: 1px solid var(--cream);
+      border-radius: 2px;
+      padding: 1.8rem 1.5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s var(--ease-web), box-shadow .25s;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    /* corner web decoration */
+    .gi-node::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; right: -2px;
+      width: 52px; height: 52px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='52' y1='52' x2='0' y2='0' stroke='%23c8002a' stroke-width='.6' opacity='.18'/%3E%3Cline x1='52' y1='52' x2='17' y2='0' stroke='%23c8002a' stroke-width='.6' opacity='.18'/%3E%3Cline x1='52' y1='52' x2='0' y2='17' stroke='%23c8002a' stroke-width='.6' opacity='.18'/%3E%3Cline x1='52' y1='52' x2='35' y2='0' stroke='%23c8002a' stroke-width='.5' opacity='.12'/%3E%3Cline x1='52' y1='52' x2='0' y2='35' stroke='%23c8002a' stroke-width='.5' opacity='.12'/%3E%3C/svg%3E");
+      background-size: contain;
+      pointer-events: none;
+    }
+
+    .gi-node::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--web);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .gi-node:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.09), 0 0 0 1px var(--web-dim);
+      text-decoration: none;
+    }
+
+    .gi-node:hover::before { transform: scaleX(1); }
+
+    .gi-node-icon {
+      width: 38px; height: 38px;
+      color: var(--web);
+      opacity: .75;
+      margin-bottom: .5rem;
+      transition: opacity .2s, transform .3s var(--ease-web);
+    }
+
+    .gi-node:hover .gi-node-icon { opacity: 1; transform: rotate(12deg) scale(1.08); }
+
+    .gi-node-tag {
+      font-family: var(--font-mono);
+      font-size: .57rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--web);
+    }
+
+    .gi-node-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .gi-node-desc {
+      font-family: var(--font-body);
+      font-size: .85rem;
+      color: var(--dust);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .gi-node-arrow {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--web);
+      transition: letter-spacing .2s;
+      margin-top: .4rem;
+    }
+
+    .gi-node:hover .gi-node-arrow { letter-spacing: .16em; }
+
+    /* ── ORNAMENT ─────────────────────────────────── */
+    .gi-ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 3.5rem;
+      opacity: .4;
+    }
+
+    .gi-ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--foxed), transparent);
+    }
+
+    /* ── PITCH LAYOUT ─────────────────────────────── */
+    .gi-pitch-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 760px) { .gi-pitch-layout { grid-template-columns: 1fr; } }
+
+    .gi-pitch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .gi-pitch-prose {
+      font-family: var(--font-body);
+      font-size: .95rem;
+      color: var(--ink-soft);
+      line-height: 1.82;
+    }
+
+    .gi-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .gi-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      letter-spacing: .05em;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .gi-check-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--web);
+      flex-shrink: 0;
+      margin-top: .46rem;
+    }
+
+    .gi-info-note {
+      background: var(--vellum);
+      border-left: 3px solid var(--foxed);
+      padding: 1rem 1.2rem;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .gi-info-note-tag {
+      font-family: var(--font-mono);
+      font-size: .55rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--web);
+      margin-bottom: .4rem;
+    }
+
+    .gi-info-note p {
+      font-family: var(--font-fell);
+      font-style: italic;
+      font-size: .88rem;
+      color: var(--dust);
+      line-height: 1.65;
+    }
+
+    /* ── PITCH FORM ───────────────────────────────── */
+    .gi-form {
+      background: #fff;
+      border: 1px solid var(--cream);
+      border-top: 3px solid var(--web);
+      padding: 2.2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gi-form::after {
+      content: '';
+      position: absolute;
+      top: -8px; right: -8px;
+      width: 90px; height: 90px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 90 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='90' y1='0' x2='0' y2='90' stroke='%23c8002a' stroke-width='.7' opacity='.07'/%3E%3Cline x1='90' y1='0' x2='30' y2='90' stroke='%23c8002a' stroke-width='.7' opacity='.07'/%3E%3Cline x1='90' y1='0' x2='0' y2='55' stroke='%23c8002a' stroke-width='.6' opacity='.05'/%3E%3Cline x1='90' y1='0' x2='60' y2='90' stroke='%23c8002a' stroke-width='.6' opacity='.05'/%3E%3Cline x1='90' y1='0' x2='0' y2='28' stroke='%23c8002a' stroke-width='.5' opacity='.04'/%3E%3C/svg%3E");
+      background-size: contain;
+      pointer-events: none;
+    }
+
+    .gi-field { display: flex; flex-direction: column; gap: .38rem; }
+
+    .gi-label {
+      font-family: var(--font-mono);
+      font-size: .64rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .gi-hint {
+      font-weight: 400;
+      letter-spacing: .04em;
+      text-transform: none;
+      color: var(--silver);
+      font-size: .6rem;
+    }
+
+    .gi-input {
+      background: var(--paper);
+      border: 1px solid rgba(26,16,8,.14);
+      border-radius: 1px;
+      color: var(--ink);
+      padding: .6em .9em;
+      font-family: var(--font-body);
+      font-size: .9rem;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+      width: 100%;
+    }
+
+    .gi-input:focus {
+      outline: none;
+      border-color: var(--web);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(200,0,42,.07);
+    }
+
+    .gi-input::placeholder { color: rgba(26,16,8,.28); }
+    .gi-select { appearance: none; cursor: pointer; }
+    .gi-textarea { resize: vertical; min-height: 110px; }
+
+    .gi-submit {
+      background: var(--ink);
+      border: none;
+      border-radius: 1px;
+      color: #f0e8d5;
+      font-family: var(--font-mono);
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      padding: .85em 1.8em;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background .2s, transform .2s var(--ease-web), box-shadow .2s;
+    }
+
+    .gi-submit:hover {
+      background: var(--web);
+      transform: scale(1.04);
+      box-shadow: 0 0 20px var(--web-glow);
+    }
+
+    .gi-form-fine {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      color: var(--silver);
+      letter-spacing: .07em;
+      line-height: 1.65;
+    }
+
+    /* ── CONTACT FORM ─────────────────────────────── */
+    .gi-contact-wrap { padding: 4rem 0 0; }
+
+    .gi-contact-form {
+      background: var(--ink);
+      border: 1px solid rgba(200,0,42,.18);
+      border-top: 3px solid var(--web);
+      padding: 2.4rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gi-contact-form::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg, transparent, transparent 5px,
+        rgba(255,255,255,.005) 5px, rgba(255,255,255,.005) 10px
+      );
+      pointer-events: none;
+    }
+
+    .gi-contact-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 520px) { .gi-contact-two { grid-template-columns: 1fr; } }
+
+    .gi-contact-intro {
+      font-family: var(--font-fell);
+      font-style: italic;
+      font-size: .95rem;
+      color: rgba(240,232,213,.5);
+      line-height: 1.65;
+      position: relative;
+    }
+
+    .gi-label-light { color: rgba(240,232,213,.55); }
+
+    .gi-input-dark {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.11);
+      color: #f0e8d5;
+    }
+
+    .gi-input-dark:focus {
+      background: rgba(200,0,42,.08);
+      border-color: var(--web);
+    }
+
+    .gi-input-dark::placeholder { color: rgba(255,255,255,.22); }
+
+    .gi-submit-red {
+      background: var(--web);
+      box-shadow: 0 0 16px var(--web-glow);
+    }
+
+    .gi-submit-red:hover { background: #e8001f; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    .site-footer { background: var(--ink); position: relative; overflow: hidden; }
+    .footer-web { display: block; width: 100%; height: 120px; opacity: .18; }
+    .fw { stroke: rgba(200,0,42,.55); stroke-width: 1; fill: none; }
+    .fa { fill: none; stroke: rgba(200,0,42,.4); stroke-width: .8; }
+    .footer-inner {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+      gap: 1rem; max-width: var(--max-w);
+      margin: 0 auto; padding: 1.5rem 1.5rem 2.5rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 900; color: #f0e8d5; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+    .footer-nav a { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.38); text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--web); text-decoration: none; }
+    .footer-copy { font-family: var(--font-mono); font-size: .6rem; color: rgba(240,232,213,.22); letter-spacing: .08em; }
+
+    /* ── KEYFRAMES ────────────────────────────────── */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .gi-reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .gi-reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 640px) {
+      .gi-main { padding: 0 1.1rem 4rem; }
+      .gi-form { padding: 1.8rem 1.4rem; }
+      .gi-contact-form { padding: 1.8rem 1.4rem; }
+    }
+
+  </style>
 </head>
-<body class="gi-body">
+<body>
 
-<style>
-  .sm-nav {
-    background: #0e0c0a;
-    border-bottom: 2px solid #c8002a;
-    padding: .75rem 1.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .sm-nav-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .sm-nav-brand {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1rem;
-    font-weight: 900;
-    color: #f0e8d5;
-    text-decoration: none;
-    letter-spacing: -.01em;
-    flex-shrink: 0;
-    margin-right: .5rem;
-  }
-  .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
-  .sm-nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    flex-wrap: wrap;
-  }
-  .sm-nav-link {
-    font-family: 'Source Code Pro', monospace;
-    font-size: .62rem;
-    font-weight: 600;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: rgba(240,232,213,.45);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 1px;
-    transition: color .2s, border-color .2s;
-  }
-  .sm-nav-link:hover {
-    color: #f0e8d5;
-    border-bottom-color: rgba(200,0,42,.5);
-    text-decoration: none;
-  }
-  .sm-nav-active {
-    color: #f0e8d5 !important;
-    border-bottom-color: #c8002a !important;
-  }
-</style>
-
-  <!-- get-involved.html -->
-<nav class="sm-nav">
-  <div class="sm-nav-inner">
-    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
-    <div class="sm-nav-links">
-      <a href="index.html"          class="sm-nav-link">Home</a>
-      <a href="articles.html"       class="sm-nav-link">Articles</a>
-      <a href="get-involved.html"   class="sm-nav-link sm-nav-active">Get Involved</a>
-      <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
-      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
-      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
-      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+  <!-- NAV -->
+  <nav class="sm-nav">
+    <div class="sm-nav-inner">
+      <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+      <div class="sm-nav-links">
+        <a href="index.html"            class="sm-nav-link">Home</a>
+        <a href="articles.html"         class="sm-nav-link">Articles</a>
+        <a href="get-involved.html"     class="sm-nav-link sm-nav-active">Get Involved</a>
+        <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
+        <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-    <!-- MISSION STRIP -->
-    <section class="gi-mission">
+  <!-- HERO -->
+  <header class="gi-hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="gi-hero-inner">
+      <span class="gi-eyebrow">Salem Mania · Spring–Summer 2026</span>
+      <h1 class="gi-title">Get Involved.</h1>
+      <div class="gi-hero-rule">
+        <span class="gi-hero-rule-line"></span>
+        <span class="gi-hero-rule-glyph">🕸</span>
+        <span class="gi-hero-rule-line"></span>
+      </div>
+      <p class="gi-sub">The standard belongs to the community. Not everything submitted gets published. Every piece that appears here earned its place.</p>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="gi-main">
+
+    <!-- MISSION -->
+    <section class="gi-mission gi-reveal">
       <div class="gi-mission-inner">
-        <p>Salem Mania does not publish everything submitted. Every piece that appears here has been read, considered, and chosen.</p>
+        <p>Salem Mania does not publish everything submitted. Every piece that appears here has been read, considered, and chosen by the network.</p>
       </div>
     </section>
 
-    <!-- WAYS -->
-    <section class="gi-section">
-      <div class="section-header">
-        <span class="section-rule"></span>
-        <h2 class="section-title">How to Be Part of It</h2>
-        <span class="section-rule"></span>
+    <!-- HOW TO BE PART OF IT -->
+    <section class="gi-section gi-reveal">
+      <div class="gi-sec-hdr">
+        <span class="gi-sec-line"></span>
+        <h2 class="gi-sec-title">How to Be Part of It</h2>
+        <span class="gi-sec-line rev"></span>
       </div>
-      <div class="gi-ways">
 
-        <div class="gi-way card" tabindex="0">
-          <div class="gi-way-icon" aria-hidden="true">
-            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <line x1="30" y1="30" x2="30" y2="5"  stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <line x1="30" y1="30" x2="52" y2="18" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <line x1="30" y1="30" x2="52" y2="42" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <line x1="30" y1="30" x2="30" y2="55" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <line x1="30" y1="30" x2="8"  y2="42" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <line x1="30" y1="30" x2="8"  y2="18" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <polygon points="30,10 48,17 52,36 42,50 18,50 8,36 12,17" fill="none" stroke="currentColor" stroke-width="1"/>
-              <polygon points="30,19 42,24 46,35 38,44 22,44 14,35 18,24" fill="none" stroke="currentColor" stroke-width=".7"/>
-              <circle cx="30" cy="30" r="5" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="card-tag">PITCH</div>
-          <h3 class="card-title">Submit a Piece</h3>
-          <p class="card-excerpt">Salem Mania pitches are open now. Submissions are read carefully and responded to. Not everything gets published on The Mania.</p>
-          <a href="#pitch-form" class="card-link">Submit a pitch →</a>
-        </div>
+      <div class="gi-nodes">
 
-        <div class="gi-way card" tabindex="0">
-          <div class="gi-way-icon" aria-hidden="true">
-            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="12" cy="45" r="7"  fill="none" stroke="currentColor" stroke-width="1.2"/>
-              <circle cx="48" cy="45" r="7"  fill="none" stroke="currentColor" stroke-width="1.2"/>
-              <line x1="22" y1="28" x2="15" y2="38" stroke="currentColor" stroke-width="1.2"/>
-              <line x1="38" y1="28" x2="45" y2="38" stroke="currentColor" stroke-width="1.2"/>
-              <line x1="19" y1="45" x2="41" y2="45" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2"/>
-            </svg>
-          </div>
-          <div class="card-tag">COMMUNITY</div>
-          <h3 class="card-title">Those Involved</h3>
-          <p class="card-excerpt">Meet the Network (Underway).</p>
-          <a href="those-involved.html" class="card-link">Meet the web →</a>
-        </div>
+        <a href="#pitch-form" class="gi-node">
+          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <line x1="30" y1="30" x2="30" y2="5"  stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <line x1="30" y1="30" x2="52" y2="18" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <line x1="30" y1="30" x2="52" y2="42" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <line x1="30" y1="30" x2="30" y2="55" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <line x1="30" y1="30" x2="8"  y2="42" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <line x1="30" y1="30" x2="8"  y2="18" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            <polygon points="30,10 48,17 52,36 42,50 18,50 8,36 12,17" fill="none" stroke="currentColor" stroke-width=".9"/>
+            <polygon points="30,20 42,25 45,35 37,44 23,44 15,35 18,25" fill="none" stroke="currentColor" stroke-width=".6"/>
+            <circle cx="30" cy="30" r="5" fill="currentColor"/>
+          </svg>
+          <div class="gi-node-tag">Pitch</div>
+          <div class="gi-node-title">Submit a Piece</div>
+          <p class="gi-node-desc">Pitches are open now. Submissions are read carefully and responded to. Not everything gets published on The Mania.</p>
+          <span class="gi-node-arrow">Submit a pitch →</span>
+        </a>
 
-        <div class="gi-way card" tabindex="0">
-          <div class="gi-way-icon" aria-hidden="true">
-            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 8 C17.8 8 8 17.8 8 30 C8 39.8 14.3 48.1 23.1 51 C24.2 51.2 24.6 50.5 24.6 49.9 C24.6 49.4 24.6 47.8 24.6 45.7 C18.5 47 17.2 42.9 17.2 42.9 C16.2 40.4 14.7 39.7 14.7 39.7 C12.6 38.3 14.9 38.3 14.9 38.3 C17.2 38.5 18.4 40.6 18.4 40.6 C20.5 44.2 23.9 43.1 25 42.5 C25.2 41 25.8 40 26.5 39.4 C21.6 38.8 16.4 36.9 16.4 28.3 C16.4 25.9 17.3 24 18.5 22.5 C18.3 21.9 17.5 19.7 18.8 16.8 C18.8 16.8 20.8 16.2 24.6 18.9 C26.2 18.4 27.9 18.2 29.6 18.2 C31.3 18.2 33 18.4 34.6 18.9 C38.4 16.2 40.4 16.8 40.4 16.8 C41.7 19.7 40.9 21.9 40.7 22.5 C41.9 24 42.8 25.9 42.8 28.3 C42.8 37 37.6 38.8 32.7 39.4 C33.5 40.1 34.3 41.6 34.3 43.9 C34.3 47.2 34.3 49.8 34.3 49.9 C34.3 50.5 34.7 51.2 35.8 51 C44.7 48.1 51 39.8 51 30 C51 17.8 41.2 8 30 8Z" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="card-tag">OPEN SOURCE</div>
-          <h3 class="card-title">Contribute to the Code</h3>
-          <p class="card-excerpt">Salem Mania is fully open source. We encourage those getting started to learn from it.</p>
-          <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="card-link">View on GitHub →</a>
-        </div>
+        <a href="those-involved.html" class="gi-node">
+          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="18" r="9"  fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="14" cy="44" r="6"  fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="46" cy="44" r="6"  fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <line x1="23" y1="26" x2="16" y2="38" stroke="currentColor" stroke-width="1.1"/>
+            <line x1="37" y1="26" x2="44" y2="38" stroke="currentColor" stroke-width="1.1"/>
+            <line x1="20" y1="44" x2="40" y2="44" stroke="currentColor" stroke-width=".9" stroke-dasharray="3 2"/>
+          </svg>
+          <div class="gi-node-tag">Network</div>
+          <div class="gi-node-title">Those Involved</div>
+          <p class="gi-node-desc">The Salem Mania network is invitation only. </p>
+          <span class="gi-node-arrow">Meet the web →</span>
+        </a>
 
-        <div class="gi-way card" tabindex="0">
-          <div class="gi-way-icon" aria-hidden="true">
-            <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <rect x="12" y="12" width="36" height="36" rx="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="41" cy="19" r="2.5" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="card-tag">FOLLOW</div>
-          <h3 class="card-title">Follow on Instagram</h3>
-          <p class="card-excerpt">Keep up with The Mania.</p>
-          <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="card-link">@salemmaniapublication →</a>
-        </div>
+        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="gi-node">
+          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 8C17.8 8 8 17.8 8 30c0 9.8 6.3 18.1 15.1 21 1.1.2 1.5-.5 1.5-1.1 0-.5 0-2.1 0-4.2-6.1 1.3-7.4-2.8-7.4-2.8-1-2.5-2.5-3.2-2.5-3.2-2.1-1.4.2-1.4.2-1.4 2.3.2 3.5 2.3 3.5 2.3 2.1 3.6 5.5 2.5 6.6 1.9.2-1.5.8-2.5 1.5-3.1-5-.6-10.2-2.5-10.2-11.1 0-2.4.9-4.3 2.1-5.8-.2-.6-1-2.8 1.3-5.7 0 0 2-.6 3.8 2.7 1.6-.5 3.3-.7 5-.7 1.7 0 3.4.2 5 .7 1.8-2.7 3.8-2.7 3.8-2.7 2.3 2.9 1.5 5.1 1.3 5.7 1.2 1.5 2.1 3.4 2.1 5.8 0 8.6-5.2 10.5-10.2 11.1.8.7 1.6 2.2 1.6 4.5 0 3.3 0 5.9 0 6 0 .6.4 1.3 1.5 1.1C45.7 48.1 52 39.8 52 30 52 17.8 42.2 8 30 8Z" fill="currentColor"/>
+          </svg>
+          <div class="gi-node-tag">Open Source</div>
+          <div class="gi-node-title">View the Code</div>
+          <p class="gi-node-desc">Salem Mania is fully open source. The codebase is public — learn from it, build from it.</p>
+          <span class="gi-node-arrow">View on GitHub →</span>
+        </a>
+
+        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="gi-node">
+          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="12" width="36" height="36" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="41.5" cy="18.5" r="2.5" fill="currentColor"/>
+          </svg>
+          <div class="gi-node-tag">Follow</div>
+          <div class="gi-node-title">Instagram</div>
+          <p class="gi-node-desc">Keep up with The Mania. Pitch announcements, issue releases, and the web.</p>
+          <span class="gi-node-arrow">@salemmaniapublication →</span>
+        </a>
 
       </div>
     </section>
 
-    <div class="web-divider" aria-hidden="true">
-      <svg viewBox="0 0 1200 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="25" x2="1200" y2="25" class="wd-line"/>
-        <line x1="600" y1="0" x2="600" y2="50"  class="wd-spoke"/>
-        <line x1="600" y1="25" x2="200" y2="0"  class="wd-spoke"/>
-        <line x1="600" y1="25" x2="1000" y2="0" class="wd-spoke"/>
-        <line x1="600" y1="25" x2="200" y2="50" class="wd-spoke"/>
-        <line x1="600" y1="25" x2="1000" y2="50" class="wd-spoke"/>
-        <ellipse cx="600" cy="25" rx="180" ry="20" class="wd-ring"/>
-        <ellipse cx="600" cy="25" rx="90"  ry="12" class="wd-ring"/>
-        <circle  cx="600" cy="25" r="6"            class="wd-hub"/>
-        <line x1="0"    y1="0" x2="0"    y2="50" class="wd-edge"/>
-        <line x1="1200" y1="0" x2="1200" y2="50" class="wd-edge"/>
+    <!-- ORNAMENT -->
+    <div class="gi-ornament gi-reveal">
+      <span class="gi-ornament-line"></span>
+      <svg viewBox="0 0 60 30" width="60" height="30" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:.7;">
+        <line x1="30" y1="15" x2="30" y2="0"  stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="58" y2="0"  stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="58" y2="15" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="58" y2="30" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="30" y2="30" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="2"  y2="30" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="2"  y2="15" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="2"  y2="0"  stroke="#c8002a" stroke-width="1"/>
+        <ellipse cx="30" cy="15" rx="16" ry="8" fill="none" stroke="#c8002a" stroke-width=".6"/>
+        <ellipse cx="30" cy="15" rx="8"  ry="4" fill="none" stroke="#c8002a" stroke-width=".5"/>
+        <circle cx="30" cy="15" r="3" fill="#c8002a"/>
       </svg>
+      <span class="gi-ornament-line"></span>
     </div>
 
     <!-- PITCH FORM -->
-    <section class="gi-section" id="pitch-form">
-      <div class="section-header">
-        <span class="section-rule"></span>
-        <h2 class="section-title">Submit a Pitch</h2>
-        <span class="section-rule"></span>
+    <section class="gi-section gi-reveal" id="pitch-form">
+      <div class="gi-sec-hdr">
+        <span class="gi-sec-line"></span>
+        <h2 class="gi-sec-title">Submit a Pitch</h2>
+        <span class="gi-sec-line rev"></span>
       </div>
-      <div class="gi-form-layout">
-        <div class="gi-form-info">
-          <p>Salem Mania peer reviews every pitch personally. Each article here is specifically chosen for a purpose.</p>
+
+      <div class="gi-pitch-layout">
+
+        <div class="gi-pitch-info">
+          <p class="gi-pitch-prose">Salem Mania peer reviews every pitch through the Standard Democratic Peer Review Process. No single editor has final authority. The network votes. The majority decides.</p>
+
           <ul class="gi-checklist">
-            <li><span class="hyphen">-</span> All pitches peer reviewed.</li>
-            <li><span class="hyphen">-</span> Not all pitches are accepted.</li>
-            <li><span class="hyphen">-</span> Writers published on the Mania receive feedback.</li>
-            <li><span class="hyphen">-</span> Published pieces are permanently credited.</li>
+            <li><span class="gi-check-dot"></span>All pitches peer reviewed by the network.</li>
+            <li><span class="gi-check-dot"></span>Not all pitches are accepted.</li>
+            <li><span class="gi-check-dot"></span>Published writers receive editorial feedback.</li>
+            <li><span class="gi-check-dot"></span>Published pieces are permanently credited.</li>
+            <li><span class="gi-check-dot"></span>This season caps at fifteen articles.</li>
           </ul>
-          <div class="gi-note" style="margin-bottom:1rem;">
-            <div class="card-tag">EDITORIAL STANDARD</div>
-            <p>Everything published on Salem Mania is personally reviewed and selected after consideration.</p>
+
+          <div class="gi-info-note">
+            <div class="gi-info-note-tag">Editorial Standard</div>
+            <p>Every piece answers the same question — why does this need to exist?</p>
           </div>
-          <div class="gi-note">
-            <div class="card-tag">YOUR RIGHTS</div>
-            <p>Salem Mania does not acquire ownership of your work. Publishing here grants us the right to display your piece. Read the full <a href="rights-and-stuff.html" style="color:var(--web);">Submission Terms</a> before pitching.</p>
+
+          <div class="gi-info-note">
+            <div class="gi-info-note-tag">Your Rights</div>
+            <p>Salem Mania does not acquire ownership of your work. Your copyright remains yours. Read the full <a href="rights-and-stuff.html">Submission Terms</a> before pitching.</p>
           </div>
         </div>
-        <form class="gi-form card" id="pitchForm"
-              action="https://formspree.io/f/xqeylljj"
-              method="POST">
+
+        <form class="gi-form" id="pitchForm" action="https://formspree.io/f/xqeylljj" method="POST">
           <input type="hidden" name="_subject" value="New Salem Mania Pitch" />
+
           <div class="gi-field">
             <label class="gi-label" for="pitch-name">Full Name</label>
             <input type="text" id="pitch-name" name="name" class="gi-input" placeholder="Your name" required />
           </div>
+
           <div class="gi-field">
             <label class="gi-label" for="pitch-email">Email</label>
             <input type="email" id="pitch-email" name="email" class="gi-input" placeholder="your@email.com" required />
           </div>
+
           <div class="gi-field">
             <label class="gi-label" for="pitch-section">Section</label>
             <select id="pitch-section" name="section" class="gi-input gi-select" required>
@@ -231,110 +828,89 @@
               <option>Other</option>
             </select>
           </div>
+
           <div class="gi-field">
             <label class="gi-label" for="pitch-headline">Proposed Title</label>
             <input type="text" id="pitch-headline" name="title" class="gi-input" placeholder="Working title" required />
           </div>
+
           <div class="gi-field">
-            <label class="gi-label" for="pitch-summary">The Pitch <span class="gi-hint">(what is it, why does it matter, why you)</span></label>
+            <label class="gi-label" for="pitch-summary">The Pitch <span class="gi-hint">— what is it, why does it matter, why you</span></label>
             <textarea id="pitch-summary" name="pitch" class="gi-input gi-textarea" placeholder="Make the case for your piece. What's the argument? What's the angle? Why should it exist?" rows="6" required></textarea>
           </div>
+
           <div class="gi-field">
-            <label class="gi-label" for="pitch-influence">Writers or works that influence you <span class="gi-hint">(tells us about your taste)</span></label>
-            <input type="text" id="pitch-influence" name="influences" class="gi-input" placeholder="e.g. Pauline Kael, Ta-Nehisi Coates, a specific album review…" required />
+            <label class="gi-label" for="pitch-influence">Writers or works that influence you <span class="gi-hint">— tells us about your taste</span></label>
+            <input type="text" id="pitch-influence" name="influences" class="gi-input" placeholder="e.g. Edgar Allen Poe, James Baldwin, Mary Shelley, a specific album review :)" required />
           </div>
+
           <div class="gi-field">
-            <label class="gi-label" for="pitch-clips">Previous work or portfolio <span class="gi-hint">(optional))</span></label>
+            <label class="gi-label" for="pitch-clips">Previous work or portfolio <span class="gi-hint">— optional</span></label>
             <input type="url" id="pitch-clips" name="portfolio" class="gi-input" placeholder="https://" />
           </div>
-          <p style="font-family:var(--font-mono);font-size:.65rem;color:var(--silver);letter-spacing:.08em;margin-top:.5rem;line-height:1.6;">Pitches are reviewed personally. All decisions are final. By submitting you confirm you have read the <a href="rights-and-stuff.html" style="color:var(--web);">Submission Terms</a>. Salem Mania does not acquire ownership of your work. All copyright remains yours.</p>
-          <button type="submit" class="gi-submit">SUBMIT PITCH</button>
+
+          <p class="gi-form-fine">Pitches are reviewed personally. All decisions are final. By submitting you confirm you have read the <a href="rights-and-stuff.html">Submission Terms</a>. Salem Mania does not acquire ownership of your work. All copyright remains yours.</p>
+
+          <button type="submit" class="gi-submit">Submit Pitch →</button>
         </form>
+
       </div>
     </section>
 
-    <!-- WEB DIVIDER -->
-    <div class="web-divider web-divider-flip" aria-hidden="true">
-      <svg viewBox="0 0 1200 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="25" x2="1200" y2="25" class="wd-line"/>
-        <line x1="300" y1="0" x2="300" y2="50" class="wd-spoke"/>
-        <line x1="900" y1="0" x2="900" y2="50" class="wd-spoke"/>
-        <line x1="300" y1="25" x2="0"   y2="5"  class="wd-spoke"/>
-        <line x1="300" y1="25" x2="600" y2="5"  class="wd-spoke"/>
-        <line x1="300" y1="25" x2="0"   y2="45" class="wd-spoke"/>
-        <line x1="300" y1="25" x2="600" y2="45" class="wd-spoke"/>
-        <line x1="900" y1="25" x2="600" y2="5"  class="wd-spoke"/>
-        <line x1="900" y1="25" x2="1200" y2="5" class="wd-spoke"/>
-        <line x1="900" y1="25" x2="600" y2="45" class="wd-spoke"/>
-        <line x1="900" y1="25" x2="1200" y2="45" class="wd-spoke"/>
-        <ellipse cx="300" cy="25" rx="110" ry="16" class="wd-ring"/>
-        <ellipse cx="900" cy="25" rx="110" ry="16" class="wd-ring"/>
-        <circle  cx="300" cy="25" r="5" class="wd-hub"/>
-        <circle  cx="900" cy="25" r="5" class="wd-hub"/>
+    <!-- ORNAMENT -->
+    <div class="gi-ornament gi-reveal" style="margin-top:4rem;">
+      <span class="gi-ornament-line"></span>
+      <svg viewBox="0 0 60 30" width="60" height="30" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:.7;">
+        <line x1="30" y1="15" x2="30" y2="0"  stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="58" y2="0"  stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="58" y2="15" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="58" y2="30" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="30" y2="30" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="2"  y2="30" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="2"  y2="15" stroke="#c8002a" stroke-width="1"/>
+        <line x1="30" y1="15" x2="2"  y2="0"  stroke="#c8002a" stroke-width="1"/>
+        <ellipse cx="30" cy="15" rx="16" ry="8" fill="none" stroke="#c8002a" stroke-width=".6"/>
+        <ellipse cx="30" cy="15" rx="8"  ry="4" fill="none" stroke="#c8002a" stroke-width=".5"/>
+        <circle cx="30" cy="15" r="3" fill="#c8002a"/>
       </svg>
+      <span class="gi-ornament-line"></span>
     </div>
 
-    <!-- JOIN + CONTACT -->
-    <section class="gi-section gi-two-col">
-
-      <div id="join-form">
-        <div class="section-header">
-          <span class="section-rule"></span>
-          <h2 class="section-title">Apply to the Network</h2>
-          <span class="section-rule"></span>
-        </div>
-        <form class="gi-form card" id="joinForm"
-              action="https://formspree.io/f/mnjggnor"
-              method="POST">
-          <input type="hidden" name="_subject" value="Salem Mania — Network Application" />
-          <p class="gi-form-intro">The Salem Mania network is a small network. All applications will be reviewed.</p>
-          <div class="gi-field">
-            <label class="gi-label" for="join-name">Name</label>
-            <input type="text" id="join-name" name="name" class="gi-input" placeholder="Your name" required />
-          </div>
-          <div class="gi-field">
-            <label class="gi-label" for="join-email">Email</label>
-            <input type="email" id="join-email" name="email" class="gi-input" placeholder="your@email.com" required />
-          </div>
-          <div class="gi-field">
-            <label class="gi-label" for="join-why">Why Salem Mania? <span class="gi-hint">(be specific)</span></label>
-            <textarea id="join-why" name="message" class="gi-input gi-textarea" rows="4" placeholder="What brings you to The Mania? What will you bring to the table?" required></textarea>
-          </div>
-          <button type="submit" class="gi-submit">APPLY</button>
-        </form>
+    <!-- CONTACT -->
+    <section class="gi-contact-wrap gi-reveal">
+      <div class="gi-sec-hdr">
+        <span class="gi-sec-line"></span>
+        <h2 class="gi-sec-title">Say Hello</h2>
+        <span class="gi-sec-line rev"></span>
       </div>
 
-      <div id="contact-form">
-        <div class="section-header">
-          <span class="section-rule"></span>
-          <h2 class="section-title">Say Hello</h2>
-          <span class="section-rule"></span>
-        </div>
-        <form class="gi-form card gi-form-dark" id="contactForm"
-              action="https://formspree.io/f/xjgaakpd"
-              method="POST">
-          <input type="hidden" name="_subject" value="Salem Mania — General Message" />
-          <p class="gi-form-intro" style="color:var(--silver)">Questions, ideas, feedback — all welcome.</p>
+      <form class="gi-contact-form" id="contactForm" action="https://formspree.io/f/xjgaakpd" method="POST">
+        <input type="hidden" name="_subject" value="Salem Mania — General Message" />
+        <p class="gi-contact-intro">Questions, ideas, feedback — all welcome.</p>
+
+        <div class="gi-contact-two">
           <div class="gi-field">
-            <label class="gi-label gi-label-light" for="contact-name">Name <span class="gi-hint">(optional)</span></label>
+            <label class="gi-label gi-label-light" for="contact-name">Name <span class="gi-hint" style="color:rgba(155,164,174,.45);">(optional)</span></label>
             <input type="text" id="contact-name" name="name" class="gi-input gi-input-dark" placeholder="Your name" />
           </div>
           <div class="gi-field">
             <label class="gi-label gi-label-light" for="contact-email">Email</label>
             <input type="email" id="contact-email" name="email" class="gi-input gi-input-dark" placeholder="your@email.com" required />
           </div>
-          <div class="gi-field">
-            <label class="gi-label gi-label-light" for="contact-subject">Subject</label>
-            <input type="text" id="contact-subject" name="subject" class="gi-input gi-input-dark" placeholder="What's on your mind?" required />
-          </div>
-          <div class="gi-field">
-            <label class="gi-label gi-label-light" for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" class="gi-input gi-input-dark gi-textarea" rows="5" placeholder="Say anything." required></textarea>
-          </div>
-          <button type="submit" class="gi-submit gi-submit-red">SEND MESSAGE</button>
-        </form>
-      </div>
+        </div>
 
+        <div class="gi-field">
+          <label class="gi-label gi-label-light" for="contact-subject">Subject</label>
+          <input type="text" id="contact-subject" name="subject" class="gi-input gi-input-dark" placeholder="What's on your mind?" required />
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label gi-label-light" for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" class="gi-input gi-input-dark gi-textarea" rows="5" placeholder="Say anything." required></textarea>
+        </div>
+
+        <button type="submit" class="gi-submit gi-submit-red">Send Message →</button>
+      </form>
     </section>
 
   </main>
@@ -342,24 +918,25 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="600" y1="120" x2="600" y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="0"   y2="30"  class="fw"/>
+      <line x1="600" y1="120" x2="600"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="30" class="fw"/>
       <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
-      <line x1="600" y1="120" x2="0"   y2="0"   class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="0"  class="fw"/>
       <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="300" y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="900" y2="0"   class="fw"/>
-      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55"  class="fa"/>
-      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25"  class="fa"/>
-      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5"  class="fa"/>
+      <line x1="600" y1="120" x2="300"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="900"  y2="0"  class="fw"/>
+      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55" class="fa"/>
+      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25" class="fa"/>
+      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5" class="fa"/>
     </svg>
     <div class="footer-inner">
       <span class="footer-title">Salem Mania</span>
-      <nav class="footer-nav" aria-label="Footer navigation">
+      <nav class="footer-nav">
         <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
         <a href="get-involved.html">Get Involved</a>
-        <a href="those-involved.html">Those Involved (Underway)</a>
-        <a href="rights-and-stuff.html">Terms & Conditions</a>
+        <a href="those-involved.html">Those Involved</a>
+        <a href="rights-and-stuff.html">Terms &amp; Conditions</a>
         <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
       </nav>
@@ -367,7 +944,89 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
-  <script src="get-involved.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── HERO ANIMATED WEB ───────────────────────── */
+    const canvas = document.getElementById('heroCanvas');
+    const ctx    = canvas.getContext('2d');
+    const hero   = canvas.parentElement;
+    let W, H, cx, cy, R, t = 0;
+    const SPOKES = 10;
+
+    function resize() {
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+      cx = W / 2; cy = H / 2;
+      R  = Math.max(W, H) * .68;
+    }
+
+    function drawWeb() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.005;
+
+      const RINGS = 6;
+
+      for (let i = 0; i < SPOKES; i++) {
+        const ang = (i / SPOKES) * Math.PI * 2 + t * .06;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(ang) * R, cy + Math.sin(ang) * R);
+        ctx.strokeStyle = 'rgba(200,0,42,.16)';
+        ctx.lineWidth   = .65;
+        ctx.stroke();
+      }
+
+      for (let ri = 1; ri <= RINGS; ri++) {
+        const ringR = R * (ri / RINGS);
+        const pts   = [];
+        for (let i = 0; i < SPOKES; i++) {
+          const ang = (i / SPOKES) * Math.PI * 2 + t * .06;
+          pts.push({ x: cx + Math.cos(ang) * ringR, y: cy + Math.sin(ang) * ringR });
+        }
+        for (let pi = 0; pi < pts.length; pi++) {
+          const a   = pts[pi];
+          const b   = pts[(pi + 1) % pts.length];
+          const cpx = cx + ((a.x + b.x) / 2 - cx) * .93;
+          const cpy = cy + ((a.y + b.y) / 2 - cy) * .93;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.quadraticCurveTo(cpx, cpy, b.x, b.y);
+          ctx.strokeStyle = 'rgba(200,0,42,' + (.05 + ri * .01) + ')';
+          ctx.lineWidth   = .45;
+          ctx.stroke();
+        }
+      }
+
+      const hr = 4.5 + Math.sin(t * 1.2) * .8;
+      ctx.beginPath();
+      ctx.arc(cx, cy, hr, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,0,42,.6)';
+      ctx.fill();
+
+      requestAnimationFrame(drawWeb);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(drawWeb);
+
+    /* ── SCROLL REVEAL ───────────────────────────── */
+    if ('IntersectionObserver' in window) {
+      const els = document.querySelectorAll('.gi-reveal');
+      const io  = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.gi-reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+  })();
+  </script>
+
 </body>
 </html>
