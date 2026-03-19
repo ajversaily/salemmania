@@ -1,0 +1,179 @@
+<!--
+  ════════════════════════════════════════════════════════════════
+  SALEM MANIA — SHARED NAVIGATION PATCH
+  Add the <style> block to the <head> of each page.
+  Replace or add the <nav class="sm-nav"> immediately after <body>
+  (or after any existing <header>) on every page.
+  Change sm-nav-active to highlight the current page.
+  ════════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ══ 1. ADD THIS TO <head> <style> on every page ══════════════ -->
+<style>
+  .sm-nav {
+    background: #0e0c0a;
+    border-bottom: 2px solid #c8002a;
+    padding: .75rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .sm-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .sm-nav-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #f0e8d5;
+    text-decoration: none;
+    letter-spacing: -.01em;
+    flex-shrink: 0;
+    margin-right: .5rem;
+  }
+  .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
+  .sm-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+  }
+  .sm-nav-link {
+    font-family: 'Source Code Pro', monospace;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(240,232,213,.45);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color .2s, border-color .2s;
+  }
+  .sm-nav-link:hover {
+    color: #f0e8d5;
+    border-bottom-color: rgba(200,0,42,.5);
+    text-decoration: none;
+  }
+  .sm-nav-active {
+    color: #f0e8d5 !important;
+    border-bottom-color: #c8002a !important;
+  }
+</style>
+
+
+<!-- ══ 2. NAV HTML — paste after <body> on every page ═══════════ -->
+<!--    Change sm-nav-active to match the current page            -->
+
+<!-- index.html -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"          class="sm-nav-link sm-nav-active">Home</a>
+      <a href="articles.html"       class="sm-nav-link">Articles</a>
+      <a href="get-involved.html"   class="sm-nav-link">Get Involved</a>
+      <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- articles.html -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"          class="sm-nav-link">Home</a>
+      <a href="articles.html"       class="sm-nav-link sm-nav-active">Articles</a>
+      <a href="get-involved.html"   class="sm-nav-link">Get Involved</a>
+      <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- articlesalemmania.html (article pages) -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"          class="sm-nav-link">Home</a>
+      <a href="articles.html"       class="sm-nav-link sm-nav-active">Articles</a>
+      <a href="get-involved.html"   class="sm-nav-link">Get Involved</a>
+      <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- get-involved.html -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"          class="sm-nav-link">Home</a>
+      <a href="articles.html"       class="sm-nav-link">Articles</a>
+      <a href="get-involved.html"   class="sm-nav-link sm-nav-active">Get Involved</a>
+      <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- those-involved.html -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"          class="sm-nav-link">Home</a>
+      <a href="articles.html"       class="sm-nav-link">Articles</a>
+      <a href="get-involved.html"   class="sm-nav-link">Get Involved</a>
+      <a href="those-involved.html" class="sm-nav-link sm-nav-active">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- rights-and-stuff.html -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"          class="sm-nav-link">Home</a>
+      <a href="articles.html"       class="sm-nav-link">Articles</a>
+      <a href="get-involved.html"   class="sm-nav-link">Get Involved</a>
+      <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link sm-nav-active">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+
+<!--
+  ══ WHAT TO REMOVE FROM EXISTING PAGES ════════════════════════
+  On get-involved.html, articlesalemmania.html, and rights-and-stuff.html:
+  - Delete the entire <header class="site-header">...</header> block
+  - Delete any existing <nav class="web-inline-nav"> or back-link divs
+  - The sm-nav above replaces all of it
+  The existing old header contains the masthead "Salem Mania" title
+  and the web icon nav — all replaced by sm-nav.
+  ═════════════════════════════════════════════════════════════ -->
