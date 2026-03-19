@@ -5,20 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salem Mania</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Source+Code+Pro:wght@400;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
 
-    body { margin: 0; overflow-x: hidden; }
+    :root {
+      --ink:     #0a0806;
+      --blood:   #8b0015;
+      --crimson: #c8002a;
+      --ember:   #d4420a;
+      --ash:     #2a2018;
+      --parch:   #f0e8d5;
+      --dust:    #9ba4ae;
+      --smoke:   rgba(200,0,42,.18);
+      --glow:    rgba(200,0,42,.35);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--parch);
+      font-family: 'Libre Baskerville', Georgia, serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
 
     /* ── SHARED NAV ───────────────────────────────── */
     .sm-nav {
-      background: #0e0c0a;
-      border-bottom: 2px solid #c8002a;
-      padding: .7rem 1.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      background: rgba(10,8,6,.96);
+      border-bottom: 1px solid rgba(200,0,42,.3);
+      padding: .65rem 1.5rem;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      backdrop-filter: blur(8px);
     }
+
     .sm-nav-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -27,113 +50,241 @@
       gap: 2rem;
       flex-wrap: wrap;
     }
+
     .sm-nav-brand {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 900;
-      color: #f0e8d5;
+      color: var(--parch);
       text-decoration: none;
       letter-spacing: -.01em;
       flex-shrink: 0;
-      margin-right: .4rem;
     }
-    .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
+
+    .sm-nav-brand:hover { text-decoration: none; color: var(--parch); }
+
     .sm-nav-links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+
     .sm-nav-link {
       font-family: 'Source Code Pro', monospace;
-      font-size: .6rem;
+      font-size: .58rem;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(240,232,213,.4);
+      color: rgba(240,232,213,.38);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       padding-bottom: 1px;
       transition: color .2s, border-color .2s;
     }
-    .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
-    .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
 
-    /* ── HERO ─────────────────────────────────────── */
-    .web-hero {
+    .sm-nav-link:hover { color: var(--parch); border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
+    .sm-nav-active { color: var(--parch) !important; border-bottom-color: var(--crimson) !important; }
+
+    /* ── HERO STAGE ───────────────────────────────── */
+    .stage {
       position: relative;
-      background: #0e0c0a;
-      width: 100%;
-      height: calc(100vh - 40px);
-      min-height: 480px;
-      max-height: 900px;
+      width: 100vw;
+      height: 100vh;
+      min-height: 500px;
       overflow: hidden;
-      border-bottom: 2px solid #c8002a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    /* deep night sky background */
+    .stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(60,20,10,.8) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(139,0,21,.12) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0806 0%, #12080a 50%, #0a0806 100%);
+    }
+
+    /* stars */
+    .stage::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(240,232,213,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 28% 8%,  rgba(240,232,213,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 44% 22%, rgba(240,232,213,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 6%,  rgba(240,232,213,.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 76% 15%, rgba(240,232,213,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 28%, rgba(240,232,213,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 35%, rgba(240,232,213,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 12%, rgba(240,232,213,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 42%, rgba(240,232,213,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 6%  50%, rgba(240,232,213,.2) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 36% 5%, rgba(240,232,213,.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 9%, rgba(240,232,213,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 82% 55%, rgba(240,232,213,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 16% 62%, rgba(240,232,213,.2) 0%, transparent 100%);
+      pointer-events: none;
+      animation: starFlicker 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes starFlicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .7; }
+    }
+
+    /* canvas web */
     #webCanvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       display: block;
+      touch-action: none;
     }
 
     /* ── MASTHEAD ─────────────────────────────────── */
-    .web-masthead {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 20;
+    .masthead {
+      position: relative;
+      z-index: 10;
       text-align: center;
       pointer-events: none;
       user-select: none;
-      width: 100%;
+      padding-top: 3rem;
     }
 
-    .wm-eyebrow {
+    .masthead-year {
       font-family: 'Source Code Pro', monospace;
-      font-size: .58rem;
+      font-size: .55rem;
       font-weight: 600;
-      letter-spacing: .24em;
+      letter-spacing: .3em;
       text-transform: uppercase;
-      color: #c8002a;
-      margin-bottom: .6rem;
+      color: var(--crimson);
+      opacity: .8;
       display: block;
-      opacity: 0;
-      animation: fadeUp .6s ease .2s both;
+      margin-bottom: .7rem;
+      animation: fadeIn .8s ease .3s both;
     }
 
-    .wm-title {
+    .masthead-title {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(2.8rem, 8vw, 5.5rem);
       font-weight: 900;
-      letter-spacing: -.025em;
+      letter-spacing: -.02em;
       line-height: .95;
-      color: #f0e8d5;
+      color: var(--parch);
       display: block;
-      opacity: 0;
-      animation: fadeUp .7s ease .35s both;
+      text-shadow:
+        0 0 40px rgba(200,0,42,.25),
+        0 0 80px rgba(200,0,42,.1);
+      animation: fadeIn .9s ease .4s both;
     }
 
-    .wm-rule {
-      width: 32px;
-      height: 2px;
-      background: #c8002a;
+    .masthead-rule {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
       margin: .9rem auto;
-      display: block;
-      opacity: 0;
-      animation: fadeUp .4s ease .5s both;
+      max-width: 220px;
+      animation: fadeIn .6s ease .6s both;
     }
 
-    .wm-tagline {
-      font-family: 'Libre Baskerville', Georgia, serif;
+    .masthead-rule-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(200,0,42,.6), transparent);
+    }
+
+    .masthead-glyph {
+      font-family: 'IM Fell English', Georgia, serif;
+      font-size: .8rem;
+      color: var(--crimson);
+      opacity: .8;
+    }
+
+    .masthead-sub {
+      font-family: 'IM Fell English', Georgia, serif;
       font-style: italic;
       font-size: clamp(.78rem, 1.8vw, .92rem);
-      color: rgba(155,164,174,.6);
+      color: rgba(240,232,213,.45);
       display: block;
+      animation: fadeIn .6s ease .7s both;
+    }
+
+    .masthead-hint {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(240,232,213,.22);
+      display: block;
+      margin-top: 1.4rem;
+      animation: fadeIn .5s ease 1.4s both;
+    }
+
+    @media (max-width: 580px) {
+      .masthead-hint { display: none; }
+      .masthead { padding-top: 2rem; }
+    }
+
+    /* ── TOOLTIP ──────────────────────────────────── */
+    .node-tip {
+      position: fixed;
+      z-index: 150;
+      pointer-events: none;
       opacity: 0;
-      animation: fadeUp .4s ease .65s both;
+      transform: translateY(6px);
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .node-tip.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .node-tip-inner {
+      background: rgba(10,8,6,.96);
+      border: 1px solid rgba(200,0,42,.4);
+      border-top: 2px solid var(--crimson);
+      padding: .65rem 1rem;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    /* blood drip effect */
+    .node-tip-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 6px;
+      background: var(--crimson);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .nt-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .5rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      display: block;
+      margin-bottom: .18rem;
+    }
+
+    .nt-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--parch);
+      display: block;
     }
 
     /* ── SCROLL CTA ───────────────────────────────── */
-    .web-scroll {
+    .scroll-cta {
       position: absolute;
       bottom: 1.4rem;
       left: 50%;
@@ -142,168 +293,152 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .35rem;
-      opacity: 0;
-      animation: fadeUp .5s ease 1.4s both;
+      gap: .4rem;
       text-decoration: none;
+      animation: fadeIn .6s ease 1.8s both;
     }
 
-    .ws-label {
+    .scroll-label {
       font-family: 'Source Code Pro', monospace;
-      font-size: .52rem;
+      font-size: .5rem;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(155,164,174,.35);
+      color: rgba(240,232,213,.3);
     }
 
-    .ws-line {
+    .scroll-line {
       width: 1px;
       height: 26px;
-      background: linear-gradient(to bottom, rgba(200,0,42,.55), transparent);
-      animation: linePulse 2s ease-in-out infinite;
+      background: linear-gradient(to bottom, rgba(200,0,42,.6), transparent);
+      animation: drip 2s ease-in-out infinite;
     }
 
-    @keyframes linePulse {
-      0%,100% { opacity: .45; }
-      50% { opacity: 1; }
+    @keyframes drip {
+      0% { transform: scaleY(1); transform-origin: top; opacity: .5; }
+      50% { transform: scaleY(1.2); opacity: 1; }
+      100% { transform: scaleY(1); opacity: .5; }
     }
 
-    /* ── NODE TOOLTIP ─────────────────────────────── */
-    .web-tip {
+    /* ── CORNER DATES ─────────────────────────────── */
+    .corner-tag {
       position: absolute;
-      z-index: 30;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity .15s ease, transform .15s ease;
-      background: rgba(10,9,8,.95);
-      border: 1px solid rgba(200,0,42,.3);
-      border-radius: 2px;
-      padding: .55rem .9rem;
-      white-space: nowrap;
-    }
-
-    .web-tip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .wt-tag {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .52rem;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: #c8002a;
-      margin-bottom: .18rem;
-      display: block;
-    }
-
-    .wt-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: .92rem;
-      font-weight: 700;
-      color: #f0e8d5;
-      display: block;
-    }
-
-    /* ── SEASON CORNER ────────────────────────────── */
-    .web-season {
-      position: absolute;
-      bottom: 1.4rem;
-      right: 1.6rem;
       z-index: 20;
-      text-align: right;
       pointer-events: none;
-      opacity: 0;
-      animation: fadeUp .5s ease 1s both;
+      animation: fadeIn .6s ease .8s both;
     }
 
-    .web-season span {
+    .corner-tag.br {
+      bottom: 1.4rem;
+      right: 1.5rem;
+      text-align: right;
+    }
+
+    .corner-tag.bl {
+      bottom: 1.4rem;
+      left: 1.5rem;
+    }
+
+    .corner-tag span {
       display: block;
-      font-family: 'Source Code Pro', monospace;
-      font-size: .52rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .ws-s { color: #c8002a; margin-bottom: .12rem; }
-    .ws-i { color: rgba(155,164,174,.35); }
-
-    /* ── MOBILE NAV ───────────────────────────────── */
-    .mobile-web-nav {
-      display: none;
-      background: #0e0c0a;
-      border-bottom: 2px solid #c8002a;
-      padding: 1.6rem 1.4rem 1.8rem;
-    }
-
-    @media (max-width: 580px) {
-      .web-hero { height: 50vh; min-height: 320px; }
-      .mobile-web-nav { display: block; }
-      .wm-title { font-size: clamp(2.4rem, 11vw, 3.2rem); }
-    }
-
-    .mwn-label {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .56rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(155,164,174,.4);
-      margin-bottom: .9rem;
-    }
-
-    .mwn-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .6rem;
-    }
-
-    .mwn-link {
-      display: flex;
-      flex-direction: column;
-      gap: .18rem;
-      padding: .85rem .9rem;
-      background: rgba(200,0,42,.05);
-      border: 1px solid rgba(200,0,42,.18);
-      border-radius: 2px;
-      text-decoration: none;
-      transition: background .2s, border-color .2s;
-    }
-
-    .mwn-link:hover {
-      background: rgba(200,0,42,.1);
-      border-color: rgba(200,0,42,.4);
-      text-decoration: none;
-    }
-
-    .mwn-tag {
       font-family: 'Source Code Pro', monospace;
       font-size: .5rem;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: #c8002a;
     }
 
-    .mwn-name {
+    .ct-red { color: var(--crimson); margin-bottom: .1rem; opacity: .8; }
+    .ct-dim { color: rgba(240,232,213,.25); }
+
+    /* ── MOBILE NAV ───────────────────────────────── */
+    .mobile-nav {
+      display: none;
+      background: var(--ash);
+      border-bottom: 2px solid rgba(200,0,42,.4);
+      padding: 1.6rem 1.4rem 1.8rem;
+    }
+
+    @media (max-width: 580px) {
+      .stage { height: 55vh; min-height: 340px; }
+      .mobile-nav { display: block; }
+    }
+
+    .mobile-nav-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .56rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(240,232,213,.35);
+      margin-bottom: .9rem;
+    }
+
+    .mobile-nav-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+      padding: .9rem 1rem;
+      background: rgba(200,0,42,.06);
+      border: 1px solid rgba(200,0,42,.2);
+      border-radius: 1px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mobile-nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--crimson);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s ease;
+    }
+
+    .mobile-nav-link:hover { background: rgba(200,0,42,.12); border-color: rgba(200,0,42,.45); text-decoration: none; }
+    .mobile-nav-link:hover::before { transform: scaleX(1); }
+
+    .mnl-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .5rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--crimson);
+    }
+
+    .mnl-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: .88rem;
+      font-size: .9rem;
       font-weight: 700;
-      color: #f0e8d5;
+      color: var(--parch);
       line-height: 1.2;
     }
 
     /* ── BELOW FOLD ───────────────────────────────── */
-    .sm-below { background: var(--paper); }
+    .below {
+      background: #f0e8d5;
+      color: #1a1208;
+    }
 
-    .season-band { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    .season-band {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
     .season-inner {
-      border-top: 1px solid var(--cream);
-      border-bottom: 1px solid var(--cream);
+      border-top: 1px solid #d4c4a0;
+      border-bottom: 1px solid #d4c4a0;
       padding: .85rem 0;
       display: flex;
       align-items: center;
@@ -313,26 +448,26 @@
     }
 
     .season-label {
-      font-family: var(--font-mono);
+      font-family: 'Source Code Pro', monospace;
       font-size: .58rem;
       font-weight: 600;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--web);
+      color: var(--crimson);
     }
 
     .season-meta {
-      font-family: var(--font-mono);
+      font-family: 'Source Code Pro', monospace;
       font-size: .58rem;
       letter-spacing: .1em;
-      color: var(--silver);
+      color: #7a6e5a;
       display: flex;
       gap: 1.1rem;
       flex-wrap: wrap;
     }
 
     .articles-section {
-      max-width: var(--max-w);
+      max-width: 1100px;
       margin: 0 auto;
       padding: 3.5rem 1.5rem 1rem;
     }
@@ -345,8 +480,8 @@
 
     @media (max-width: 580px) { .cards-row { grid-template-columns: 1fr; } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -354,7 +489,7 @@
 </head>
 <body>
 
-  <!-- ── SHARED NAV ─────────────────────────────── -->
+  <!-- NAV -->
   <nav class="sm-nav">
     <div class="sm-nav-inner">
       <a href="index.html" class="sm-nav-brand">Salem Mania</a>
@@ -364,68 +499,80 @@
         <a href="get-involved.html"     class="sm-nav-link">Get Involved</a>
         <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
         <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
-        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
-        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+        <a href="https://github.com/ajversaily/salemmania"                      target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+        <a href="https://www.instagram.com/salemmaniapublication/"              target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
       </div>
     </div>
   </nav>
 
-  <!-- ── WEB HERO ───────────────────────────────── -->
-  <section class="web-hero" id="webHero">
+  <!-- STAGE / WEB HERO -->
+  <section class="stage" id="stage">
     <canvas id="webCanvas"></canvas>
 
-    <!-- Centered masthead -->
-    <div class="web-masthead">
-      <span class="wm-eyebrow">Est. Ohio · March 12, 2026</span>
-      <span class="wm-title">Salem<br>Mania</span>
-      <span class="wm-rule"></span>
-      <span class="wm-tagline">For the culture. By the culture.</span>
+    <!-- Masthead -->
+    <div class="masthead">
+      <span class="masthead-year">Est. Ohio · March XII · MMXXVI</span>
+      <span class="masthead-title">Salem<br>Mania</span>
+      <div class="masthead-rule">
+        <span class="masthead-rule-line"></span>
+        <span class="masthead-glyph">✦</span>
+        <span class="masthead-rule-line"></span>
+      </div>
+      <span class="masthead-sub">For the culture. By the culture.</span>
+      <span class="masthead-hint">Touch the web to navigate</span>
     </div>
 
     <!-- Tooltip -->
-    <div class="web-tip" id="webTip">
-      <span class="wt-tag" id="tipTag"></span>
-      <span class="wt-name" id="tipName"></span>
+    <div class="node-tip" id="nodeTip">
+      <div class="node-tip-inner">
+        <span class="nt-tag" id="tipTag"></span>
+        <span class="nt-name" id="tipName"></span>
+      </div>
     </div>
 
-    <!-- Season corner -->
-    <div class="web-season">
-      <span class="ws-s">Spring–Summer 2026</span>
-      <span class="ws-i">Issue No. 1 · Pitch Open</span>
+    <!-- Corner tags -->
+    <div class="corner-tag br">
+      <span class="ct-red">Spring–Summer 2026</span>
+      <span class="ct-dim">Issue No. 1 · Pitch Open</span>
     </div>
 
-    <!-- Scroll cue -->
-    <a class="web-scroll" href="#below">
-      <span class="ws-label">Scroll</span>
-      <span class="ws-line"></span>
+    <div class="corner-tag bl">
+      <span class="ct-red">Salem, Ohio</span>
+      <span class="ct-dim">The Mania Begins.</span>
+    </div>
+
+    <!-- Scroll -->
+    <a class="scroll-cta" href="#below">
+      <span class="scroll-label">Scroll</span>
+      <span class="scroll-line"></span>
     </a>
   </section>
 
-  <!-- ── MOBILE NAV (580px and below) ───────────── -->
-  <nav class="mobile-web-nav">
-    <div class="mwn-label">Navigate The Mania</div>
-    <div class="mwn-grid">
-      <a href="articles.html" class="mwn-link">
-        <span class="mwn-tag">Read</span>
-        <span class="mwn-name">Articles</span>
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-label">Navigate The Mania</div>
+    <div class="mobile-nav-grid">
+      <a href="articles.html" class="mobile-nav-link">
+        <span class="mnl-tag">Read</span>
+        <span class="mnl-name">Articles</span>
       </a>
-      <a href="get-involved.html" class="mwn-link">
-        <span class="mwn-tag">Pitch Open</span>
-        <span class="mwn-name">Get Involved</span>
+      <a href="get-involved.html" class="mobile-nav-link">
+        <span class="mnl-tag">Pitch Open</span>
+        <span class="mnl-name">Get Involved</span>
       </a>
-      <a href="articlesalemmania.html" class="mwn-link">
-        <span class="mwn-tag">Issue No. 1</span>
-        <span class="mwn-name">The Mania Begins.</span>
+      <a href="articlesalemmania.html" class="mobile-nav-link">
+        <span class="mnl-tag">Issue No. 1</span>
+        <span class="mnl-name">The Mania Begins.</span>
       </a>
-      <a href="those-involved.html" class="mwn-link">
-        <span class="mwn-tag">Network</span>
-        <span class="mwn-name">Those Involved</span>
+      <a href="those-involved.html" class="mobile-nav-link">
+        <span class="mnl-tag">Network</span>
+        <span class="mnl-name">Those Involved</span>
       </a>
     </div>
   </nav>
 
-  <!-- ── BELOW FOLD ─────────────────────────────── -->
-  <div class="sm-below" id="below">
+  <!-- BELOW FOLD -->
+  <div class="below" id="below">
 
     <div class="season-band" style="padding-top:2.5rem;">
       <div class="season-inner">
@@ -461,7 +608,7 @@
       </div>
     </section>
 
-    <section class="subscribe-band" id="subscribe" style="max-width:var(--max-w);margin:2.5rem auto 0;border-radius:4px;">
+    <section class="subscribe-band" id="subscribe" style="max-width:1100px;margin:2.5rem auto 0;border-radius:3px;">
       <div class="sub-web" aria-hidden="true">
         <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
           <line x1="200" y1="100" x2="200" y2="0"   class="sw"/>
@@ -484,7 +631,7 @@
         <form class="sub-form" action="https://formspree.io/f/mreyybor" method="POST">
           <input type="hidden" name="_subject" value="Salem Mania — New Subscriber" />
           <input type="email" name="email" placeholder="your@email.com" class="sub-input" aria-label="Email address" required />
-          <button type="submit" class="sub-btn">SUBSCRIBE</button>
+          <button type="submit" class="sub-btn">Subscribe</button>
         </form>
       </div>
     </section>
@@ -523,31 +670,34 @@
   (function () {
     'use strict';
 
-    const canvas = document.getElementById('webCanvas');
-    const ctx    = canvas.getContext('2d');
-    const hero   = document.getElementById('webHero');
-    const tip    = document.getElementById('webTip');
+    const canvas  = document.getElementById('webCanvas');
+    const ctx     = canvas.getContext('2d');
+    const stage   = document.getElementById('stage');
+    const tip     = document.getElementById('nodeTip');
 
-    /* ── 6 CLEAN NODES, evenly spaced ────────────── */
+    /* ── NODES ───────────────────────────────────── */
     const NODES = [
-      { tag: 'Read',       name: 'Articles',          href: 'articles.html',                                            a: -90,  r: .62, R: 7,   pulse: true  },
-      { tag: 'Issue No.1', name: 'The Mania Begins.', href: 'articlesalemmania.html',                                   a: -30,  r: .52, R: 5.5, pulse: false },
-      { tag: 'Pitch Open', name: 'Get Involved',      href: 'get-involved.html',                                        a:  30,  r: .62, R: 7,   pulse: true  },
-      { tag: 'Network',    name: 'Those Involved',    href: 'those-involved.html',                                      a:  90,  r: .54, R: 5.5, pulse: false },
-      { tag: 'Follow',     name: 'Instagram',         href: 'https://www.instagram.com/salemmaniapublication/',         a:  150, r: .56, R: 5,   pulse: false },
-      { tag: 'Open Source',name: 'GitHub',            href: 'https://github.com/ajversaily/salemmania',                 a: -150, r: .56, R: 5,   pulse: false }
+      { tag: 'Read',       name: 'Articles',          href: 'articles.html',                                              a: -90,  r: .60, R: 8,   pulse: true  },
+      { tag: 'Issue No.1', name: 'The Mania Begins.', href: 'articlesalemmania.html',                                     a: -30,  r: .50, R: 6,   pulse: false },
+      { tag: 'Pitch Open', name: 'Get Involved',      href: 'get-involved.html',                                          a:  30,  r: .60, R: 8,   pulse: true  },
+      { tag: 'Network',    name: 'Those Involved',    href: 'those-involved.html',                                        a:  90,  r: .52, R: 6,   pulse: false },
+      { tag: 'Follow',     name: 'Instagram',         href: 'https://www.instagram.com/salemmaniapublication/',           a:  150, r: .56, R: 5.5, pulse: false },
+      { tag: 'Open Source',name: 'GitHub',            href: 'https://github.com/ajversaily/salemmania',                   a: -150, r: .56, R: 5.5, pulse: false }
     ];
 
+    /* ── STATE ───────────────────────────────────── */
     let W, H, cx, cy, R;
-    let mouse  = { x: -9999, y: -9999 };
+    let mouse   = { x: -9999, y: -9999 };
+    let touch   = false;
     let hovered = null;
     let t = 0;
 
+    /* ── RESIZE ──────────────────────────────────── */
     function rad(deg) { return (deg - 90) * Math.PI / 180; }
 
     function resize() {
-      W = canvas.width  = hero.offsetWidth;
-      H = canvas.height = hero.offsetHeight;
+      W = canvas.width  = stage.offsetWidth;
+      H = canvas.height = stage.offsetHeight;
       cx = W / 2;
       cy = H / 2;
       R  = Math.min(W, H) * .38;
@@ -557,54 +707,88 @@
       });
     }
 
+    /* ── RING INTERSECTION POINTS ────────────────── */
+    function ringPts(ringR) {
+      const pts = [];
+      NODES.forEach(function (n) {
+        const len = Math.hypot(n.x - cx, n.y - cy);
+        if (ringR <= len) {
+          const f = ringR / len;
+          pts.push({
+            x: cx + (n.x - cx) * f,
+            y: cy + (n.y - cy) * f,
+            a: Math.atan2(n.y - cy, n.x - cx)
+          });
+        }
+      });
+      pts.sort(function (a, b) { return a.a - b.a; });
+      return pts;
+    }
+
+    function prox(nx, ny) {
+      return Math.max(0, 1 - Math.hypot(mouse.x - nx, mouse.y - ny) / (R * .68));
+    }
+
     /* ── DRAW ────────────────────────────────────── */
     function draw() {
       ctx.clearRect(0, 0, W, H);
       t += 0.009;
 
+      /* hover detection */
       hovered = null;
       NODES.forEach(function (n) {
-        if (Math.hypot(mouse.x - n.x, mouse.y - n.y) < 44) hovered = n;
+        if (Math.hypot(mouse.x - n.x, mouse.y - n.y) < 46) hovered = n;
       });
 
-      const RINGS = 5;
+      const RINGS = 6;
+
+      /* ── BLOOD GLOW BEHIND HOVERED NODE ── */
+      if (hovered) {
+        const grd = ctx.createRadialGradient(hovered.x, hovered.y, 0, hovered.x, hovered.y, 60);
+        grd.addColorStop(0, 'rgba(139,0,21,.18)');
+        grd.addColorStop(1, 'transparent');
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(hovered.x, hovered.y, 60, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
       /* ── SPOKES ──────────────────────────────── */
       NODES.forEach(function (n) {
         const isHov = hovered === n;
-        const p     = Math.max(0, 1 - Math.hypot(mouse.x - n.x, mouse.y - n.y) / (R * .7));
+        const p     = prox(n.x, n.y);
         const ang   = Math.atan2(n.y - cy, n.x - cx);
         const far   = Math.max(W, H) * 1.4;
 
+        /* main spoke */
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(cx + Math.cos(ang) * far, cy + Math.sin(ang) * far);
-        ctx.strokeStyle = isHov
-          ? 'rgba(200,0,42,.8)'
-          : 'rgba(200,0,42,' + (.16 + p * .32) + ')';
-        ctx.lineWidth = isHov ? 1.2 : .85;
+
+        if (isHov) {
+          ctx.strokeStyle = 'rgba(200,0,42,.9)';
+          ctx.lineWidth   = 1.3;
+        } else {
+          ctx.strokeStyle = 'rgba(200,0,42,' + (.15 + p * .38) + ')';
+          ctx.lineWidth   = .9;
+        }
         ctx.stroke();
+
+        /* ember shimmer on hover */
+        if (isHov) {
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + Math.cos(ang) * far * .5, cy + Math.sin(ang) * far * .5);
+          ctx.strokeStyle = 'rgba(212,66,10,' + (.3 + Math.sin(t * 3) * .2) + ')';
+          ctx.lineWidth   = .4;
+          ctx.stroke();
+        }
       });
 
       /* ── RING THREADS ────────────────────────── */
       for (let ri = 1; ri <= RINGS; ri++) {
         const ringR = R * (ri / RINGS) * 1.1;
-
-        /* get intersection point on each spoke */
-        const pts = [];
-        NODES.forEach(function (n) {
-          const len = Math.hypot(n.x - cx, n.y - cy);
-          if (ringR <= len) {
-            const f = ringR / len;
-            pts.push({
-              x:   cx + (n.x - cx) * f,
-              y:   cy + (n.y - cy) * f,
-              ang: Math.atan2(n.y - cy, n.x - cx)
-            });
-          }
-        });
-
-        pts.sort(function (a, b) { return a.ang - b.ang; });
+        const pts   = ringPts(ringR);
         if (pts.length < 2) continue;
 
         for (let pi = 0; pi < pts.length; pi++) {
@@ -614,105 +798,145 @@
           const pb = Math.max(0, 1 - Math.hypot(mouse.x - b.x, mouse.y - b.y) / (R * .65));
           const p  = Math.max(pa, pb);
 
-          /* inward sag */
+          /* inward sag — authentic web */
           const mx  = (a.x + b.x) / 2;
           const my  = (a.y + b.y) / 2;
-          const sag = .935;
-          const cpx = cx + (mx - cx) * sag;
-          const cpy = cy + (my - cy) * sag;
+          const cpx = cx + (mx - cx) * .935;
+          const cpy = cy + (my - cy) * .935;
 
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.quadraticCurveTo(cpx, cpy, b.x, b.y);
-          ctx.strokeStyle = 'rgba(200,0,42,' + (.09 + p * .22 + ri * .01) + ')';
-          ctx.lineWidth   = .55 + p * .5;
+
+          /* outer rings slightly more ember-toned when lit */
+          const baseAlpha = .09 + ri * .012;
+          const litAlpha  = p * .25;
+          ctx.strokeStyle = 'rgba(200,0,42,' + (baseAlpha + litAlpha) + ')';
+          ctx.lineWidth   = .55 + p * .55;
           ctx.stroke();
         }
       }
 
-      /* ── CURSOR THREAD ───────────────────────── */
-      if (mouse.x > 0) {
+      /* ── CURSOR THREADS ──────────────────────── */
+      if (mouse.x > 0 && mouse.x < W) {
         NODES.forEach(function (n) {
           const d = Math.hypot(mouse.x - n.x, mouse.y - n.y);
           if (d < R * .75) {
+            const a = (1 - d / (R * .75)) * .16;
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(n.x, n.y);
-            ctx.strokeStyle = 'rgba(200,0,42,' + ((1 - d / (R * .75)) * .16) + ')';
+            ctx.strokeStyle = 'rgba(200,0,42,' + a + ')';
             ctx.lineWidth   = .65;
             ctx.stroke();
           }
         });
       }
 
-      /* ── NODES ───────────────────────────────── */
+      /* ── NODE DOTS ───────────────────────────── */
       NODES.forEach(function (n, i) {
-        const isHov = hovered === n;
-        const pulse = n.pulse ? .88 + Math.sin(t * 1.6 + i) * .12 : 1;
-        const r     = (isHov ? n.R * 1.7 : n.R) * pulse;
+        const isHov  = hovered === n;
+        const pulse  = n.pulse ? .88 + Math.sin(t * 1.6 + i) * .12 : 1;
+        const r      = (isHov ? n.R * 1.8 : n.R) * pulse;
 
         if (isHov) {
-          [28, 18, 11].forEach(function (gr, gi) {
+          /* multi-ring blood glow */
+          [32, 22, 14].forEach(function (gr, gi) {
             ctx.beginPath();
             ctx.arc(n.x, n.y, gr, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(200,0,42,' + (.04 + gi * .05) + ')';
+            ctx.fillStyle = 'rgba(139,0,21,' + (.04 + gi * .06) + ')';
             ctx.fill();
           });
         }
 
+        /* outer ring — parchment tinted */
         ctx.beginPath();
-        ctx.arc(n.x, n.y, r + 3.5, 0, Math.PI * 2);
-        ctx.strokeStyle = isHov ? 'rgba(200,0,42,.9)' : 'rgba(200,0,42,.28)';
-        ctx.lineWidth   = isHov ? 1.1 : .65;
+        ctx.arc(n.x, n.y, r + 4.5, 0, Math.PI * 2);
+        ctx.strokeStyle = isHov
+          ? 'rgba(200,0,42,1)'
+          : 'rgba(200,0,42,' + (.22 + prox(n.x, n.y) * .3) + ')';
+        ctx.lineWidth = isHov ? 1.3 : .7;
         ctx.stroke();
 
+        /* inner dot */
         ctx.beginPath();
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = isHov ? '#c8002a' : 'rgba(200,0,42,.72)';
+        ctx.fillStyle = isHov
+          ? '#c8002a'
+          : 'rgba(180,10,30,' + (.7 + prox(n.x, n.y) * .3) + ')';
         ctx.fill();
+
+        /* ember core on hover */
+        if (isHov) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, r * .45, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(240,180,100,' + (.4 + Math.sin(t * 4) * .2) + ')';
+          ctx.fill();
+        }
       });
 
       /* ── HUB ─────────────────────────────────── */
-      const hp = Math.max(0, 1 - Math.hypot(mouse.x - cx, mouse.y - cy) / (R * .4));
-      const hr = 6.5 + Math.sin(t) * 1.2 + hp * 2;
+      const hubP = Math.max(0, 1 - Math.hypot(mouse.x - cx, mouse.y - cy) / (R * .4));
+      const hubR = 7 + Math.sin(t * .9) * 1.4 + hubP * 3;
 
+      /* outer blood ring */
       ctx.beginPath();
-      ctx.arc(cx, cy, hr + 8, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,0,42,' + (.06 + hp * .07) + ')';
+      ctx.arc(cx, cy, hubR + 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(139,0,21,' + (.07 + hubP * .08) + ')';
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(cx, cy, hr, 0, Math.PI * 2);
-      ctx.fillStyle = '#c8002a';
+      ctx.arc(cx, cy, hubR + 5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,0,42,' + (.12 + hubP * .1) + ')';
+      ctx.fill();
+
+      /* hub core */
+      ctx.beginPath();
+      ctx.arc(cx, cy, hubR, 0, Math.PI * 2);
+      ctx.fillStyle = '#8b0015';
+      ctx.fill();
+
+      /* ember inner */
+      ctx.beginPath();
+      ctx.arc(cx, cy, hubR * .5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212,66,10,' + (.5 + Math.sin(t * 2) * .3) + ')';
       ctx.fill();
 
       /* ── TOOLTIP ─────────────────────────────── */
-      if (hovered) {
-        document.getElementById('tipTag').textContent  = hovered.tag;
-        document.getElementById('tipName').textContent = hovered.name;
-        tip.classList.add('show');
-
-        const tw = tip.offsetWidth;
-        const th = tip.offsetHeight;
-        let tx   = hovered.x - tw / 2;
-        let ty   = hovered.y - th - 24;
-
-        if (ty < 8)          ty = hovered.y + 22;
-        if (tx < 8)          tx = 8;
-        if (tx + tw > W - 8) tx = W - tw - 8;
-
-        tip.style.left = tx + 'px';
-        tip.style.top  = ty + 'px';
-      } else {
-        tip.classList.remove('show');
-      }
+      renderTip();
 
       canvas.style.cursor = hovered ? 'pointer' : 'default';
       requestAnimationFrame(draw);
     }
 
+    /* ── TIP POSITIONING ─────────────────────────── */
+    function renderTip() {
+      if (!hovered) {
+        tip.classList.remove('show');
+        return;
+      }
+
+      document.getElementById('tipTag').textContent  = hovered.tag;
+      document.getElementById('tipName').textContent = hovered.name;
+      tip.classList.add('show');
+
+      const rect = canvas.getBoundingClientRect();
+      const tw   = tip.offsetWidth;
+      const th   = tip.offsetHeight;
+      let tx     = rect.left + hovered.x - tw / 2;
+      let ty     = rect.top  + hovered.y - th - 28;
+
+      if (ty < 60)                    ty = rect.top + hovered.y + 24;
+      if (tx < 8)                     tx = 8;
+      if (tx + tw > window.innerWidth - 8) tx = window.innerWidth - tw - 8;
+
+      tip.style.left = tx + 'px';
+      tip.style.top  = ty + 'px';
+    }
+
     /* ── EVENTS ──────────────────────────────────── */
     canvas.addEventListener('mousemove', function (e) {
+      touch = false;
       const r = canvas.getBoundingClientRect();
       mouse.x = e.clientX - r.left;
       mouse.y = e.clientY - r.top;
@@ -729,26 +953,46 @@
         : (window.location.href = hovered.href);
     });
 
+    /* touch — tap to preview, second tap to navigate */
     canvas.addEventListener('touchstart', function (e) {
       e.preventDefault();
-      const r = canvas.getBoundingClientRect();
-      mouse.x = e.touches[0].clientX - r.left;
-      mouse.y = e.touches[0].clientY - r.top;
+      touch = true;
+      const r  = canvas.getBoundingClientRect();
+      const t0 = e.touches[0];
+      mouse.x  = t0.clientX - r.left;
+      mouse.y  = t0.clientY - r.top;
+
+      /* find hovered immediately */
+      let found = null;
+      NODES.forEach(function (n) {
+        if (Math.hypot(mouse.x - n.x, mouse.y - n.y) < 52) found = n;
+      });
+
+      if (found && hovered === found) {
+        /* second tap — navigate */
+        found.href.startsWith('http')
+          ? window.open(found.href, '_blank', 'noopener')
+          : (window.location.href = found.href);
+      }
     }, { passive: false });
 
     canvas.addEventListener('touchend', function (e) {
       e.preventDefault();
-      if (hovered) {
-        hovered.href.startsWith('http')
-          ? window.open(hovered.href, '_blank', 'noopener')
-          : (window.location.href = hovered.href);
-      }
-      mouse.x = mouse.y = -9999;
+      /* keep tooltip visible briefly */
+      setTimeout(function () {
+        mouse.x = mouse.y = -9999;
+      }, 1800);
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      const r  = canvas.getBoundingClientRect();
+      const t0 = e.touches[0];
+      mouse.x  = t0.clientX - r.left;
+      mouse.y  = t0.clientY - r.top;
     }, { passive: false });
 
     window.addEventListener('resize', resize);
-    resize();
-    requestAnimationFrame(draw);
 
     /* ── SCROLL REVEAL ───────────────────────────── */
     if ('IntersectionObserver' in window) {
@@ -771,24 +1015,28 @@
     }
 
     /* subscribe form */
-    const form  = document.querySelector('.sub-form');
-    const input = document.querySelector('.sub-input');
-    const btn   = document.querySelector('.sub-btn');
+    var form  = document.querySelector('.sub-form');
+    var input = document.querySelector('.sub-input');
+    var btn   = document.querySelector('.sub-btn');
     if (form && input && btn) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (!input.value.trim().includes('@')) {
-          input.style.borderColor = '#e8001f';
+          input.style.borderColor = '#c8002a';
           input.focus();
           return;
         }
-        btn.textContent = 'CAUGHT! ✓';
+        btn.textContent = 'Caught ✓';
         btn.style.background = '#1a7a3a';
         input.value = '';
         input.disabled = btn.disabled = true;
       });
       input.addEventListener('input', function () { input.style.borderColor = ''; });
     }
+
+    /* ── INIT ────────────────────────────────────── */
+    resize();
+    requestAnimationFrame(draw);
 
   })();
   </script>
