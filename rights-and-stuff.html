@@ -251,9 +251,63 @@
     }
     .terms-back:hover { color: var(--web); text-decoration: none; }
 
-  <!-- HEADER -->
-    </style>
-</head>
+<style>
+  .sm-nav {
+    background: #0e0c0a;
+    border-bottom: 2px solid #c8002a;
+    padding: .75rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .sm-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .sm-nav-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #f0e8d5;
+    text-decoration: none;
+    letter-spacing: -.01em;
+    flex-shrink: 0;
+    margin-right: .5rem;
+  }
+  .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
+  .sm-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+  }
+  .sm-nav-link {
+    font-family: 'Source Code Pro', monospace;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(240,232,213,.45);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color .2s, border-color .2s;
+  }
+  .sm-nav-link:hover {
+    color: #f0e8d5;
+    border-bottom-color: rgba(200,0,42,.5);
+    text-decoration: none;
+  }
+  .sm-nav-active {
+    color: #f0e8d5 !important;
+    border-bottom-color: #c8002a !important;
+  }
+</style>
+
   <nav class="sm-nav">
   <div class="sm-nav-inner">
     <a href="index.html" class="sm-nav-brand">Salem Mania</a>
