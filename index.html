@@ -10,187 +10,11 @@
 
     body { margin: 0; overflow-x: hidden; }
 
-    /* ── HERO ─────────────────────────────────────── */
-    .web-hero {
-      position: relative;
-      background: #0e0c0a;
-      width: 100vw;
-      height: 100vh;
-      min-height: 560px;
-      overflow: hidden;
-      border-bottom: 2px solid #c8002a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #webCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    /* ── MASTHEAD ─────────────────────────────────── */
-    .web-masthead {
-      position: relative;
-      z-index: 20;
-      text-align: center;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .web-masthead-eyebrow {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .26em;
-      text-transform: uppercase;
-      color: #c8002a;
-      margin-bottom: .7rem;
-      opacity: 0;
-      animation: fadeUp .6s ease .2s both;
-    }
-
-    .web-masthead-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(3rem, 9vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -.025em;
-      line-height: .95;
-      color: #f5f0e8;
-      opacity: 0;
-      animation: fadeUp .7s ease .35s both;
-    }
-
-    .web-masthead-rule {
-      width: 36px;
-      height: 2px;
-      background: #c8002a;
-      margin: 1rem auto;
-      opacity: 0;
-      animation: fadeUp .4s ease .55s both;
-    }
-
-    .web-masthead-sub {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(155,164,174,.5);
-      opacity: 0;
-      animation: fadeUp .4s ease .7s both;
-    }
-
-    /* ── SCROLL CTA ───────────────────────────────── */
-    .web-scroll {
-      position: absolute;
-      bottom: 1.6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .4rem;
-      opacity: 0;
-      animation: fadeUp .5s ease 1.6s both;
-      text-decoration: none;
-    }
-
-    .web-scroll-label {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .55rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(155,164,174,.4);
-    }
-
-    .web-scroll-line {
-      width: 1px;
-      height: 28px;
-      background: linear-gradient(to bottom, rgba(200,0,42,.6), transparent);
-      animation: scrollBob 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollBob {
-      0%,100% { opacity: .5; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.2); }
-    }
-
-    /* ── NODE LABELS ──────────────────────────────── */
-    .web-node-label {
-      position: absolute;
-      z-index: 25;
-      text-align: center;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-
-    .web-node-label.show { opacity: 1; }
-
-    .wnl-tag {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .52rem;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: #c8002a;
-      margin-bottom: .18rem;
-      white-space: nowrap;
-      display: block;
-    }
-
-    .wnl-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(.78rem, 1.6vw, .98rem);
-      font-weight: 700;
-      color: #f5f0e8;
-      white-space: nowrap;
-      line-height: 1.2;
-      display: block;
-    }
-
-    /* ── SEASON CORNER ────────────────────────────── */
-    .web-corner-tag {
-      position: absolute;
-      top: 1.6rem;
-      right: 1.6rem;
-      z-index: 20;
-      text-align: right;
-      pointer-events: none;
-      opacity: 0;
-      animation: fadeUp .5s ease .5s both;
-    }
-
-    .web-corner-tag span {
-      display: block;
-      font-family: 'Source Code Pro', monospace;
-      font-size: .55rem;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .ct-season { color: #c8002a; margin-bottom: .15rem; }
-    .ct-issue  { color: rgba(155,164,174,.4); }
-
-    /* ── KEYFRAMES ────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
     /* ── SHARED NAV ───────────────────────────────── */
     .sm-nav {
       background: #0e0c0a;
       border-bottom: 2px solid #c8002a;
-      padding: .75rem 1.5rem;
+      padding: .7rem 1.5rem;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -211,22 +35,17 @@
       text-decoration: none;
       letter-spacing: -.01em;
       flex-shrink: 0;
-      margin-right: .5rem;
+      margin-right: .4rem;
     }
     .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
-    .sm-nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-      flex-wrap: wrap;
-    }
+    .sm-nav-links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
     .sm-nav-link {
       font-family: 'Source Code Pro', monospace;
-      font-size: .62rem;
+      font-size: .6rem;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(240,232,213,.45);
+      color: rgba(240,232,213,.4);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       padding-bottom: 1px;
@@ -235,84 +54,245 @@
     .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
     .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
 
+    /* ── HERO ─────────────────────────────────────── */
+    .web-hero {
+      position: relative;
+      background: #0e0c0a;
+      width: 100%;
+      height: calc(100vh - 40px);
+      min-height: 480px;
+      max-height: 900px;
+      overflow: hidden;
+      border-bottom: 2px solid #c8002a;
+    }
+
+    #webCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── MASTHEAD ─────────────────────────────────── */
+    .web-masthead {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      text-align: center;
+      pointer-events: none;
+      user-select: none;
+      width: 100%;
+    }
+
+    .wm-eyebrow {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: #c8002a;
+      margin-bottom: .6rem;
+      display: block;
+      opacity: 0;
+      animation: fadeUp .6s ease .2s both;
+    }
+
+    .wm-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -.025em;
+      line-height: .95;
+      color: #f0e8d5;
+      display: block;
+      opacity: 0;
+      animation: fadeUp .7s ease .35s both;
+    }
+
+    .wm-rule {
+      width: 32px;
+      height: 2px;
+      background: #c8002a;
+      margin: .9rem auto;
+      display: block;
+      opacity: 0;
+      animation: fadeUp .4s ease .5s both;
+    }
+
+    .wm-tagline {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(.78rem, 1.8vw, .92rem);
+      color: rgba(155,164,174,.6);
+      display: block;
+      opacity: 0;
+      animation: fadeUp .4s ease .65s both;
+    }
+
+    /* ── SCROLL CTA ───────────────────────────────── */
+    .web-scroll {
+      position: absolute;
+      bottom: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+      opacity: 0;
+      animation: fadeUp .5s ease 1.4s both;
+      text-decoration: none;
+    }
+
+    .ws-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .52rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(155,164,174,.35);
+    }
+
+    .ws-line {
+      width: 1px;
+      height: 26px;
+      background: linear-gradient(to bottom, rgba(200,0,42,.55), transparent);
+      animation: linePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes linePulse {
+      0%,100% { opacity: .45; }
+      50% { opacity: 1; }
+    }
+
+    /* ── NODE TOOLTIP ─────────────────────────────── */
+    .web-tip {
+      position: absolute;
+      z-index: 30;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .15s ease, transform .15s ease;
+      background: rgba(10,9,8,.95);
+      border: 1px solid rgba(200,0,42,.3);
+      border-radius: 2px;
+      padding: .55rem .9rem;
+      white-space: nowrap;
+    }
+
+    .web-tip.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .wt-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .52rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #c8002a;
+      margin-bottom: .18rem;
+      display: block;
+    }
+
+    .wt-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: .92rem;
+      font-weight: 700;
+      color: #f0e8d5;
+      display: block;
+    }
+
+    /* ── SEASON CORNER ────────────────────────────── */
+    .web-season {
+      position: absolute;
+      bottom: 1.4rem;
+      right: 1.6rem;
+      z-index: 20;
+      text-align: right;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeUp .5s ease 1s both;
+    }
+
+    .web-season span {
+      display: block;
+      font-family: 'Source Code Pro', monospace;
+      font-size: .52rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .ws-s { color: #c8002a; margin-bottom: .12rem; }
+    .ws-i { color: rgba(155,164,174,.35); }
+
     /* ── MOBILE NAV ───────────────────────────────── */
     .mobile-web-nav {
       display: none;
       background: #0e0c0a;
       border-bottom: 2px solid #c8002a;
-      padding: 1.8rem 1.4rem 2rem;
+      padding: 1.6rem 1.4rem 1.8rem;
     }
 
-    @media (max-width: 600px) {
-      .web-hero { height: 55vh; min-height: 380px; }
+    @media (max-width: 580px) {
+      .web-hero { height: 50vh; min-height: 320px; }
       .mobile-web-nav { display: block; }
-      .web-masthead-title { font-size: clamp(2.4rem, 12vw, 3.5rem); }
-      .web-masthead-sub { display: none; }
+      .wm-title { font-size: clamp(2.4rem, 11vw, 3.2rem); }
     }
 
     .mwn-label {
       font-family: 'Source Code Pro', monospace;
-      font-size: .58rem;
+      font-size: .56rem;
       font-weight: 600;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(155,164,174,.45);
-      margin-bottom: 1rem;
+      color: rgba(155,164,174,.4);
+      margin-bottom: .9rem;
     }
 
     .mwn-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: .7rem;
+      gap: .6rem;
     }
 
     .mwn-link {
       display: flex;
       flex-direction: column;
-      gap: .2rem;
-      padding: 1rem 1rem;
-      background: rgba(200,0,42,.06);
-      border: 1px solid rgba(200,0,42,.2);
+      gap: .18rem;
+      padding: .85rem .9rem;
+      background: rgba(200,0,42,.05);
+      border: 1px solid rgba(200,0,42,.18);
       border-radius: 2px;
       text-decoration: none;
       transition: background .2s, border-color .2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mwn-link::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: #c8002a;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .25s ease;
     }
 
     .mwn-link:hover {
-      background: rgba(200,0,42,.12);
-      border-color: rgba(200,0,42,.45);
+      background: rgba(200,0,42,.1);
+      border-color: rgba(200,0,42,.4);
       text-decoration: none;
     }
 
-    .mwn-link:hover::before { transform: scaleX(1); }
-
-    .mwn-link-tag {
+    .mwn-tag {
       font-family: 'Source Code Pro', monospace;
-      font-size: .52rem;
+      font-size: .5rem;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: #c8002a;
     }
 
-    .mwn-link-title {
+    .mwn-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: .92rem;
+      font-size: .88rem;
       font-weight: 700;
-      color: #f5f0e8;
+      color: #f0e8d5;
       line-height: 1.2;
     }
 
@@ -324,7 +304,7 @@
     .season-inner {
       border-top: 1px solid var(--cream);
       border-bottom: 1px solid var(--cream);
-      padding: .9rem 0;
+      padding: .85rem 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -334,7 +314,7 @@
 
     .season-label {
       font-family: var(--font-mono);
-      font-size: .6rem;
+      font-size: .58rem;
       font-weight: 600;
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -343,11 +323,11 @@
 
     .season-meta {
       font-family: var(--font-mono);
-      font-size: .6rem;
+      font-size: .58rem;
       letter-spacing: .1em;
       color: var(--silver);
       display: flex;
-      gap: 1.2rem;
+      gap: 1.1rem;
       flex-wrap: wrap;
     }
 
@@ -363,95 +343,84 @@
       gap: 1.5rem;
     }
 
-    @media (max-width: 600px) { .cards-row { grid-template-columns: 1fr; } }
+    @media (max-width: 580px) { .cards-row { grid-template-columns: 1fr; } }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
   </style>
 </head>
 <body>
-
-  <!-- ── WEB HERO ───────────────────────────────── -->
-  <section class="web-hero" id="webHero">
-    <canvas id="webCanvas"></canvas>
-
-    <div class="web-node-label" id="lbl-articles">
-      <span class="wnl-tag">Read</span>
-      <span class="wnl-name">Articles</span>
-    </div>
-    <div class="web-node-label" id="lbl-issue1">
-      <span class="wnl-tag">Issue No. 1</span>
-      <span class="wnl-name">The Mania Begins.</span>
-    </div>
-    <div class="web-node-label" id="lbl-getinvolved">
-      <span class="wnl-tag">Pitch Open</span>
-      <span class="wnl-name">Get Involved</span>
-    </div>
-    <div class="web-node-label" id="lbl-network">
-      <span class="wnl-tag">Invite Only</span>
-      <span class="wnl-name">The Network</span>
-    </div>
-    <div class="web-node-label" id="lbl-instagram">
-      <span class="wnl-tag">Follow</span>
-      <span class="wnl-name">Instagram</span>
-    </div>
-    <div class="web-node-label" id="lbl-github">
-      <span class="wnl-tag">Open Source</span>
-      <span class="wnl-name">GitHub</span>
-    </div>
-
-    <div class="web-masthead">
-      <div class="web-masthead-eyebrow">Est. Ohio · March 12, 2026</div>
-      <h1 class="web-masthead-title">Salem<br>Mania</h1>
-      <div class="web-masthead-rule"></div>
-      <div class="web-masthead-sub">Hover the web to navigate</div>
-    </div>
-
-    <div class="web-corner-tag">
-      <span class="ct-season">Spring–Summer 2026</span>
-      <span class="ct-issue">Issue No. 1 · Pitch Open</span>
-    </div>
-
-    <a class="web-scroll" href="#below">
-      <span class="web-scroll-label">Scroll</span>
-      <span class="web-scroll-line"></span>
-    </a>
-  </section>
-
-  <!-- ── MOBILE NAV ─────────────────────────────── -->
-  <nav class="mobile-web-nav">
-    <div class="mwn-label">Navigate The Mania</div>
-    <div class="mwn-grid">
-      <a href="articles.html" class="mwn-link">
-        <span class="mwn-link-tag">Read</span>
-        <span class="mwn-link-title">Articles</span>
-      </a>
-      <a href="get-involved.html" class="mwn-link">
-        <span class="mwn-link-tag">Pitch Open</span>
-        <span class="mwn-link-title">Get Involved</span>
-      </a>
-      <a href="articlesalemmania.html" class="mwn-link">
-        <span class="mwn-link-tag">Issue No. 1</span>
-        <span class="mwn-link-title">The Mania Begins.</span>
-      </a>
-      <a href="those-involved.html" class="mwn-link">
-        <span class="mwn-link-tag">Invite Only</span>
-        <span class="mwn-link-title">The Network</span>
-      </a>
-    </div>
-  </nav>
 
   <!-- ── SHARED NAV ─────────────────────────────── -->
   <nav class="sm-nav">
     <div class="sm-nav-inner">
       <a href="index.html" class="sm-nav-brand">Salem Mania</a>
       <div class="sm-nav-links">
-        <a href="index.html" class="sm-nav-link sm-nav-active">Home</a>
-        <a href="articles.html" class="sm-nav-link">Articles</a>
-        <a href="get-involved.html" class="sm-nav-link">Get Involved</a>
-        <a href="those-involved.html" class="sm-nav-link">Those Involved</a>
+        <a href="index.html"            class="sm-nav-link sm-nav-active">Home</a>
+        <a href="articles.html"         class="sm-nav-link">Articles</a>
+        <a href="get-involved.html"     class="sm-nav-link">Get Involved</a>
+        <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
         <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
         <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
         <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
       </div>
+    </div>
+  </nav>
+
+  <!-- ── WEB HERO ───────────────────────────────── -->
+  <section class="web-hero" id="webHero">
+    <canvas id="webCanvas"></canvas>
+
+    <!-- Centered masthead -->
+    <div class="web-masthead">
+      <span class="wm-eyebrow">Est. Ohio · March 12, 2026</span>
+      <span class="wm-title">Salem<br>Mania</span>
+      <span class="wm-rule"></span>
+      <span class="wm-tagline">For the culture. By the culture.</span>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="web-tip" id="webTip">
+      <span class="wt-tag" id="tipTag"></span>
+      <span class="wt-name" id="tipName"></span>
+    </div>
+
+    <!-- Season corner -->
+    <div class="web-season">
+      <span class="ws-s">Spring–Summer 2026</span>
+      <span class="ws-i">Issue No. 1 · Pitch Open</span>
+    </div>
+
+    <!-- Scroll cue -->
+    <a class="web-scroll" href="#below">
+      <span class="ws-label">Scroll</span>
+      <span class="ws-line"></span>
+    </a>
+  </section>
+
+  <!-- ── MOBILE NAV (580px and below) ───────────── -->
+  <nav class="mobile-web-nav">
+    <div class="mwn-label">Navigate The Mania</div>
+    <div class="mwn-grid">
+      <a href="articles.html" class="mwn-link">
+        <span class="mwn-tag">Read</span>
+        <span class="mwn-name">Articles</span>
+      </a>
+      <a href="get-involved.html" class="mwn-link">
+        <span class="mwn-tag">Pitch Open</span>
+        <span class="mwn-name">Get Involved</span>
+      </a>
+      <a href="articlesalemmania.html" class="mwn-link">
+        <span class="mwn-tag">Issue No. 1</span>
+        <span class="mwn-name">The Mania Begins.</span>
+      </a>
+      <a href="those-involved.html" class="mwn-link">
+        <span class="mwn-tag">Network</span>
+        <span class="mwn-name">Those Involved</span>
+      </a>
     </div>
   </nav>
 
@@ -460,7 +429,7 @@
 
     <div class="season-band" style="padding-top:2.5rem;">
       <div class="season-inner">
-        <span class="season-label">Spring–Summer 2026 Season · Issue No. 1</span>
+        <span class="season-label">Spring–Summer 2026 · Issue No. 1</span>
         <div class="season-meta">
           <span>Pitch Season Open</span>
           <span>15 Article Cap</span>
@@ -486,7 +455,7 @@
         <article class="card card-accent" tabindex="0">
           <div class="card-tag">Get Involved</div>
           <h3 class="card-title">The web is peer reviewed. Pitches open seasonally.</h3>
-          <p class="card-excerpt">Every submission is peer reviewed and personally chosen. This season caps at fifteen articles.</p>
+          <p class="card-excerpt">Every submission peer reviewed. This season caps at fifteen articles.</p>
           <a href="get-involved.html" class="card-link">Get Involved →</a>
         </article>
       </div>
@@ -538,7 +507,7 @@
     </svg>
     <div class="footer-inner">
       <span class="footer-title">Salem Mania</span>
-      <nav class="footer-nav" aria-label="Footer navigation">
+      <nav class="footer-nav">
         <a href="articles.html">Articles</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="those-involved.html">Those Involved</a>
@@ -557,157 +526,120 @@
     const canvas = document.getElementById('webCanvas');
     const ctx    = canvas.getContext('2d');
     const hero   = document.getElementById('webHero');
+    const tip    = document.getElementById('webTip');
 
-    /* ── NODES ───────────────────────────────────── */
+    /* ── 6 CLEAN NODES, evenly spaced ────────────── */
     const NODES = [
-      { labelId: 'lbl-articles',    href: 'articles.html',                                   angleDeg: -90,  r: .62, nodeR: 7,   pulse: true  },
-      { labelId: 'lbl-issue1',      href: 'articlesalemmania.html',                          angleDeg: -30,  r: .50, nodeR: 5.5, pulse: false },
-      { labelId: 'lbl-getinvolved', href: 'get-involved.html',                               angleDeg:  30,  r: .62, nodeR: 7,   pulse: true  },
-      { labelId: 'lbl-network',     href: 'those-involved.html',                             angleDeg:  90,  r: .54, nodeR: 5.5, pulse: false },
-      { labelId: 'lbl-instagram',   href: 'https://www.instagram.com/salemmaniapublication/',angleDeg:  150, r: .58, nodeR: 5,   pulse: false },
-      { labelId: 'lbl-github',      href: 'https://github.com/ajversaily/salemmania',        angleDeg: -150, r: .58, nodeR: 5,   pulse: false }
-    ];
-
-    /* structural mid-nodes — web shape only */
-    const STRUC = [
-      { angleDeg: -60,  r: .38 },
-      { angleDeg:   0,  r: .35 },
-      { angleDeg:  60,  r: .40 },
-      { angleDeg: 120,  r: .38 },
-      { angleDeg: 180,  r: .36 },
-      { angleDeg: -120, r: .40 }
+      { tag: 'Read',       name: 'Articles',          href: 'articles.html',                                            a: -90,  r: .62, R: 7,   pulse: true  },
+      { tag: 'Issue No.1', name: 'The Mania Begins.', href: 'articlesalemmania.html',                                   a: -30,  r: .52, R: 5.5, pulse: false },
+      { tag: 'Pitch Open', name: 'Get Involved',      href: 'get-involved.html',                                        a:  30,  r: .62, R: 7,   pulse: true  },
+      { tag: 'Network',    name: 'Those Involved',    href: 'those-involved.html',                                      a:  90,  r: .54, R: 5.5, pulse: false },
+      { tag: 'Follow',     name: 'Instagram',         href: 'https://www.instagram.com/salemmaniapublication/',         a:  150, r: .56, R: 5,   pulse: false },
+      { tag: 'Open Source',name: 'GitHub',            href: 'https://github.com/ajversaily/salemmania',                 a: -150, r: .56, R: 5,   pulse: false }
     ];
 
     let W, H, cx, cy, R;
     let mouse  = { x: -9999, y: -9999 };
     let hovered = null;
     let t = 0;
-    let labelsShown = false;
 
-    function toRad(deg) { return (deg - 90) * Math.PI / 180; }
+    function rad(deg) { return (deg - 90) * Math.PI / 180; }
 
     function resize() {
       W = canvas.width  = hero.offsetWidth;
       H = canvas.height = hero.offsetHeight;
       cx = W / 2;
       cy = H / 2;
-      R  = Math.min(W, H) * .42;
-      place();
-    }
-
-    function place() {
+      R  = Math.min(W, H) * .38;
       NODES.forEach(function (n) {
-        const a = toRad(n.angleDeg);
-        n.x = cx + Math.cos(a) * R * n.r;
-        n.y = cy + Math.sin(a) * R * n.r;
+        n.x = cx + Math.cos(rad(n.a)) * R * n.r;
+        n.y = cy + Math.sin(rad(n.a)) * R * n.r;
       });
-      STRUC.forEach(function (s) {
-        const a = toRad(s.angleDeg);
-        s.x = cx + Math.cos(a) * R * s.r;
-        s.y = cy + Math.sin(a) * R * s.r;
-      });
-    }
-
-    /* ring intersection points across all spokes */
-    function ringPts(ringR) {
-      const all = NODES.concat(STRUC);
-      const pts = [];
-      all.forEach(function (n) {
-        const len = Math.hypot(n.x - cx, n.y - cy);
-        if (ringR <= len) {
-          const f = ringR / len;
-          pts.push({
-            x:   cx + (n.x - cx) * f,
-            y:   cy + (n.y - cy) * f,
-            ang: Math.atan2(n.y - cy, n.x - cx)
-          });
-        }
-      });
-      pts.sort(function (a, b) { return a.ang - b.ang; });
-      return pts;
-    }
-
-    function proximity(nx, ny) {
-      return Math.max(0, 1 - Math.hypot(mouse.x - nx, mouse.y - ny) / (R * .65));
     }
 
     /* ── DRAW ────────────────────────────────────── */
     function draw() {
       ctx.clearRect(0, 0, W, H);
-      t += 0.01;
+      t += 0.009;
 
       hovered = null;
       NODES.forEach(function (n) {
-        if (Math.hypot(mouse.x - n.x, mouse.y - n.y) < 50) hovered = n;
+        if (Math.hypot(mouse.x - n.x, mouse.y - n.y) < 44) hovered = n;
       });
 
-      const RINGS = 6;
-      const all   = NODES.concat(STRUC);
+      const RINGS = 5;
 
       /* ── SPOKES ──────────────────────────────── */
-      all.forEach(function (n) {
-        const isReal = NODES.indexOf(n) >= 0;
-        const isHov  = hovered === n;
-        const p      = isReal ? proximity(n.x, n.y) : 0;
-        const ang    = Math.atan2(n.y - cy, n.x - cx);
-        const far    = Math.max(W, H) * 1.5;
+      NODES.forEach(function (n) {
+        const isHov = hovered === n;
+        const p     = Math.max(0, 1 - Math.hypot(mouse.x - n.x, mouse.y - n.y) / (R * .7));
+        const ang   = Math.atan2(n.y - cy, n.x - cx);
+        const far   = Math.max(W, H) * 1.4;
 
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(cx + Math.cos(ang) * far, cy + Math.sin(ang) * far);
-
-        if (isHov) {
-          ctx.strokeStyle = 'rgba(200,0,42,.85)';
-          ctx.lineWidth   = 1.3;
-        } else if (isReal) {
-          ctx.strokeStyle = 'rgba(200,0,42,' + (.18 + p * .38) + ')';
-          ctx.lineWidth   = 1;
-        } else {
-          ctx.strokeStyle = 'rgba(200,0,42,.07)';
-          ctx.lineWidth   = .45;
-        }
+        ctx.strokeStyle = isHov
+          ? 'rgba(200,0,42,.8)'
+          : 'rgba(200,0,42,' + (.16 + p * .32) + ')';
+        ctx.lineWidth = isHov ? 1.2 : .85;
         ctx.stroke();
       });
 
       /* ── RING THREADS ────────────────────────── */
       for (let ri = 1; ri <= RINGS; ri++) {
-        const ringR = R * (ri / RINGS) * 1.08;
-        const pts   = ringPts(ringR);
+        const ringR = R * (ri / RINGS) * 1.1;
+
+        /* get intersection point on each spoke */
+        const pts = [];
+        NODES.forEach(function (n) {
+          const len = Math.hypot(n.x - cx, n.y - cy);
+          if (ringR <= len) {
+            const f = ringR / len;
+            pts.push({
+              x:   cx + (n.x - cx) * f,
+              y:   cy + (n.y - cy) * f,
+              ang: Math.atan2(n.y - cy, n.x - cx)
+            });
+          }
+        });
+
+        pts.sort(function (a, b) { return a.ang - b.ang; });
         if (pts.length < 2) continue;
 
         for (let pi = 0; pi < pts.length; pi++) {
           const a  = pts[pi];
           const b  = pts[(pi + 1) % pts.length];
-          const pa = Math.max(0, 1 - Math.hypot(mouse.x - a.x, mouse.y - a.y) / (R * .6));
-          const pb = Math.max(0, 1 - Math.hypot(mouse.x - b.x, mouse.y - b.y) / (R * .6));
+          const pa = Math.max(0, 1 - Math.hypot(mouse.x - a.x, mouse.y - a.y) / (R * .65));
+          const pb = Math.max(0, 1 - Math.hypot(mouse.x - b.x, mouse.y - b.y) / (R * .65));
           const p  = Math.max(pa, pb);
 
-          /* authentic inward sag */
+          /* inward sag */
           const mx  = (a.x + b.x) / 2;
           const my  = (a.y + b.y) / 2;
-          const sag = .93 - (ri / RINGS) * .03;
+          const sag = .935;
           const cpx = cx + (mx - cx) * sag;
           const cpy = cy + (my - cy) * sag;
 
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.quadraticCurveTo(cpx, cpy, b.x, b.y);
-          ctx.strokeStyle = 'rgba(200,0,42,' + (.10 + p * .24 + ri * .012) + ')';
-          ctx.lineWidth   = .6 + p * .55;
+          ctx.strokeStyle = 'rgba(200,0,42,' + (.09 + p * .22 + ri * .01) + ')';
+          ctx.lineWidth   = .55 + p * .5;
           ctx.stroke();
         }
       }
 
-      /* ── CURSOR THREADS ──────────────────────── */
+      /* ── CURSOR THREAD ───────────────────────── */
       if (mouse.x > 0) {
         NODES.forEach(function (n) {
           const d = Math.hypot(mouse.x - n.x, mouse.y - n.y);
-          if (d < R * .7) {
+          if (d < R * .75) {
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(n.x, n.y);
-            ctx.strokeStyle = 'rgba(200,0,42,' + ((1 - d / (R * .7)) * .2) + ')';
-            ctx.lineWidth   = .7;
+            ctx.strokeStyle = 'rgba(200,0,42,' + ((1 - d / (R * .75)) * .16) + ')';
+            ctx.lineWidth   = .65;
             ctx.stroke();
           }
         });
@@ -715,77 +647,65 @@
 
       /* ── NODES ───────────────────────────────── */
       NODES.forEach(function (n, i) {
-        const isHov  = hovered === n;
-        const pulse  = n.pulse ? .88 + Math.sin(t * 1.7 + i) * .12 : 1;
-        const r      = (isHov ? n.nodeR * 1.7 : n.nodeR) * pulse;
+        const isHov = hovered === n;
+        const pulse = n.pulse ? .88 + Math.sin(t * 1.6 + i) * .12 : 1;
+        const r     = (isHov ? n.R * 1.7 : n.R) * pulse;
 
         if (isHov) {
-          [32, 22, 14].forEach(function (gr, gi) {
+          [28, 18, 11].forEach(function (gr, gi) {
             ctx.beginPath();
             ctx.arc(n.x, n.y, gr, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(200,0,42,' + (.03 + gi * .05) + ')';
+            ctx.fillStyle = 'rgba(200,0,42,' + (.04 + gi * .05) + ')';
             ctx.fill();
           });
         }
 
         ctx.beginPath();
-        ctx.arc(n.x, n.y, r + 4, 0, Math.PI * 2);
-        ctx.strokeStyle = isHov ? 'rgba(200,0,42,.95)' : 'rgba(200,0,42,.32)';
-        ctx.lineWidth   = isHov ? 1.3 : .75;
+        ctx.arc(n.x, n.y, r + 3.5, 0, Math.PI * 2);
+        ctx.strokeStyle = isHov ? 'rgba(200,0,42,.9)' : 'rgba(200,0,42,.28)';
+        ctx.lineWidth   = isHov ? 1.1 : .65;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = isHov ? '#c8002a' : 'rgba(200,0,42,.75)';
-        ctx.fill();
-      });
-
-      STRUC.forEach(function (s) {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(200,0,42,.14)';
+        ctx.fillStyle = isHov ? '#c8002a' : 'rgba(200,0,42,.72)';
         ctx.fill();
       });
 
       /* ── HUB ─────────────────────────────────── */
-      const hubP = Math.max(0, 1 - Math.hypot(mouse.x - cx, mouse.y - cy) / (R * .45));
-      const hubR = 7 + Math.sin(t) * 1.3 + hubP * 2.5;
+      const hp = Math.max(0, 1 - Math.hypot(mouse.x - cx, mouse.y - cy) / (R * .4));
+      const hr = 6.5 + Math.sin(t) * 1.2 + hp * 2;
 
       ctx.beginPath();
-      ctx.arc(cx, cy, hubR + 10, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,0,42,' + (.07 + hubP * .07) + ')';
+      ctx.arc(cx, cy, hr + 8, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,0,42,' + (.06 + hp * .07) + ')';
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(cx, cy, hubR + 5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,0,42,' + (.13 + hubP * .1) + ')';
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, hubR, 0, Math.PI * 2);
+      ctx.arc(cx, cy, hr, 0, Math.PI * 2);
       ctx.fillStyle = '#c8002a';
       ctx.fill();
 
-      /* ── LABELS ──────────────────────────────── */
-      NODES.forEach(function (n) {
-        const el = document.getElementById(n.labelId);
-        if (!el) return;
+      /* ── TOOLTIP ─────────────────────────────── */
+      if (hovered) {
+        document.getElementById('tipTag').textContent  = hovered.tag;
+        document.getElementById('tipName').textContent = hovered.name;
+        tip.classList.add('show');
 
-        const ang    = Math.atan2(n.y - cy, n.x - cx);
-        const offset = n.nodeR + 40;
-        el.style.left = (n.x + Math.cos(ang) * offset) + 'px';
-        el.style.top  = (n.y + Math.sin(ang) * offset) + 'px';
+        const tw = tip.offsetWidth;
+        const th = tip.offsetHeight;
+        let tx   = hovered.x - tw / 2;
+        let ty   = hovered.y - th - 24;
 
-        if (!labelsShown) el.classList.add('show');
+        if (ty < 8)          ty = hovered.y + 22;
+        if (tx < 8)          tx = 8;
+        if (tx + tw > W - 8) tx = W - tw - 8;
 
-        const isHov = hovered === n;
-        el.style.opacity   = isHov ? '1' : '.6';
-        el.style.transform = isHov
-          ? 'translate(-50%,-50%) scale(1.1)'
-          : 'translate(-50%,-50%) scale(1)';
-      });
-
-      if (!labelsShown) labelsShown = true;
+        tip.style.left = tx + 'px';
+        tip.style.top  = ty + 'px';
+      } else {
+        tip.classList.remove('show');
+      }
 
       canvas.style.cursor = hovered ? 'pointer' : 'default';
       requestAnimationFrame(draw);
@@ -827,7 +747,6 @@
     }, { passive: false });
 
     window.addEventListener('resize', resize);
-
     resize();
     requestAnimationFrame(draw);
 
@@ -836,7 +755,7 @@
       const els = document.querySelectorAll('.card, .section-title, .subscribe-band, .season-inner');
       els.forEach(function (el) {
         el.style.opacity    = '0';
-        el.style.transform  = 'translateY(20px)';
+        el.style.transform  = 'translateY(18px)';
         el.style.transition = 'opacity .5s ease, transform .5s ease';
       });
       const io = new IntersectionObserver(function (entries) {
@@ -851,7 +770,7 @@
       els.forEach(function (el) { io.observe(el); });
     }
 
-    /* subscribe */
+    /* subscribe form */
     const form  = document.querySelector('.sub-form');
     const input = document.querySelector('.sub-input');
     const btn   = document.querySelector('.sub-btn');
