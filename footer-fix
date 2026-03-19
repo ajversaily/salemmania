@@ -1,15 +1,6 @@
-<!--
-  ════════════════════════════════════════════════════════════════
-  SALEM MANIA — SHARED NAVIGATION PATCH
-  Add the <style> block to the <head> of each page.
-  Replace or add the <nav class="sm-nav"> immediately after <body>
-  (or after any existing <header>) on every page.
-  Change sm-nav-active to highlight the current page.
-  ════════════════════════════════════════════════════════════════
--->
 
 
-<!-- ══ 1. ADD THIS TO <head> <style> on every page ══════════════ -->
+
 <style>
   .sm-nav {
     background: #0e0c0a;
@@ -167,13 +158,3 @@
   </div>
 </nav>
 
-
-<!--
-  ══ WHAT TO REMOVE FROM EXISTING PAGES ════════════════════════
-  On get-involved.html, articlesalemmania.html, and rights-and-stuff.html:
-  - Delete the entire <header class="site-header">...</header> block
-  - Delete any existing <nav class="web-inline-nav"> or back-link divs
-  - The sm-nav above replaces all of it
-  The existing old header contains the masthead "Salem Mania" title
-  and the web icon nav — all replaced by sm-nav.
-  ═════════════════════════════════════════════════════════════ -->
