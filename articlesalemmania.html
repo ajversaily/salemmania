@@ -3,408 +3,345 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ESTABLISHMENT — Salem Mania</title>
+  <title>The Mania Begins. — Salem Mania</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
   <style>
-    /* ── TOKENS ─────────────────────────────────── */
     :root {
-      --cream:      #f7f4ee;
-      --ink:        #1a1714;
-      --rule:       #1a1714;
-      --red:        #c8002a;
-      --muted:      #5a5650;
-      --border:     #c8c4bc;
-      --max-w:      720px;
-      --col-w:      680px;
+      --cream:   #f5f0e8;
+      --vellum:  #e8dcc4;
+      --foxed:   #d4c4a0;
+      --ink:     #1a1714;
+      --ink-mid: #2e2420;
+      --red:     #c8002a;
+      --ember:   #d4420a;
+      --muted:   #5a5650;
+      --dust:    #7a6e5a;
+      --border:  #c8c4bc;
+      --max-w:   720px;
+      --col-w:   680px;
       --drop-cap-size: 5.8rem;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { font-size: 18px; scroll-behavior: smooth; }
 
     body {
       background: var(--cream);
       color: var(--ink);
       font-family: 'Libre Baskerville', Georgia, serif;
-      line-height: 1.75;
+      line-height: 1.78;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── SITE HEADER ────────────────────────────── */
+    /* paper grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .028; pointer-events: none; z-index: 9999;
+    }
+
+    /* ── NAV ──────────────────────────────────────── */
+    .sm-nav {
+      background: rgba(19,14,8,.97);
+      border-bottom: 2px solid rgba(200,0,42,.5);
+      padding: .7rem 1.5rem;
+      position: sticky; top: 0; z-index: 200;
+      backdrop-filter: blur(10px);
+    }
+    .sm-nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .sm-nav-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: .95rem; font-weight: 900; color: #f0e8d5;
+      text-decoration: none; letter-spacing: -.01em; flex-shrink: 0;
+      transition: text-shadow .3s;
+    }
+    .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; text-shadow: 0 0 20px rgba(200,0,42,.4); }
+    .sm-nav-links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .sm-nav-link {
+      font-family: 'Source Code Pro', monospace; font-size: .58rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.35);
+      text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+    .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
+    .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
+
+    /* ── SITE HEADER ─────────────────────────────── */
     .site-header {
       position: relative;
       overflow: hidden;
-      border-bottom: 2px solid var(--rule);
       background: var(--cream);
-      padding: 1.2rem 1.5rem 0;
+      border-bottom: 2px solid var(--ink);
+      padding: 1.4rem 1.5rem 0;
+    }
+
+    /* subtle candle-warmth at base */
+    .site-header::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, transparent, rgba(200,0,42,.35), transparent);
+      pointer-events: none;
     }
 
     .header-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .45rem;
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
     }
 
     .header-meta {
-      display: flex;
-      gap: 1.5rem;
+      display: flex; gap: 1.5rem;
       font-family: 'Source Code Pro', monospace;
-      font-size: .65rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
     }
 
     .masthead {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.8rem, 8vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -.02em;
-      line-height: 1;
-      text-align: center;
+      font-size: clamp(2.6rem, 8vw, 4.8rem);
+      font-weight: 900; letter-spacing: -.02em; line-height: 1; text-align: center;
       color: var(--ink);
     }
 
-    .web-inline-nav {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
+    /* ornamental nav under masthead */
+    .header-nav-row {
+      display: flex; align-items: center; gap: .9rem;
       font-family: 'Source Code Pro', monospace;
-      font-size: .7rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
+      font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
       padding: .7rem 0 1rem;
     }
-
-    .win-link {
-      color: var(--ink);
-      text-decoration: none;
+    .hn-link {
+      color: var(--ink); text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: border-color .2s;
+      transition: border-color .2s, color .2s;
+      padding-bottom: 1px;
     }
-    .win-link:hover, .win-link.win-active { border-bottom-color: var(--red); color: var(--red); }
+    .hn-link:hover, .hn-link.active { border-bottom-color: var(--red); color: var(--red); }
 
     /* corner webs */
-    .corner-web { position: absolute; width: 100px; height: 100px; opacity: .18; }
+    .corner-web { position: absolute; width: 100px; height: 100px; opacity: .16; pointer-events: none; }
     .corner-web.top-left  { top: 0; left: 0; }
     .corner-web.top-right { top: 0; right: 0; }
-    .cw  { stroke: var(--red); stroke-width: .8; fill: none; }
-    .cw-arc { fill: none; stroke: var(--red); stroke-width: .5; opacity: .5; }
+    .cw     { stroke: var(--red); stroke-width: .8; fill: none; }
+    .cw-arc { fill: none; stroke: var(--red); stroke-width: .55; opacity: .55; }
 
-    /* ── ARTICLE WRAPPER ────────────────────────── */
-    .article-wrap {
-      max-width: var(--col-w);
-      margin: 0 auto;
-      padding: 3.5rem 1.5rem 5rem;
-    }
+    /* ── ARTICLE WRAPPER ─────────────────────────── */
+    .article-wrap { max-width: var(--col-w); margin: 0 auto; padding: 3.5rem 1.5rem 5.5rem; }
 
-    /* ── ARTICLE HEADER ─────────────────────────── */
-    .article-header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .article-kicker {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .65rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--red);
-      display: block;
-      margin-bottom: .85rem;
-    }
-
-    .article-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 5vw, 3.1rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -.02em;
-      color: var(--ink);
-      margin-bottom: 1.1rem;
-    }
-
-    .article-dek {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 1.08rem;
-      font-style: italic;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 540px;
-      margin-bottom: 1.4rem;
-    }
-
-    .article-byline {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
-
-    .byline-author {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .72rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-
-    .byline-author strong { color: var(--red); }
-
-    .byline-sep {
-      width: 1px;
-      height: 14px;
-      background: var(--border);
-    }
-
-    .byline-date {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .65rem;
-      letter-spacing: .08em;
-      color: var(--muted);
-    }
-
-    /* ── ORNAMENTAL RULE ────────────────────────── */
-    .ornament {
-      display: flex;
-      align-items: center;
-      gap: .8rem;
-      margin: 2.2rem 0;
-    }
-    .ornament-line { flex: 1; height: 1px; background: var(--border); }
-    .ornament-glyph {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--red);
-      opacity: .7;
-    }
-
-    /* ── BODY PROSE ─────────────────────────────── */
-    .article-body {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 1.02rem;
-      line-height: 1.82;
-      color: var(--ink);
-    }
-
-    .article-body p { margin-bottom: 1.5em; }
-
-    /* drop cap on first paragraph */
-    .article-body p.drop-cap::first-letter {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: var(--drop-cap-size);
-      font-weight: 900;
-      float: left;
-      line-height: .82;
-      margin: .06em .12em -.04em 0;
-      color: var(--ink);
-    }
-
-    /* pull quote */
-    .pull-quote {
-      border-top: 2px solid var(--ink);
-      border-bottom: 1px solid var(--border);
-      margin: 2.5rem 0;
-      padding: 1.4rem 0 1.2rem;
-    }
-
-    .pull-quote p {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.35rem;
-      font-style: italic;
-      font-weight: 700;
-      line-height: 1.45;
-      color: var(--ink);
-      margin: 0;
-    }
-
-    /* em-dash emphasis */
-    .article-body em {
-      font-style: italic;
-      color: var(--ink);
-    }
-
-    /* ── SIGNATURE BLOCK ────────────────────────── */
-    .signature-block {
-      margin-top: 3rem;
-      padding-top: 1.8rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: .3rem;
-    }
-
-    .sig-label {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .62rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .sig-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .sig-title {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .65rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
-
-    /* ── FOOTER ─────────────────────────────────── */
-    .site-footer {
-      background: var(--ink);
-      color: var(--cream);
-      padding: 2.5rem 1.5rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-web {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: .08;
-    }
-    .fw { stroke: var(--cream); stroke-width: .6; fill: none; }
-    .fa { stroke: var(--cream); stroke-width: .4; fill: none; }
-
-    .footer-inner {
-      position: relative;
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      text-align: center;
-    }
-
-    .footer-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: -.01em;
-    }
-
-    .footer-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: .4rem 1.2rem;
-    }
-
-    .footer-nav a {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .62rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(247,244,238,.6);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .footer-nav a:hover { color: var(--cream); }
-
-    .footer-copy {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .58rem;
-      letter-spacing: .08em;
-      color: rgba(247,244,238,.35);
-    }
-
-    /* ── BACK LINK ──────────────────────────────── */
+    /* ── BACK LINK ───────────────────────────────── */
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
+      display: inline-flex; align-items: center; gap: .5rem;
       font-family: 'Source Code Pro', monospace;
-      font-size: .65rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
+      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: color .2s, border-color .2s;
       margin-bottom: 2.5rem;
-      display: block;
     }
     .back-link:hover { color: var(--red); border-bottom-color: var(--red); }
 
-    /* ── RESPONSIVE ─────────────────────────────── */
+    /* ── ARTICLE HEADER ──────────────────────────── */
+    .article-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem; margin-bottom: 2.5rem;
+    }
+    .article-kicker {
+      font-family: 'Source Code Pro', monospace;
+      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--red); display: block; margin-bottom: .9rem;
+    }
+    .article-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-weight: 900; line-height: 1.08; letter-spacing: -.02em;
+      color: var(--ink); margin-bottom: 1.1rem;
+    }
+    .article-dek {
+      font-family: 'IM Fell English', Georgia, serif;
+      font-size: 1.05rem; font-style: italic; color: var(--muted);
+      line-height: 1.68; max-width: 540px; margin-bottom: 1.4rem;
+    }
+    .article-byline { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .byline-author { font-family: 'Source Code Pro', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+    .byline-author strong { color: var(--red); }
+    .byline-sep { width: 1px; height: 14px; background: var(--border); }
+    .byline-date { font-family: 'Source Code Pro', monospace; font-size: .64rem; letter-spacing: .08em; color: var(--muted); }
+
+    /* ── ORNAMENT ────────────────────────────────── */
+    .ornament { display: flex; align-items: center; gap: .8rem; margin: 2.5rem 0; }
+    .ornament-line { flex: 1; height: 1px; background: var(--border); }
+    .ornament-glyph { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--red); opacity: .7; flex-shrink: 0; }
+
+    /* ── ARTICLE BODY ────────────────────────────── */
+    .article-body { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1rem; line-height: 1.85; color: var(--ink); }
+    .article-body p { margin-bottom: 1.55em; }
+
+    /* drop cap */
+    .article-body p.drop-cap::first-letter {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: var(--drop-cap-size); font-weight: 900;
+      float: left; line-height: .82;
+      margin: .05em .12em -.04em 0;
+      color: var(--ink);
+    }
+
+    /* pull quote — tribunal severity */
+    .pull-quote {
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--border);
+      margin: 2.8rem 0; padding: 1.5rem 0 1.3rem;
+      position: relative;
+    }
+    .pull-quote::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 48px; height: 2px;
+      background: var(--red);
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem; font-style: italic; font-weight: 700;
+      line-height: 1.45; color: var(--ink); margin: 0;
+    }
+
+    .article-body em { font-style: italic; color: var(--ink-mid); }
+
+    /* ── SIGNATURE ───────────────────────────────── */
+    .signature-block {
+      margin-top: 3.5rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: .3rem;
+    }
+    .sig-label { font-family: 'Source Code Pro', monospace; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .sig-name  { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-style: italic; font-weight: 700; color: var(--ink); }
+    .sig-title { font-family: 'Source Code Pro', monospace; font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+
+    /* ── PITCH NUDGE ──────────────────────────────── */
+    .pitch-nudge {
+      margin-top: 4rem;
+      background: var(--ink);
+      border-left: 5px solid var(--red);
+      border-top: 2px solid var(--red);
+      padding: 2rem 2.2rem;
+      position: relative; overflow: hidden;
+    }
+    .pitch-nudge::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 160px; height: 100%;
+      background: radial-gradient(ellipse at right, rgba(200,0,42,.09), transparent 65%);
+      pointer-events: none;
+    }
+    .pn-tag { font-family: 'Source Code Pro', monospace; font-size: .55rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .5rem; }
+    .pn-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; font-weight: 900; color: #f0e8d5; margin-bottom: .5rem; line-height: 1.15; }
+    .pn-sub { font-family: 'IM Fell English', Georgia, serif; font-style: italic; font-size: .9rem; color: rgba(240,232,213,.52); line-height: 1.65; margin-bottom: 1.2rem; }
+    .pn-btn {
+      display: inline-block; background: var(--red); color: #fff;
+      font-family: 'Source Code Pro', monospace; font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      padding: .75em 1.8em; border-radius: 1px; text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 0 20px rgba(200,0,42,.4);
+      position: relative;
+    }
+    .pn-btn:hover { background: #e8001f; transform: scale(1.04); box-shadow: 0 0 30px rgba(200,0,42,.55); text-decoration: none; color: #fff; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .site-footer { background: var(--ink); position: relative; overflow: hidden; }
+    .footer-web  { display: block; width: 100%; height: 120px; opacity: .18; }
+    .fw { stroke: rgba(200,0,42,.55); stroke-width: 1; fill: none; }
+    .fa { fill: none; stroke: rgba(200,0,42,.4); stroke-width: .8; }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,.07); }
+    .footer-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; font-weight: 900; color: #f0e8d5; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+    .footer-nav a { font-family: 'Source Code Pro', monospace; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.38); text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); text-decoration: none; }
+    .footer-copy { font-family: 'Source Code Pro', monospace; font-size: .6rem; color: rgba(240,232,213,.22); letter-spacing: .08em; }
+
     @media (max-width: 600px) {
-      .article-wrap { padding: 2rem 1.1rem 3.5rem; }
+      .article-wrap { padding: 2rem 1.2rem 3.5rem; }
       .article-title { font-size: 1.9rem; }
       .pull-quote p  { font-size: 1.15rem; }
+      .pitch-nudge   { padding: 1.8rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- SHARED NAV — sticky dark bar -->
+  <nav class="sm-nav">
+    <div class="sm-nav-inner">
+      <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+      <div class="sm-nav-links">
+        <a href="index.html"            class="sm-nav-link">Home</a>
+        <a href="articles.html"         class="sm-nav-link sm-nav-active">Articles</a>
+        <a href="get-involved.html"     class="sm-nav-link">Get Involved</a>
+        <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
+        <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PUBLICATION MASTHEAD -->
   <header class="site-header">
+    <svg class="corner-web top-left"  viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="0" x2="110" y2="110" class="cw"/>
+      <line x1="0" y1="0" x2="72"  y2="110" class="cw"/>
+      <line x1="0" y1="0" x2="110" y2="72"  class="cw"/>
+      <line x1="0" y1="0" x2="36"  y2="110" class="cw"/>
+      <line x1="0" y1="0" x2="110" y2="36"  class="cw"/>
+      <path d="M27 0 Q0 27 0 0Z M55 0 Q0 55 0 0Z M82 0 Q0 82 0 0Z M110 0 Q0 110 0 0Z" class="cw-arc"/>
+    </svg>
+    <svg class="corner-web top-right" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <line x1="110" y1="0" x2="0"  y2="110" class="cw"/>
+      <line x1="110" y1="0" x2="38" y2="110" class="cw"/>
+      <line x1="110" y1="0" x2="0"  y2="72"  class="cw"/>
+      <line x1="110" y1="0" x2="74" y2="110" class="cw"/>
+      <line x1="110" y1="0" x2="0"  y2="36"  class="cw"/>
+      <path d="M83 0 Q110 27 110 0Z M55 0 Q110 55 110 0Z M27 0 Q110 82 110 0Z M0 0 Q110 110 110 0Z" class="cw-arc"/>
+    </svg>
+
     <div class="header-inner">
       <div class="header-meta">
-        <span class="issue-tag">Est. March 12, 2026</span>
-        <span class="date-tag">Made by yours, truly.</span>
+        <span>Est. March 12, 2026</span>
+        <span>Ohio</span>
       </div>
       <h1 class="masthead">Salem Mania</h1>
-      <nav class="web-inline-nav" aria-label="Site navigation">
-        <a href="index.html" class="win-link">Home</a>
+      <nav class="header-nav-row">
+        <a href="index.html" class="hn-link">Home</a>
         <span aria-hidden="true">
           <svg viewBox="0 0 36 18" width="36" height="18" xmlns="http://www.w3.org/2000/svg">
-            <line x1="18" y1="9" x2="18" y2="0"  stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="36" y2="0"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="36" y2="9"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="36" y2="18" stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="18" y2="18" stroke="rgba(200,0,42,.6)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="0"  y2="18" stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="0"  y2="9"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
-            <line x1="18" y1="9" x2="0"  y2="0"  stroke="rgba(200,0,42,.5)" stroke-width="1" fill="none"/>
-            <ellipse cx="18" cy="9" rx="10" ry="5" fill="none" stroke="rgba(200,0,42,.4)" stroke-width=".7"/>
-            <ellipse cx="18" cy="9" rx="5"  ry="3" fill="none" stroke="rgba(200,0,42,.35)" stroke-width=".6"/>
-            <circle  cx="18" cy="9" r="2"   fill="rgba(200,0,42,.8)"/>
+            <line x1="18" y1="9" x2="18" y2="0"  stroke="rgba(200,0,42,.55)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="36" y2="0"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="36" y2="9"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="36" y2="18" stroke="rgba(200,0,42,.45)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="18" y2="18" stroke="rgba(200,0,42,.55)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="0"  y2="18" stroke="rgba(200,0,42,.45)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="0"  y2="9"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
+            <line x1="18" y1="9" x2="0"  y2="0"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
+            <ellipse cx="18" cy="9" rx="10" ry="5" fill="none" stroke="rgba(200,0,42,.35)" stroke-width=".7"/>
+            <ellipse cx="18" cy="9" rx="5"  ry="3" fill="none" stroke="rgba(200,0,42,.3)"  stroke-width=".6"/>
+            <circle  cx="18" cy="9" r="2"   fill="rgba(200,0,42,.75)"/>
           </svg>
         </span>
-        <a href="get-involved.html" class="win-link">Get Involved</a>
+        <a href="articles.html" class="hn-link active">Articles</a>
+        <span aria-hidden="true" style="color:rgba(26,23,20,.3);font-size:.7rem;">·</span>
+        <a href="get-involved.html" class="hn-link">Get Involved</a>
       </nav>
     </div>
-    <svg class="corner-web top-left"  viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="0" x2="120" y2="120" class="cw"/>
-      <line x1="0" y1="0" x2="80"  y2="120" class="cw"/>
-      <line x1="0" y1="0" x2="120" y2="80"  class="cw"/>
-      <line x1="0" y1="0" x2="40"  y2="120" class="cw"/>
-      <line x1="0" y1="0" x2="120" y2="40"  class="cw"/>
-      <path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw-arc"/>
-    </svg>
-    <svg class="corner-web top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <line x1="120" y1="0" x2="0"  y2="120" class="cw"/>
-      <line x1="120" y1="0" x2="40" y2="120" class="cw"/>
-      <line x1="120" y1="0" x2="0"  y2="80"  class="cw"/>
-      <line x1="120" y1="0" x2="80" y2="120" class="cw"/>
-      <line x1="120" y1="0" x2="0"  y2="40"  class="cw"/>
-      <path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw-arc"/>
-    </svg>
   </header>
 
   <!-- ARTICLE -->
   <main>
     <div class="article-wrap">
- 
-      <a href="index.html" class="back-link">← Back to Salem Mania</a>
- 
+
+      <a href="articles.html" class="back-link">← Back to Articles</a>
+
       <header class="article-header">
         <span class="article-kicker">Issue No. 1 &nbsp;·&nbsp; Founder's Note &nbsp;·&nbsp; Ohio, March 16, 2026</span>
         <h1 class="article-title">The Mania Begins.</h1>
@@ -412,75 +349,85 @@
         <div class="article-byline">
           <span class="byline-author">By <strong>AJ Rasaily</strong></span>
           <span class="byline-sep" aria-hidden="true"></span>
-          <span class="byline-date">Article 1 &nbsp;·&nbsp; Issue 1</span>
+          <span class="byline-date">Article I &nbsp;·&nbsp; Issue No. 1</span>
         </div>
       </header>
- 
+
       <div class="article-body">
- 
+
         <p class="drop-cap">Every documented cultural shift has occurred after a change has come. During the Salem Witch Trials, 19 women were tragically executed under the accusations of witchcraft — a notably terrible part of American history, plaguing the barriers of religion, law, and the patriarchy. More than 200 women were prosecuted. The hysteria only ended when more prominent, respected citizens were accused. Inducing a cultural shift where eyebrows were raised towards not the accused — but towards the persecutors. The court was questioned. The authority the court once held was diminished.</p>
- 
+
         <div class="ornament" aria-hidden="true">
           <span class="ornament-line"></span>
           <span class="ornament-glyph">🕸</span>
           <span class="ornament-line"></span>
         </div>
- 
+
         <p>Salem Mania follows the height of the cultural shift. The cultural shifts of the world, across various fields, shall be documented here. Authors, writers, researchers, and thinkers will all have the opportunity to trailblaze this cultural shift. At Salem Mania, the work is found in the quality of articles. Each article on Salem Mania answers the question — <em>why must this exist?</em></p>
- 
+
         <div class="pull-quote">
           <p>"Ordinary people are the ones to make the drums of history change from cymbals to snares."</p>
         </div>
- 
+
         <p>Salem Mania is a publication for the community, by the community. We serve the culture, the people — as ordinary people are the people to make the drums of history change from cymbals to snares. Salem Mania is here to document that course of movement. Across all fields — whether it be film, music, culture, literature, opinion, poetry, and more — there must be the connection of quality writing. Writing that moves a reader. Writing that documents or induces a cultural shift. Writing that only could have been produced in the author's unique voice.</p>
- 
+
         <p>All reviews at Salem Mania follow the Standard Democratic Peer Review Process. Each piece of work will be held to the same standards of quality. The standard belongs to the community, not to any individual's taste or jurisdiction. When a piece passes, it passes because the community decided it earned its place. Salem Mania's ultimate goal is for the Salem Mania byline to mean something. All writing is held to the same standard. All decisions are final.</p>
- 
+
         <p>Everyone who decides to submit to Salem Mania must understand: <em>submission does not equal publication.</em> A Salem Mania byline should be synonymous with qualified writing. This open pitch window season, the Salem Mania article submission maximum will cap at fifteen articles. Meaning only fifteen or fewer articles will be selected, reviewed, and published on the Salem Mania website.</p>
- 
+
         <div class="ornament" aria-hidden="true">
           <span class="ornament-line"></span>
           <span class="ornament-glyph">🕸</span>
           <span class="ornament-line"></span>
         </div>
- 
+
         <p>Salem Mania is here to document the power writing can hold. Writing is the oldest system of information for distribution. Writers should not be disregarded — they should be held higher. Salem Mania is here to document the next generation of writers who will lead us into the next era. When eyes are shifting away from the prosecuted and onto the prosecutors.</p>
- 
+
       </div>
- 
+
       <div class="signature-block">
         <span class="sig-label">Cordially,</span>
         <span class="sig-name">AJ Rasaily</span>
         <span class="sig-title">Founder, Salem Mania</span>
       </div>
- 
+
+      <!-- PITCH NUDGE -->
+      <div class="pitch-nudge">
+        <div class="pn-tag">Pitch Season Open.</div>
+        <div class="pn-title">Your byline could be next.</div>
+        <p class="pn-sub">Issue No. 1 is accepting pitches.</p>
+        <a href="get-involved.html#pitch-form" class="pn-btn">Submit a Pitch →</a>
+      </div>
+
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
     <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="600" y1="120" x2="600"  y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="30"  class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="30"  class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="300"  y2="0"   class="fw"/>
-      <line x1="600" y1="120" x2="900"  y2="0"   class="fw"/>
-      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55"  class="fa"/>
-      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25"  class="fa"/>
-      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5"  class="fa"/>
+      <line x1="600" y1="120" x2="600"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="300"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="900"  y2="0"  class="fw"/>
+      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55" class="fa"/>
+      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25" class="fa"/>
+      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5" class="fa"/>
     </svg>
     <div class="footer-inner">
       <span class="footer-title">Salem Mania</span>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html#articles">Articles</a>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
         <a href="get-involved.html">Get Involved</a>
-        <a href="those-involved.html">Those Involved (Underway)</a>
+        <a href="those-involved.html">Those Involved</a>
+        <a href="rights-and-stuff.html">Terms &amp; Conditions</a>
         <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
       </nav>
-      <span class="footer-copy">© 2026 Salem Mania. </span>
+      <span class="footer-copy">© 2026 Salem Mania.</span>
     </div>
   </footer>
 
