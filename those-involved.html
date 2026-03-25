@@ -319,6 +319,26 @@
       position: relative; z-index: 1;
     }
 
+    /* minimalist witch/broom sigil overlay */
+    .bs-sigil {
+      position: absolute; z-index: 4; pointer-events: none;
+      top: 8px; right: 8px;
+      width: 34px; height: 34px;
+      opacity: .72;
+      filter: drop-shadow(0 0 10px rgba(200,0,42,.22));
+      mix-blend-mode: screen;
+    }
+    .bs-sigil path,
+    .bs-sigil line,
+    .bs-sigil circle {
+      stroke: rgba(240,232,213,.9);
+      stroke-width: 1.75;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .bs-sigil .ember { stroke: rgba(200,0,42,.85); }
+
     /* placeholder — red fill with SVG silhouette matching post style */
     .bs-photo-ph {
       width: 100%; height: 100%;
@@ -519,10 +539,19 @@
               <div class="bs-photo">
                 <div class="bs-burn"></div>
                 <div class="bs-overlay"></div>
+                <svg class="bs-sigil" viewBox="0 0 48 48" aria-hidden="true">
+                  <!-- tiny broom -->
+                  <line x1="10" y1="14" x2="33" y2="37"/>
+                  <path d="M31.2 35.2 L39.5 39.5 L35.2 31.2 Z" class="ember"/>
+                  <path d="M33 37 L41 41"/>
+                  <!-- tiny witch hat hint -->
+                  <path d="M14 18 Q23 12 34 18" />
+                  <path d="M20 18 Q24 9 28 18" class="ember"/>
+                </svg>
                 <img
-                  src="https://scontent-ord5-1.xx.fbcdn.net/v/t1.15752-9/655325859_1968488637076665_8316484494321098760_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=UqFyIKdk4agQ7kNvwEqasEf&_nc_oc=Adr7aHf2uPjpaO8TtgvjN-mkPYAruW_NRqpnAPSCxnHeUDMiz2u4E4IzqLRaOShoeiM&_nc_zt=23&_nc_ht=scontent-ord5-1.xx&_nc_ss=7a32e&oh=03_Q7cD4wF3kbTPgATFq-H9CuOJqQij59CRzKKlLAHBRbGxw7gH5g&oe=69EABA09"
+                  src="assets/card1-aj.jpg"
                   alt="AJ Rasaily"
-                  loading="lazy" decoding="async" referrerpolicy="no-referrer"
+                  loading="lazy" decoding="async"
                 />
               </div>
             </div>
@@ -574,10 +603,19 @@
               <div class="bs-photo">
                 <div class="bs-burn"></div>
                 <div class="bs-overlay"></div>
+                <svg class="bs-sigil" viewBox="0 0 48 48" aria-hidden="true">
+                  <!-- tiny broom -->
+                  <line x1="10" y1="14" x2="33" y2="37"/>
+                  <path d="M31.2 35.2 L39.5 39.5 L35.2 31.2 Z" class="ember"/>
+                  <path d="M33 37 L41 41"/>
+                  <!-- tiny witch hat hint -->
+                  <path d="M14 18 Q23 12 34 18" />
+                  <path d="M20 18 Q24 9 28 18" class="ember"/>
+                </svg>
                 <img
-                  src="https://scontent-ord5-3.xx.fbcdn.net/v/t1.15752-9/655053362_3543846909123680_7141768168541820652_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_ohc=q4uK9WtZt18Q7kNvwE3pGfk&_nc_oc=AdqmjDRo3IxBSTOBR0TgPSq2qtvXt-1L-AHrzXh2Lix9hzkJCRzF8KxzLsxV0PbHcws&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&_nc_ss=7a32e&oh=03_Q7cD4wGj8OwyvML9NeSpVVfR5oxlbi1FdeRuEtgcZNXCahdcng&oe=69EACA74"
+                  src="assets/card2-shelly.jpg"
                   alt="Shelly Li"
-                  loading="lazy" decoding="async" referrerpolicy="no-referrer"
+                  loading="lazy" decoding="async"
                 />
               </div>
             </div>
@@ -628,22 +666,21 @@
             <div class="bs-photo-wrap">
               <div class="bs-photo">
                 <div class="bs-burn"></div>
-                <!-- placeholder — red background + silhouette, matching post's illustrated style -->
-                <div class="bs-photo-ph">
-                  <svg width="90" height="115" viewBox="0 0 90 115" xmlns="http://www.w3.org/2000/svg">
-                    <!-- simplified portrait silhouette — line art style -->
-                    <ellipse cx="45" cy="32" rx="22" ry="24" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="2.2"/>
-                    <!-- hair -->
-                    <path d="M22 26 Q18 10 35 8 Q45 5 55 8 Q70 10 68 26" fill="none" stroke="rgba(0,0,0,.55)" stroke-width="2"/>
-                    <path d="M23 28 Q20 20 22 14" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/>
-                    <path d="M67 28 Q70 20 68 14" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/>
-                    <!-- shoulders / body -->
-                    <path d="M5 115 Q8 70 25 60 Q35 56 45 56 Q55 56 65 60 Q82 70 85 115" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="2.2"/>
-                    <!-- collar suggestion -->
-                    <path d="M35 56 Q45 63 55 56" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/>
-                  </svg>
-                  <span class="bs-photo-ph-label">https://scontent-ord5-3.xx.fbcdn.net/v/t1.15752-9/590588465_747324864341536_2153487412406907848_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=HfwRuLm8_8cQ7kNvwHAs6fT&_nc_oc=AdoJ68hCsUPx3Otz0K1xKkApX_6V2HCDqBpuLijA37eCdjJpuTxUECW4pS-bOivsWj8&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&_nc_ss=7a32e&oh=03_Q7cD4wHjPT1wgMPwL4LqSCXqk8FFO-haCyo2hsashu9G6L-Eag&oe=69EB8DC8</span>
-                </div>
+                <div class="bs-overlay"></div>
+                <svg class="bs-sigil" viewBox="0 0 48 48" aria-hidden="true">
+                  <!-- tiny broom -->
+                  <line x1="10" y1="14" x2="33" y2="37"/>
+                  <path d="M31.2 35.2 L39.5 39.5 L35.2 31.2 Z" class="ember"/>
+                  <path d="M33 37 L41 41"/>
+                  <!-- tiny witch hat hint -->
+                  <path d="M14 18 Q23 12 34 18" />
+                  <path d="M20 18 Q24 9 28 18" class="ember"/>
+                </svg>
+                <img
+                  src="assets/card3-prashun.jpg"
+                  alt="Prashun Regmi"
+                  loading="lazy" decoding="async"
+                />
               </div>
             </div>
 
