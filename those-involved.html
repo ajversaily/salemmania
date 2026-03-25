@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Those Involved — Salem Mania</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   <style>
 
     /* ── Pyre Token System ──────────────────────────── */
@@ -143,19 +145,9 @@
       opacity: 0; animation: riseIn .5s ease .5s both;
     }
 
-    /* header sigil mark */
-    .ti-sigil {
-      width: 74px;
-      height: auto;
-      display: block;
-      margin: 1.1rem auto 0;
-      box-shadow:
-        0 0 22px rgba(200,0,42,.14),
-        0 14px 34px rgba(0,0,0,.55);
-      filter: contrast(1.02) saturate(1.02) brightness(1.02) drop-shadow(0 0 18px rgba(200,0,42,.18));
-      opacity: 0;
-      animation: riseIn .6s ease .62s both;
-    }
+    /* sigil removed — keep markup inert if present */
+    img.ti-sigil,
+    img.bs-sigil-img { display: none !important; }
 
     /* ── MAIN ─────────────────────────────────────── */
     .ti-main { max-width: var(--max-w); margin: 0 auto; padding: 5rem 1.5rem 2rem; }
@@ -169,6 +161,7 @@
     }
     .network-word {
       font-family: var(--font-display);
+      font-style: italic;
       font-size: clamp(4rem, 12vw, 9rem);
       font-weight: 900;
       letter-spacing: -.03em;
@@ -338,16 +331,6 @@
       /* sepia+contrast to match post's illustrated look */
       filter: sepia(.45) contrast(1.12) brightness(.85) saturate(1.1);
       position: relative; z-index: 1;
-    }
-
-    /* portrait corner sigil mark (image) */
-    .bs-sigil-img {
-      position: absolute; z-index: 4; pointer-events: none;
-      top: 8px; right: 8px;
-      width: 34px; height: 34px;
-      opacity: .78;
-      filter: drop-shadow(0 0 10px rgba(200,0,42,.22));
-      mix-blend-mode: screen;
     }
 
     /* placeholder — red fill with SVG silhouette matching post style */
