@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Witch Sigil — Salem Mania</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --char: #080603;
+      --soot: #120d08;
+      --moon: #f0e8d5;
+      --pyre: #c8002a;
+      --ember: #e8720a;
+      --pyre-glow: rgba(200,0,42,.38);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-mono: 'Source Code Pro', monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(ellipse 70% 60% at 50% 20%, rgba(200,0,42,.10), transparent 65%), var(--soot);
+      color: var(--moon);
+    }
+
+    .wrap {
+      width: min(520px, 92vw);
+      background: rgba(8,6,3,.8);
+      border: 1px solid rgba(200,0,42,.22);
+      border-top: 3px solid var(--pyre);
+      padding: 2rem 1.6rem 1.7rem;
+      box-shadow: 0 18px 55px rgba(0,0,0,.65), 0 0 0 1px rgba(200,0,42,.12);
+    }
+
+    .title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      letter-spacing: -.01em;
+      margin: 0 0 .3rem;
+      text-shadow: 0 0 28px rgba(200,0,42,.18);
+    }
+
+    .sub {
+      margin: 0 0 1.2rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(240,232,213,.45);
+    }
+
+    .sigil-frame {
+      display: grid;
+      place-items: center;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+      border: 1px solid rgba(200,0,42,.28);
+      box-shadow: 0 0 0 1px rgba(200,0,42,.1) inset, 0 0 40px rgba(200,0,42,.06) inset;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(200,0,42,.12), transparent 55%),
+        radial-gradient(circle at 80% 85%, rgba(0,0,0,.38), transparent 60%),
+        linear-gradient(180deg, rgba(18,13,8,.7), rgba(8,6,3,.9));
+    }
+
+    .bs-sigil {
+      width: 96px;
+      height: 96px;
+      opacity: .92;
+      filter: drop-shadow(0 0 14px rgba(200,0,42,.22));
+    }
+
+    .bs-sigil path,
+    .bs-sigil line,
+    .bs-sigil circle {
+      stroke: rgba(240,232,213,.92);
+      stroke-width: 1.75;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bs-sigil .ember { stroke: rgba(200,0,42,.88); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="title">Witch Sigil</h1>
+    <p class="sub">Salem Mania · Pyre Mark</p>
+
+    <div class="sigil-frame" aria-label="Witch broom sigil">
+      <svg class="bs-sigil" viewBox="0 0 48 48" role="img" aria-label="Minimal witch broom sigil" xmlns="http://www.w3.org/2000/svg">
+        <!-- tiny broom -->
+        <line x1="10" y1="14" x2="33" y2="37"/>
+        <path d="M31.2 35.2 L39.5 39.5 L35.2 31.2 Z" class="ember"/>
+        <path d="M33 37 L41 41"/>
+        <!-- tiny witch hat hint -->
+        <path d="M14 18 Q23 12 34 18" />
+        <path d="M20 18 Q24 9 28 18" class="ember"/>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
