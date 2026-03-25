@@ -15,7 +15,6 @@
       --ink:        #1a1208;
       --ink-soft:   #2e2010;
       --web:        #c8002a;
-      --web-dim:    rgba(200,0,42,.12);
       --gilt:       #8b6914;
       --dust:       #7a6e5a;
       --font-display: 'Playfair Display', Georgia, serif;
@@ -23,7 +22,7 @@
       --font-body:    'Libre Baskerville', Georgia, serif;
       --font-mono:    'Source Code Pro', monospace;
       --font-frak:    'UnifrakturMaguntia', cursive;
-      --max-w: 1100px;
+      --max-w: 1200px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,7 +41,7 @@
       content: '';
       position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: .03; pointer-events: none; z-index: 9999;
+      opacity: .035; pointer-events: none; z-index: 9999;
     }
 
     a { color: var(--web); text-decoration: none; }
@@ -77,7 +76,6 @@
       background: repeating-linear-gradient(91deg, transparent, transparent 4px, rgba(255,255,255,.007) 4px, rgba(255,255,255,.007) 8px);
       pointer-events: none;
     }
-    /* fire from floor */
     .ti-header::after {
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
@@ -105,194 +103,234 @@
     .poster-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
+      gap: 3.5rem 2.8rem;
       align-items: start;
     }
-    @media (max-width: 900px) { .poster-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
+    @media (max-width: 1000px) { .poster-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .poster-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } }
 
-    /* ═══════════════════════════════════════════════
-       POSTER 1 — WANTED (Old West / reward bill)
-    ═══════════════════════════════════════════════ */
-    .poster-wanted {
-      background: #d4b87a;
-      border: 3px solid #8a5c18;
-      padding: 0;
+
+    .broadside {
       position: relative;
-      box-shadow: 6px 6px 0 #1a0e04, 10px 10px 30px rgba(0,0,0,.6);
       opacity: 0;
-      transform: rotate(-1.2deg) translateY(20px);
-      transition: opacity .6s ease, transform .6s ease;
+      transform: translateY(28px) rotate(var(--tilt, 0deg));
+      transition: opacity .7s ease var(--delay, 0s), transform .7s ease var(--delay, 0s);
     }
-    .poster-wanted.in { opacity: 1; transform: rotate(-1.2deg) translateY(0); }
-    .poster-wanted:hover { transform: rotate(0deg) translateY(-4px) scale(1.02); }
-
-    /* aged paper texture */
-    .poster-wanted::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 15%, rgba(160,100,20,.25) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 85%, rgba(120,70,10,.2) 0%, transparent 50%);
-      pointer-events: none;
+    .broadside.in { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)); }
+    .broadside:hover {
+      transform: translateY(-6px) rotate(0deg) scale(1.028) !important;
+      z-index: 10;
+    }
+    .broadside:hover .bs-paper {
+      box-shadow: 0 24px 64px rgba(0,0,0,.8), 0 0 0 1px rgba(138,96,48,.45);
     }
 
-    .pw-border { border: 2px solid #8a5c18; margin: 8px; padding: 1.6rem 1.4rem; position: relative; }
-    .pw-top { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; letter-spacing: .35em; text-transform: uppercase; color: #1a0e04; text-align: center; margin-bottom: .3rem; }
-    .pw-wanted { font-family: var(--font-display); font-size: 3.2rem; font-weight: 900; letter-spacing: -.01em; line-height: .9; color: #1a0e04; text-align: center; margin-bottom: .3rem; }
-    .pw-dead-alive { font-family: var(--font-body); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: #3a2008; text-align: center; margin-bottom: 1.2rem; }
+    .broadside:nth-child(1) { --tilt: -1.5deg; --delay: 0s;    }
+    .broadside:nth-child(2) { --tilt:  0.6deg; --delay: .12s;  }
+    .broadside:nth-child(3) { --tilt: -0.7deg; --delay: .24s;  }
+    .broadside:nth-child(4) { --tilt:  1.4deg; --delay: .36s;  }
+    .broadside:nth-child(5) { --tilt: -1.0deg; --delay: .48s;  }
 
-    /* silhouette placeholder */
-    .pw-silhouette {
-      width: 100%; height: 160px;
-      background: #8a5c18;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.2rem; position: relative; overflow: hidden;
-    }
-    .pw-silhouette::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.3));
-    }
-    /* SVG person silhouette */
-    .pw-silhouette svg { opacity: .55; position: relative; z-index: 1; }
-
-    .pw-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: #1a0e04; text-align: center; margin-bottom: .2rem; border-top: 2px solid #8a5c18; border-bottom: 2px solid #8a5c18; padding: .35rem 0; }
-    .pw-role { font-family: var(--font-body); font-size: .75rem; font-style: italic; color: #3a2008; text-align: center; margin-bottom: 1rem; }
-    .pw-reward-label { font-family: var(--font-mono); font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: #5a3a10; text-align: center; margin-bottom: .15rem; }
-    .pw-reward { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: #1a0e04; text-align: center; margin-bottom: 1rem; }
-    .pw-crimes { font-family: var(--font-body); font-size: .72rem; color: #2a1808; line-height: 1.6; border-top: 1px solid rgba(138,92,24,.4); padding-top: .8rem; }
-    .pw-crimes strong { font-weight: 700; }
-    .pw-footer { font-family: var(--font-mono); font-size: .5rem; letter-spacing: .12em; text-transform: uppercase; color: #5a3a10; text-align: center; margin-top: .8rem; padding-top: .6rem; border-top: 1px solid rgba(138,92,24,.4); }
-
-    /* ═══════════════════════════════════════════════
-       POSTER 2 — COLONIAL BROADSIDE (Salem-era handbill)
-    ═══════════════════════════════════════════════ */
-    .poster-broadside {
-      background: #ede0c0;
+    /* THE PAPER */
+    .bs-paper {
+      position: relative;
+      overflow: hidden;
       border: 1px solid #b09060;
-      padding: 0;
-      position: relative;
-      box-shadow: 4px 4px 0 #3a2010, 8px 8px 24px rgba(0,0,0,.55);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .6s ease .15s, transform .6s ease .15s;
+      box-shadow: 5px 5px 0 #3a2010, 9px 9px 30px rgba(0,0,0,.65);
     }
-    .poster-broadside.in { opacity: 1; transform: translateY(0); }
-    .poster-broadside:hover { transform: translateY(-4px) scale(1.02); }
 
-    .poster-broadside::before {
+    /* unique parchment tone per card */
+    .broadside:nth-child(1) .bs-paper { background: #ede0be; }
+    .broadside:nth-child(2) .bs-paper { background: #f0e4c8; }
+    .broadside:nth-child(3) .bs-paper { background: #e9d9b2; }
+    .broadside:nth-child(4) .bs-paper { background: #eee2c2; }
+    .broadside:nth-child(5) .bs-paper { background: #f2e7cc; }
+
+    /* ambient stain layer */
+    .bs-paper::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(180,130,60,.15) 0%, transparent 60%),
-        radial-gradient(circle at 85% 90%, rgba(160,100,20,.12) 0%, transparent 40%);
-      pointer-events: none;
+        radial-gradient(ellipse at var(--s1x, 20%) var(--s1y, 15%), rgba(150,90,15,.24) 0%, transparent 52%),
+        radial-gradient(ellipse at var(--s2x, 78%) var(--s2y, 82%), rgba(110,65,10,.2)  0%, transparent 48%),
+        radial-gradient(ellipse at var(--s3x, 50%) var(--s3y, 50%), rgba(180,140,60,.06) 0%, transparent 60%);
     }
+    .broadside:nth-child(1) .bs-paper { --s1x:15%; --s1y:10%; --s2x:82%; --s2y:88%; --s3x:45%; --s3y:55%; }
+    .broadside:nth-child(2) .bs-paper { --s1x:68%; --s1y:8%;  --s2x:18%; --s2y:76%; --s3x:52%; --s3y:42%; }
+    .broadside:nth-child(3) .bs-paper { --s1x:35%; --s1y:88%; --s2x:88%; --s2y:12%; --s3x:60%; --s3y:48%; }
+    .broadside:nth-child(4) .bs-paper { --s1x:8%;  --s1y:52%; --s2x:72%; --s2y:5%;  --s3x:38%; --s3y:65%; }
+    .broadside:nth-child(5) .bs-paper { --s1x:82%; --s1y:38%; --s2x:22%; --s2y:90%; --s3x:55%; --s3y:30%; }
 
-    /* foxed spots — aged paper marks */
-    .poster-broadside::after {
+    /* foxing — aged paper spots */
+    .bs-paper::after {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
       background-image:
-        radial-gradient(circle at 12% 22%, rgba(139,92,20,.18) 0%, transparent 6%),
-        radial-gradient(circle at 88% 15%, rgba(139,92,20,.14) 0%, transparent 5%),
-        radial-gradient(circle at 72% 78%, rgba(139,92,20,.16) 0%, transparent 4%),
-        radial-gradient(circle at 25% 88%, rgba(139,92,20,.12) 0%, transparent 5%);
+        radial-gradient(circle at var(--fa, 10%) var(--fb, 20%), rgba(139,92,20,.22) 0%, transparent 4.5%),
+        radial-gradient(circle at var(--fc, 88%) var(--fd, 14%), rgba(139,92,20,.16) 0%, transparent 3.8%),
+        radial-gradient(circle at var(--fe, 70%) var(--ff, 80%), rgba(139,92,20,.18) 0%, transparent 4%),
+        radial-gradient(circle at var(--fg, 24%) var(--fh, 86%), rgba(139,92,20,.14) 0%, transparent 4.5%),
+        radial-gradient(circle at var(--fi, 52%) var(--fj, 46%), rgba(139,92,20,.1)  0%, transparent 3%),
+        radial-gradient(circle at var(--fk, 6%)  var(--fl, 68%), rgba(139,92,20,.12) 0%, transparent 3.2%);
+    }
+    .broadside:nth-child(1) .bs-paper { --fa:8%;  --fb:18%; --fc:91%; --fd:11%; --fe:67%; --ff:83%; --fg:19%; --fh:92%; --fi:44%; --fj:56%; --fk:5%;  --fl:70%; }
+    .broadside:nth-child(2) .bs-paper { --fa:14%; --fb:7%;  --fc:83%; --fd:21%; --fe:54%; --ff:71%; --fg:31%; --fh:84%; --fi:61%; --fj:34%; --fk:92%; --fl:58%; }
+    .broadside:nth-child(3) .bs-paper { --fa:4%;  --fb:31%; --fc:77%; --fd:7%;  --fe:63%; --ff:89%; --fg:27%; --fh:77%; --fi:51%; --fj:51%; --fk:88%; --fl:26%; }
+    .broadside:nth-child(4) .bs-paper { --fa:21%; --fb:11%; --fc:86%; --fd:26%; --fe:44%; --ff:76%; --fg:14%; --fh:83%; --fi:71%; --fj:41%; --fk:3%;  --fl:55%; }
+    .broadside:nth-child(5) .bs-paper { --fa:11%; --fb:24%; --fc:89%; --fd:19%; --fe:57%; --ff:64%; --fg:23%; --fh:93%; --fi:47%; --fj:39%; --fk:79%; --fl:12%; }
+
+    /* ── DOUBLE-RULE BORDER ── */
+    .bs-outer {
+      border: 3px double #8a6030;
+      margin: 10px;
+      padding: 1.8rem 1.65rem;
+      position: relative; z-index: 1;
+    }
+    /* inner hairline echo */
+    .bs-outer::before {
+      content: '';
+      position: absolute; inset: 5px;
+      border: 1px solid rgba(138,96,48,.22);
       pointer-events: none;
     }
 
-    .pb-outer { border: 3px double #8a6030; margin: 10px; padding: 1.6rem 1.5rem; }
+    /* ── MASTHEAD ── */
+    .bs-publication {
+      font-family: var(--font-mono);
+      font-size: .5rem; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: #5a3a18; text-align: center; margin-bottom: .35rem;
+    }
+    .bs-decree {
+      font-family: var(--font-frak);
+      font-size: 2.3rem; color: #1a0e04;
+      text-align: center; line-height: 1; margin-bottom: .25rem;
+    }
 
-    .pb-publication { font-family: var(--font-mono); font-size: .52rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #5a3a18; text-align: center; margin-bottom: .5rem; }
-    .pb-decree { font-family: var(--font-frak); font-size: 2rem; color: #1a0e04; text-align: center; line-height: 1.1; margin-bottom: .4rem; }
-    .pb-issue-line { font-family: var(--font-fell); font-style: italic; font-size: .78rem; color: #5a3a18; text-align: center; margin-bottom: 1rem; }
-
-    .pb-divider { display: flex; align-items: center; gap: .5rem; margin: .8rem 0; }
-    .pb-divider-line { flex: 1; height: 1px; background: #8a6030; }
-    .pb-divider-mark { font-family: var(--font-display); font-size: .7rem; color: #8a6030; }
-
-    /* silhouette */
-    .pb-silhouette {
-      width: 100px; height: 100px; margin: 0 auto .8rem;
-      background: #8a6030;
-      clip-path: circle(50%);
+    /* triple-rule ornament */
+    .bs-ornament-row {
       display: flex; align-items: center; justify-content: center;
+      gap: .5rem; margin: .55rem 0 .4rem;
+    }
+    .bs-orn-line { flex: 1; height: 1px; background: #8a6030; }
+    .bs-orn-line.thin { opacity: .45; }
+    .bs-orn-marks { font-size: .7rem; color: #8a6030; letter-spacing: .15em; line-height: 1; }
+
+    .bs-issue-line {
+      font-family: var(--font-fell); font-style: italic;
+      font-size: .74rem; color: #5a3a18;
+      text-align: center; margin-bottom: 1rem;
+    }
+
+    /* ── PHOTO ── */
+    .bs-photo-wrap {
+      width: 118px; height: 155px;
+      margin: 0 auto 1.05rem;
       position: relative;
     }
-    .pb-silhouette svg { opacity: .5; }
-
-    .pb-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: #1a0e04; text-align: center; letter-spacing: .02em; margin-bottom: .15rem; }
-    .pb-role { font-family: var(--font-fell); font-style: italic; font-size: .82rem; color: #4a2e10; text-align: center; margin-bottom: .8rem; }
-
-    .pb-charges-label { font-family: var(--font-mono); font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #8a0018; margin-bottom: .5rem; }
-    .pb-charges { font-family: var(--font-fell); font-size: .85rem; color: #2a1808; line-height: 1.75; font-style: italic; }
-    .pb-charges span { display: block; padding-left: .8rem; position: relative; }
-    .pb-charges span::before { content: '✦'; position: absolute; left: 0; font-size: .6rem; color: #8a6030; top: .15rem; }
-
-    .pb-seal { font-family: var(--font-display); font-size: .7rem; font-style: italic; color: #5a3a18; text-align: center; margin-top: 1rem; padding-top: .8rem; border-top: 1px solid #b09060; line-height: 1.6; }
-    .pb-seal strong { display: block; font-style: normal; font-size: .85rem; }
-
-    /* ═══════════════════════════════════════════════
-       POSTER 3 — TRIBUNAL DECREE (gothic / dark court)
-    ═══════════════════════════════════════════════ */
-    .poster-tribunal {
-      background: #0e0a06;
-      border: 1px solid rgba(200,0,42,.3);
-      border-top: 4px solid var(--web);
-      padding: 0;
-      position: relative;
-      box-shadow: 0 0 40px rgba(200,0,42,.08), 4px 4px 0 #3a0010, 8px 8px 24px rgba(0,0,0,.7);
-      opacity: 0;
-      transform: rotate(1deg) translateY(20px);
-      transition: opacity .6s ease .3s, transform .6s ease .3s;
-    }
-    .poster-tribunal.in { opacity: 1; transform: rotate(1deg) translateY(0); }
-    .poster-tribunal:hover { transform: rotate(0deg) translateY(-4px) scale(1.02); }
-
-    .poster-tribunal::before {
+    /* double-frame around photo */
+    .bs-photo-wrap::before {
       content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(180deg, transparent, transparent 24px, rgba(255,255,255,.012) 24px, rgba(255,255,255,.012) 25px);
-      pointer-events: none;
+      position: absolute; inset: -6px;
+      border: 2px solid #8a6030;
+      pointer-events: none; z-index: 3;
     }
-
-    .pt-inner { padding: 1.8rem 1.6rem; }
-
-    .pt-court { font-family: var(--font-mono); font-size: .52rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: rgba(200,0,42,.7); text-align: center; margin-bottom: .6rem; }
-    .pt-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 900; color: #f0e8d5; text-align: center; line-height: 1; letter-spacing: -.01em; margin-bottom: .3rem; text-shadow: 0 0 20px rgba(200,0,42,.2); }
-    .pt-subtitle { font-family: var(--font-fell); font-style: italic; font-size: .78rem; color: rgba(240,232,213,.4); text-align: center; margin-bottom: 1.2rem; }
-
-    .pt-rule { height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.6), transparent); margin: .8rem 0; }
-
-    /* silhouette */
-    .pt-silhouette {
-      width: 100%; height: 150px;
-      background: #1a0808;
-      border: 1px solid rgba(200,0,42,.15);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.2rem; position: relative;
-    }
-    .pt-silhouette::after {
+    .bs-photo-wrap::after {
       content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
-      background: linear-gradient(to top, rgba(200,0,42,.08), transparent);
+      position: absolute; inset: -10px;
+      border: 1px solid rgba(138,96,48,.3);
+      pointer-events: none; z-index: 3;
     }
-    .pt-silhouette svg { opacity: .4; }
+    .bs-photo {
+      width: 100%; height: 100%;
+      background: #2a1c0a;
+      overflow: hidden; position: relative;
+    }
+    /* scan-line burn */
+    .bs-photo > .bs-burn {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18) 0%, transparent 22%, transparent 78%, rgba(0,0,0,.28) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.045) 3px, rgba(0,0,0,.045) 4px);
+    }
+    .bs-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: sepia(.52) contrast(1.08) brightness(.88);
+      position: relative; z-index: 1;
+    }
+    /* placeholder when no photo */
+    .bs-photo-ph {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .5rem; position: relative; z-index: 1;
+    }
+    .bs-photo-ph svg { opacity: .26; }
+    .bs-photo-ph-label {
+      font-family: var(--font-mono); font-size: .42rem;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: #8a6030; opacity: .55;
+    }
 
-    .pt-name { font-family: var(--font-display); font-size: 1.55rem; font-weight: 900; color: #f0e8d5; text-align: center; letter-spacing: .02em; margin-bottom: .15rem; }
-    .pt-role { font-family: var(--font-mono); font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--web); text-align: center; margin-bottom: 1rem; }
+    /* ── NAME BLOCK ── */
+    .bs-rule-heavy { height: 2px; background: #8a6030; margin-bottom: .42rem; }
+    .bs-rule-light  { height: 1px; background: rgba(138,96,48,.4); margin-top: .42rem; margin-bottom: .9rem; }
+    .bs-name {
+      font-family: var(--font-display);
+      font-size: 1.42rem; font-weight: 900;
+      letter-spacing: .035em; text-transform: uppercase;
+      color: #1a0e04; text-align: center;
+    }
+    .bs-role {
+      font-family: var(--font-fell); font-style: italic;
+      font-size: .8rem; color: #4a2e10; text-align: center;
+    }
 
-    .pt-verdict-label { font-family: var(--font-mono); font-size: .5rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,232,213,.25); margin-bottom: .4rem; }
-    .pt-verdict { font-family: var(--font-display); font-size: 1.15rem; font-weight: 900; font-style: italic; color: var(--web); margin-bottom: .8rem; line-height: 1.2; }
+    /* ── DIVIDER ── */
+    .bs-divider { display: flex; align-items: center; gap: .5rem; margin: .8rem 0; }
+    .bs-divider-line { flex: 1; height: 1px; background: rgba(138,96,48,.5); }
+    .bs-divider-mark { font-family: var(--font-display); font-size: .7rem; color: #8a6030; }
 
-    .pt-findings { font-family: var(--font-body); font-size: .78rem; color: rgba(240,232,213,.55); line-height: 1.75; border-left: 2px solid rgba(200,0,42,.3); padding-left: .9rem; }
-    .pt-seal { font-family: var(--font-mono); font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.2); text-align: center; margin-top: 1.2rem; padding-top: .8rem; border-top: 1px solid rgba(200,0,42,.15); }
+    /* ── CHARGES ── */
+    .bs-charges-label {
+      font-family: var(--font-mono); font-size: .5rem; font-weight: 600;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: #8a0018; margin-bottom: .5rem;
+    }
+    .bs-charges {
+      font-family: var(--font-fell); font-size: .84rem;
+      color: #2a1808; line-height: 1.82; font-style: italic;
+    }
+    .bs-charges span {
+      display: block; padding-left: .9rem; position: relative;
+    }
+    .bs-charges span::before {
+      content: '✦'; position: absolute; left: 0;
+      font-size: .56rem; color: #8a6030; top: .22rem;
+      font-style: normal;
+    }
+
+    /* ── SEAL ── */
+    .bs-seal {
+      font-family: var(--font-display); font-size: .68rem;
+      font-style: italic; color: #5a3a18;
+      text-align: center; margin-top: 1.05rem;
+      padding-top: .9rem; border-top: 1px solid #b09060;
+      line-height: 1.65;
+    }
+    .bs-seal strong {
+      display: block; font-style: normal;
+      font-size: .82rem; margin-bottom: .12rem;
+    }
+    .bs-pyre-mark {
+      display: block; margin-top: .5rem;
+      font-family: var(--font-frak); font-size: .85rem;
+      color: rgba(138,96,48,.55); font-style: normal;
+      letter-spacing: .04em;
+    }
 
     /* ── BOTTOM NOTE ─────────────────────────────── */
-    .ti-note {
-      margin-top: 4rem;
-      text-align: center;
-    }
+    .ti-note { margin-top: 4.5rem; text-align: center; }
     .ti-note-rule { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
     .ti-note-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.35), transparent); }
     .ti-note-glyph { font-family: var(--font-display); font-size: .9rem; color: var(--web); opacity: .6; }
@@ -314,9 +352,8 @@
 
     @media (max-width: 640px) {
       .ti-main { padding: 2.5rem 1.2rem 4rem; }
-      .poster-wanted, .poster-broadside, .poster-tribunal { transform: none !important; }
+      .broadside { --tilt: 0deg !important; }
     }
-
   </style>
 </head>
 <body>
@@ -365,53 +402,253 @@
 
   <!-- MAIN -->
   <main class="ti-main">
-
     <div class="poster-grid">
 
-      <div class="poster-broadside" id="poster2">
-        <div class="pb-outer">
+      <!-- Card template repeated 5× — swap name/role/charges/photo per member -->
 
-          <div class="pb-publication">Salem Mania · The Network</div>
-          <div class="pb-decree">From the Pyre</div>
-          <div class="pb-issue-line">Salem Mania Network </div>
+      <!-- ══ CARD 1 ══ -->
+      <div class="broadside">
+        <div class="bs-paper">
+          <div class="bs-outer">
+            <div class="bs-publication">Salem Mania · The Network</div>
+            <div class="bs-decree">From the Pyre</div>
+            <div class="bs-ornament-row">
+              <span class="bs-orn-line"></span>
+              <span class="bs-orn-marks">✦ ✦ ✦</span>
+              <span class="bs-orn-line"></span>
+            </div>
+            <div class="bs-issue-line">Salem Mania Network</div>
 
-          <div class="pb-divider">
-            <span class="pb-divider-line"></span>
-            <span class="pb-divider-mark">✦</span>
-            <span class="pb-divider-line"></span>
+            <div class="bs-photo-wrap">
+              <div class="bs-photo">
+                <div class="bs-burn"></div>
+                <!-- <img src="photos/member1.jpg" alt="Member Name"> -->
+                <div class="bs-photo-ph">
+                  <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg" fill="#8a6030">
+                    <ellipse cx="24" cy="14" rx="12" ry="13"/><path d="M2 48 Q2 32 24 32 Q46 32 46 48 L47 62 H1 Z"/>
+                  </svg>
+                  <span class="bs-photo-ph-label">https://scontent-ord5-1.xx.fbcdn.net/v/t1.15752-9/655325859_1968488637076665_8316484494321098760_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=UqFyIKdk4agQ7kNvwEqasEf&_nc_oc=Adr7aHf2uPjpaO8TtgvjN-mkPYAruW_NRqpnAPSCxnHeUDMiz2u4E4IzqLRaOShoeiM&_nc_zt=23&_nc_ht=scontent-ord5-1.xx&_nc_ss=7a32e&oh=03_Q7cD4wHcY1YhEvZFUZ69egHFHcH_aOJaJ0hxXCporWIGI7uj5A&oe=69EABA09</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bs-rule-heavy"></div>
+            <div class="bs-name">[AJ RASAILY]</div>
+            <div class="bs-role">Founder · Salem Mania Network</div>
+            <div class="bs-rule-light"></div>
+
+            <div class="bs-divider"><span class="bs-divider-line"></span><span class="bs-divider-mark">§</span><span class="bs-divider-line"></span></div>
+
+            <div class="bs-charges-label">Charges of Excellence</div>
+            <div class="bs-charges">
+              <span>Upholding the Standard Democratic Peer Review Process</span>
+              <span>Coding the site</span>
+              <span>Serving the culture</span>
+              <span>Serving the community</span>
+            </div>
+
+            <div class="bs-seal">
+              <strong>Seal of the Network</strong>
+              Admitted by invitation. Accountable to the community.
+              <em class="bs-pyre-mark">From the Pyre</em>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="pb-silhouette">
-            <svg width="52" height="80" viewBox="0 0 52 80" xmlns="http://www.w3.org/2000/svg" fill="#ede0c0">
-              <circle cx="26" cy="14" r="11"/>
-              <path d="M8 36 Q8 26 26 26 Q44 26 44 36 L47 64 H34 L30 50 L22 50 L18 64 H5 Z"/>
-              <rect x="5" y="64" width="13" height="14" rx="2"/>
-              <rect x="34" y="64" width="13" height="14" rx="2"/>
-            </svg>
+      <!-- ══ CARD 2 ══ -->
+      <div class="broadside">
+        <div class="bs-paper">
+          <div class="bs-outer">
+            <div class="bs-publication">Salem Mania · The Network</div>
+            <div class="bs-decree">From the Pyre</div>
+            <div class="bs-ornament-row">
+              <span class="bs-orn-line"></span>
+              <span class="bs-orn-marks">✦ ✦ ✦</span>
+              <span class="bs-orn-line"></span>
+            </div>
+            <div class="bs-issue-line">Salem Mania Network</div>
+
+            <div class="bs-photo-wrap">
+              <div class="bs-photo">
+                <div class="bs-burn"></div>
+                <div class="bs-photo-ph">
+                  <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg" fill="#8a6030">
+                    <ellipse cx="24" cy="14" rx="12" ry="13"/><path d="M2 48 Q2 32 24 32 Q46 32 46 48 L47 62 H1 Z"/>
+                  </svg>
+                  <span class="bs-photo-ph-label">Photo Here</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bs-rule-heavy"></div>
+            <div class="bs-name">[ Name Here ]</div>
+            <div class="bs-role">Editorial Member · Salem Mania Network</div>
+            <div class="bs-rule-light"></div>
+
+            <div class="bs-divider"><span class="bs-divider-line"></span><span class="bs-divider-mark">§</span><span class="bs-divider-line"></span></div>
+
+            <div class="bs-charges-label">Charges of Excellence</div>
+            <div class="bs-charges">
+              <span>Upholding the Standard Democratic Peer Review Process</span>
+              <span>Defending quality writing against all lesser submissions</span>
+              <span>Serving the culture</span>
+              <span>Serving the community</span>
+            </div>
+
+            <div class="bs-seal">
+              <strong>Seal of the Network</strong>
+              Admitted by invitation. Accountable to the community.
+              <em class="bs-pyre-mark">From the Pyre</em>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="pb-name">[ Name Here ]</div>
-          <div class="pb-role">Editorial Member of the Salem Mania Network</div>
+      <!-- ══ CARD 3 ══ -->
+      <div class="broadside">
+        <div class="bs-paper">
+          <div class="bs-outer">
+            <div class="bs-publication">Salem Mania · The Network</div>
+            <div class="bs-decree">From the Pyre</div>
+            <div class="bs-ornament-row">
+              <span class="bs-orn-line"></span>
+              <span class="bs-orn-marks">✦ ✦ ✦</span>
+              <span class="bs-orn-line"></span>
+            </div>
+            <div class="bs-issue-line">Salem Mania Network</div>
 
-          <div class="pb-divider">
-            <span class="pb-divider-line"></span>
-            <span class="pb-divider-mark">§</span>
-            <span class="pb-divider-line"></span>
+            <div class="bs-photo-wrap">
+              <div class="bs-photo">
+                <div class="bs-burn"></div>
+                <div class="bs-photo-ph">
+                  <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg" fill="#8a6030">
+                    <ellipse cx="24" cy="14" rx="12" ry="13"/><path d="M2 48 Q2 32 24 32 Q46 32 46 48 L47 62 H1 Z"/>
+                  </svg>
+                  <span class="bs-photo-ph-label">Photo Here</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bs-rule-heavy"></div>
+            <div class="bs-name">[ Name Here ]</div>
+            <div class="bs-role">Editorial Member · Salem Mania Network</div>
+            <div class="bs-rule-light"></div>
+
+            <div class="bs-divider"><span class="bs-divider-line"></span><span class="bs-divider-mark">§</span><span class="bs-divider-line"></span></div>
+
+            <div class="bs-charges-label">Charges of Excellence</div>
+            <div class="bs-charges">
+              <span>Upholding the Standard Democratic Peer Review Process</span>
+              <span>Defending quality writing against all lesser submissions</span>
+              <span>Serving the culture</span>
+              <span>Serving the community</span>
+            </div>
+
+            <div class="bs-seal">
+              <strong>Seal of the Network</strong>
+              Admitted by invitation. Accountable to the community.
+              <em class="bs-pyre-mark">From the Pyre</em>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="pb-charges-label">Charges of Excellence</div>
-          <div class="pb-charges">
-            <span>Upholding the Standard Democratic Peer Review Process</span>
-            <span>Defending quality writing against all lesser submissions</span>
-            <span>Serving the culture</span>
-            <span>Serving the community</span>
+      <!-- ══ CARD 4 ══ -->
+      <div class="broadside">
+        <div class="bs-paper">
+          <div class="bs-outer">
+            <div class="bs-publication">Salem Mania · The Network</div>
+            <div class="bs-decree">From the Pyre</div>
+            <div class="bs-ornament-row">
+              <span class="bs-orn-line"></span>
+              <span class="bs-orn-marks">✦ ✦ ✦</span>
+              <span class="bs-orn-line"></span>
+            </div>
+            <div class="bs-issue-line">Salem Mania Network</div>
+
+            <div class="bs-photo-wrap">
+              <div class="bs-photo">
+                <div class="bs-burn"></div>
+                <div class="bs-photo-ph">
+                  <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg" fill="#8a6030">
+                    <ellipse cx="24" cy="14" rx="12" ry="13"/><path d="M2 48 Q2 32 24 32 Q46 32 46 48 L47 62 H1 Z"/>
+                  </svg>
+                  <span class="bs-photo-ph-label">Photo Here</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bs-rule-heavy"></div>
+            <div class="bs-name">[ Name Here ]</div>
+            <div class="bs-role">Editorial Member · Salem Mania Network</div>
+            <div class="bs-rule-light"></div>
+
+            <div class="bs-divider"><span class="bs-divider-line"></span><span class="bs-divider-mark">§</span><span class="bs-divider-line"></span></div>
+
+            <div class="bs-charges-label">Charges of Excellence</div>
+            <div class="bs-charges">
+              <span>Upholding the Standard Democratic Peer Review Process</span>
+              <span>Defending quality writing against all lesser submissions</span>
+              <span>Serving the culture</span>
+              <span>Serving the community</span>
+            </div>
+
+            <div class="bs-seal">
+              <strong>Seal of the Network</strong>
+              Admitted by invitation. Accountable to the community.
+              <em class="bs-pyre-mark">From the Pyre</em>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="pb-seal">
-            <strong>Seal of the Network</strong>
-            Admitted by invitation. Accountable to the community.
+      <!-- ══ CARD 5 ══ -->
+      <div class="broadside">
+        <div class="bs-paper">
+          <div class="bs-outer">
+            <div class="bs-publication">Salem Mania · The Network</div>
+            <div class="bs-decree">From the Pyre</div>
+            <div class="bs-ornament-row">
+              <span class="bs-orn-line"></span>
+              <span class="bs-orn-marks">✦ ✦ ✦</span>
+              <span class="bs-orn-line"></span>
+            </div>
+            <div class="bs-issue-line">Salem Mania Network</div>
+
+            <div class="bs-photo-wrap">
+              <div class="bs-photo">
+                <div class="bs-burn"></div>
+                <div class="bs-photo-ph">
+                  <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg" fill="#8a6030">
+                    <ellipse cx="24" cy="14" rx="12" ry="13"/><path d="M2 48 Q2 32 24 32 Q46 32 46 48 L47 62 H1 Z"/>
+                  </svg>
+                  <span class="bs-photo-ph-label">Photo Here</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bs-rule-heavy"></div>
+            <div class="bs-name">[ Name Here ]</div>
+            <div class="bs-role">Editorial Member · Salem Mania Network</div>
+            <div class="bs-rule-light"></div>
+
+            <div class="bs-divider"><span class="bs-divider-line"></span><span class="bs-divider-mark">§</span><span class="bs-divider-line"></span></div>
+
+            <div class="bs-charges-label">Charges of Excellence</div>
+            <div class="bs-charges">
+              <span>Upholding the Standard Democratic Peer Review Process</span>
+              <span>Defending quality writing against all lesser submissions</span>
+              <span>Serving the culture</span>
+              <span>Serving the community</span>
+            </div>
+
+            <div class="bs-seal">
+              <strong>Seal of the Network</strong>
+              Admitted by invitation. Accountable to the community.
+              <em class="bs-pyre-mark">From the Pyre</em>
+            </div>
           </div>
-
         </div>
       </div>
 
@@ -426,7 +663,6 @@
       </div>
       <p class="ti-note-text">Salem Mania Network is via invitation only.</p>
     </div>
-
   </main>
 
   <!-- FOOTER -->
@@ -461,16 +697,16 @@
   <script>
   (function () {
     'use strict';
+    var cards = document.querySelectorAll('.broadside');
     if ('IntersectionObserver' in window) {
-      var posters = document.querySelectorAll('.poster-wanted, .poster-broadside, .poster-tribunal');
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
           if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
         });
-      }, { threshold: 0.1 });
-      posters.forEach(function (p) { io.observe(p); });
+      }, { threshold: 0.08 });
+      cards.forEach(function (c) { io.observe(c); });
     } else {
-      document.querySelectorAll('.poster-wanted, .poster-broadside, .poster-tribunal').forEach(function (p) { p.classList.add('in'); });
+      cards.forEach(function (c) { c.classList.add('in'); });
     }
   })();
   </script>
