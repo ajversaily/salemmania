@@ -67,24 +67,19 @@
         linear-gradient(180deg, rgba(18,13,8,.7), rgba(8,6,3,.9));
     }
 
-    .bs-sigil {
-      width: 96px;
-      height: 96px;
-      opacity: .92;
-      filter: drop-shadow(0 0 14px rgba(200,0,42,.22));
+    .sigil-img {
+      width: 112px;
+      height: 112px;
+      border-radius: 999px;
+      display: block;
+      object-fit: cover;
+      box-shadow:
+        0 0 0 1px rgba(240,232,213,.16),
+        0 0 0 3px rgba(200,0,42,.18),
+        0 0 26px rgba(200,0,42,.14),
+        0 10px 22px rgba(0,0,0,.55);
+      filter: contrast(1.05) saturate(1.02) brightness(.98);
     }
-
-    .bs-sigil path,
-    .bs-sigil line,
-    .bs-sigil circle {
-      stroke: rgba(240,232,213,.92);
-      stroke-width: 1.75;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .bs-sigil .ember { stroke: rgba(200,0,42,.88); }
   </style>
 </head>
 <body>
@@ -92,16 +87,14 @@
     <h1 class="title">Witch Sigil</h1>
     <p class="sub">Salem Mania · Pyre Mark</p>
 
-    <div class="sigil-frame" aria-label="Witch broom sigil">
-      <svg class="bs-sigil" viewBox="0 0 48 48" role="img" aria-label="Minimal witch broom sigil" xmlns="http://www.w3.org/2000/svg">
-        <!-- tiny broom -->
-        <line x1="10" y1="14" x2="33" y2="37"/>
-        <path d="M31.2 35.2 L39.5 39.5 L35.2 31.2 Z" class="ember"/>
-        <path d="M33 37 L41 41"/>
-        <!-- tiny witch hat hint -->
-        <path d="M14 18 Q23 12 34 18" />
-        <path d="M20 18 Q24 9 28 18" class="ember"/>
-      </svg>
+    <div class="sigil-frame" aria-label="Witch sigil image">
+      <img
+        class="sigil-img"
+        src="assets/witch-sigil.jpg"
+        alt="Witch sigil"
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </div>
 </body>
