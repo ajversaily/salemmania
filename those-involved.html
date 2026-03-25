@@ -1,2 +1,479 @@
-working on it... - aj im the sole and only coder for this updates take like 14 years i am sorry.
-<img src="https://i.pinimg.com/736x/26/f9/d8/26f9d806d8f52f8cf0634efd2dd27414.jpg" alt="where is he going come back">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Those Involved — Salem Mania</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --parchment:  #f0e8d5;
+      --vellum:     #e8dcc4;
+      --foxed:      #d4c4a0;
+      --aged:       #c8b48a;
+      --ink:        #1a1208;
+      --ink-soft:   #2e2010;
+      --web:        #c8002a;
+      --web-dim:    rgba(200,0,42,.12);
+      --gilt:       #8b6914;
+      --dust:       #7a6e5a;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-fell:    'IM Fell English', Georgia, serif;
+      --font-body:    'Libre Baskerville', Georgia, serif;
+      --font-mono:    'Source Code Pro', monospace;
+      --font-frak:    'UnifrakturMaguntia', cursive;
+      --max-w: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #0e0c0a;
+      color: var(--parchment);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .03; pointer-events: none; z-index: 9999;
+    }
+
+    a { color: var(--web); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ─────────────────────────────────────── */
+    .sm-nav {
+      background: #0e0c0a;
+      border-bottom: 3px solid var(--web);
+      padding: .75rem 1.5rem;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .sm-nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .sm-nav-brand { font-family: var(--font-display); font-size: 1rem; font-weight: 900; color: #f0e8d5; text-decoration: none; letter-spacing: -.01em; flex-shrink: 0; margin-right: .5rem; }
+    .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; }
+    .sm-nav-links { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
+    .sm-nav-link { font-family: var(--font-mono); font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.45); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
+    .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
+    .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
+
+    /* ── PAGE HEADER ─────────────────────────────── */
+    .ti-header {
+      background: #080603;
+      border-bottom: 3px solid var(--web);
+      padding: 4rem 1.5rem 3.2rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .ti-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(91deg, transparent, transparent 4px, rgba(255,255,255,.007) 4px, rgba(255,255,255,.007) 8px);
+      pointer-events: none;
+    }
+    /* fire from floor */
+    .ti-header::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to top, rgba(200,0,42,.1), transparent);
+      pointer-events: none;
+    }
+    .corner-web { position: absolute; width: 110px; height: 110px; opacity: .45; z-index: 1; }
+    .corner-web.tl { top: 0; left: 0; }
+    .corner-web.tr { top: 0; right: 0; }
+    .cw  { stroke: #c8002a; stroke-width: .9; fill: none; opacity: .6; }
+    .cw2 { stroke: #c8002a; stroke-width: .5; fill: none; opacity: .35; }
+
+    .ti-header-inner { position: relative; z-index: 2; max-width: var(--max-w); margin: 0 auto; }
+    .ti-eyebrow { font-family: var(--font-mono); font-size: .58rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--web); margin-bottom: .8rem; display: block; opacity: 0; animation: riseIn .6s ease .1s both; }
+    .ti-masthead { font-family: var(--font-display); font-size: clamp(2.4rem, 7vw, 4.8rem); font-weight: 900; letter-spacing: -.02em; line-height: 1; color: #f0e8d5; text-shadow: 0 2px 30px rgba(200,0,42,.25); opacity: 0; animation: riseIn .7s ease .25s both; }
+    .ti-rule { display: flex; align-items: center; gap: .8rem; margin: 1.2rem auto; max-width: 340px; opacity: 0; animation: riseIn .5s ease .4s both; }
+    .ti-rule-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.6), transparent); }
+    .ti-rule-glyph { font-family: var(--font-display); font-size: 1rem; color: var(--web); opacity: .8; }
+    .ti-sub { font-family: var(--font-fell); font-style: italic; font-size: 1rem; color: rgba(240,232,213,.5); opacity: 0; animation: riseIn .5s ease .5s both; }
+
+    /* ── MAIN ────────────────────────────────────── */
+    .ti-main { max-width: var(--max-w); margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+
+    /* ── POSTER GRID ─────────────────────────────── */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .poster-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
+
+    /* ═══════════════════════════════════════════════
+       POSTER 1 — WANTED (Old West / reward bill)
+    ═══════════════════════════════════════════════ */
+    .poster-wanted {
+      background: #d4b87a;
+      border: 3px solid #8a5c18;
+      padding: 0;
+      position: relative;
+      box-shadow: 6px 6px 0 #1a0e04, 10px 10px 30px rgba(0,0,0,.6);
+      opacity: 0;
+      transform: rotate(-1.2deg) translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .poster-wanted.in { opacity: 1; transform: rotate(-1.2deg) translateY(0); }
+    .poster-wanted:hover { transform: rotate(0deg) translateY(-4px) scale(1.02); }
+
+    /* aged paper texture */
+    .poster-wanted::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 15%, rgba(160,100,20,.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 85%, rgba(120,70,10,.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .pw-border { border: 2px solid #8a5c18; margin: 8px; padding: 1.6rem 1.4rem; position: relative; }
+    .pw-top { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; letter-spacing: .35em; text-transform: uppercase; color: #1a0e04; text-align: center; margin-bottom: .3rem; }
+    .pw-wanted { font-family: var(--font-display); font-size: 3.2rem; font-weight: 900; letter-spacing: -.01em; line-height: .9; color: #1a0e04; text-align: center; margin-bottom: .3rem; }
+    .pw-dead-alive { font-family: var(--font-body); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: #3a2008; text-align: center; margin-bottom: 1.2rem; }
+
+    /* silhouette placeholder */
+    .pw-silhouette {
+      width: 100%; height: 160px;
+      background: #8a5c18;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem; position: relative; overflow: hidden;
+    }
+    .pw-silhouette::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.3));
+    }
+    /* SVG person silhouette */
+    .pw-silhouette svg { opacity: .55; position: relative; z-index: 1; }
+
+    .pw-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: #1a0e04; text-align: center; margin-bottom: .2rem; border-top: 2px solid #8a5c18; border-bottom: 2px solid #8a5c18; padding: .35rem 0; }
+    .pw-role { font-family: var(--font-body); font-size: .75rem; font-style: italic; color: #3a2008; text-align: center; margin-bottom: 1rem; }
+    .pw-reward-label { font-family: var(--font-mono); font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: #5a3a10; text-align: center; margin-bottom: .15rem; }
+    .pw-reward { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: #1a0e04; text-align: center; margin-bottom: 1rem; }
+    .pw-crimes { font-family: var(--font-body); font-size: .72rem; color: #2a1808; line-height: 1.6; border-top: 1px solid rgba(138,92,24,.4); padding-top: .8rem; }
+    .pw-crimes strong { font-weight: 700; }
+    .pw-footer { font-family: var(--font-mono); font-size: .5rem; letter-spacing: .12em; text-transform: uppercase; color: #5a3a10; text-align: center; margin-top: .8rem; padding-top: .6rem; border-top: 1px solid rgba(138,92,24,.4); }
+
+    /* ═══════════════════════════════════════════════
+       POSTER 2 — COLONIAL BROADSIDE (Salem-era handbill)
+    ═══════════════════════════════════════════════ */
+    .poster-broadside {
+      background: #ede0c0;
+      border: 1px solid #b09060;
+      padding: 0;
+      position: relative;
+      box-shadow: 4px 4px 0 #3a2010, 8px 8px 24px rgba(0,0,0,.55);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease .15s, transform .6s ease .15s;
+    }
+    .poster-broadside.in { opacity: 1; transform: translateY(0); }
+    .poster-broadside:hover { transform: translateY(-4px) scale(1.02); }
+
+    .poster-broadside::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(180,130,60,.15) 0%, transparent 60%),
+        radial-gradient(circle at 85% 90%, rgba(160,100,20,.12) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* foxed spots — aged paper marks */
+    .poster-broadside::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 12% 22%, rgba(139,92,20,.18) 0%, transparent 6%),
+        radial-gradient(circle at 88% 15%, rgba(139,92,20,.14) 0%, transparent 5%),
+        radial-gradient(circle at 72% 78%, rgba(139,92,20,.16) 0%, transparent 4%),
+        radial-gradient(circle at 25% 88%, rgba(139,92,20,.12) 0%, transparent 5%);
+      pointer-events: none;
+    }
+
+    .pb-outer { border: 3px double #8a6030; margin: 10px; padding: 1.6rem 1.5rem; }
+
+    .pb-publication { font-family: var(--font-mono); font-size: .52rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #5a3a18; text-align: center; margin-bottom: .5rem; }
+    .pb-decree { font-family: var(--font-frak); font-size: 2rem; color: #1a0e04; text-align: center; line-height: 1.1; margin-bottom: .4rem; }
+    .pb-issue-line { font-family: var(--font-fell); font-style: italic; font-size: .78rem; color: #5a3a18; text-align: center; margin-bottom: 1rem; }
+
+    .pb-divider { display: flex; align-items: center; gap: .5rem; margin: .8rem 0; }
+    .pb-divider-line { flex: 1; height: 1px; background: #8a6030; }
+    .pb-divider-mark { font-family: var(--font-display); font-size: .7rem; color: #8a6030; }
+
+    /* silhouette */
+    .pb-silhouette {
+      width: 100px; height: 100px; margin: 0 auto .8rem;
+      background: #8a6030;
+      clip-path: circle(50%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .pb-silhouette svg { opacity: .5; }
+
+    .pb-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: #1a0e04; text-align: center; letter-spacing: .02em; margin-bottom: .15rem; }
+    .pb-role { font-family: var(--font-fell); font-style: italic; font-size: .82rem; color: #4a2e10; text-align: center; margin-bottom: .8rem; }
+
+    .pb-charges-label { font-family: var(--font-mono); font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #8a0018; margin-bottom: .5rem; }
+    .pb-charges { font-family: var(--font-fell); font-size: .85rem; color: #2a1808; line-height: 1.75; font-style: italic; }
+    .pb-charges span { display: block; padding-left: .8rem; position: relative; }
+    .pb-charges span::before { content: '✦'; position: absolute; left: 0; font-size: .6rem; color: #8a6030; top: .15rem; }
+
+    .pb-seal { font-family: var(--font-display); font-size: .7rem; font-style: italic; color: #5a3a18; text-align: center; margin-top: 1rem; padding-top: .8rem; border-top: 1px solid #b09060; line-height: 1.6; }
+    .pb-seal strong { display: block; font-style: normal; font-size: .85rem; }
+
+    /* ═══════════════════════════════════════════════
+       POSTER 3 — TRIBUNAL DECREE (gothic / dark court)
+    ═══════════════════════════════════════════════ */
+    .poster-tribunal {
+      background: #0e0a06;
+      border: 1px solid rgba(200,0,42,.3);
+      border-top: 4px solid var(--web);
+      padding: 0;
+      position: relative;
+      box-shadow: 0 0 40px rgba(200,0,42,.08), 4px 4px 0 #3a0010, 8px 8px 24px rgba(0,0,0,.7);
+      opacity: 0;
+      transform: rotate(1deg) translateY(20px);
+      transition: opacity .6s ease .3s, transform .6s ease .3s;
+    }
+    .poster-tribunal.in { opacity: 1; transform: rotate(1deg) translateY(0); }
+    .poster-tribunal:hover { transform: rotate(0deg) translateY(-4px) scale(1.02); }
+
+    .poster-tribunal::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(180deg, transparent, transparent 24px, rgba(255,255,255,.012) 24px, rgba(255,255,255,.012) 25px);
+      pointer-events: none;
+    }
+
+    .pt-inner { padding: 1.8rem 1.6rem; }
+
+    .pt-court { font-family: var(--font-mono); font-size: .52rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: rgba(200,0,42,.7); text-align: center; margin-bottom: .6rem; }
+    .pt-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 900; color: #f0e8d5; text-align: center; line-height: 1; letter-spacing: -.01em; margin-bottom: .3rem; text-shadow: 0 0 20px rgba(200,0,42,.2); }
+    .pt-subtitle { font-family: var(--font-fell); font-style: italic; font-size: .78rem; color: rgba(240,232,213,.4); text-align: center; margin-bottom: 1.2rem; }
+
+    .pt-rule { height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.6), transparent); margin: .8rem 0; }
+
+    /* silhouette */
+    .pt-silhouette {
+      width: 100%; height: 150px;
+      background: #1a0808;
+      border: 1px solid rgba(200,0,42,.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem; position: relative;
+    }
+    .pt-silhouette::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+      background: linear-gradient(to top, rgba(200,0,42,.08), transparent);
+    }
+    .pt-silhouette svg { opacity: .4; }
+
+    .pt-name { font-family: var(--font-display); font-size: 1.55rem; font-weight: 900; color: #f0e8d5; text-align: center; letter-spacing: .02em; margin-bottom: .15rem; }
+    .pt-role { font-family: var(--font-mono); font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--web); text-align: center; margin-bottom: 1rem; }
+
+    .pt-verdict-label { font-family: var(--font-mono); font-size: .5rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,232,213,.25); margin-bottom: .4rem; }
+    .pt-verdict { font-family: var(--font-display); font-size: 1.15rem; font-weight: 900; font-style: italic; color: var(--web); margin-bottom: .8rem; line-height: 1.2; }
+
+    .pt-findings { font-family: var(--font-body); font-size: .78rem; color: rgba(240,232,213,.55); line-height: 1.75; border-left: 2px solid rgba(200,0,42,.3); padding-left: .9rem; }
+    .pt-seal { font-family: var(--font-mono); font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.2); text-align: center; margin-top: 1.2rem; padding-top: .8rem; border-top: 1px solid rgba(200,0,42,.15); }
+
+    /* ── BOTTOM NOTE ─────────────────────────────── */
+    .ti-note {
+      margin-top: 4rem;
+      text-align: center;
+    }
+    .ti-note-rule { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .ti-note-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.35), transparent); }
+    .ti-note-glyph { font-family: var(--font-display); font-size: .9rem; color: var(--web); opacity: .6; }
+    .ti-note-text { font-family: var(--font-fell); font-style: italic; font-size: .95rem; color: rgba(240,232,213,.35); line-height: 1.75; max-width: 540px; margin: 0 auto; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .site-footer { background: #080603; position: relative; overflow: hidden; }
+    .footer-web { display: block; width: 100%; height: 120px; opacity: .2; }
+    .fw { stroke: rgba(200,0,42,.55); stroke-width: 1; fill: none; }
+    .fa { fill: none; stroke: rgba(200,0,42,.4); stroke-width: .8; }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; max-width: var(--max-w); margin: 0 auto; padding: 1.5rem 1.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,.07); }
+    .footer-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; color: #f0e8d5; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+    .footer-nav a { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.4); text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--web); text-decoration: none; }
+    .footer-copy { font-family: var(--font-mono); font-size: .62rem; color: rgba(240,232,213,.25); letter-spacing: .08em; }
+
+    @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 640px) {
+      .ti-main { padding: 2.5rem 1.2rem 4rem; }
+      .poster-wanted, .poster-broadside, .poster-tribunal { transform: none !important; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="sm-nav">
+    <div class="sm-nav-inner">
+      <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+      <div class="sm-nav-links">
+        <a href="index.html"            class="sm-nav-link">Home</a>
+        <a href="articles.html"         class="sm-nav-link">Articles</a>
+        <a href="get-involved.html"     class="sm-nav-link">Get Involved</a>
+        <a href="those-involved.html"   class="sm-nav-link sm-nav-active">Those Involved</a>
+        <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="ti-header">
+    <svg class="corner-web tl" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="0" x2="120" y2="120" class="cw"/><line x1="0" y1="0" x2="80" y2="120" class="cw"/>
+      <line x1="0" y1="0" x2="120" y2="80" class="cw"/><line x1="0" y1="0" x2="40" y2="120" class="cw"/>
+      <line x1="0" y1="0" x2="120" y2="40" class="cw"/>
+      <path d="M30 0 Q0 30 0 0Z M60 0 Q0 60 0 0Z M90 0 Q0 90 0 0Z M120 0 Q0 120 0 0Z" class="cw2"/>
+    </svg>
+    <svg class="corner-web tr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <line x1="120" y1="0" x2="0" y2="120" class="cw"/><line x1="120" y1="0" x2="40" y2="120" class="cw"/>
+      <line x1="120" y1="0" x2="0" y2="80" class="cw"/><line x1="120" y1="0" x2="80" y2="120" class="cw"/>
+      <line x1="120" y1="0" x2="0" y2="40" class="cw"/>
+      <path d="M90 0 Q120 30 120 0Z M60 0 Q120 60 120 0Z M30 0 Q120 90 120 0Z M0 0 Q120 120 120 0Z" class="cw2"/>
+    </svg>
+    <div class="ti-header-inner">
+      <span class="ti-eyebrow">Salem Mania · The Network</span>
+      <h1 class="ti-masthead">Those Involved.</h1>
+      <div class="ti-rule">
+        <span class="ti-rule-line"></span>
+        <span class="ti-rule-glyph">🕸</span>
+        <span class="ti-rule-line"></span>
+      </div>
+      <p class="ti-sub">The web that holds the mania together. Each chosen personally.</p>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="ti-main">
+
+    <div class="poster-grid">
+
+      <div class="poster-broadside" id="poster2">
+        <div class="pb-outer">
+
+          <div class="pb-publication">Salem Mania · The Network</div>
+          <div class="pb-decree">From the Pyre</div>
+          <div class="pb-issue-line">Salem Mania Network </div>
+
+          <div class="pb-divider">
+            <span class="pb-divider-line"></span>
+            <span class="pb-divider-mark">✦</span>
+            <span class="pb-divider-line"></span>
+          </div>
+
+          <div class="pb-silhouette">
+            <svg width="52" height="80" viewBox="0 0 52 80" xmlns="http://www.w3.org/2000/svg" fill="#ede0c0">
+              <circle cx="26" cy="14" r="11"/>
+              <path d="M8 36 Q8 26 26 26 Q44 26 44 36 L47 64 H34 L30 50 L22 50 L18 64 H5 Z"/>
+              <rect x="5" y="64" width="13" height="14" rx="2"/>
+              <rect x="34" y="64" width="13" height="14" rx="2"/>
+            </svg>
+          </div>
+
+          <div class="pb-name">[ Name Here ]</div>
+          <div class="pb-role">Editorial Member of the Salem Mania Network</div>
+
+          <div class="pb-divider">
+            <span class="pb-divider-line"></span>
+            <span class="pb-divider-mark">§</span>
+            <span class="pb-divider-line"></span>
+          </div>
+
+          <div class="pb-charges-label">Charges of Excellence</div>
+          <div class="pb-charges">
+            <span>Upholding the Standard Democratic Peer Review Process</span>
+            <span>Defending quality writing against all lesser submissions</span>
+            <span>Serving the culture</span>
+            <span>Serving the community</span>
+          </div>
+
+          <div class="pb-seal">
+            <strong>Seal of the Network</strong>
+            Admitted by invitation. Accountable to the community.
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /poster-grid -->
+
+    <!-- BOTTOM NOTE -->
+    <div class="ti-note">
+      <div class="ti-note-rule">
+        <span class="ti-note-line"></span>
+        <span class="ti-note-glyph">🕸</span>
+        <span class="ti-note-line"></span>
+      </div>
+      <p class="ti-note-text">Salem Mania Network is via invitation only.</p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="600" y1="120" x2="600"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
+      <line x1="600" y1="120" x2="0"    y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="300"  y2="0"  class="fw"/>
+      <line x1="600" y1="120" x2="900"  y2="0"  class="fw"/>
+      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55" class="fa"/>
+      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25" class="fa"/>
+      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5" class="fa"/>
+    </svg>
+    <div class="footer-inner">
+      <span class="footer-title">Salem Mania</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="those-involved.html">Those Involved</a>
+        <a href="rights-and-stuff.html">Terms &amp; Conditions</a>
+        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <span class="footer-copy">© 2026 Salem Mania.</span>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    if ('IntersectionObserver' in window) {
+      var posters = document.querySelectorAll('.poster-wanted, .poster-broadside, .poster-tribunal');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      posters.forEach(function (p) { io.observe(p); });
+    } else {
+      document.querySelectorAll('.poster-wanted, .poster-broadside, .poster-tribunal').forEach(function (p) { p.classList.add('in'); });
+    }
+  })();
+  </script>
+
+</body>
+</html>
