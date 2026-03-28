@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Analytics — Salem Mania</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Code+Pro:wght@400;600&family=UnifrakturMaguntia&family=IM+Fell+English:ital@1&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #060402;
+  color: #f0e8d5;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* grain */
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .028; pointer-events: none; z-index: 9999;
+}
+
+/* ── HEADER ── */
+.dash-header {
+  background: #0a0703;
+  border-bottom: 2px solid rgba(200,0,42,.4);
+  padding: 1.2rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .8rem;
+  box-shadow: 0 2px 20px rgba(200,0,42,.08);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-brand { display: flex; align-items: center; gap: .9rem; }
+.header-frak {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 1.5rem; color: #f0e8d5;
+  text-shadow: 0 0 20px rgba(200,0,42,.3);
+  line-height: 1;
+}
+.header-label {
+  font-size: .5rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(200,0,42,.65); display: block;
+}
+.header-sub {
+  font-size: .5rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(240,232,213,.28);
+}
+.header-right { display: flex; align-items: center; gap: 1.2rem; }
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #2a9d2a;
+  box-shadow: 0 0 8px rgba(42,157,42,.6);
+  animation: pulse 2s ease-in-out infinite;
+  display: inline-block; margin-right: .4rem;
+}
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.55} }
+.last-updated { font-size: .48rem; letter-spacing: .12em; color: rgba(240,232,213,.28); }
+.refresh-btn {
+  font-family: 'Source Code Pro', monospace; font-size: .52rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(200,0,42,.7); background: rgba(200,0,42,.08);
+  border: 1px solid rgba(200,0,42,.3); padding: .45em 1.1em;
+  cursor: pointer; transition: all .2s;
+}
+.refresh-btn:hover { background: rgba(200,0,42,.15); color: #c8002a; }
+
+/* ── AUTH GATE ── */
+.auth-gate {
+  max-width: 420px; margin: 10vh auto; padding: 2.4rem 2.8rem;
+  background: #0d0a06; border: 1px solid rgba(200,0,42,.22);
+  border-top: 3px solid #c8002a; text-align: center;
+}
+.auth-frak {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 1.8rem; color: #f0e8d5; display: block; margin-bottom: .4rem;
+  text-shadow: 0 0 24px rgba(200,0,42,.3);
+}
+.auth-sub {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: .82rem; color: rgba(240,232,213,.4); margin-bottom: 1.5rem; display: block;
+}
+.auth-input {
+  width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  color: #f0e8d5; padding: .7em 1em; font-family: 'Source Code Pro', monospace;
+  font-size: .82rem; margin-bottom: .8rem; outline: none;
+}
+.auth-input:focus { border-color: #c8002a; background: rgba(200,0,42,.08); }
+.auth-btn {
+  width: 100%; background: #c8002a; border: none; color: #fff;
+  font-family: 'Source Code Pro', monospace; font-size: .75rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; padding: .75em 2em; cursor: pointer;
+  box-shadow: 0 0 20px rgba(200,0,42,.4); transition: background .2s, box-shadow .2s;
+}
+.auth-btn:hover { background: #e8001f; box-shadow: 0 0 30px rgba(200,0,42,.55); }
+.auth-error { color: rgba(200,0,42,.8); font-size: .6rem; margin-top: .5rem; letter-spacing: .08em; }
+
+/* ── MAIN LAYOUT ── */
+.dash-main { max-width: 1300px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.hidden { display: none !important; }
+
+/* ── TIME RANGE TABS ── */
+.range-tabs { display: flex; gap: .5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.range-tab {
+  font-size: .5rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(240,232,213,.35); background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08); padding: .45em 1.1em; cursor: pointer;
+  transition: all .2s;
+}
+.range-tab:hover { color: rgba(240,232,213,.65); border-color: rgba(200,0,42,.3); }
+.range-tab.active {
+  color: #f0e8d5; background: rgba(200,0,42,.1);
+  border-color: rgba(200,0,42,.5);
+}
+
+/* ── METRIC CARDS ── */
+.metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
+@media(max-width:900px) { .metrics-row { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:480px) { .metrics-row { grid-template-columns: 1fr; } }
+
+.metric-card {
+  background: #0d0a06; border: 1px solid rgba(255,255,255,.06);
+  border-left: 3px solid var(--accent, rgba(200,0,42,.5));
+  padding: 1.4rem 1.5rem 1.3rem; position: relative; overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.metric-card:hover { border-color: #c8002a; box-shadow: 0 0 20px rgba(200,0,42,.06); }
+.metric-card::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 60px; height: 60px;
+  background: radial-gradient(circle at top right, rgba(200,0,42,.06), transparent 70%);
+  pointer-events: none;
+}
+.mc-label { font-size: .48rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(240,232,213,.35); margin-bottom: .5rem; }
+.mc-value { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; color: #f0e8d5; line-height: 1; margin-bottom: .25rem; text-shadow: 0 0 20px rgba(200,0,42,.15); }
+.mc-sub   { font-size: .48rem; letter-spacing: .1em; color: rgba(240,232,213,.28); }
+.mc-delta { font-size: .52rem; font-weight: 600; padding: .15em .5em; border-radius: 1px; margin-left: .4rem; }
+.mc-delta.up   { background: rgba(42,157,42,.18); color: #4db84d; }
+.mc-delta.down { background: rgba(200,0,42,.18); color: #e8607a; }
+.mc-delta.flat { background: rgba(255,255,255,.06); color: rgba(240,232,213,.35); }
+
+/* accent colours per metric */
+.mc-pyre   { --accent: #c8002a; }
+.mc-ember  { --accent: #d4420a; }
+.mc-candle { --accent: #c4870a; }
+.mc-forge  { --accent: #8b6914; }
+
+/* ── GRID PANELS ── */
+.panels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 1.4rem; }
+.panels-wide  { grid-column: 1 / -1; }
+@media(max-width:860px) { .panels-grid { grid-template-columns: 1fr; } }
+
+.panel {
+  background: #0d0a06; border: 1px solid rgba(255,255,255,.06);
+  padding: 0; overflow: hidden;
+}
+.panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 1.3rem;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  background: rgba(255,255,255,.02);
+}
+.panel-title {
+  font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(200,0,42,.65); display: flex; align-items: center; gap: .5rem;
+}
+.panel-title::before {
+  content: ''; width: 14px; height: 1px; background: rgba(200,0,42,.5);
+}
+.panel-body { padding: 1.2rem 1.3rem; }
+
+/* ── SPARKLINE CHART ── */
+.chart-wrap { position: relative; height: 140px; margin-bottom: .5rem; }
+.chart-canvas { width: 100%; height: 100%; }
+
+/* ── TABLES ── */
+.dash-table { width: 100%; border-collapse: collapse; }
+.dash-table th {
+  font-size: .44rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(240,232,213,.28); padding: .5rem .6rem; text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.dash-table td {
+  padding: .55rem .6rem; font-size: .62rem; color: rgba(240,232,213,.7);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.dash-table tr:last-child td { border-bottom: none; }
+.dash-table tr:hover td { color: #f0e8d5; background: rgba(255,255,255,.02); }
+.dash-table .td-primary { color: #f0e8d5; font-weight: 600; }
+.dash-table .td-bar-wrap { display: flex; align-items: center; gap: .6rem; }
+.td-bar-outer { flex: 1; height: 4px; background: rgba(255,255,255,.06); }
+.td-bar-inner { height: 4px; background: linear-gradient(to right, #c8002a, #d4420a); transition: width .4s ease; }
+.td-pct { font-size: .5rem; color: rgba(240,232,213,.4); width: 32px; text-align: right; }
+.td-badge {
+  font-size: .48rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  padding: .18em .6em; background: rgba(200,0,42,.12); color: rgba(200,0,42,.75);
+  border: 1px solid rgba(200,0,42,.2);
+}
+
+/* ── SECURITY PANEL ── */
+.security-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .6rem 0; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.security-row:last-child { border-bottom: none; }
+.sr-label { font-size: .58rem; color: rgba(240,232,213,.55); }
+.sr-val { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.sr-val.danger { color: #e8607a; text-shadow: 0 0 12px rgba(232,96,122,.25); }
+.sr-val.ok     { color: #4db84d; }
+.sr-val.warn   { color: #e8a020; }
+
+/* ── SECTION PIE (CSS only) ── */
+.pie-wrap { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+.pie-legend { flex: 1; display: flex; flex-direction: column; gap: .45rem; }
+.pie-legend-item { display: flex; align-items: center; gap: .5rem; font-size: .58rem; color: rgba(240,232,213,.6); }
+.pie-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── PULSE CHART (30-day sparkline) ── */
+.sparkline-label { font-size: .44rem; letter-spacing: .12em; color: rgba(240,232,213,.25); margin-top: .3rem; }
+
+/* ── FOOTER ── */
+.dash-footer {
+  max-width: 1300px; margin: 0 auto; padding: 0 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem;
+  border-top: 1px solid rgba(255,255,255,.05); padding-top: 1.2rem; margin-top: -.2rem;
+}
+.footer-left  { font-size: .46rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(240,232,213,.2); }
+.footer-right { font-size: .46rem; color: rgba(200,0,42,.4); letter-spacing: .1em; }
+
+/* ── LOADING ── */
+.loading-overlay {
+  position: fixed; inset: 0; background: rgba(6,4,2,.96);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 500; gap: 1rem;
+}
+.loading-frak { font-family: 'UnifrakturMaguntia', cursive; font-size: 2.2rem; color: #f0e8d5; text-shadow: 0 0 30px rgba(200,0,42,.4); }
+.loading-bar-wrap { width: 200px; height: 2px; background: rgba(255,255,255,.08); }
+.loading-bar { height: 2px; background: linear-gradient(to right, #c8002a, #d4420a); width: 0; animation: loadProgress 1.4s ease forwards; }
+@keyframes loadProgress { to { width: 100%; } }
+.loading-label { font-size: .48rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,232,213,.28); }
+</style>
+</head>
+<body>
+
+<!-- ══ LOADING ══ -->
+<div class="loading-overlay" id="loadingOverlay">
+  <span class="loading-frak">From the Pyre</span>
+  <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+  <span class="loading-label">Loading Analytics</span>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header class="dash-header">
+  <div class="header-brand">
+    <div>
+      <span class="header-frak">Salem Mania</span>
+    </div>
+    <div>
+      <span class="header-label">Analytics Dashboard</span>
+      <span class="header-sub">Internal · Not Public</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="last-updated"><span class="status-dot"></span><span id="lastUpdated">—</span></span>
+    <button class="refresh-btn" onclick="loadData()">↺ Refresh</button>
+  </div>
+</header>
+
+<!-- ══ AUTH GATE ══ -->
+<div id="authGate" style="padding:2rem;">
+  <div class="auth-gate">
+    <span class="auth-frak">From the Pyre</span>
+    <span class="auth-sub">Admin access only. The standard protects the data.</span>
+    <input class="auth-input" type="password" id="adminToken" placeholder="Admin token" onkeydown="if(event.key==='Enter')authenticate()"/>
+    <button class="auth-btn" onclick="authenticate()">Enter the Mania →</button>
+    <div class="auth-error hidden" id="authError">Invalid token. All decisions are final.</div>
+
+    <div style="margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid rgba(200,0,42,.15);">
+      <p style="font-size:.48rem;letter-spacing:.1em;color:rgba(240,232,213,.2);line-height:1.9;text-align:left;">
+        <strong style="color:rgba(200,0,42,.5);">DEMO MODE</strong><br>
+        Backend not running? The dashboard loads with realistic demo data automatically.<br>
+        To connect to the live backend: run <code style="color:rgba(200,0,42,.6);">python security_backend.py</code> and enter your admin token above.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div id="dashboard" class="dash-main hidden">
+
+  <!-- Range tabs -->
+  <div class="range-tabs">
+    <button class="range-tab active" data-range="7"  onclick="setRange(7,  this)">Last 7 days</button>
+    <button class="range-tab"        data-range="14" onclick="setRange(14, this)">Last 14 days</button>
+    <button class="range-tab"        data-range="30" onclick="setRange(30, this)">Last 30 days</button>
+    <button class="range-tab"        data-range="all"onclick="setRange('all',this)">All time</button>
+  </div>
+
+  <!-- ── METRIC CARDS ── -->
+  <div class="metrics-row">
+    <div class="metric-card mc-pyre">
+      <div class="mc-label">Pageviews</div>
+      <div class="mc-value" id="mcPageviews">—</div>
+      <div class="mc-sub">This period <span class="mc-delta flat" id="mcPageviewsDelta">—</span></div>
+    </div>
+    <div class="metric-card mc-ember">
+      <div class="mc-label">Pitch Submissions</div>
+      <div class="mc-value" id="mcSubmissions">—</div>
+      <div class="mc-sub">Total this season</div>
+    </div>
+    <div class="metric-card mc-candle">
+      <div class="mc-label">Subscribers</div>
+      <div class="mc-value" id="mcSubscribers">—</div>
+      <div class="mc-sub">Active list</div>
+    </div>
+    <div class="metric-card mc-forge">
+      <div class="mc-label">Conversion Rate</div>
+      <div class="mc-value" id="mcConversion">—</div>
+      <div class="mc-sub">Pitches / Pageviews</div>
+    </div>
+  </div>
+
+  <!-- ── SPARKLINE + TRAFFIC SOURCES ── -->
+  <div class="panels-grid">
+
+    <div class="panel panels-wide">
+      <div class="panel-header">
+        <span class="panel-title">30-Day Pageview Trend</span>
+        <span style="font-size:.48rem;color:rgba(240,232,213,.25);letter-spacing:.1em;">VIEWS PER DAY</span>
+      </div>
+      <div class="panel-body">
+        <div class="chart-wrap">
+          <canvas id="sparkCanvas" class="chart-canvas"></canvas>
+        </div>
+        <div class="sparkline-label" id="sparkRange">—</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Traffic Sources</span></div>
+      <div class="panel-body">
+        <table class="dash-table" id="sourcesTable">
+          <thead><tr><th>Source</th><th>Views</th><th>Share</th></tr></thead>
+          <tbody id="sourcesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Top Pages</span></div>
+      <div class="panel-body">
+        <table class="dash-table" id="pagesTable">
+          <thead><tr><th>Page</th><th>Views</th><th>Share</th></tr></thead>
+          <tbody id="pagesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Pitches by Section</span></div>
+      <div class="panel-body">
+        <table class="dash-table" id="sectionsTable">
+          <thead><tr><th>Section</th><th>Pitches</th><th>Share</th></tr></thead>
+          <tbody id="sectionsTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Subscribers by Source</span></div>
+      <div class="panel-body">
+        <table class="dash-table" id="subSourcesTable">
+          <thead><tr><th>Source</th><th>Subscribers</th><th>Share</th></tr></thead>
+          <tbody id="subSourcesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Campaigns</span></div>
+      <div class="panel-body">
+        <table class="dash-table" id="campaignsTable">
+          <thead><tr><th>Campaign</th><th>Views</th><th>Share</th></tr></thead>
+          <tbody id="campaignsTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Security Threats — Last 24h</span></div>
+      <div class="panel-body">
+        <div class="security-row">
+          <span class="sr-label">Honeypot triggers</span>
+          <span class="sr-val" id="secHoneypot">—</span>
+        </div>
+        <div class="security-row">
+          <span class="sr-label">Rate limited</span>
+          <span class="sr-val" id="secRateLimited">—</span>
+        </div>
+        <div class="security-row">
+          <span class="sr-label">CSRF failures</span>
+          <span class="sr-val" id="secCSRF">—</span>
+        </div>
+        <div class="security-row">
+          <span class="sr-label">Invalid submissions</span>
+          <span class="sr-val" id="secInvalid">—</span>
+        </div>
+        <div class="security-row">
+          <span class="sr-label">Blocked IPs</span>
+          <span class="sr-val" id="secBlocked">—</span>
+        </div>
+        <div class="security-row">
+          <span class="sr-label">Webhook failures</span>
+          <span class="sr-val" id="secWebhook">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Conversions by Kind</span></div>
+      <div class="panel-body">
+        <table class="dash-table" id="convTable">
+          <thead><tr><th>Event</th><th>Count</th></tr></thead>
+          <tbody id="convTbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="dash-footer" id="dashFooter" style="display:none;">
+  <span class="footer-left">Salem Mania Analytics · Internal Only · Est. Ohio, March 2026</span>
+  <span class="footer-right">For the culture. By the culture.</span>
+</footer>
+
+<script>
+'use strict';
+
+/* ════════════════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════════════════ */
+const API_BASE    = 'http://localhost:5050/api';
+let   adminToken  = '';
+let   currentData = null;
+let   currentRange= 30;
+
+/* ════════════════════════════════════════════════════
+   DEMO DATA (used when backend is not running)
+════════════════════════════════════════════════════ */
+function generateDemoData() {
+  const rng = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const now = new Date();
+  const days30 = Array.from({length:30}, (_,i) => {
+    const d = new Date(now); d.setDate(d.getDate() - (29 - i));
+    return { date: d.toISOString().slice(0,10), views: rng(6, 38) };
+  });
+
+  return {
+    pageviews: {
+      total: 420, last_24h: rng(12,28), last_7d: rng(80,140), last_30d: 420,
+      by_day: days30,
+    },
+    traffic_sources: [
+      {label:'instagram',        count: rng(120,180)},
+      {label:'direct',           count: rng(80,120)},
+      {label:'reddit',           count: rng(50,90)},
+      {label:'github',           count: rng(25,55)},
+      {label:'submissiongrinder',count: rng(10,30)},
+    ],
+    top_pages: [
+      {label:'/get-involved', count: rng(120,160)},
+      {label:'/',             count: rng(90,130)},
+      {label:'/articles',     count: rng(60,100)},
+      {label:'/those-involved',count: rng(30,60)},
+      {label:'/articlesalemmania',count:rng(20,45)},
+    ],
+    campaigns: [
+      {label:'pitch_season',      count: rng(80,130)},
+      {label:'brand_awareness',   count: rng(40,80)},
+      {label:'writer_recruitment',count: rng(25,55)},
+      {label:'article_promo',     count: rng(10,30)},
+    ],
+    subscribers: {
+      total: 27, active: 26,
+      by_source: {instagram:14, website:7, reddit:3, email:2, github:1},
+    },
+    submissions: {
+      total: 38,
+      by_section: {Film:8, Music:7, Culture:7, Literature:6, Opinion:5, Poetry:5},
+    },
+    conversions: {
+      total: 65, conversion_rate_pct: 9.05,
+      by_kind: {pitch_submitted:38, subscribed:27},
+      by_source: {instagram:28, direct:15, reddit:12, github:7, submissiongrinder:3},
+    },
+    security: {
+      honeypot_hits:2, rate_limited:4, csrf_failures:1,
+      invalid_submissions:6, blocked_ips:1, webhook_failures:0,
+    },
+    generated_at: now.toISOString(),
+  };
+}
+
+/* ════════════════════════════════════════════════════
+   AUTH
+════════════════════════════════════════════════════ */
+function authenticate() {
+  const input = document.getElementById('adminToken').value.trim();
+  if (!input) { showAuthError('Enter your admin token.'); return; }
+  adminToken = input;
+  loadData();
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('authError');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+}
+
+/* ════════════════════════════════════════════════════
+   DATA LOADING
+════════════════════════════════════════════════════ */
+async function loadData() {
+  showLoading(true);
+  try {
+    const res = await fetch(`${API_BASE}/admin/analytics?token=${adminToken}`, {
+      headers: { 'X-Admin-Token': adminToken }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    currentData = await res.json();
+    showDashboard(currentData);
+  } catch(e) {
+    // Backend not running — use demo data
+    currentData = generateDemoData();
+    showDashboard(currentData);
+    if (document.getElementById('authGate').classList.contains('hidden')) {
+      // Already authenticated, just refreshed
+    }
+  }
+  showLoading(false);
+}
+
+function setRange(range, btn) {
+  currentRange = range;
+  document.querySelectorAll('.range-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  if (currentData) renderAll(currentData);
+}
+
+/* ════════════════════════════════════════════════════
+   RENDER
+════════════════════════════════════════════════════ */
+function showDashboard(data) {
+  document.getElementById('authGate').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('dashFooter').style.display = '';
+  document.getElementById('lastUpdated').textContent =
+    'Updated ' + new Date(data.generated_at).toLocaleTimeString();
+  renderAll(data);
+}
+
+function renderAll(data) {
+  renderMetricCards(data);
+  renderSparkline(data.pageviews.by_day);
+  renderBarTable('sourcesTbody',   data.traffic_sources,    ['label','count']);
+  renderBarTable('pagesTbody',     data.top_pages,           ['label','count']);
+  renderBarTable('campaignsTbody', data.campaigns,           ['label','count']);
+  renderSections(data.submissions.by_section);
+  renderSubSources(data.subscribers.by_source);
+  renderSecurity(data.security);
+  renderConversions(data.conversions.by_kind);
+}
+
+function renderMetricCards(data) {
+  const pv = data.pageviews;
+  const rangeMap = { 7: pv.last_7d, 14: Math.round(pv.last_30d * .47), 30: pv.last_30d, all: pv.total };
+  const pvRange  = rangeMap[currentRange] || pv.last_30d;
+
+  setText('mcPageviews',  pvRange.toLocaleString());
+  setText('mcSubmissions',data.submissions.total);
+  setText('mcSubscribers',data.subscribers.active);
+  setText('mcConversion', data.conversions.conversion_rate_pct + '%');
+
+  // Simple delta badge
+  const delta = pv.last_7d;
+  const el = document.getElementById('mcPageviewsDelta');
+  el.textContent = '+' + delta + ' / 7d';
+  el.className = 'mc-delta up';
+}
+
+function renderSparkline(byDay) {
+  const canvas = document.getElementById('sparkCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth || 600;
+  const H = canvas.offsetHeight || 130;
+  canvas.width  = W;
+  canvas.height = H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Filter by range
+  let days = byDay;
+  if (currentRange !== 'all' && typeof currentRange === 'number') {
+    days = byDay.slice(-currentRange);
+  }
+  if (!days || !days.length) return;
+
+  const max = Math.max(...days.map(d => d.views), 1);
+  const pad = { t:10, r:8, b:24, l:8 };
+  const cW  = W - pad.l - pad.r;
+  const cH  = H - pad.t - pad.b;
+  const step= cW / Math.max(days.length - 1, 1);
+
+  const pts = days.map((d, i) => ({
+    x: pad.l + i * step,
+    y: pad.t + cH - (d.views / max) * cH,
+    v: d.views, date: d.date,
+  }));
+
+  // Gradient fill
+  const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + cH);
+  grad.addColorStop(0, 'rgba(200,0,42,.28)');
+  grad.addColorStop(1, 'rgba(200,0,42,.0)');
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i=1; i<pts.length; i++) {
+    const cx = (pts[i-1].x + pts[i].x) / 2;
+    ctx.bezierCurveTo(cx, pts[i-1].y, cx, pts[i].y, pts[i].x, pts[i].y);
+  }
+  ctx.lineTo(pts[pts.length-1].x, pad.t + cH);
+  ctx.lineTo(pts[0].x, pad.t + cH);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i=1; i<pts.length; i++) {
+    const cx = (pts[i-1].x + pts[i].x) / 2;
+    ctx.bezierCurveTo(cx, pts[i-1].y, cx, pts[i].y, pts[i].x, pts[i].y);
+  }
+  ctx.strokeStyle = '#c8002a';
+  ctx.lineWidth   = 1.8;
+  ctx.stroke();
+
+  // Dots at peak and latest
+  const peakIdx = pts.indexOf(pts.reduce((a, b) => a.v > b.v ? a : b));
+  [peakIdx, pts.length-1].forEach(idx => {
+    const p = pts[idx];
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 3.5, 0, Math.PI*2);
+    ctx.fillStyle   = '#c8002a';
+    ctx.shadowColor = 'rgba(200,0,42,.6)';
+    ctx.shadowBlur  = 6;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+
+  // X-axis labels
+  ctx.font = '500 9px Source Code Pro, monospace';
+  ctx.fillStyle = 'rgba(240,232,213,.22)';
+  ctx.textAlign = 'center';
+  const labelStep = Math.ceil(days.length / 6);
+  pts.forEach((p, i) => {
+    if (i % labelStep === 0 || i === pts.length-1) {
+      ctx.fillText(p.date.slice(5), p.x, H - 4);
+    }
+  });
+
+  // Range label
+  const first = days[0]?.date || '';
+  const last  = days[days.length-1]?.date || '';
+  document.getElementById('sparkRange').textContent = `${first} → ${last}`;
+}
+
+function renderBarTable(tbodyId, items, cols) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody || !items) return;
+  const total = items.reduce((s, i) => s + i[cols[1]], 0) || 1;
+  tbody.innerHTML = '';
+  items.slice(0,8).forEach(item => {
+    const pct = Math.round(item[cols[1]] / total * 100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-primary">${item[cols[0]]}</td>
+      <td>${item[cols[1]].toLocaleString()}</td>
+      <td>
+        <div class="td-bar-wrap">
+          <div class="td-bar-outer"><div class="td-bar-inner" style="width:${pct}%"></div></div>
+          <span class="td-pct">${pct}%</span>
+        </div>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderSections(bySection) {
+  const tbody = document.getElementById('sectionsTbody');
+  if (!tbody) return;
+  const entries = Object.entries(bySection || {}).sort((a,b) => b[1]-a[1]);
+  const total   = entries.reduce((s,[,v]) => s+v, 0) || 1;
+  tbody.innerHTML = '';
+  entries.forEach(([section, count]) => {
+    const pct = Math.round(count / total * 100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-primary">${section}</td>
+      <td>${count}</td>
+      <td>
+        <div class="td-bar-wrap">
+          <div class="td-bar-outer"><div class="td-bar-inner" style="width:${pct}%"></div></div>
+          <span class="td-pct">${pct}%</span>
+        </div>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderSubSources(bySource) {
+  const tbody = document.getElementById('subSourcesTbody');
+  if (!tbody) return;
+  const entries = Object.entries(bySource || {}).sort((a,b) => b[1]-a[1]);
+  const total   = entries.reduce((s,[,v]) => s+v, 0) || 1;
+  tbody.innerHTML = '';
+  entries.forEach(([source, count]) => {
+    const pct = Math.round(count / total * 100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-primary">${source}</td>
+      <td>${count}</td>
+      <td>
+        <div class="td-bar-wrap">
+          <div class="td-bar-outer"><div class="td-bar-inner" style="width:${pct}%"></div></div>
+          <span class="td-pct">${pct}%</span>
+        </div>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderSecurity(sec) {
+  if (!sec) return;
+  const setSecVal = (id, val, threshold) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = val;
+    el.className = 'sr-val ' + (val >= threshold ? 'danger' : val > 0 ? 'warn' : 'ok');
+  };
+  setSecVal('secHoneypot',  sec.honeypot_hits,        3);
+  setSecVal('secRateLimited',sec.rate_limited,         5);
+  setSecVal('secCSRF',       sec.csrf_failures,        2);
+  setSecVal('secInvalid',    sec.invalid_submissions,  8);
+  setSecVal('secBlocked',    sec.blocked_ips,          1);
+  setSecVal('secWebhook',    sec.webhook_failures,     1);
+}
+
+function renderConversions(byKind) {
+  const tbody = document.getElementById('convTbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  Object.entries(byKind || {}).sort((a,b) => b[1]-a[1]).forEach(([kind, count]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="td-primary">${kind.replace(/_/g,' ')}</td><td>${count}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function showLoading(show) {
+  document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+}
+
+setInterval(() => {
+  if (!document.getElementById('dashboard').classList.contains('hidden') && adminToken) {
+    loadData();
+  }
+}, 60000);
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  const urlToken = new URLSearchParams(window.location.search).get('token');
+  if (urlToken) {
+    adminToken = urlToken;
+    loadData();
+    return;
+  }
+
+  setTimeout(() => {
+    showLoading(false);
+    const demoData = generateDemoData();
+    currentData = demoData;
+    showDashboard(demoData);
+  }, 1500);
+});
+
+window.addEventListener('resize', () => {
+  if (currentData) renderSparkline(currentData.pageviews.by_day);
+});
+</script>
+
+</body>
+</html>
