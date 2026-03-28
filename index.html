@@ -1013,7 +1013,20 @@
     }
 
   })();
-  </script>
+  <script>
+  (function trackVisit() {
+    const API_LOG = "https://your-python-api.com/api/log";
+    fetch(API_LOG, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        path: window.location.pathname,
+        referrer: document.referrer,
+        screen: `${window.innerWidth}x${window.innerHeight}`
+      })
+    }).catch(() => {}); // Silent fail to keep public site fast
+  })();
+</script>
 
 </body>
 </html>
