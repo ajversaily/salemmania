@@ -1,38 +1,34 @@
+* hi lol *
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Get Involved — Salem Mania</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Source+Code+Pro:wght@400;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet"/>
   <style>
 
     :root {
-      --ink:       #1a1008;
-      --ink-soft:  #2e2010;
-      --paper:     #f0e8d5;
-      --cream:     #e8dcc4;
-      --vellum:    #ddd0b0;
-      --foxed:     #c8b48a;
-      --web:       #c8002a;
-      --forge:     #d4420a;
-      --web-dim:   rgba(200,0,42,.12);
-      --web-glow:  rgba(200,0,42,.38);
-      --silver:    #9ba4ae;
-      --dust:      #7a6e5a;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-fell:    'IM Fell English', Georgia, serif;
-      --font-body:    'Libre Baskerville', Georgia, serif;
-      --font-mono:    'Source Code Pro', monospace;
-      --max-w: 1100px;
-      --ease-web: cubic-bezier(.34,1.56,.64,1);
+      --char:   #060402;
+      --soot:   #0c0807;
+      --paper:  #f0e8d5;
+      --cream:  #e8dcc4;
+      --vellum: #ddd0b0;
+      --foxed:  #c8b48a;
+      --ink:    #1a1208;
+      --pyre:   #c8002a;
+      --forge:  #d4420a;
+      --dust:   #7a6e5a;
+      --silver: #9ba4ae;
+      --moon:   #f0e8d5;
+      --glow:   rgba(200,0,42,.38);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.75; overflow-x: hidden; }
+    body { background: var(--paper); color: var(--ink); font-family: 'Libre Baskerville', Georgia, serif; font-size: 16px; line-height: 1.75; overflow-x: hidden; }
 
     body::before {
       content: ''; position: fixed; inset: 0;
@@ -40,473 +36,680 @@
       opacity: .032; pointer-events: none; z-index: 9999;
     }
 
-    a { color: var(--web); text-decoration: none; }
+    a { color: var(--pyre); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    ::selection { background: var(--pyre); color: #fff; }
 
     /* NAV */
-    .sm-nav { background: rgba(8,6,3,.97); border-bottom: 1px solid rgba(200,0,42,.35); padding: .7rem 1.5rem; position: sticky; top: 0; z-index: 200; backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(200,0,42,.18), 0 2px 8px rgba(200,0,42,.06); }
-    .sm-nav-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-    .sm-nav-brand { font-family: var(--font-display); font-size: .95rem; font-weight: 900; color: #f0e8d5; text-decoration: none; letter-spacing: -.01em; flex-shrink: 0; transition: text-shadow .3s; }
-    .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; text-shadow: 0 0 22px rgba(200,0,42,.55); }
-    .sm-nav-links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-    .sm-nav-link { font-family: var(--font-mono); font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.32); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s, text-shadow .2s; }
-    .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; text-shadow: 0 0 10px rgba(200,0,42,.3); }
-    .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
-
-    /* HERO — pyre night */
-    .gi-hero {
-      position: relative; background: #080603;
-      border-bottom: 3px solid var(--web); overflow: hidden;
-      padding: 5.5rem 1.5rem 4.5rem; text-align: center;
+    .sm-nav {
+      background: rgba(6,4,2,.97); border-bottom: 1px solid rgba(200,0,42,.3);
+      padding: .65rem 1.2rem; position: sticky; top: 0; z-index: 200;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(200,0,42,.18);
     }
+    .sm-nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 1rem; }
+    .sm-nav-brand { font-family: 'Playfair Display', serif; font-size: .9rem; font-weight: 900; color: var(--moon); text-decoration: none; letter-spacing: -.01em; flex-shrink: 0; transition: text-shadow .3s; }
+    .sm-nav-brand:hover { text-shadow: 0 0 18px var(--glow); }
+    .sm-nav-links { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+    .sm-nav-link { font-family: 'Source Code Pro', monospace; font-size: .54rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.32); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
+    .sm-nav-link:hover { color: var(--moon); border-bottom-color: rgba(200,0,42,.4); }
+    .sm-nav-active { color: var(--moon) !important; border-bottom-color: var(--pyre) !important; }
 
-    /* board grain */
+    /* HERO */
+    .gi-hero {
+      background: var(--char);
+      border-bottom: 3px solid var(--pyre);
+      padding: 4rem 1.5rem 3.2rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
     .gi-hero::before {
       content: ''; position: absolute; inset: 0;
       background: repeating-linear-gradient(91deg, transparent, transparent 3px, rgba(255,255,255,.006) 3px, rgba(255,255,255,.006) 6px);
       pointer-events: none;
     }
-
-    /* torchlight base */
     .gi-hero::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
-      background: linear-gradient(to top, rgba(200,0,42,.14), rgba(212,66,10,.06) 40%, transparent);
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to top, rgba(200,0,42,.12), rgba(212,66,10,.05) 40%, transparent);
       pointer-events: none;
     }
-
-    /* deep night sky behind the hero */
-    .gi-hero-sky {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(60,18,8,.9) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 30% at 20% 100%, rgba(139,0,21,.1) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 30% at 80% 100%, rgba(139,0,21,.09) 0%, transparent 55%),
-        linear-gradient(180deg, #050302 0%, #0a0603 100%);
-      pointer-events: none;
-    }
-
-    /* stars */
-    .gi-hero-stars {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        radial-gradient(1px 1px at 9%  10%, rgba(240,232,213,.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 22% 6%,  rgba(240,232,213,.42) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 38% 3%, rgba(240,232,213,.62) 0%, transparent 100%),
-        radial-gradient(1px 1px at 55% 8%,  rgba(240,232,213,.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 68% 4%,  rgba(240,232,213,.48) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 82% 7%, rgba(240,232,213,.58) 0%, transparent 100%),
-        radial-gradient(1px 1px at 91% 15%, rgba(240,232,213,.35) 0%, transparent 100%),
-        radial-gradient(1px 1px at 14% 28%, rgba(240,232,213,.22) 0%, transparent 100%),
-        radial-gradient(1px 1px at 47% 22%, rgba(240,232,213,.28) 0%, transparent 100%);
-      animation: starFlicker 8s ease-in-out infinite alternate;
-    }
-    @keyframes starFlicker { 0%, 100% { opacity: 1; } 50% { opacity: .75; } }
-
-    /* fire at base of hero */
-    .gi-hero-fire {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 120px; pointer-events: none;
-      background:
-        radial-gradient(ellipse 75% 100% at 50% 100%, rgba(200,0,42,.2) 0%, rgba(212,66,10,.09) 40%, transparent 70%),
-        radial-gradient(ellipse 35% 100% at 50% 100%, rgba(200,0,42,.22) 0%, rgba(200,0,42,.06) 50%, transparent 80%);
-      animation: heroFire 2.2s ease-in-out infinite alternate;
-    }
-    @keyframes heroFire {
-      from { transform: scaleX(1) scaleY(1); opacity: .9; }
-      to   { transform: scaleX(1.04) scaleY(1.08); opacity: 1; }
-    }
-
-    #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
-
-    .gi-hero-inner { position: relative; z-index: 3; max-width: 600px; margin: 0 auto; }
-
-    .gi-eyebrow { font-family: var(--font-mono); font-size: .58rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: rgba(200,0,42,.8); margin-bottom: .85rem; display: block; opacity: 0; animation: riseIn .6s ease .1s both; }
-
-    .gi-title {
-      font-family: var(--font-display); font-size: clamp(2.4rem, 7vw, 4.5rem);
-      font-weight: 900; color: #f0e8d5; line-height: 1.02; letter-spacing: -.02em;
-      text-shadow: 0 0 35px rgba(200,0,42,.3), 0 0 70px rgba(212,66,10,.12), 0 2px 4px rgba(0,0,0,.8);
-      opacity: 0; animation: riseIn .7s ease .25s both;
-    }
-
-    .gi-hero-rule { display: flex; align-items: center; gap: .8rem; margin: 1rem auto; max-width: 260px; opacity: 0; animation: riseIn .4s ease .4s both; }
-    .gi-hero-rule-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.65), transparent); }
-    .gi-hero-rule-glyph { font-family: var(--font-display); font-size: .9rem; color: rgba(200,0,42,.85); animation: candleFlicker 3s ease-in-out 1.2s infinite; }
-
-    .gi-sub { font-family: var(--font-fell); font-style: italic; font-size: .98rem; color: rgba(240,232,213,.42); line-height: 1.65; opacity: 0; animation: riseIn .5s ease .5s both; }
-
-    @keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes candleFlicker { 0%, 100% { opacity: 1; } 20% { opacity: .82; } 50% { opacity: .94; } 75% { opacity: .78; } }
+    .gi-hero-inner { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .gi-eyebrow { font-family: 'Source Code Pro', monospace; font-size: .54rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: rgba(200,0,42,.75); margin-bottom: .7rem; display: block; opacity: 0; animation: riseIn .6s ease .1s both; }
+    .gi-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 900; color: var(--moon); line-height: 1.02; letter-spacing: -.02em; text-shadow: 0 0 32px rgba(200,0,42,.28); opacity: 0; animation: riseIn .7s ease .25s both; }
+    .gi-rule { display: flex; align-items: center; gap: .7rem; margin: .9rem auto; max-width: 220px; opacity: 0; animation: riseIn .4s ease .4s both; }
+    .gi-rule-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(200,0,42,.6), transparent); }
+    .gi-rule-glyph { font-family: 'UnifrakturMaguntia', cursive; font-size: .9rem; color: rgba(200,0,42,.8); }
+    .gi-sub { font-family: 'IM Fell English', serif; font-style: italic; font-size: .95rem; color: rgba(240,232,213,.42); line-height: 1.65; opacity: 0; animation: riseIn .5s ease .5s both; }
 
     /* MAIN */
-    .gi-main { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem 6rem; }
+    .gi-main { max-width: 1100px; margin: 0 auto; padding: 0 1.2rem 6rem; }
 
     /* MISSION */
-    .gi-mission { padding: 3rem 0 0; }
+    .gi-mission { padding: 2.8rem 0 0; }
     .gi-mission-inner {
-      background: #0a0603; border-left: 5px solid var(--web); border-radius: 0 3px 3px 0;
-      padding: 1.7rem 2.4rem; font-family: var(--font-fell); font-style: italic;
-      font-size: 1.05rem; color: rgba(240,232,213,.68); line-height: 1.78;
-      box-shadow: inset 4px 0 20px rgba(200,0,42,.06), 0 0 30px rgba(200,0,42,.04);
+      background: var(--char);
+      border-left: 5px solid var(--pyre);
+      padding: 1.5rem 2rem;
+      font-family: 'IM Fell English', serif; font-style: italic;
+      font-size: 1rem; color: rgba(240,232,213,.65); line-height: 1.78;
+      box-shadow: inset 4px 0 20px rgba(200,0,42,.06);
       position: relative; overflow: hidden;
     }
-    .gi-mission-inner::after { content: '🕸'; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 2rem; opacity: .08; }
+    .gi-mission-inner::after { content: '🕸'; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.8rem; opacity: .08; }
 
     /* SECTION HDR */
-    .gi-section { padding: 3.5rem 0 0; }
-    .gi-sec-hdr { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 2.5rem; }
+    .gi-sec { padding: 3.2rem 0 0; }
+    .gi-sec-hdr { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.2rem; }
     .gi-sec-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--foxed), transparent); }
     .gi-sec-line.rev { background: linear-gradient(to left, var(--foxed), transparent); }
-    .gi-sec-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 900; color: var(--ink); white-space: nowrap; }
+    .gi-sec-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 900; color: var(--ink); white-space: nowrap; }
 
     /* NODE CARDS */
-    .gi-nodes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
-    @media (max-width: 860px) { .gi-nodes { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .gi-nodes { grid-template-columns: 1fr; } }
-
+    .gi-nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
     .gi-node {
-      background: #fff; border: 1px solid var(--cream); border-radius: 1px;
-      padding: 1.8rem 1.5rem 1.5rem; position: relative; overflow: hidden;
-      transition: transform .28s var(--ease-web), box-shadow .28s;
-      text-decoration: none; display: flex; flex-direction: column; gap: .4rem;
+      background: #fff; border: 1px solid var(--cream); border-top: 3px solid var(--pyre);
+      padding: 1.5rem 1.3rem 1.3rem; position: relative; overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s;
+      text-decoration: none; display: flex; flex-direction: column; gap: .35rem;
     }
-    .gi-node::after { content: ''; position: absolute; bottom: -1px; right: -1px; width: 52px; height: 52px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='52' y1='52' x2='0' y2='0' stroke='%23c8002a' stroke-width='.6' opacity='.16'/%3E%3Cline x1='52' y1='52' x2='17' y2='0' stroke='%23c8002a' stroke-width='.6' opacity='.16'/%3E%3Cline x1='52' y1='52' x2='0' y2='17' stroke='%23c8002a' stroke-width='.6' opacity='.16'/%3E%3Cline x1='52' y1='52' x2='35' y2='0' stroke='%23c8002a' stroke-width='.5' opacity='.1'/%3E%3Cline x1='52' y1='52' x2='0' y2='35' stroke='%23c8002a' stroke-width='.5' opacity='.1'/%3E%3C/svg%3E"); background-size: contain; pointer-events: none; }
-    .gi-node::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--web), var(--forge)); transform: scaleX(0); transform-origin: left; transition: transform .32s ease; }
-    .gi-node:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1), 0 0 0 1px var(--web-dim), 0 0 20px rgba(200,0,42,.04); text-decoration: none; }
-    .gi-node:hover::before { transform: scaleX(1); }
-
-    .gi-node-icon { width: 38px; height: 38px; color: var(--web); opacity: .72; margin-bottom: .5rem; transition: opacity .2s, transform .3s var(--ease-web); }
-    .gi-node:hover .gi-node-icon { opacity: 1; transform: rotate(14deg) scale(1.1); }
-    .gi-node-tag { font-family: var(--font-mono); font-size: .56rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--web); }
-    .gi-node-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.22; }
-    .gi-node-desc { font-family: var(--font-body); font-size: .85rem; color: var(--dust); line-height: 1.6; flex: 1; }
-    .gi-node-arrow { font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; color: var(--web); transition: letter-spacing .2s, text-shadow .2s; margin-top: .4rem; }
-    .gi-node:hover .gi-node-arrow { letter-spacing: .16em; text-shadow: 0 0 8px rgba(200,0,42,.3); }
+    .gi-node::after { content: ''; position: absolute; bottom: -1px; right: -1px; width: 44px; height: 44px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='44' y1='44' x2='0' y2='0' stroke='%23c8002a' stroke-width='.55' opacity='.15'/%3E%3Cline x1='44' y1='44' x2='14' y2='0' stroke='%23c8002a' stroke-width='.55' opacity='.15'/%3E%3Cline x1='44' y1='44' x2='0' y2='14' stroke='%23c8002a' stroke-width='.55' opacity='.15'/%3E%3C/svg%3E"); background-size: contain; pointer-events: none; }
+    .gi-node:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.09), 0 0 0 1px rgba(200,0,42,.1); text-decoration: none; }
+    .gi-node-tag { font-family: 'Source Code Pro', monospace; font-size: .52rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--pyre); }
+    .gi-node-title { font-family: 'Playfair Display', serif; font-size: .95rem; font-weight: 700; color: var(--ink); line-height: 1.22; }
+    .gi-node-desc { font-family: 'Libre Baskerville', serif; font-size: .8rem; color: var(--dust); line-height: 1.6; flex: 1; }
+    .gi-node-arrow { font-family: 'Source Code Pro', monospace; font-size: .62rem; font-weight: 600; letter-spacing: .1em; color: var(--pyre); margin-top: .3rem; transition: letter-spacing .2s; }
+    .gi-node:hover .gi-node-arrow { letter-spacing: .16em; }
 
     /* ORNAMENT */
-    .gi-ornament { display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem; opacity: .42; }
-    .gi-ornament-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--foxed), transparent); }
+    .gi-orn { display: flex; align-items: center; gap: .9rem; margin: 3rem 0; opacity: .4; }
+    .gi-orn-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--foxed), transparent); }
 
-    /* PITCH LAYOUT */
-    .gi-pitch-layout { display: grid; grid-template-columns: 1fr 1.7fr; gap: 3rem; align-items: start; }
-    @media (max-width: 760px) { .gi-pitch-layout { grid-template-columns: 1fr; } }
+    /* ── PITCH FORM ── */
+    .gi-pitch-wrap { padding: 3rem 0 0; }
+    .gi-pitch-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 2.8rem;
+      align-items: start;
+    }
+    @media (max-width: 740px) { .gi-pitch-layout { grid-template-columns: 1fr; } }
 
-    .gi-pitch-info { display: flex; flex-direction: column; gap: 1.2rem; }
-    .gi-pitch-prose { font-family: var(--font-body); font-size: .95rem; color: var(--ink-soft); line-height: 1.82; }
+    /* info side */
+    .gi-pitch-info { display: flex; flex-direction: column; gap: 1.1rem; }
+    .gi-pitch-prose { font-size: .92rem; color: var(--ink); line-height: 1.82; }
 
-    .gi-checklist { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
-    .gi-checklist li { display: flex; align-items: flex-start; gap: .7rem; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .05em; color: var(--ink-soft); line-height: 1.55; }
-    .gi-check-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--web); flex-shrink: 0; margin-top: .46rem; }
+    .gi-checklist { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .gi-checklist li { display: flex; align-items: flex-start; gap: .65rem; font-family: 'Source Code Pro', monospace; font-size: .74rem; letter-spacing: .04em; color: var(--ink); line-height: 1.55; }
+    .gi-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--pyre); flex-shrink: 0; margin-top: .45rem; }
 
-    .gi-info-note { background: var(--vellum); border-left: 3px solid var(--foxed); padding: 1rem 1.2rem; border-radius: 0 2px 2px 0; }
-    .gi-info-note-tag { font-family: var(--font-mono); font-size: .54rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--web); margin-bottom: .4rem; }
-    .gi-info-note p { font-family: var(--font-fell); font-style: italic; font-size: .88rem; color: var(--dust); line-height: 1.65; }
+    .gi-note { background: var(--vellum); border-left: 3px solid var(--foxed); padding: .9rem 1.1rem; }
+    .gi-note-tag { font-family: 'Source Code Pro', monospace; font-size: .52rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--pyre); margin-bottom: .35rem; }
+    .gi-note p { font-family: 'IM Fell English', serif; font-style: italic; font-size: .85rem; color: var(--dust); line-height: 1.65; }
 
-    /* PITCH FORM */
-    .gi-form { background: #fff; border: 1px solid var(--cream); border-top: 3px solid var(--web); padding: 2.2rem 2rem; display: flex; flex-direction: column; gap: 1.2rem; position: relative; overflow: hidden; }
-    .gi-form::after { content: ''; position: absolute; top: -8px; right: -8px; width: 90px; height: 90px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 90 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='90' y1='0' x2='0' y2='90' stroke='%23c8002a' stroke-width='.7' opacity='.07'/%3E%3Cline x1='90' y1='0' x2='30' y2='90' stroke='%23c8002a' stroke-width='.7' opacity='.07'/%3E%3Cline x1='90' y1='0' x2='0' y2='55' stroke='%23c8002a' stroke-width='.6' opacity='.05'/%3E%3Cline x1='90' y1='0' x2='60' y2='90' stroke='%23c8002a' stroke-width='.6' opacity='.05'/%3E%3C/svg%3E"); background-size: contain; pointer-events: none; }
+    /* FORM */
+    .gi-form {
+      background: #fff;
+      border: 1px solid var(--cream);
+      border-top: 3px solid var(--pyre);
+      padding: 2rem 1.8rem;
+      display: flex; flex-direction: column; gap: 1.1rem;
+      position: relative; overflow: hidden;
+    }
+    .gi-form::after { content: ''; position: absolute; top: -8px; right: -8px; width: 80px; height: 80px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='80' y1='0' x2='0' y2='80' stroke='%23c8002a' stroke-width='.7' opacity='.07'/%3E%3Cline x1='80' y1='0' x2='25' y2='80' stroke='%23c8002a' stroke-width='.6' opacity='.05'/%3E%3Cline x1='80' y1='0' x2='0' y2='50' stroke='%23c8002a' stroke-width='.5' opacity='.04'/%3E%3C/svg%3E"); background-size: contain; pointer-events: none; }
 
-    .gi-field { display: flex; flex-direction: column; gap: .38rem; }
-    .gi-label { font-family: var(--font-mono); font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
-    .gi-hint { font-weight: 400; letter-spacing: .04em; text-transform: none; color: var(--silver); font-size: .6rem; }
-    .gi-input { background: #f5f0e8; border: 1px solid rgba(26,16,8,.14); border-radius: 1px; color: var(--ink); padding: .6em .9em; font-family: var(--font-body); font-size: .9rem; transition: border-color .2s, background .2s, box-shadow .2s; width: 100%; }
-    .gi-input:focus { outline: none; border-color: var(--web); background: #fff; box-shadow: 0 0 0 3px rgba(200,0,42,.07); }
-    .gi-input::placeholder { color: rgba(26,16,8,.26); }
+    .gi-field { display: flex; flex-direction: column; gap: .35rem; }
+    .gi-label { font-family: 'Source Code Pro', monospace; font-size: .6rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+    .gi-hint { font-weight: 400; letter-spacing: .04em; text-transform: none; color: var(--silver); font-size: .58rem; }
+
+    .gi-input {
+      background: #f5f0e8; border: 1px solid rgba(26,16,8,.13);
+      color: var(--ink); padding: .58em .88em;
+      font-family: 'Libre Baskerville', serif; font-size: .88rem;
+      transition: border-color .2s, background .2s, box-shadow .2s; width: 100%;
+    }
+    .gi-input:focus { outline: none; border-color: var(--pyre); background: #fff; box-shadow: 0 0 0 3px rgba(200,0,42,.07); }
+    .gi-input::placeholder { color: rgba(26,16,8,.25); }
     .gi-select { appearance: none; cursor: pointer; }
-    .gi-textarea { resize: vertical; min-height: 110px; }
-    .gi-submit { background: var(--ink); border: none; border-radius: 1px; color: #f0e8d5; font-family: var(--font-mono); font-size: .74rem; font-weight: 600; letter-spacing: .2em; padding: .85em 1.8em; cursor: pointer; align-self: flex-start; transition: background .2s, transform .2s var(--ease-web), box-shadow .2s; }
-    .gi-submit:hover { background: var(--web); transform: scale(1.04); box-shadow: 0 0 22px rgba(200,0,42,.45); }
-    .gi-form-fine { font-family: var(--font-mono); font-size: .6rem; color: var(--silver); letter-spacing: .07em; line-height: 1.65; }
+    .gi-textarea { resize: vertical; min-height: 100px; }
 
-    /* CONTACT */
-    .gi-contact-wrap { padding: 4rem 0 0; }
-    .gi-contact-form { background: #0a0603; border: 1px solid rgba(200,0,42,.18); border-top: 3px solid var(--web); padding: 2.4rem 2.2rem; display: flex; flex-direction: column; gap: 1.2rem; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(200,0,42,.04); }
-    .gi-contact-form::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(255,255,255,.004) 5px, rgba(255,255,255,.004) 10px); pointer-events: none; }
-    .gi-contact-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 520px) { .gi-contact-two { grid-template-columns: 1fr; } }
-    .gi-contact-intro { font-family: var(--font-fell); font-style: italic; font-size: .95rem; color: rgba(240,232,213,.45); line-height: 1.65; position: relative; }
-    .gi-label-light { color: rgba(240,232,213,.52); }
-    .gi-input-dark { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.1); color: #f0e8d5; }
-    .gi-input-dark:focus { background: rgba(200,0,42,.08); border-color: var(--web); }
-    .gi-input-dark::placeholder { color: rgba(255,255,255,.2); }
-    .gi-submit-red { background: var(--web); box-shadow: 0 0 18px rgba(200,0,42,.4); }
-    .gi-submit-red:hover { background: #e8001f; box-shadow: 0 0 30px rgba(200,0,42,.6); }
+    /* ── PDF UPLOAD ZONE ── */
+    .upload-zone {
+      border: 2px dashed rgba(200,0,42,.3);
+      background: rgba(200,0,42,.03);
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      position: relative;
+    }
+    .upload-zone:hover,
+    .upload-zone.drag-over {
+      border-color: var(--pyre);
+      background: rgba(200,0,42,.07);
+    }
+    .upload-zone.has-file {
+      border-color: rgba(42,140,42,.5);
+      background: rgba(42,140,42,.04);
+    }
+
+    /* hide real input, click zone triggers it */
+    #fileInput { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+
+    .uz-icon {
+      display: block; margin: 0 auto .6rem;
+      opacity: .45;
+    }
+    .uz-label {
+      font-family: 'Source Code Pro', monospace; font-size: .62rem; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--pyre);
+      display: block; margin-bottom: .2rem;
+    }
+    .uz-sub {
+      font-family: 'IM Fell English', serif; font-style: italic;
+      font-size: .8rem; color: var(--dust); display: block;
+    }
+    .uz-file-name {
+      font-family: 'Source Code Pro', monospace; font-size: .68rem; font-weight: 600;
+      color: #1a7a3a; margin-top: .5rem; display: none;
+    }
+    .uz-remove {
+      font-family: 'Source Code Pro', monospace; font-size: .56rem;
+      color: rgba(200,0,42,.6); cursor: pointer; display: none;
+      background: none; border: none; margin-top: .3rem; text-decoration: underline;
+    }
+
+    .gi-submit {
+      background: var(--ink); border: none; color: var(--moon);
+      font-family: 'Source Code Pro', monospace; font-size: .7rem; font-weight: 600;
+      letter-spacing: .2em; padding: .85em 2em;
+      cursor: pointer; align-self: flex-start;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .gi-submit:hover { background: var(--pyre); transform: scale(1.04); box-shadow: 0 0 20px rgba(200,0,42,.4); }
+    .gi-fine { font-family: 'Source Code Pro', monospace; font-size: .56rem; color: var(--silver); letter-spacing: .07em; line-height: 1.65; }
+
+    /* ── SUCCESS STATE ── */
+    .gi-success {
+      display: none;
+      background: var(--char);
+      border-left: 5px solid #1a7a3a;
+      border-top: 2px solid #1a7a3a;
+      padding: 2rem 2.2rem;
+      text-align: center;
+    }
+    .gi-success-frak { font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem; color: var(--moon); display: block; margin-bottom: .4rem; }
+    .gi-success-text { font-family: 'IM Fell English', serif; font-style: italic; font-size: .95rem; color: rgba(240,232,213,.6); line-height: 1.7; }
+
+    /* CONTACT FORM */
+    .gi-contact-wrap { padding: 3.5rem 0 0; }
+    .gi-contact-form {
+      background: var(--char);
+      border: 1px solid rgba(200,0,42,.18);
+      border-top: 3px solid var(--pyre);
+      padding: 2.2rem 2rem;
+      display: flex; flex-direction: column; gap: 1.1rem;
+      position: relative; overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(200,0,42,.04);
+    }
+    .gi-contact-two { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    @media (max-width: 480px) { .gi-contact-two { grid-template-columns: 1fr; } }
+    .gi-label-l { color: rgba(240,232,213,.52); }
+    .gi-input-d { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.1); color: var(--moon); }
+    .gi-input-d:focus { background: rgba(200,0,42,.08); border-color: var(--pyre); }
+    .gi-input-d::placeholder { color: rgba(255,255,255,.2); }
+    .gi-contact-intro { font-family: 'IM Fell English', serif; font-style: italic; font-size: .92rem; color: rgba(240,232,213,.42); line-height: 1.65; position: relative; }
+    .gi-submit-r { background: var(--pyre); box-shadow: 0 0 18px rgba(200,0,42,.4); }
+    .gi-submit-r:hover { background: #e8001f; }
 
     /* FOOTER */
-    .site-footer { background: #080603; position: relative; overflow: hidden; }
-    .footer-web { display: block; width: 100%; height: 120px; opacity: .18; }
+    .site-footer { background: var(--char); position: relative; overflow: hidden; }
+    .footer-web { display: block; width: 100%; height: 100px; opacity: .18; }
     .fw { stroke: rgba(200,0,42,.55); stroke-width: 1; fill: none; }
     .fa { fill: none; stroke: rgba(200,0,42,.4); stroke-width: .8; }
-    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; max-width: var(--max-w); margin: 0 auto; padding: 1.5rem 1.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,.07); }
-    .footer-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 900; color: #f0e8d5; text-shadow: 0 0 20px rgba(200,0,42,.2); }
-    .footer-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-    .footer-nav a { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.35); text-decoration: none; transition: color .2s, text-shadow .2s; }
-    .footer-nav a:hover { color: var(--web); text-shadow: 0 0 8px rgba(200,0,42,.3); text-decoration: none; }
-    .footer-copy { font-family: var(--font-mono); font-size: .6rem; color: rgba(240,232,213,.2); letter-spacing: .08em; }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1100px; margin: 0 auto; padding: 1.2rem 1.2rem 2rem; border-top: 1px solid rgba(255,255,255,.07); }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--moon); text-shadow: 0 0 18px rgba(200,0,42,.15); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .footer-nav a { font-family: 'Source Code Pro', monospace; font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.32); text-decoration: none; transition: color .2s; }
+    .footer-nav a:hover { color: var(--pyre); }
+    .footer-copy { font-family: 'Source Code Pro', monospace; font-size: .52rem; color: rgba(255,255,255,.18); letter-spacing: .08em; }
 
-    .gi-reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
-    .gi-reveal.in { opacity: 1; transform: translateY(0); }
+    @keyframes riseIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--vellum); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--pyre), var(--forge)); }
+    ::selection { background: var(--pyre); color: #fff; }
 
-    @media (max-width: 640px) {
-      .gi-main { padding: 0 1.1rem 4rem; }
-      .gi-form { padding: 1.8rem 1.4rem; }
-      .gi-contact-form { padding: 1.8rem 1.4rem; }
+    @media (max-width: 580px) {
+      .gi-main { padding: 0 1rem 4rem; }
+      .gi-form { padding: 1.6rem 1.2rem; }
+      .gi-contact-form { padding: 1.6rem 1.2rem; }
     }
 
   </style>
 </head>
 <body>
 
-  <nav class="sm-nav">
-    <div class="sm-nav-inner">
-      <a href="index.html" class="sm-nav-brand">Salem Mania</a>
-      <div class="sm-nav-links">
-        <a href="index.html"            class="sm-nav-link">Home</a>
-        <a href="articles.html"         class="sm-nav-link">Articles</a>
-        <a href="get-involved.html"     class="sm-nav-link sm-nav-active">Get Involved</a>
-        <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
-        <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
-        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
-        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
-      </div>
+<!-- NAV -->
+<nav class="sm-nav">
+  <div class="sm-nav-inner">
+    <a href="index.html" class="sm-nav-brand">Salem Mania</a>
+    <div class="sm-nav-links">
+      <a href="index.html"            class="sm-nav-link">Home</a>
+      <a href="articles.html"         class="sm-nav-link">Articles</a>
+      <a href="get-involved.html"     class="sm-nav-link sm-nav-active">Get Involved</a>
+      <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
+      <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania"               target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/"       target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <header class="gi-hero">
-    <div class="gi-hero-sky"></div>
-    <div class="gi-hero-stars"></div>
-    <div class="gi-hero-fire"></div>
-    <canvas id="heroCanvas"></canvas>
-    <div class="gi-hero-inner">
-      <span class="gi-eyebrow">Salem Mania · Spring–Summer 2026</span>
-      <h1 class="gi-title">Get Involved.</h1>
-      <div class="gi-hero-rule">
-        <span class="gi-hero-rule-line"></span>
-        <span class="gi-hero-rule-glyph">🕸</span>
-        <span class="gi-hero-rule-line"></span>
-      </div>
-      <p class="gi-sub">Each pitch submitted will go through the SDPRP. Not everything will be published.</p>
+<!-- HERO -->
+<header class="gi-hero">
+  <div class="gi-hero-inner">
+    <span class="gi-eyebrow">Salem Mania · Spring–Summer 2026</span>
+    <h1 class="gi-title">Get Involved.</h1>
+    <div class="gi-rule">
+      <span class="gi-rule-line"></span>
+      <span class="gi-rule-glyph">🕸</span>
+      <span class="gi-rule-line"></span>
     </div>
-  </header>
+    <p class="gi-sub">The standard belongs to the community. Every piece that appears here earned its place.</p>
+  </div>
+</header>
 
-  <main class="gi-main">
+<!-- MAIN -->
+<main class="gi-main">
 
-    <section class="gi-mission gi-reveal">
-      <div class="gi-mission-inner">
-        Salem Mania does not publish everything submitted. Every piece that appears here has been read, considered, and chosen by the network.
-      </div>
-    </section>
-
-    <section class="gi-section gi-reveal">
-      <div class="gi-sec-hdr">
-        <span class="gi-sec-line"></span>
-        <h2 class="gi-sec-title">How to Be Part of It</h2>
-        <span class="gi-sec-line rev"></span>
-      </div>
-      <div class="gi-nodes">
-        <a href="#pitch-form" class="gi-node">
-          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <line x1="30" y1="30" x2="30" y2="5"  stroke="currentColor" stroke-width="1.3"/>
-            <line x1="30" y1="30" x2="52" y2="18" stroke="currentColor" stroke-width="1.3"/>
-            <line x1="30" y1="30" x2="52" y2="42" stroke="currentColor" stroke-width="1.3"/>
-            <line x1="30" y1="30" x2="30" y2="55" stroke="currentColor" stroke-width="1.3"/>
-            <line x1="30" y1="30" x2="8"  y2="42" stroke="currentColor" stroke-width="1.3"/>
-            <line x1="30" y1="30" x2="8"  y2="18" stroke="currentColor" stroke-width="1.3"/>
-            <polygon points="30,10 48,17 52,36 42,50 18,50 8,36 12,17" fill="none" stroke="currentColor" stroke-width=".9"/>
-            <polygon points="30,20 42,25 45,35 37,44 23,44 15,35 18,25" fill="none" stroke="currentColor" stroke-width=".6"/>
-            <circle cx="30" cy="30" r="5" fill="currentColor"/>
-          </svg>
-          <div class="gi-node-tag">Pitch</div>
-          <div class="gi-node-title">Submit a Piece</div>
-          <p class="gi-node-desc">Pitches are open now. Read carefully and responded to.</p>
-          <span class="gi-node-arrow">Submit a pitch →</span>
-        </a>
-        <a href="those-involved.html" class="gi-node">
-          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="30" cy="18" r="9"  fill="none" stroke="currentColor" stroke-width="1.3"/>
-            <circle cx="14" cy="44" r="6"  fill="none" stroke="currentColor" stroke-width="1.1"/>
-            <circle cx="46" cy="44" r="6"  fill="none" stroke="currentColor" stroke-width="1.1"/>
-            <line x1="23" y1="26" x2="16" y2="38" stroke="currentColor" stroke-width="1.1"/>
-            <line x1="37" y1="26" x2="44" y2="38" stroke="currentColor" stroke-width="1.1"/>
-            <line x1="20" y1="44" x2="40" y2="44" stroke="currentColor" stroke-width=".9" stroke-dasharray="3 2"/>
-          </svg>
-          <div class="gi-node-tag">Network</div>
-          <div class="gi-node-title">Those Involved</div>
-          <p class="gi-node-desc">The Salem Mania network is invitation only.</p>
-          <span class="gi-node-arrow">Meet the web →</span>
-        </a>
-        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="gi-node">
-          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <path d="M30 8C17.8 8 8 17.8 8 30c0 9.8 6.3 18.1 15.1 21 1.1.2 1.5-.5 1.5-1.1 0-.5 0-2.1 0-4.2-6.1 1.3-7.4-2.8-7.4-2.8-1-2.5-2.5-3.2-2.5-3.2-2.1-1.4.2-1.4.2-1.4 2.3.2 3.5 2.3 3.5 2.3 2.1 3.6 5.5 2.5 6.6 1.9.2-1.5.8-2.5 1.5-3.1-5-.6-10.2-2.5-10.2-11.1 0-2.4.9-4.3 2.1-5.8-.2-.6-1-2.8 1.3-5.7 0 0 2-.6 3.8 2.7 1.6-.5 3.3-.7 5-.7 1.7 0 3.4.2 5 .7 1.8-2.7 3.8-2.7 3.8-2.7 2.3 2.9 1.5 5.1 1.3 5.7 1.2 1.5 2.1 3.4 2.1 5.8 0 8.6-5.2 10.5-10.2 11.1.8.7 1.6 2.2 1.6 4.5 0 3.3 0 5.9 0 6 0 .6.4 1.3 1.5 1.1C45.7 48.1 52 39.8 52 30 52 17.8 42.2 8 30 8Z" fill="currentColor"/>
-          </svg>
-          <div class="gi-node-tag">Open Source</div>
-          <div class="gi-node-title">View the Code</div>
-          <p class="gi-node-desc">Salem Mania is fully open source.</p>
-          <span class="gi-node-arrow">View on GitHub →</span>
-        </a>
-        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="gi-node">
-          <svg class="gi-node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <rect x="12" y="12" width="36" height="36" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/>
-            <circle cx="41.5" cy="18.5" r="2.5" fill="currentColor"/>
-          </svg>
-          <div class="gi-node-tag">Follow</div>
-          <div class="gi-node-title">Instagram</div>
-          <p class="gi-node-desc">Pitch announcements, issue releases, and the web.</p>
-          <span class="gi-node-arrow">@salemmaniapublication →</span>
-        </a>
-      </div>
-    </section>
-
-    <div class="gi-ornament gi-reveal">
-      <span class="gi-ornament-line"></span>
-      <svg viewBox="0 0 60 30" width="60" height="30" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:.8;">
-        <line x1="30" y1="15" x2="30" y2="0"  stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="58" y2="0"  stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="58" y2="15" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="58" y2="30" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="30" y2="30" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="2"  y2="30" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="2"  y2="15" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="2"  y2="0"  stroke="#c8002a" stroke-width="1"/>
-        <ellipse cx="30" cy="15" rx="16" ry="8" fill="none" stroke="#c8002a" stroke-width=".6"/>
-        <ellipse cx="30" cy="15" rx="8"  ry="4" fill="none" stroke="#c8002a" stroke-width=".5"/>
-        <circle cx="30" cy="15" r="3" fill="#c8002a"/>
-      </svg>
-      <span class="gi-ornament-line"></span>
+  <section class="gi-mission">
+    <div class="gi-mission-inner">
+      Salem Mania does not publish everything submitted. Every piece that appears here has been read, considered, and chosen by the network.
     </div>
+  </section>
 
-    <section class="gi-section gi-reveal" id="pitch-form">
-      <div class="gi-sec-hdr">
-        <span class="gi-sec-line"></span>
-        <h2 class="gi-sec-title">Submit a Pitch</h2>
-        <span class="gi-sec-line rev"></span>
-      </div>
-      <div class="gi-pitch-layout">
-        <div class="gi-pitch-info">
-          <p class="gi-pitch-prose">Salem Mania peer reviews every pitch through the Standard Democratic Peer Review Process. No single editor has final authority. The network votes. The majority decides.</p>
-          <ul class="gi-checklist">
-            <li><span class="gi-check-dot"></span>All pitches peer reviewed by the network.</li>
-            <li><span class="gi-check-dot"></span>Not all pitches are accepted.</li>
-            <li><span class="gi-check-dot"></span>Published writers receive editorial feedback.</li>
-            <li><span class="gi-check-dot"></span>Published pieces are permanently credited.</li>
-            <li><span class="gi-check-dot"></span>This season caps at fifteen articles.</li>
-          </ul>
-          <div class="gi-info-note">
-            <div class="gi-info-note-tag">Editorial Standard</div>
-            <p>Every piece answers the same question — why does this need to exist?</p>
-          </div>
-          <div class="gi-info-note">
-            <div class="gi-info-note-tag">Your Rights</div>
-            <p>Salem Mania does not acquire ownership of your work. Your copyright remains yours. Read the full <a href="rights-and-stuff.html">Submission Terms</a> before pitching.</p>
-          </div>
-        </div>
-        <form class="gi-form" id="pitchForm" action="https://formspree.io/f/xqeylljj" method="POST">
-          <input type="hidden" name="_subject" value="New Salem Mania Pitch" />
-          <div class="gi-field"><label class="gi-label" for="pitch-name">Full Name</label><input type="text" id="pitch-name" name="name" class="gi-input" placeholder="Your name" required /></div>
-          <div class="gi-field"><label class="gi-label" for="pitch-email">Email</label><input type="email" id="pitch-email" name="email" class="gi-input" placeholder="your@email.com" required /></div>
-          <div class="gi-field">
-            <label class="gi-label" for="pitch-section">Section</label>
-            <select id="pitch-section" name="section" class="gi-input gi-select" required>
-              <option value="">Select a section…</option>
-              <option>Film</option><option>Music</option><option>Culture</option>
-              <option>Literature</option><option>Opinion</option><option>Poetry</option><option>Other</option>
-            </select>
-          </div>
-          <div class="gi-field"><label class="gi-label" for="pitch-headline">Proposed Title</label><input type="text" id="pitch-headline" name="title" class="gi-input" placeholder="Working title" required /></div>
-          <div class="gi-field"><label class="gi-label" for="pitch-summary">The Pitch <span class="gi-hint">— what is it, why does it matter, why you</span></label><textarea id="pitch-summary" name="pitch" class="gi-input gi-textarea" placeholder="Make the case for your piece. What's the argument? What's the angle? Why should it exist?" rows="6" required></textarea></div>
-          <div class="gi-field"><label class="gi-label" for="pitch-influence">Writers or works that influence you <span class="gi-hint">— tells us about your taste</span></label><input type="text" id="pitch-influence" name="influences" class="gi-input" placeholder="e.g. Edgar Allan Poe, James Baldwin, a specific album review…" required /></div>
-          <div class="gi-field"><label class="gi-label" for="pitch-clips">Previous work or portfolio <span class="gi-hint">— optional</span></label><input type="url" id="pitch-clips" name="portfolio" class="gi-input" placeholder="https://" /></div>
-          <p class="gi-form-fine">Pitches are reviewed personally. All decisions are final. By submitting you confirm you have read the <a href="rights-and-stuff.html">Submission Terms</a>. Salem Mania does not acquire ownership of your work.</p>
-          <button type="submit" class="gi-submit">Submit Pitch →</button>
-        </form>
-      </div>
-    </section>
-
-    <div class="gi-ornament gi-reveal" style="margin-top:4rem;">
-      <span class="gi-ornament-line"></span>
-      <svg viewBox="0 0 60 30" width="60" height="30" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:.8;">
-        <line x1="30" y1="15" x2="30" y2="0"  stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="58" y2="0"  stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="58" y2="15" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="58" y2="30" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="30" y2="30" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="2"  y2="30" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="2"  y2="15" stroke="#c8002a" stroke-width="1"/>
-        <line x1="30" y1="15" x2="2"  y2="0"  stroke="#c8002a" stroke-width="1"/>
-        <ellipse cx="30" cy="15" rx="16" ry="8" fill="none" stroke="#c8002a" stroke-width=".6"/>
-        <ellipse cx="30" cy="15" rx="8"  ry="4" fill="none" stroke="#c8002a" stroke-width=".5"/>
-        <circle cx="30" cy="15" r="3" fill="#c8002a"/>
-      </svg>
-      <span class="gi-ornament-line"></span>
+  <!-- HOW TO BE PART OF IT -->
+  <section class="gi-sec">
+    <div class="gi-sec-hdr">
+      <span class="gi-sec-line"></span>
+      <h2 class="gi-sec-title">How to Be Part of It</h2>
+      <span class="gi-sec-line rev"></span>
     </div>
+    <div class="gi-nodes">
+      <a href="#pitch-form" class="gi-node">
+        <svg class="gi-node-icon" width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="color:#c8002a;margin-bottom:.4rem;">
+          <line x1="30" y1="30" x2="30" y2="5"  stroke="currentColor" stroke-width="1.3"/>
+          <line x1="30" y1="30" x2="52" y2="18" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="30" y1="30" x2="52" y2="42" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="30" y1="30" x2="30" y2="55" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="30" y1="30" x2="8"  y2="42" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="30" y1="30" x2="8"  y2="18" stroke="currentColor" stroke-width="1.3"/>
+          <polygon points="30,10 48,17 52,36 42,50 18,50 8,36 12,17" fill="none" stroke="currentColor" stroke-width=".9"/>
+          <circle cx="30" cy="30" r="5" fill="currentColor"/>
+        </svg>
+        <div class="gi-node-tag">Pitch</div>
+        <div class="gi-node-title">Submit a Piece</div>
+        <p class="gi-node-desc">Pitches open now. Read carefully. Not everything gets published.</p>
+        <span class="gi-node-arrow">Submit a pitch →</span>
+      </a>
+      <a href="those-involved.html" class="gi-node">
+        <div class="gi-node-tag">Network</div>
+        <div class="gi-node-title">Those Involved</div>
+        <p class="gi-node-desc">The Salem Mania network is invitation only.</p>
+        <span class="gi-node-arrow">Meet the web →</span>
+      </a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="gi-node">
+        <div class="gi-node-tag">Open Source</div>
+        <div class="gi-node-title">View the Code</div>
+        <p class="gi-node-desc">Salem Mania is fully open source. Learn from it.</p>
+        <span class="gi-node-arrow">GitHub →</span>
+      </a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="gi-node">
+        <div class="gi-node-tag">Follow</div>
+        <div class="gi-node-title">Instagram</div>
+        <p class="gi-node-desc">Pitch announcements and issue releases.</p>
+        <span class="gi-node-arrow">@salemmaniapublication →</span>
+      </a>
+    </div>
+  </section>
 
-    <section class="gi-contact-wrap gi-reveal">
-      <div class="gi-sec-hdr"><span class="gi-sec-line"></span><h2 class="gi-sec-title">Say Hello</h2><span class="gi-sec-line rev"></span></div>
-      <form class="gi-contact-form" id="contactForm" action="https://formspree.io/f/xjgaakpd" method="POST">
-        <input type="hidden" name="_subject" value="Salem Mania — General Message" />
-        <p class="gi-contact-intro">Questions, ideas, feedback — all welcome.</p>
-        <div class="gi-contact-two">
-          <div class="gi-field"><label class="gi-label gi-label-light" for="contact-name">Name <span class="gi-hint" style="color:rgba(155,164,174,.4);">(optional)</span></label><input type="text" id="contact-name" name="name" class="gi-input gi-input-dark" placeholder="Your name" /></div>
-          <div class="gi-field"><label class="gi-label gi-label-light" for="contact-email">Email</label><input type="email" id="contact-email" name="email" class="gi-input gi-input-dark" placeholder="your@email.com" required /></div>
-        </div>
-        <div class="gi-field"><label class="gi-label gi-label-light" for="contact-subject">Subject</label><input type="text" id="contact-subject" name="subject" class="gi-input gi-input-dark" placeholder="What's on your mind?" required /></div>
-        <div class="gi-field"><label class="gi-label gi-label-light" for="contact-message">Message</label><textarea id="contact-message" name="message" class="gi-input gi-input-dark gi-textarea" rows="5" placeholder="Say anything." required></textarea></div>
-        <button type="submit" class="gi-submit gi-submit-red">Send Message →</button>
-      </form>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="600" y1="120" x2="600"  y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="30" class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="300"  y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="900"  y2="0"  class="fw"/>
-      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55" class="fa"/>
-      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25" class="fa"/>
-      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5" class="fa"/>
+  <!-- ORNAMENT -->
+  <div class="gi-orn">
+    <span class="gi-orn-line"></span>
+    <svg viewBox="0 0 60 30" width="60" height="30" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:.8;">
+      <line x1="30" y1="15" x2="30" y2="0"  stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="58" y2="0"  stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="58" y2="15" stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="58" y2="30" stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="30" y2="30" stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="2"  y2="30" stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="2"  y2="15" stroke="#c8002a" stroke-width="1"/>
+      <line x1="30" y1="15" x2="2"  y2="0"  stroke="#c8002a" stroke-width="1"/>
+      <ellipse cx="30" cy="15" rx="15" ry="7" fill="none" stroke="#c8002a" stroke-width=".6"/>
+      <ellipse cx="30" cy="15" rx="7"  ry="3.5" fill="none" stroke="#c8002a" stroke-width=".5"/>
+      <circle cx="30" cy="15" r="3" fill="#c8002a"/>
     </svg>
-    <div class="footer-inner">
-      <span class="footer-title">Salem Mania</span>
-      <nav class="footer-nav">
-        <a href="index.html">Home</a><a href="articles.html">Articles</a>
-        <a href="get-involved.html">Get Involved</a><a href="those-involved.html">Those Involved</a>
-        <a href="rights-and-stuff.html">Terms &amp; Conditions</a>
-        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
-      </nav>
-      <span class="footer-copy">© 2026 Salem Mania. salemmania.blog@gmail.com</span>
-    </div>
-  </footer>
+    <span class="gi-orn-line"></span>
+  </div>
 
-  <script>
-  (function () {
-    'use strict';
-    var canvas = document.getElementById('heroCanvas');
-    if (!canvas) return;
-    var ctx  = canvas.getContext('2d');
-    var hero = canvas.parentElement;
-    var W, H, cx, cy, R, t = 0;
-    var SPOKES = 8;
-    function resize() { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; cx = W/2; cy = H/2; R = Math.min(W,H)*.55; }
-    function draw() {
-      ctx.clearRect(0,0,W,H); t+=.004;
-      for (var i=0;i<SPOKES;i++) { var ang=(i/SPOKES)*Math.PI*2+t*.05; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(ang)*Math.max(W,H),cy+Math.sin(ang)*Math.max(W,H)); ctx.strokeStyle='rgba(200,0,42,.1)'; ctx.lineWidth=.65; ctx.stroke(); }
-      for (var ri=1;ri<=5;ri++) { var ringR=R*(ri/5); var pts=[]; for (var i=0;i<SPOKES;i++){var ang=(i/SPOKES)*Math.PI*2+t*.05;pts.push({x:cx+Math.cos(ang)*ringR,y:cy+Math.sin(ang)*ringR});} for (var pi=0;pi<pts.length;pi++){var a=pts[pi],b=pts[(pi+1)%pts.length],cpx=cx+((a.x+b.x)/2-cx)*.935,cpy=cy+((a.y+b.y)/2-cy)*.935;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.quadraticCurveTo(cpx,cpy,b.x,b.y);ctx.strokeStyle='rgba(200,0,42,'+(0.04+ri*.009)+')';ctx.lineWidth=.38;ctx.stroke();} }
-      ctx.beginPath(); ctx.arc(cx,cy,4+Math.sin(t*1.4)*.8,0,Math.PI*2); ctx.fillStyle='rgba(200,0,42,.55)'; ctx.fill();
-      requestAnimationFrame(draw);
+  <!-- ══ PITCH FORM ══ -->
+  <div class="gi-pitch-wrap" id="pitch-form">
+    <div class="gi-sec-hdr">
+      <span class="gi-sec-line"></span>
+      <h2 class="gi-sec-title">Submit a Pitch</h2>
+      <span class="gi-sec-line rev"></span>
+    </div>
+
+    <div class="gi-pitch-layout">
+
+      <!-- info column -->
+      <div class="gi-pitch-info">
+        <p class="gi-pitch-prose">Salem Mania peer reviews every pitch through the Standard Democratic Peer Review Process. No single editor has final authority. The network votes. The majority decides.</p>
+        <ul class="gi-checklist">
+          <li><span class="gi-dot"></span>All pitches peer reviewed by the network.</li>
+          <li><span class="gi-dot"></span>Not all pitches are accepted.</li>
+          <li><span class="gi-dot"></span>You can attach a PDF draft or portfolio.</li>
+          <li><span class="gi-dot"></span>Published writers receive editorial feedback.</li>
+          <li><span class="gi-dot"></span>Published pieces are permanently credited.</li>
+          <li><span class="gi-dot"></span>This season caps at fifteen articles.</li>
+        </ul>
+        <div class="gi-note">
+          <div class="gi-note-tag">Editorial Standard</div>
+          <p>Every piece answers the same question — why does this need to exist?</p>
+        </div>
+        <div class="gi-note">
+          <div class="gi-note-tag">Your Rights</div>
+          <p>Salem Mania does not acquire ownership of your work. Your copyright remains yours. Read the full <a href="rights-and-stuff.html">Submission Terms</a> before pitching.</p>
+        </div>
+        <div class="gi-note">
+          <div class="gi-note-tag">PDF Submissions</div>
+          <p>You may attach a PDF draft, writing sample, or portfolio document. Max 10MB. PDF only. Optional but encouraged for complete drafts.</p>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <form class="gi-form" id="pitchForm" action="https://formspree.io/f/xqeylljj" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_subject" value="New Salem Mania Pitch"/>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-name">Full Name</label>
+          <input type="text" id="p-name" name="name" class="gi-input" placeholder="Your name" required/>
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-email">Email</label>
+          <input type="email" id="p-email" name="email" class="gi-input" placeholder="your@email.com" required/>
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-section">Section</label>
+          <select id="p-section" name="section" class="gi-input gi-select" required>
+            <option value="">Select a section…</option>
+            <option>Film</option>
+            <option>Music</option>
+            <option>Culture</option>
+            <option>Literature</option>
+            <option>Opinion</option>
+            <option>Poetry</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-title">Proposed Title</label>
+          <input type="text" id="p-title" name="title" class="gi-input" placeholder="Working title" required/>
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-pitch">The Pitch <span class="gi-hint">— what is it, why does it matter, why you</span></label>
+          <textarea id="p-pitch" name="pitch" class="gi-input gi-textarea" placeholder="Make the case for your piece. What's the argument? What's the angle? Why should it exist?" rows="5" required></textarea>
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-inf">Writers or works that influence you <span class="gi-hint">— tells us about your taste</span></label>
+          <input type="text" id="p-inf" name="influences" class="gi-input" placeholder="e.g. Edgar Allan Poe, James Baldwin, a specific album review…" required/>
+        </div>
+
+        <!-- ── PDF UPLOAD ── -->
+        <div class="gi-field">
+          <label class="gi-label">Attach a PDF <span class="gi-hint">— draft, writing sample, or portfolio (optional, max 10MB)</span></label>
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" name="attachment" accept=".pdf,application/pdf" aria-label="Attach PDF"/>
+
+            <svg class="uz-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8002a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+
+            <span class="uz-label" id="uzLabel">Drop your PDF here or click to browse</span>
+            <span class="uz-sub" id="uzSub">PDF only · Max 10MB · Optional</span>
+            <span class="uz-file-name" id="uzFileName"></span>
+            <button type="button" class="uz-remove" id="uzRemove" onclick="removeFile(event)">Remove file</button>
+          </div>
+          <div id="fileError" style="font-family:'Source Code Pro',monospace;font-size:.58rem;color:#c8002a;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <div class="gi-field">
+          <label class="gi-label" for="p-port">Previous work or portfolio URL <span class="gi-hint">— optional</span></label>
+          <input type="url" id="p-port" name="portfolio" class="gi-input" placeholder="https://"/>
+        </div>
+
+        <p class="gi-fine">Pitches are reviewed personally. All decisions are final. By submitting you confirm you have read the <a href="rights-and-stuff.html">Submission Terms</a>. Salem Mania does not acquire ownership of your work.</p>
+
+        <button type="submit" class="gi-submit" id="pitchSubmitBtn">Submit Pitch →</button>
+      </form>
+
+      <!-- success state -->
+      <div class="gi-success" id="pitchSuccess">
+        <span class="gi-success-frak">From the Pyre</span>
+        <p class="gi-success-text">Your pitch has been received. The network will read it carefully. All decisions are final.<br><br>We'll be in touch.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ORNAMENT -->
+  <div class="gi-orn" style="margin-top:4rem;">
+    <span class="gi-orn-line"></span>
+    <span style="font-family:'Playfair Display',serif;font-size:.7rem;color:rgba(200,0,42,.4);flex-shrink:0;">§</span>
+    <span class="gi-orn-line"></span>
+  </div>
+
+  <!-- SAY HELLO -->
+  <div class="gi-contact-wrap">
+    <div class="gi-sec-hdr">
+      <span class="gi-sec-line"></span>
+      <h2 class="gi-sec-title">Say Hello</h2>
+      <span class="gi-sec-line rev"></span>
+    </div>
+    <form class="gi-contact-form" id="contactForm" action="https://formspree.io/f/xjgaakpd" method="POST">
+      <input type="hidden" name="_subject" value="Salem Mania — General Message"/>
+      <p class="gi-contact-intro">Questions, ideas, feedback — all welcome.</p>
+      <div class="gi-contact-two">
+        <div class="gi-field">
+          <label class="gi-label gi-label-l" for="c-name">Name <span class="gi-hint" style="color:rgba(155,164,174,.4);">(optional)</span></label>
+          <input type="text" id="c-name" name="name" class="gi-input gi-input-d" placeholder="Your name"/>
+        </div>
+        <div class="gi-field">
+          <label class="gi-label gi-label-l" for="c-email">Email</label>
+          <input type="email" id="c-email" name="email" class="gi-input gi-input-d" placeholder="your@email.com" required/>
+        </div>
+      </div>
+      <div class="gi-field">
+        <label class="gi-label gi-label-l" for="c-sub">Subject</label>
+        <input type="text" id="c-sub" name="subject" class="gi-input gi-input-d" placeholder="What's on your mind?" required/>
+      </div>
+      <div class="gi-field">
+        <label class="gi-label gi-label-l" for="c-msg">Message</label>
+        <textarea id="c-msg" name="message" class="gi-input gi-input-d gi-textarea" rows="4" placeholder="Say anything." required></textarea>
+      </div>
+      <button type="submit" class="gi-submit gi-submit-r">Send Message →</button>
+    </form>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <svg class="footer-web" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="600" y1="100" x2="600"  y2="0"  class="fw"/>
+    <line x1="600" y1="100" x2="0"    y2="25" class="fw"/>
+    <line x1="600" y1="100" x2="1200" y2="25" class="fw"/>
+    <line x1="600" y1="100" x2="0"    y2="0"  class="fw"/>
+    <line x1="600" y1="100" x2="1200" y2="0"  class="fw"/>
+    <line x1="600" y1="100" x2="300"  y2="0"  class="fw"/>
+    <line x1="600" y1="100" x2="900"  y2="0"  class="fw"/>
+    <path d="M0 65 Q300 40 600 55 Q900 72 1200 42" class="fa"/>
+    <path d="M0 38 Q300 18 600 32 Q900 48 1200 20" class="fa"/>
+  </svg>
+  <div class="footer-inner">
+    <span class="footer-brand">Salem Mania</span>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="articles.html">Articles</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="those-involved.html">Those Involved</a>
+      <a href="rights-and-stuff.html">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/"       target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <span class="footer-copy">© 2026 Salem Mania. salemmania.blog@gmail.com</span>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* ── PDF UPLOAD ── */
+var zone       = document.getElementById('uploadZone');
+var fileInput  = document.getElementById('fileInput');
+var uzLabel    = document.getElementById('uzLabel');
+var uzSub      = document.getElementById('uzSub');
+var uzFileName = document.getElementById('uzFileName');
+var uzRemove   = document.getElementById('uzRemove');
+var fileError  = document.getElementById('fileError');
+var MAX_BYTES  = 10 * 1024 * 1024; // 10MB
+
+fileInput.addEventListener('change', function(){
+  handleFile(this.files[0]);
+});
+
+/* drag & drop */
+zone.addEventListener('dragover', function(e){
+  e.preventDefault();
+  zone.classList.add('drag-over');
+});
+zone.addEventListener('dragleave', function(){
+  zone.classList.remove('drag-over');
+});
+zone.addEventListener('drop', function(e){
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  var f = e.dataTransfer.files[0];
+  if(f){ handleFile(f); }
+});
+
+function handleFile(file){
+  fileError.style.display = 'none';
+
+  if(!file) return;
+
+  if(file.type !== 'application/pdf' && !file.name.endsWith('.pdf')){
+    showFileError('Only PDF files are accepted.');
+    clearFile(); return;
+  }
+  if(file.size > MAX_BYTES){
+    showFileError('File is too large — maximum 10MB.');
+    clearFile(); return;
+  }
+
+  /* show file name + remove button */
+  uzFileName.textContent = '✓ ' + file.name + ' (' + (file.size/1024/1024).toFixed(2) + 'MB)';
+  uzFileName.style.display = 'block';
+  uzRemove.style.display   = 'block';
+  uzLabel.textContent      = 'PDF attached';
+  uzSub.style.display      = 'none';
+  zone.classList.add('has-file');
+}
+
+function removeFile(e){
+  e.stopPropagation();
+  clearFile();
+}
+
+function clearFile(){
+  fileInput.value    = '';
+  uzFileName.textContent = '';
+  uzFileName.style.display = 'none';
+  uzRemove.style.display   = 'none';
+  uzLabel.textContent = 'Drop your PDF here or click to browse';
+  uzSub.style.display = '';
+  zone.classList.remove('has-file','drag-over');
+}
+
+function showFileError(msg){
+  fileError.textContent  = msg;
+  fileError.style.display = 'block';
+}
+
+/* ── PITCH FORM SUBMIT ── */
+var pForm   = document.getElementById('pitchForm');
+var pBtn    = document.getElementById('pitchSubmitBtn');
+var pSuccess= document.getElementById('pitchSuccess');
+
+if(pForm){
+  pForm.addEventListener('submit', function(e){
+    /* client-side file validation before send */
+    var file = fileInput.files[0];
+    if(file){
+      if(file.type !== 'application/pdf' && !file.name.endsWith('.pdf')){
+        e.preventDefault(); showFileError('Only PDF files are accepted.'); return;
+      }
+      if(file.size > MAX_BYTES){
+        e.preventDefault(); showFileError('File is too large — maximum 10MB.'); return;
+      }
     }
-    window.addEventListener('resize',resize); resize(); requestAnimationFrame(draw);
-    if ('IntersectionObserver' in window) {
-      var els=document.querySelectorAll('.gi-reveal'); var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});
-      els.forEach(function(el){io.observe(el);});
-    } else { document.querySelectorAll('.gi-reveal').forEach(function(el){el.classList.add('in');}); }
-  })();
-  </script>
+
+    /* show loading state */
+    pBtn.textContent = 'Submitting…';
+    pBtn.disabled    = true;
+
+    /* Let Formspree handle the actual submission normally (no e.preventDefault()) */
+    /* After a short delay show success — Formspree will redirect if needed */
+    setTimeout(function(){
+      pForm.style.display    = 'none';
+      pSuccess.style.display = 'block';
+    }, 2800);
+  });
+}
+
+/* ── CONTACT FORM ── */
+var cForm = document.getElementById('contactForm');
+if(cForm){
+  cForm.addEventListener('submit', function(e){
+    var btn = cForm.querySelector('button[type=submit]');
+    if(btn){ btn.textContent='Sending…'; btn.disabled=true; }
+    setTimeout(function(){
+      if(btn){ btn.textContent='Sent ✓'; btn.style.background='#1a7a3a'; btn.style.boxShadow='0 0 16px rgba(26,122,58,.5)'; }
+    }, 2200);
+  });
+}
+
+/* ── SCROLL REVEAL ── */
+if('IntersectionObserver' in window){
+  var els = document.querySelectorAll('.gi-node,.gi-mission-inner,.gi-form,.gi-contact-form');
+  els.forEach(function(el){ el.style.opacity='0'; el.style.transform='translateY(14px)'; el.style.transition='opacity .5s ease,transform .5s ease'; });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; io.unobserve(e.target); }
+    });
+  },{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+}
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
