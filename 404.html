@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 — Silly this page doesn't exist! </title>
+  <title>404</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Source+Code+Pro:wght@400;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   <style>
-   
     :root {
       --red: #c8002a;
       --ink: #1a1208;
@@ -26,6 +25,8 @@
       text-align: center;
       overflow: hidden;
     }
+
+    /* Grainy Overlay to match your index theme */
     body::before {
       content: '';
       position: fixed;
@@ -64,4 +65,58 @@
       display: inline-block;
       margin-top: 30px;
       padding: 10px 20px;
+      border: 1px solid var(--red);
+      color: var(--paper);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .back-home:hover {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 0 20px rgba(200, 0, 42, 0.5);
+    }
+
+    .spoke-bg {
+      position: absolute;
+      z-index: -1;
+      opacity: 0.1;
+      animation: spin 60s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <svg class="spoke-bg" width="800" height="800" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="90" stroke="#c8002a" stroke-width="0.5" fill="none" />
+    <path d="M100 10 L100 190 M10 100 L190 100 M36 36 L164 164 M36 164 L164 36" stroke="#c8002a" stroke-width="0.3" />
+  </svg>
+
+  <div class="container">
+    <div class="glitch-title">404</div>
+    <p class="caption">404! Silly, this page doesn't exist!</p>
+    <p style="font-size: 0.75rem; opacity: 0.5; margin-bottom: 20px;">
+      [ ERROR: PAGE_NOT_FOUND_IN_TRIBUNAL_ARCHIVE ]
+    </p>
+    <a href="index.html" class="back-home">RETURN</a>
+  </div>
+
+  <script>
+    // Subtle tilt effect
+    document.addEventListener('mousemove', (e) => {
+      const container = document.querySelector('.container');
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+  </script>
+</body>
+</html>
       border: 1px solid var(--red);
