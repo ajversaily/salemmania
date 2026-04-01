@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    .oracle-section {
+      background: #080603;
+      color: #f0e8d5;
+      font-family: 'Source Code Pro', monospace;
+      padding: 60px 20px;
+      border-top: 1px solid #c8002a;
+      text-align: center;
+    }
+    .oracle-card {
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid rgba(240, 232, 213, 0.1);
+      padding: 30px;
+      background: rgba(20, 15, 10, 0.5);
+    }
+    .astro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 25px 0;
+    }
+    .astro-input-group { display: flex; flex-direction: column; text-align: left; }
+    .astro-input-group label { font-size: 10px; color: #c8002a; margin-bottom: 5px; font-weight: bold; }
+    .astro-select {
+      background: #111;
+      border: 1px solid #333;
+      color: #f0e8d5;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 12px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .ritual-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid #c8002a;
+      color: #c8002a;
+      padding: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .ritual-btn:hover { background: #c8002a; color: #fff; box-shadow: 0 0 15px rgba(200, 0, 42, 0.4); }
+    
+    #divination-result {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(200, 0, 42, 0.3);
+      display: none;
+      animation: scanline 0.2s linear infinite;
+    }
+    .unifraktur { font-family: 'UnifrakturMaguntia', serif; }
+    .archetype-title { font-size: 2rem; color: #c8002a; margin: 10px 0; }
+    
+    @keyframes scanline {
+      0% { opacity: 0.98; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="oracle-section">
+  <div class="oracle-card">
+    <h2 class="unifraktur" style="font-size: 2.5rem; margin: 0;">Celestial Audit</h2>
+    <p style="font-size: 11px; opacity: 0.6; letter-spacing: 1px;">[ CALCULATING TRIBUNAL INTERFERENCE ]</p>
+
+    <div class="astro-grid">
+      <div class="astro-input-group">
+        <label>SUN</label>
+        <select id="sun" class="astro-select"></select>
+      </div>
+      <div class="astro-input-group">
+        <label>MOON</label>
+        <select id="moon" class="astro-select"></select>
+      </div>
+      <div class="astro-input-group">
+        <label>RISING</label>
+        <select id="rising" class="astro-select"></select>
+      </div>
+    </div>
+
+    <button class="ritual-btn" onclick="runDivination()">INITIATE ALIGNMENT</button>
+
+    <div id="divination-result">
+      <p style="font-size: 10px; color: #8b6914;">ALIGNMENT SUCCESSFUL //</p>
+      <h3 id="res-role" class="unifraktur archetype-title"></h3>
+      <p id="res-text" style="font-size: 13px; line-height: 1.5; color: #d4c4a0;"></p>
+      <div style="margin-top: 15px; font-size: 9px; color: #c8002a; letter-spacing: 2px;">STATUS: MANIA_BOUND</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const signs = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+  
+  // Populate dropdowns
+  const selects = ['sun', 'moon', 'rising'];
+  selects.forEach(id => {
+    const el = document.getElementById(id);
+    signs.forEach(sign => {
+      let opt = document.createElement('option');
+      opt.value = sign;
+      opt.innerHTML = sign;
+      el.appendChild(opt);
+    });
+  });
+
+  const archetypes = {
+    "Fire": { role: "The Torchbearer", text: "Your presence is a flare in the dark archives. You are tasked with illuminating the Forge." },
+    "Earth": { role: "The Scribe", text: "Methodical and grounded. The Tribunal relies on your ability to record the weight of our history." },
+    "Air": { role: "The Whisperer", text: "You travel through the static. Your role is to spread the interference where it is most needed." },
+    "Water": { role: "The Occultist", text: "Deep waters hide deep secrets. You are the keeper of the unspoken 'Mania'." }
+  };
+
+  function runDivination() {
+    const sun = document.getElementById('sun').value;
+    const resDiv = document.getElementById('divination-result');
+    
+    let element = "";
+    if (["Aries", "Leo", "Sagittarius"].includes(sun)) element = "Fire";
+    else if (["Taurus", "Virgo", "Capricorn"].includes(sun)) element = "Earth";
+    else if (["Gemini", "Libra", "Aquarius"].includes(sun)) element = "Air";
+    else element = "Water";
+
+    const result = archetypes[element];
+
+    document.getElementById('res-role').innerText = result.role;
+    document.getElementById('res-text').innerText = result.text;
+    
+    resDiv.style.display = "block";
+    document.body.style.backgroundColor = "#1a0000";
+    setTimeout(() => { document.body.style.backgroundColor = "#080603"; }, 150);
+  }
+</script>
+
+</body>
+</html>
