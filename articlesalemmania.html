@@ -1,435 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Mania Begins. — Salem Mania</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --cream:   #f5f0e8;
-      --vellum:  #e8dcc4;
-      --foxed:   #d4c4a0;
-      --ink:     #1a1714;
-      --ink-mid: #2e2420;
-      --red:     #c8002a;
-      --ember:   #d4420a;
-      --muted:   #5a5650;
-      --dust:    #7a6e5a;
-      --border:  #c8c4bc;
-      --max-w:   720px;
-      --col-w:   680px;
-      --drop-cap-size: 5.8rem;
-    }
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4G1N1PMZY"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q4G1N1PMZY');</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K8FSQQK5');</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="The Mania Begins. — Salem Mania Issue No. 1 Founder's Note"/>
+<title>The Mania Begins. — Salem Mania</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Code+Pro:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --r:#c8002a;--bg0:#060402;--bg1:#0a0704;
+  --moon:#f0e8d5;--line:rgba(200,0,42,.18);
+  --mono:'Source Code Pro',monospace;
+  --frak:'UnifrakturMaguntia',cursive;
+  --display:'Playfair Display',Georgia,serif;
+  --fell:'IM Fell English',Georgia,serif;
+  --body:'Libre Baskerville',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg0);color:var(--moon);font-family:var(--body);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.022;}
+::selection{background:var(--r);color:#fff;}
+a{color:var(--r);text-decoration:none;}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 18px; scroll-behavior: smooth; }
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:rgba(6,4,2,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(16px);}
+.nav-brand{font-family:var(--frak);font-size:1.1rem;color:var(--moon);text-shadow:0 0 18px rgba(200,0,42,.3);}
+.nav-links{display:flex;gap:1.6rem;}
+.nav-link{font-family:var(--mono);font-size:.5rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,232,213,.28);border-bottom:1px solid transparent;padding-bottom:1px;transition:color .2s,border-color .2s;}
+.nav-link:hover,.nav-link.active{color:var(--moon);border-bottom-color:rgba(200,0,42,.6);}
+@media(max-width:640px){.nav-links .nav-link:not(.keep){display:none;}}
 
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: 'Libre Baskerville', Georgia, serif;
-      line-height: 1.78;
-      -webkit-font-smoothing: antialiased;
-    }
+/* PAGE */
+.page{padding-top:44px;min-height:100vh;display:flex;flex-direction:column;}
 
-    /* paper grain */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: .028; pointer-events: none; z-index: 9999;
-    }
+/* DOC HEADER */
+.doc-header{background:var(--bg0);border-bottom:1px solid var(--line);padding:3rem 1.5rem 2rem;position:relative;overflow:hidden;}
+.doc-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,0,42,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,0,42,.03) 1px,transparent 1px);background-size:40px 40px;}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(200,0,42,.06),transparent);pointer-events:none;}
+.doc-header-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
 
-    /* ── NAV ──────────────────────────────────────── */
-    .sm-nav {
-      background: rgba(19,14,8,.97);
-      border-bottom: 2px solid rgba(200,0,42,.5);
-      padding: .7rem 1.5rem;
-      position: sticky; top: 0; z-index: 200;
-      backdrop-filter: blur(10px);
-    }
-    .sm-nav-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
-    }
-    .sm-nav-brand {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: .95rem; font-weight: 900; color: #f0e8d5;
-      text-decoration: none; letter-spacing: -.01em; flex-shrink: 0;
-      transition: text-shadow .3s;
-    }
-    .sm-nav-brand:hover { text-decoration: none; color: #f0e8d5; text-shadow: 0 0 20px rgba(200,0,42,.4); }
-    .sm-nav-links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-    .sm-nav-link {
-      font-family: 'Source Code Pro', monospace; font-size: .58rem; font-weight: 600;
-      letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.35);
-      text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px;
-      transition: color .2s, border-color .2s;
-    }
-    .sm-nav-link:hover { color: #f0e8d5; border-bottom-color: rgba(200,0,42,.5); text-decoration: none; }
-    .sm-nav-active { color: #f0e8d5 !important; border-bottom-color: #c8002a !important; }
+.doc-meta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.doc-meta-item{display:flex;align-items:center;gap:.5rem;}
+.doc-meta-key{font-family:var(--mono);font-size:.44rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,0,42,.55);}
+.doc-meta-val{font-family:var(--mono);font-size:.48rem;letter-spacing:.08em;color:rgba(240,232,213,.38);}
+.doc-meta-sep{width:1px;height:12px;background:var(--line);}
 
-    /* ── SITE HEADER ─────────────────────────────── */
-    .site-header {
-      position: relative;
-      overflow: hidden;
-      background: var(--cream);
-      border-bottom: 2px solid var(--ink);
-      padding: 1.4rem 1.5rem 0;
-    }
+.doc-status{display:inline-flex;align-items:center;gap:.4rem;background:rgba(200,0,42,.08);border:1px solid rgba(200,0,42,.25);padding:.22em .75em;margin-bottom:1.4rem;}
+.doc-status-dot{width:5px;height:5px;border-radius:50%;background:#2a9d2a;box-shadow:0 0 5px rgba(42,157,42,.7);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.doc-status-text{font-family:var(--mono);font-size:.44rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,232,213,.45);}
 
-    /* subtle candle-warmth at base */
-    .site-header::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(to right, transparent, rgba(200,0,42,.35), transparent);
-      pointer-events: none;
-    }
+.doc-kicker{font-family:var(--mono);font-size:.5rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,0,42,.65);display:block;margin-bottom:.7rem;}
+.doc-title{font-family:var(--display);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;color:var(--moon);margin-bottom:.8rem;text-shadow:0 0 30px rgba(200,0,42,.15);}
+.doc-dek{font-family:var(--fell);font-style:italic;font-size:clamp(.88rem,1.8vw,1.05rem);color:rgba(240,232,213,.45);line-height:1.65;max-width:560px;margin-bottom:1.4rem;}
+.doc-byline{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;}
+.doc-by{font-family:var(--mono);font-size:.5rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,232,213,.4);}
+.doc-by strong{color:var(--r);}
+.doc-sep{width:1px;height:12px;background:var(--line);}
+.doc-date{font-family:var(--mono);font-size:.46rem;letter-spacing:.08em;color:rgba(240,232,213,.28);}
 
-    .header-inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: flex; flex-direction: column; align-items: center; gap: .4rem;
-    }
+/* BODY GRID */
+.doc-body-wrap{flex:1;display:grid;grid-template-columns:220px 1fr;max-width:1200px;margin:0 auto;width:100%;border-left:1px solid var(--line);border-right:1px solid var(--line);}
+@media(max-width:720px){.doc-body-wrap{grid-template-columns:1fr;}}
 
-    .header-meta {
-      display: flex; gap: 1.5rem;
-      font-family: 'Source Code Pro', monospace;
-      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-    }
+/* SIDEBAR */
+.doc-sidebar{border-right:1px solid var(--line);padding:2rem 1.4rem;position:sticky;top:44px;align-self:start;height:calc(100vh - 44px);overflow-y:auto;}
+@media(max-width:720px){.doc-sidebar{display:none;}}
+.sidebar-title{font-family:var(--mono);font-size:.44rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,0,42,.5);margin-bottom:1rem;}
+.toc-item{display:block;font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;color:rgba(240,232,213,.28);padding:.35rem 0 .35rem .7rem;border-left:2px solid transparent;transition:color .2s,border-color .2s;}
+.toc-item:hover,.toc-item.active{color:rgba(240,232,213,.75);border-left-color:var(--r);}
+.sidebar-rule{height:1px;background:var(--line);margin:1.4rem 0;}
+.sb-block{margin-bottom:.9rem;}
+.sb-key{font-family:var(--mono);font-size:.42rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,0,42,.45);display:block;margin-bottom:.18rem;}
+.sb-val{font-family:var(--mono);font-size:.48rem;letter-spacing:.05em;color:rgba(240,232,213,.32);line-height:1.55;}
+.sb-link{display:block;margin-top:1rem;font-family:var(--mono);font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--r);padding:.6em 0;border-bottom:1px solid rgba(200,0,42,.2);transition:letter-spacing .2s;}
+.sb-link:hover{letter-spacing:.22em;}
 
-    .masthead {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.6rem, 8vw, 4.8rem);
-      font-weight: 900; letter-spacing: -.02em; line-height: 1; text-align: center;
-      color: var(--ink);
-    }
+/* CONTENT */
+.doc-content{padding:3rem 3rem 5rem;}
+@media(max-width:860px){.doc-content{padding:2rem 1.5rem 4rem;}}
 
-    /* ornamental nav under masthead */
-    .header-nav-row {
-      display: flex; align-items: center; gap: .9rem;
-      font-family: 'Source Code Pro', monospace;
-      font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
-      padding: .7rem 0 1rem;
-    }
-    .hn-link {
-      color: var(--ink); text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color .2s, color .2s;
-      padding-bottom: 1px;
-    }
-    .hn-link:hover, .hn-link.active { border-bottom-color: var(--red); color: var(--red); }
+.doc-section{margin-bottom:3rem;}
+.doc-section-id{font-family:var(--mono);font-size:.44rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,0,42,.5);display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem;}
+.doc-section-id::after{content:'';flex:1;height:1px;background:var(--line);}
+.doc-section-title{font-family:var(--display);font-size:1.3rem;font-weight:900;color:var(--moon);margin-bottom:1rem;letter-spacing:-.01em;}
 
-    /* corner webs */
-    .corner-web { position: absolute; width: 100px; height: 100px; opacity: .16; pointer-events: none; }
-    .corner-web.top-left  { top: 0; left: 0; }
-    .corner-web.top-right { top: 0; right: 0; }
-    .cw     { stroke: var(--red); stroke-width: .8; fill: none; }
-    .cw-arc { fill: none; stroke: var(--red); stroke-width: .55; opacity: .55; }
+.doc-text{font-size:.95rem;line-height:1.88;color:rgba(240,232,213,.62);margin-bottom:1.1em;}
+.doc-text em{font-style:italic;color:rgba(240,232,213,.82);}
+.doc-text strong{font-weight:700;color:var(--moon);}
 
-    /* ── ARTICLE WRAPPER ─────────────────────────── */
-    .article-wrap { max-width: var(--col-w); margin: 0 auto; padding: 3.5rem 1.5rem 5.5rem; }
+.doc-clause{border:1px solid var(--line);border-left:3px solid var(--r);padding:1.2rem 1.4rem;margin:1.8rem 0;background:rgba(200,0,42,.03);position:relative;}
+.doc-clause-num{position:absolute;top:.7rem;right:.9rem;font-family:var(--mono);font-size:.4rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,0,42,.3);}
+.doc-clause p{font-family:var(--display);font-size:1.05rem;font-style:italic;font-weight:700;color:var(--moon);line-height:1.5;margin:0;}
 
-    /* ── BACK LINK ───────────────────────────────── */
-    .back-link {
-      display: inline-flex; align-items: center; gap: .5rem;
-      font-family: 'Source Code Pro', monospace;
-      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: color .2s, border-color .2s;
-      margin-bottom: 2.5rem;
-    }
-    .back-link:hover { color: var(--red); border-bottom-color: var(--red); }
+.doc-list{margin:1rem 0 1.4rem;padding:0;list-style:none;}
+.doc-list li{display:flex;align-items:flex-start;gap:.9rem;padding:.55rem 0;border-bottom:1px solid rgba(200,0,42,.07);font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:rgba(240,232,213,.48);line-height:1.6;}
+.doc-list li:last-child{border-bottom:none;}
+.doc-list-marker{font-weight:700;color:rgba(200,0,42,.5);flex-shrink:0;min-width:2rem;font-size:.5rem;letter-spacing:.1em;}
 
-    /* ── ARTICLE HEADER ──────────────────────────── */
-    .article-header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem; margin-bottom: 2.5rem;
-    }
-    .article-kicker {
-      font-family: 'Source Code Pro', monospace;
-      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--red); display: block; margin-bottom: .9rem;
-    }
-    .article-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 5vw, 3.1rem);
-      font-weight: 900; line-height: 1.08; letter-spacing: -.02em;
-      color: var(--ink); margin-bottom: 1.1rem;
-    }
-    .article-dek {
-      font-family: 'IM Fell English', Georgia, serif;
-      font-size: 1.05rem; font-style: italic; color: var(--muted);
-      line-height: 1.68; max-width: 540px; margin-bottom: 1.4rem;
-    }
-    .article-byline { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
-    .byline-author { font-family: 'Source Code Pro', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
-    .byline-author strong { color: var(--red); }
-    .byline-sep { width: 1px; height: 14px; background: var(--border); }
-    .byline-date { font-family: 'Source Code Pro', monospace; font-size: .64rem; letter-spacing: .08em; color: var(--muted); }
+.doc-sig{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line);}
+.doc-sig-label{font-family:var(--mono);font-size:.44rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,232,213,.28);display:block;margin-bottom:.4rem;}
+.doc-sig-name{font-family:var(--display);font-size:1.6rem;font-style:italic;font-weight:700;color:var(--moon);display:block;margin-bottom:.2rem;}
+.doc-sig-title{font-family:var(--mono);font-size:.5rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,0,42,.55);}
 
-    /* ── ORNAMENT ────────────────────────────────── */
-    .ornament { display: flex; align-items: center; gap: .8rem; margin: 2.5rem 0; }
-    .ornament-line { flex: 1; height: 1px; background: var(--border); }
-    .ornament-glyph { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--red); opacity: .7; flex-shrink: 0; }
+.doc-acceptance{margin-top:2.5rem;padding:1.5rem;background:rgba(200,0,42,.04);border:1px solid var(--line);border-top:2px solid rgba(200,0,42,.5);}
+.da-title{font-family:var(--mono);font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,0,42,.6);margin-bottom:.6rem;}
+.da-text{font-family:var(--mono);font-size:.54rem;letter-spacing:.04em;color:rgba(240,232,213,.38);line-height:1.7;margin-bottom:1rem;}
+.da-btn{display:inline-block;background:var(--r);color:#fff;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.7em 1.6em;transition:background .2s,box-shadow .2s;box-shadow:0 0 16px rgba(200,0,42,.4);}
+.da-btn:hover{background:#e8001f;box-shadow:0 0 28px rgba(200,0,42,.6);color:#fff;}
+.da-dismiss{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;color:rgba(240,232,213,.22);margin-left:1rem;transition:color .2s;}
+.da-dismiss:hover{color:rgba(240,232,213,.55);}
 
-    /* ── ARTICLE BODY ────────────────────────────── */
-    .article-body { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1rem; line-height: 1.85; color: var(--ink); }
-    .article-body p { margin-bottom: 1.55em; }
+.doc-nudge{margin-top:3rem;padding:1.8rem 2rem;background:rgba(200,0,42,.05);border:1px solid var(--line);border-left:3px solid var(--r);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+.nudge-tag{font-family:var(--mono);font-size:.46rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,0,42,.6);display:block;margin-bottom:.3rem;}
+.nudge-title{font-family:var(--display);font-size:1rem;font-weight:900;color:var(--moon);}
+.nudge-btn{font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--r);border:1px solid rgba(200,0,42,.35);padding:.6em 1.3em;white-space:nowrap;transition:background .2s,border-color .2s;}
+.nudge-btn:hover{background:rgba(200,0,42,.08);border-color:rgba(200,0,42,.7);}
 
-    /* drop cap */
-    .article-body p.drop-cap::first-letter {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: var(--drop-cap-size); font-weight: 900;
-      float: left; line-height: .82;
-      margin: .05em .12em -.04em 0;
-      color: var(--ink);
-    }
-
-    /* pull quote — tribunal severity */
-    .pull-quote {
-      border-top: 2px solid var(--ink);
-      border-bottom: 1px solid var(--border);
-      margin: 2.8rem 0; padding: 1.5rem 0 1.3rem;
-      position: relative;
-    }
-    .pull-quote::before {
-      content: '';
-      position: absolute; top: 0; left: 0;
-      width: 48px; height: 2px;
-      background: var(--red);
-    }
-    .pull-quote p {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.35rem; font-style: italic; font-weight: 700;
-      line-height: 1.45; color: var(--ink); margin: 0;
-    }
-
-    .article-body em { font-style: italic; color: var(--ink-mid); }
-
-    /* ── SIGNATURE ───────────────────────────────── */
-    .signature-block {
-      margin-top: 3.5rem; padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: .3rem;
-    }
-    .sig-label { font-family: 'Source Code Pro', monospace; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-    .sig-name  { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-style: italic; font-weight: 700; color: var(--ink); }
-    .sig-title { font-family: 'Source Code Pro', monospace; font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
-
-    /* ── PITCH NUDGE ──────────────────────────────── */
-    .pitch-nudge {
-      margin-top: 4rem;
-      background: var(--ink);
-      border-left: 5px solid var(--red);
-      border-top: 2px solid var(--red);
-      padding: 2rem 2.2rem;
-      position: relative; overflow: hidden;
-    }
-    .pitch-nudge::before {
-      content: '';
-      position: absolute; top: 0; right: 0;
-      width: 160px; height: 100%;
-      background: radial-gradient(ellipse at right, rgba(200,0,42,.09), transparent 65%);
-      pointer-events: none;
-    }
-    .pn-tag { font-family: 'Source Code Pro', monospace; font-size: .55rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .5rem; }
-    .pn-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; font-weight: 900; color: #f0e8d5; margin-bottom: .5rem; line-height: 1.15; }
-    .pn-sub { font-family: 'IM Fell English', Georgia, serif; font-style: italic; font-size: .9rem; color: rgba(240,232,213,.52); line-height: 1.65; margin-bottom: 1.2rem; }
-    .pn-btn {
-      display: inline-block; background: var(--red); color: #fff;
-      font-family: 'Source Code Pro', monospace; font-size: .7rem; font-weight: 600;
-      letter-spacing: .18em; text-transform: uppercase;
-      padding: .75em 1.8em; border-radius: 1px; text-decoration: none;
-      transition: background .2s, transform .2s, box-shadow .2s;
-      box-shadow: 0 0 20px rgba(200,0,42,.4);
-      position: relative;
-    }
-    .pn-btn:hover { background: #e8001f; transform: scale(1.04); box-shadow: 0 0 30px rgba(200,0,42,.55); text-decoration: none; color: #fff; }
-
-    /* ── FOOTER ──────────────────────────────────── */
-    .site-footer { background: var(--ink); position: relative; overflow: hidden; }
-    .footer-web  { display: block; width: 100%; height: 120px; opacity: .18; }
-    .fw { stroke: rgba(200,0,42,.55); stroke-width: 1; fill: none; }
-    .fa { fill: none; stroke: rgba(200,0,42,.4); stroke-width: .8; }
-    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,.07); }
-    .footer-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; font-weight: 900; color: #f0e8d5; }
-    .footer-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-    .footer-nav a { font-family: 'Source Code Pro', monospace; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,232,213,.38); text-decoration: none; transition: color .2s; }
-    .footer-nav a:hover { color: var(--red); text-decoration: none; }
-    .footer-copy { font-family: 'Source Code Pro', monospace; font-size: .6rem; color: rgba(240,232,213,.22); letter-spacing: .08em; }
-
-    @media (max-width: 600px) {
-      .article-wrap { padding: 2rem 1.2rem 3.5rem; }
-      .article-title { font-size: 1.9rem; }
-      .pull-quote p  { font-size: 1.15rem; }
-      .pitch-nudge   { padding: 1.8rem 1.5rem; }
-    }
-  </style>
+/* FOOTER */
+.site-footer{border-top:1px solid var(--line);background:var(--bg0);}
+.footer-inner{max-width:1100px;margin:0 auto;padding:1.2rem 1.5rem 1.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.footer-brand{font-family:var(--frak);font-size:1rem;color:var(--moon);}
+.footer-nav{display:flex;gap:1.3rem;flex-wrap:wrap;}
+.footer-nav a{font-family:var(--mono);font-size:.48rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,232,213,.25);transition:color .2s;}
+.footer-nav a:hover{color:var(--r);}
+.footer-copy{font-family:var(--mono);font-size:.46rem;letter-spacing:.08em;color:rgba(255,255,255,.14);}
+</style>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8FSQQK5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- SHARED NAV — sticky dark bar -->
-  <nav class="sm-nav">
-    <div class="sm-nav-inner">
-      <a href="index.html" class="sm-nav-brand">Salem Mania</a>
-      <div class="sm-nav-links">
-        <a href="index.html"            class="sm-nav-link">Home</a>
-        <a href="articles.html"         class="sm-nav-link sm-nav-active">Articles</a>
-        <a href="get-involved.html"     class="sm-nav-link">Get Involved</a>
-        <a href="those-involved.html"   class="sm-nav-link">Those Involved</a>
-        <a href="rights-and-stuff.html" class="sm-nav-link">Terms</a>
-        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="sm-nav-link">GitHub</a>
-        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="sm-nav-link">Instagram</a>
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Salem Mania</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link keep">Home</a>
+    <a href="articles.html" class="nav-link active keep">Articles</a>
+    <a href="get-involved.html" class="nav-link">Get Involved</a>
+    <a href="those-involved.html" class="nav-link">Those Involved</a>
+    <a href="rights-and-stuff.html" class="nav-link">Terms</a>
+    <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+    <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener" class="nav-link">Instagram</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <header class="doc-header">
+    <div class="doc-header-inner">
+      <div class="doc-meta-row">
+        <div class="doc-meta-item"><span class="doc-meta-key">Document</span><span class="doc-meta-val">SM-2026-001</span></div>
+        <span class="doc-meta-sep"></span>
+        <div class="doc-meta-item"><span class="doc-meta-key">Classification</span><span class="doc-meta-val">Founding Statement · Issue No. 1</span></div>
+        <span class="doc-meta-sep"></span>
+        <div class="doc-meta-item"><span class="doc-meta-key">Issued</span><span class="doc-meta-val">Ohio, March 16, 2026</span></div>
+        <span class="doc-meta-sep"></span>
+        <div class="doc-meta-item"><span class="doc-meta-key">Status</span><span class="doc-meta-val">In Effect</span></div>
       </div>
-    </div>
-  </nav>
-
-  <!-- PUBLICATION MASTHEAD -->
-  <header class="site-header">
-    <svg class="corner-web top-left"  viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="0" x2="110" y2="110" class="cw"/>
-      <line x1="0" y1="0" x2="72"  y2="110" class="cw"/>
-      <line x1="0" y1="0" x2="110" y2="72"  class="cw"/>
-      <line x1="0" y1="0" x2="36"  y2="110" class="cw"/>
-      <line x1="0" y1="0" x2="110" y2="36"  class="cw"/>
-      <path d="M27 0 Q0 27 0 0Z M55 0 Q0 55 0 0Z M82 0 Q0 82 0 0Z M110 0 Q0 110 0 0Z" class="cw-arc"/>
-    </svg>
-    <svg class="corner-web top-right" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-      <line x1="110" y1="0" x2="0"  y2="110" class="cw"/>
-      <line x1="110" y1="0" x2="38" y2="110" class="cw"/>
-      <line x1="110" y1="0" x2="0"  y2="72"  class="cw"/>
-      <line x1="110" y1="0" x2="74" y2="110" class="cw"/>
-      <line x1="110" y1="0" x2="0"  y2="36"  class="cw"/>
-      <path d="M83 0 Q110 27 110 0Z M55 0 Q110 55 110 0Z M27 0 Q110 82 110 0Z M0 0 Q110 110 110 0Z" class="cw-arc"/>
-    </svg>
-
-    <div class="header-inner">
-      <div class="header-meta">
-        <span>Est. March 12, 2026</span>
-        <span>Ohio</span>
+      <div class="doc-status">
+        <span class="doc-status-dot"></span>
+        <span class="doc-status-text">Pitch Season Open · 15 Slots Remaining · All Decisions Final</span>
       </div>
-      <h1 class="masthead">Salem Mania</h1>
-      <nav class="header-nav-row">
-        <a href="index.html" class="hn-link">Home</a>
-        <span aria-hidden="true">
-          <svg viewBox="0 0 36 18" width="36" height="18" xmlns="http://www.w3.org/2000/svg">
-            <line x1="18" y1="9" x2="18" y2="0"  stroke="rgba(200,0,42,.55)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="36" y2="0"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="36" y2="9"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="36" y2="18" stroke="rgba(200,0,42,.45)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="18" y2="18" stroke="rgba(200,0,42,.55)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="0"  y2="18" stroke="rgba(200,0,42,.45)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="0"  y2="9"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="0"  y2="0"  stroke="rgba(200,0,42,.45)" stroke-width="1"/>
-            <ellipse cx="18" cy="9" rx="10" ry="5" fill="none" stroke="rgba(200,0,42,.35)" stroke-width=".7"/>
-            <ellipse cx="18" cy="9" rx="5"  ry="3" fill="none" stroke="rgba(200,0,42,.3)"  stroke-width=".6"/>
-            <circle  cx="18" cy="9" r="2"   fill="rgba(200,0,42,.75)"/>
-          </svg>
-        </span>
-        <a href="articles.html" class="hn-link active">Articles</a>
-        <span aria-hidden="true" style="color:rgba(26,23,20,.3);font-size:.7rem;">·</span>
-        <a href="get-involved.html" class="hn-link">Get Involved</a>
-      </nav>
+      <span class="doc-kicker">Issue No. 1 · Founder's Note · Salem Mania</span>
+      <h1 class="doc-title">The Mania Begins.</h1>
+      <p class="doc-dek">Every documented cultural shift has occurred after a change has come. Salem Mania is here to document the next one.</p>
+      <div class="doc-byline">
+        <span class="doc-by">By <strong>AJ Rasaily</strong></span>
+        <span class="doc-sep"></span>
+        <span class="doc-date">Article I · Issue No. 1 · March 2026</span>
+      </div>
     </div>
   </header>
 
-  <!-- ARTICLE -->
-  <main>
-    <div class="article-wrap">
+  <div class="doc-body-wrap">
 
-      <a href="articles.html" class="back-link">← Back to Articles</a>
+    <aside class="doc-sidebar">
+      <div class="sidebar-title">Contents</div>
+      <a href="#s1" class="toc-item">§ 1 — The Historical Precedent</a>
+      <a href="#s2" class="toc-item">§ 2 — The Publication</a>
+      <a href="#s3" class="toc-item">§ 3 — The Standard</a>
+      <a href="#s4" class="toc-item">§ 4 — The Byline</a>
+      <a href="#s5" class="toc-item">§ 5 — The Declaration</a>
+      <div class="sidebar-rule"></div>
+      <div class="sb-block"><span class="sb-key">Document ID</span><span class="sb-val">SM-2026-001</span></div>
+      <div class="sb-block"><span class="sb-key">Author</span><span class="sb-val">AJ Rasaily<br>Founder, Salem Mania</span></div>
+      <div class="sb-block"><span class="sb-key">Process</span><span class="sb-val">SDPRP — Standard Democratic<br>Peer Review Process</span></div>
+      <div class="sb-block"><span class="sb-key">Season Cap</span><span class="sb-val">15 articles maximum</span></div>
+      <div class="sb-block"><span class="sb-key">Sections</span><span class="sb-val">Film · Music · Culture<br>Literature · Opinion · Poetry</span></div>
+      <div class="sidebar-rule"></div>
+      <a href="get-involved.html#pitch-form" class="sb-link">Submit a Pitch →</a>
+    </aside>
 
-      <header class="article-header">
-        <span class="article-kicker">Issue No. 1 &nbsp;·&nbsp; Founder's Note &nbsp;·&nbsp; Ohio, March 16, 2026</span>
-        <h1 class="article-title">The Mania Begins.</h1>
-        <p class="article-dek">Every documented cultural shift has occurred after a change has come. Salem Mania is here to document the next one.</p>
-        <div class="article-byline">
-          <span class="byline-author">By <strong>AJ Rasaily</strong></span>
-          <span class="byline-sep" aria-hidden="true"></span>
-          <span class="byline-date">Article I &nbsp;·&nbsp; Issue No. 1</span>
-        </div>
-      </header>
+    <main class="doc-content">
 
-      <div class="article-body">
+      <div class="doc-section" id="s1">
+        <div class="doc-section-id">§ 1 — The Historical Precedent</div>
+        <h2 class="doc-section-title">The Court Was Questioned</h2>
+        <p class="doc-text">Every documented cultural shift has occurred after a change has come. During the Salem Witch Trials, 19 women were tragically executed under the accusations of witchcraft — a notably terrible part of American history, plaguing the barriers of religion, law, and the patriarchy. More than 200 women were prosecuted.</p>
+        <p class="doc-text">The hysteria only ended when more prominent, respected citizens were accused. Inducing a cultural shift where eyebrows were raised towards not the accused — but towards the persecutors. <em>The court was questioned. The authority the court once held was diminished.</em></p>
+      </div>
 
-        <p class="drop-cap">Every documented cultural shift has occurred after a change has come. During the Salem Witch Trials, 19 women were tragically executed under the accusations of witchcraft — a notably terrible part of American history, plaguing the barriers of religion, law, and the patriarchy. More than 200 women were prosecuted. The hysteria only ended when more prominent, respected citizens were accused. Inducing a cultural shift where eyebrows were raised towards not the accused — but towards the persecutors. The court was questioned. The authority the court once held was diminished.</p>
-
-        <div class="ornament" aria-hidden="true">
-          <span class="ornament-line"></span>
-          <span class="ornament-glyph">🕸</span>
-          <span class="ornament-line"></span>
-        </div>
-
-        <p>Salem Mania follows the height of the cultural shift. The cultural shifts of the world, across various fields, shall be documented here. Authors, writers, researchers, and thinkers will all have the opportunity to trailblaze this cultural shift. At Salem Mania, the work is found in the quality of articles. Each article on Salem Mania answers the question — <em>why must this exist?</em></p>
-
-        <div class="pull-quote">
+      <div class="doc-section" id="s2">
+        <div class="doc-section-id">§ 2 — The Publication</div>
+        <h2 class="doc-section-title">Salem Mania Follows That Shift</h2>
+        <div class="doc-clause">
+          <span class="doc-clause-num">Clause 2.1</span>
           <p>"Ordinary people are the ones to make the drums of history change from cymbals to snares."</p>
         </div>
+        <p class="doc-text">Salem Mania follows the height of the cultural shift. The cultural shifts of the world, across various fields, shall be documented here. Authors, writers, researchers, and thinkers will all have the opportunity to trailblaze this cultural shift.</p>
+        <p class="doc-text">Salem Mania is a publication for the community, by the community. We serve the culture, the people — as ordinary people are the people to make the drums of history change from cymbals to snares.</p>
+        <ul class="doc-list">
+          <li><span class="doc-list-marker">2.2</span>Film, Music, Culture, Literature, Opinion, Poetry — and beyond — shall all be represented.</li>
+          <li><span class="doc-list-marker">2.3</span>No advertising. No paywalls. No institutional backing. No single editor with final authority.</li>
+          <li><span class="doc-list-marker">2.4</span>Writers retain full copyright. Publication on Salem Mania grants display rights only.</li>
+          <li><span class="doc-list-marker">2.5</span>The Salem Mania codebase is open source (MIT License). The brand is not.</li>
+        </ul>
+      </div>
 
-        <p>Salem Mania is a publication for the community, by the community. We serve the culture, the people — as ordinary people are the people to make the drums of history change from cymbals to snares. Salem Mania is here to document that course of movement. Across all fields — whether it be film, music, culture, literature, opinion, poetry, and more — there must be the connection of quality writing. Writing that moves a reader. Writing that documents or induces a cultural shift. Writing that only could have been produced in the author's unique voice.</p>
+      <div class="doc-section" id="s3">
+        <div class="doc-section-id">§ 3 — The Standard</div>
+        <h2 class="doc-section-title">The SDPRP</h2>
+        <p class="doc-text">At Salem Mania, the work is found in the quality of articles. Each article on Salem Mania answers the question — <em>why must this exist?</em> All reviews follow the Standard Democratic Peer Review Process. Each piece of work is held to the same standards of quality.</p>
+        <p class="doc-text"><strong>The standard belongs to the community, not to any individual's taste or jurisdiction.</strong> When a piece passes, it passes because the community decided it earned its place.</p>
+        <ul class="doc-list">
+          <li><span class="doc-list-marker">3.1</span>Quality of Writing — does it move? Is the prose doing real work?</li>
+          <li><span class="doc-list-marker">3.2</span>Cultural Impact — does it matter beyond the writer's own perspective?</li>
+          <li><span class="doc-list-marker">3.3</span>Why It Must Exist — could anyone else have written this?</li>
+          <li><span class="doc-list-marker">3.4</span>Relevance — does the culture need this now?</li>
+          <li><span class="doc-list-marker">3.5</span>Originality — is this a voice no one else has?</li>
+        </ul>
+      </div>
 
-        <p>All reviews at Salem Mania follow the Standard Democratic Peer Review Process. Each piece of work will be held to the same standards of quality. The standard belongs to the community, not to any individual's taste or jurisdiction. When a piece passes, it passes because the community decided it earned its place. Salem Mania's ultimate goal is for the Salem Mania byline to mean something. All writing is held to the same standard. All decisions are final.</p>
-
-        <p>Everyone who decides to submit to Salem Mania must understand: <em>submission does not equal publication.</em> A Salem Mania byline should be synonymous with qualified writing. This open pitch window season, the Salem Mania article submission maximum will cap at fifteen articles. Meaning only fifteen or fewer articles will be selected, reviewed, and published on the Salem Mania website.</p>
-
-        <div class="ornament" aria-hidden="true">
-          <span class="ornament-line"></span>
-          <span class="ornament-glyph">🕸</span>
-          <span class="ornament-line"></span>
+      <div class="doc-section" id="s4">
+        <div class="doc-section-id">§ 4 — The Byline</div>
+        <h2 class="doc-section-title">Submission ≠ Publication</h2>
+        <p class="doc-text">Everyone who decides to submit to Salem Mania must understand: <em>submission does not equal publication.</em> A Salem Mania byline should be synonymous with qualified writing.</p>
+        <div class="doc-clause">
+          <span class="doc-clause-num">Clause 4.1</span>
+          <p>This open pitch window season, the Salem Mania article submission maximum will cap at fifteen articles. Only fifteen or fewer articles will be selected, reviewed, and published.</p>
         </div>
-
-        <p>Salem Mania is here to document the power writing can hold. Writing is the oldest system of information for distribution. Writers should not be disregarded — they should be held higher. Salem Mania is here to document the next generation of writers who will lead us into the next era. When eyes are shifting away from the prosecuted and onto the prosecutors.</p>
-
+        <p class="doc-text">Salem Mania's ultimate goal is for the Salem Mania byline to mean something. All writing is held to the same standard. <strong>All decisions are final.</strong></p>
       </div>
 
-      <div class="signature-block">
-        <span class="sig-label">Cordially,</span>
-        <span class="sig-name">AJ Rasaily</span>
-        <span class="sig-title">Founder, Salem Mania</span>
+      <div class="doc-section" id="s5">
+        <div class="doc-section-id">§ 5 — The Declaration</div>
+        <h2 class="doc-section-title">The Next Generation of Writers</h2>
+        <p class="doc-text">Salem Mania is here to document the power writing can hold. Writing is the oldest system of information for distribution. Writers should not be disregarded — they should be held higher.</p>
+        <p class="doc-text">Salem Mania is here to document the next generation of writers who will lead us into the next era. <em>When eyes are shifting away from the prosecuted and onto the prosecutors.</em></p>
       </div>
 
-      <!-- PITCH NUDGE -->
-      <div class="pitch-nudge">
-        <div class="pn-tag">Pitch Season Open.</div>
-        <div class="pn-title">Your byline could be next.</div>
-        <p class="pn-sub">Issue No. 1 is accepting pitches.</p>
-        <a href="get-involved.html#pitch-form" class="pn-btn">Submit a Pitch →</a>
+      <div class="doc-sig">
+        <span class="doc-sig-label">Executed and issued by</span>
+        <span class="doc-sig-name">AJ Rasaily</span>
+        <span class="doc-sig-title">Founder · Salem Mania · Est. Ohio, March 12, 2026</span>
       </div>
 
-    </div>
-  </main>
+      <div class="doc-acceptance">
+        <div class="da-title">By Reading Salem Mania</div>
+        <p class="da-text">You acknowledge the Standard Democratic Peer Review Process. You understand that submission does not equal publication. You accept that all editorial decisions are final and belong to the network — not to any individual, including the founder.</p>
+        <a href="get-involved.html#pitch-form" class="da-btn">Submit a Pitch →</a>
+        <a href="index.html" class="da-dismiss">Return to Home</a>
+      </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <svg class="footer-web" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="600" y1="120" x2="600"  y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="30" class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="30" class="fw"/>
-      <line x1="600" y1="120" x2="0"    y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="1200" y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="300"  y2="0"  class="fw"/>
-      <line x1="600" y1="120" x2="900"  y2="0"  class="fw"/>
-      <path d="M0 80 Q300 50 600 70 Q900 90 1200 55" class="fa"/>
-      <path d="M0 50 Q300 20 600 40 Q900 60 1200 25" class="fa"/>
-      <path d="M0 25 Q300  0 600 15 Q900 30 1200  5" class="fa"/>
-    </svg>
-    <div class="footer-inner">
-      <span class="footer-title">Salem Mania</span>
-      <nav class="footer-nav">
-        <a href="index.html">Home</a>
-        <a href="articles.html">Articles</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="those-involved.html">Those Involved</a>
-        <a href="rights-and-stuff.html">Terms &amp; Conditions</a>
-        <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
-      </nav>
-      <span class="footer-copy">© 2026 Salem Mania.</span>
-    </div>
-  </footer>
+      <div class="doc-nudge">
+        <div>
+          <span class="nudge-tag">Pitch Season Open · 15 Slots Remaining</span>
+          <span class="nudge-title">Your byline is next — if the work earns it.</span>
+        </div>
+        <a href="get-involved.html#pitch-form" class="nudge-btn">Submit →</a>
+      </div>
 
+    </main>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Salem Mania</span>
+    <nav class="footer-nav">
+      <a href="articles.html">Articles</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="those-involved.html">Those Involved</a>
+      <a href="rights-and-stuff.html">Terms</a>
+      <a href="https://github.com/ajversaily/salemmania" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.instagram.com/salemmaniapublication/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <span class="footer-copy">© 2026 Salem Mania</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var sections=document.querySelectorAll('.doc-section[id]');
+  var links=document.querySelectorAll('.toc-item');
+  if(!sections.length||!links.length)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){l.classList.remove('active');});
+        var active=document.querySelector('.toc-item[href="#'+e.target.id+'"]');
+        if(active)active.classList.add('active');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(function(s){io.observe(s);});
+})();
+</script>
 </body>
 </html>
